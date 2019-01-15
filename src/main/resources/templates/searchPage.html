@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页面</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- bootstrap-table -->
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <!-- 元素周期表样式 -->
+    <link rel="stylesheet" type="text/css" href="/PTableStyle.css"/>
+
+</head>
+<body>
+<div th:replace="index::nav"></div>
+<div class="container">
+    <div th:replace="search::body"></div>
+    <div th:replace="PTable::body"></div>
+
+    <table id="table" data-toggle="table" data-url="data1.json">
+        <thead>
+        <tr>
+            <th data-field="id">Item ID</th>
+            <th data-field="name">Item Name</th>
+            <th data-field="price">Item Price</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+    $('#table').bootstrapTable({
+        url: '/static/js/data1.json',
+        // striped: true,                      //是否显示行间隔色#}
+        // cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）#}
+        pagination: true,                   //是否显示分页（*）
+        // sortable: false,                     //是否启用排序#}
+        // sortOrder: "asc",                   //排序方式#}
+        // sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）#}
+        // pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录#}
+        // pageSize: rows,                     //每页的记录行数（*）#}
+        // pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）#}
+        // search: false,                      //是否显示表格搜索#}
+
+        columns: [{
+            field: 'ID',
+            title: 'Item ID'
+        }, {
+            field: 'Name',
+            title: 'Item Name'
+        }, {
+            field: 'Note',
+            title: 'Item Price'
+        }, {
+            title: '操作',
+            align: 'center',
+            // events: operateEvents,
+            formatter: operateFormatter
+        }]
+    })
+    ;
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button>',
+            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">电子能带结构</button>',
+            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>',
+            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>',
+            '<button type="button" class="RoleOfedit btn btn-primary  btn-sm" style="margin-right:15px;">力学性质</button>'
+        ].join('');
+    }
+</script>
+</body>
+</html>

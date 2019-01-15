@@ -40,4 +40,19 @@ public class HelloController {
     public String paper() {
         return "paper";
     }
+
+    @RequestMapping("/searchPage")
+    public String searchPage() {
+        return "searchPage";
+    }
+
+    @RequestMapping("/crystal")
+    public String crystal() {
+        return "crystalStructure";
+    }
+
+    @RequestMapping("/electron")
+    public String electron() {
+        return "electronicStructure";
+    }
 }
