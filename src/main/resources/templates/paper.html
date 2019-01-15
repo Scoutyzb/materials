@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>paper</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="index::head"></div>
+
+<div class="container">
+    <div style="padding: 20px 100px 10px;">
+        <form class="bs-example bs-example-form" role="form">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索文献">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"
+                                        onclick="location.href='/website/crystal'">Go!</button>
+                                <button class="btn btn-default" type="button"
+                                        onclick="location.href='/website/searchPage'">精确搜索</button>
+                            </span>
+                    </div><!-- /input-group -->
+                    <br>
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </form>
+    </div>
+    <div class='contenuti' id='contenuti_3'>
+        <div class='centered' id='centered_publication'>
+            <div class='set set3'>
+                <div style='clear:both;'></div>
+            </div>
+            <div class='set_record set_record_16'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <div class='titolo'>
+                    <h1>Articles on the spot</h1>
+                </div>
+            </div>
+            <div class='record_page_under'></div>
+            <div class='set_record set_record_10'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <div class='publication'>
+                    <a name='publication_1'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/natcomm_ml.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Universal fragment descriptors for predicting properties of inorganic crystals</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Olexandr Isayev, Corey Oses, Cormac Toher, Eric Gosset, Stefano Curtarolo and
+                                    Alexander
+                                    Tropsha</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br><span>Abstract:<br></span>
+                        Although historically materials discovery has been driven by a laborious trial-and-error
+                        process,
+                        knowledge-driven materials design can now be enabled by the
+                        rational combination of Machine Learning methods and materials databases. Here, data from the
+                        AFLOW
+                        repository for ab initio calculations is combined with Quantitative
+                        Materials Structure-Property Relationship models to predict important properties:
+                        metal/insulator
+                        classification, band gap energy, bulk/shear moduli, Debye
+                        temperature and heat capacities. The prediction’s accuracy compares well with the quality of the
+                        training data for virtually any stoichiometric inorganic crystalline material,
+                        reciprocating the available thermomechanical experimental data. The universality of the approach
+                        is
+                        attributed to the construction of the descriptors: Property-Labelled Materials Fragments.
+                        The representations require only minimal structural input allowing straightforward
+                        implementations
+                        of simple heuristic design rules.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br><a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'
+                               title='click here to download [new window]' target='_blank'>Nature Communications DOI:
+                        10.1038/ncomms15679</a>
+                    </div>
+                    <br>
+                    <hr>
+                    <a name='publication_2'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/prx_thermo.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>High-Throughput Computation of Thermal Conductivity of High-Temperature Solid
+                                    Phases:
+                                    The Case of Oxide and Fluoride Perovskitess</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Ambroise van Roekeghem, Jesús Carrete, Corey Oses, Stefano Curtarolo, and Natalio
+                                    Mingo</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br><span>Abstract:<br></span>
+                        Using finite-temperature phonon calculations and machine-learning methods, we assess the
+                        mechanical
+                        stability of about 400 semiconducting oxides and
+                        fluorides with cubic perovskite structures at 0, 300, and 1000 K. We find 92 mechanically stable
+                        compounds at high temperatures—including 36 not mentioned in the
+                        literature so far—for which we calculate the thermal conductivity. We show that the thermal
+                        conductivity is generally smaller in fluorides than in oxides,
+                        largely due to a lower ionic charge, and describe simple structural descriptors that are
+                        correlated
+                        with its magnitude. Furthermore, we show that the thermal
+                        conductivities of most cubic perovskites decrease more slowly than the usual T<sup>-1</sup>
+                        behavior. Within this set, we also screen for materials exhibiting negative thermal
+                        expansion. Finally, we describe a strategy to accelerate the discovery of mechanically stable
+                        compounds at high temperatures.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br><a href='http://materials.duke.edu/auro/AUROARTICULA/PhysRevX.6.041061.pdf'
+                               title='click here to download [new window]' target='_blank'>Phys. Rev X DOI:
+                        10.1103/PhysRevX.6.041061</a>
+                    </div>
+                    <br>
+                    <hr>
+                    <a name='publication_3'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/metallic_glasses_ncom.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Spectral descriptors for bulk metallic glasses based on the thermodynamics of
+                                    competing
+                                    crystalline phases</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Eric Perim, Dongwoo Lee, Yanhui Liu4, Cormac Toher, Pan Gong, Yanglin Li, W. Neal
+                                    Simmons, Ohad Levy, Joost J. Vlassak, Jan Schroers, and Stefano Curtarolo</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br><span>Abstract:<br></span> Metallic glasses attract considerable interest due
+                        to their unique combination of superb properties and processability. Predicting their
+                        formation from known alloy parameters remains the major hindrance to the discovery of new
+                        systems.
+                        Here, we propose a descriptor based on the heuristics that structural and energetic ‘confusion’
+                        obstructs crystalline growth, and demonstrate its validity by experiments on two well-known
+                        glass-forming
+                        alloy systems. We then develop a robust model for predicting glass formation ability based on
+                        the
+                        geometrical
+                        and energetic features of crystalline phases calculated ab initio in the AFLOW framework. Our
+                        findings indicate
+                        that the formation of metallic glass phases could be much more common than currently thought,
+                        with
+                        more than 17% of
+                        binary alloy systems potential glass formers. Our approach pinpoints favourable compositions and
+                        demonstrates
+                        that smart descriptors, based solely on alloy properties available in online repositories, offer
+                        the
+                        sought-after
+                        key for accelerated discovery of metallic glasses.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br><a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms12315.pdf'
+                               title='click here to download [new window]' target='_blank'>Nature Communications. DOI:
+                        10.1038/ncomms12315</a>
+                    </div>
+                    <br>
+                    <hr>
+                    <a name='publication_4'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/pocc_pubs.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Modeling Off-Stoichiometry Materials with a High-Throughput Ab-Initio Approach</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Kesong Yang, CoreyOses, and Stefano Curtarolo</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br><span>Abstract:<br></span>
+                        Predicting material properties of off-stoichiometry systems remains a
+                        long-standing and formidable challenge in rational materials design. A proper analysis
+                        of such systems by means of a supercell approach requires the exhaustive
+                        consideration of all possible superstructures, which can be a time-consuming
+                        process. On the contrary, the use of quasirandom approximants, although very
+                        computationally effective, implicitly bias the analysis toward disordered states with
+                        the lowest site correlations. Here, we propose a novel framework designed specifically
+                        to investigate stoichiometrically driven trends of disordered systems (i.e., having
+                        partial occupation and/or disorder in the atomic sites). At the heart of the approach
+                        is the identification and analysis of unique supercells of a virtually equivalent
+                        stoichiometry to the disordered material. We employ Boltzmann statistics to resolve system-wide
+                        properties at a high-throughput
+                        (HT) level. To maximize efficiency and accessibility, we integrated the method within the
+                        automatic
+                        HT computational
+                        framework AFLOW. As proof of concept, we apply our approach to three systems of interest, a zinc
+                        chalcogenide (ZnS<sub>1−x</sub>Se<sub>x</sub>), a
+                        wide-gap oxide semiconductor (Mg<sub>x</sub>Zn<sub>1−x</sub>O), and an iron alloy
+                        (Fe<sub>1−x</sub>Cu<sub>x</sub>),
+                        at various stoichiometries. These systems exhibit
+                        properties that are highly tunable as a function of composition, characterized by optical bowing
+                        and
+                        linear ferromagnetic
+                        behavior. Not only are these qualities successfully predicted, but additional insight into
+                        underlying physical mechanisms is
+                        revealed.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br><a href='http://materials.duke.edu/auro/AUROARTICULA/acs.chemmater.6b01449.pdf'
+                               title='click here to download [new window]' target='_blank'>Chemistry of Materials. DOI:
+                        10.1021/acs.chemmater.6b01449</a>
+                    </div>
+                    <br>
+                    <hr>
+                    <a name='publication_5'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/nc_spot.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Entropy Stabilized Oxides</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>C. M. Rost, E. Sachet, T. Borman, A. Moballegh, E. C. Dickey, D. Hou, J. L. Jones, S.
+                                    Curtarolo, and J.-P. Maria</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br/><span>Abstract:<br/></span> Configurational disorder can be compositionally engineered into
+                        mixed oxide by populating a single sublattice with many distinct cations. The formulations
+                        promote
+                        novel and entropy-stabilized forms of crystalline matter where metal cations are incorporated in
+                        new
+                        ways. Here, through rigorous experiments, a simple thermodynamic model, and a five-component
+                        oxide
+                        formulation, we demonstrate beyond reasonable doubt that entropy predominates the thermodynamic
+                        landscape, and drives a reversible solid-state transformation between a multiphase and
+                        single-phase
+                        state. In the latter, cation distributions are proven to be random and homogeneous. The findings
+                        validate the hypothesis that deliberate configurational disorder provides an orthogonal strategy
+                        to
+                        imagine and discover new phases of crystalline matter and untapped opportunities for property
+                        engineering.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br/><a href='profiles/aflow/images/file/ncomms9485.pdf'
+                                title='click here to download [new window]'
+                                target='_blank'>Nature Communications. DOI: 10.1038/ncomms9485</a>
+                    </div>
+                    <br/>
+                    <hr>
+                    <a name='publication_6'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/nm2_spot.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Convergence of multi-valley bands as the electronic origin of high thermoelectric
+                                    performance in CoSb<sub>3</sub> skutterudites</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Yinglu Tang, Zachary M. Gibbs, Luis A. Agapito, Guodong Li, Hyun-Sik Kim, Marco
+                                    Buongiorno Nardelli, Stefano Curtarolo and G. Jeffrey Snyder</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br/><span>Abstract:<br/></span> Filled skutterudites
+                        Ri<sub>x</sub>Co<sub>4</sub>Sb<sub>12</sub>
+                        are excellent n-type thermoelectric materials owing to their high electronic mobility and
+                        higheffective mass, combined with low thermal conductivity associated with the addition of
+                        filler
+                        atoms into the void site. Thefavourable electronic band structure in n-type CoSb<sub>3</sub> is
+                        typically attributed to threefold degeneracy at the conduction band minimum accompanied by
+                        linear
+                        band behaviour at higher carrier concentrations, which is thought to be related to the increase
+                        in
+                        effective mass as the doping level increases. Using combined experimental and computational
+                        studies,
+                        we show instead that a secondary conduction band with 12 conducting carrier pockets (which
+                        converges
+                        with the primary band at high temperatures) is responsible for the extraordinary thermoelectric
+                        performance of n-type CoSb<sub>3</sub> skutterudites. A theoretical explanation is also provided
+                        as
+                        to why the linear (or Kane-type) band feature is not beneficial for thermoelectrics.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br/><a href='profiles/aflow/images/file/nmat4430.pdf'
+                                title='click here to download [new window]'
+                                target='_blank'>Nature Materials. DOI: 10.1038/nmat4430</a>
+                    </div>
+                    <br/>
+                    <hr>
+                    <!--<a name='publication_7'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/nt_spot.png' alt='' />
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Dysprosium-doped cadmium oxide as a gateway material for mid-infrared plasmonics</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Edward Sachet, Christopher T. Shelton, Joshua S. Harris, Benjamin E. Gaddy, Douglas L. Irving, Stefano Curtarolo, Brian F. Donovan, Patrick E. Hopkins, Peter A. Sharma, Ana Lima Sharma, Jon Ihlefeld, Stefan Franzen, and  Jon-Paul Maria</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br /><span>Abstract:<br /></span> The interest in plasmonic technologies surrounds many emergent optoelectronic applications, such as plasmon lasers, transistors, sensors and information storage. Although plasmonic materials for ultraviolet–visible and near-infrared wavelengths have been found, the mid-infrared range remains a challenge to address: few known systems can achieve subwavelength optical confinement with low loss in this range. With a combination of experiments and ab initio modelling, here we demonstrate an extreme peak of electron mobility in Dy-doped CdO that is achieved through accurate ‘defect equilibrium engineering’. In so doing, we create a tunable plasmon host that satisfies the criteria for mid-infrared spectrum plasmonics, and overcomes the losses seen in conventional plasmonic materials. In particular, extrinsic doping pins the CdO Fermi level above the conduction band minimum and it increases the formation energy of native oxygen vacancies, thus reducing their populations by several orders of magnitude. The substitutional lattice strain induced by Dy doping is sufficiently small, allowing mobility values around 500 cm<sup>2</sup> V<sup>-1</sup> s<sup>-1</sup> for carrier densities above 1020 cm<sup>-3</sup>. Our work shows that CdO:Dy is a model system for intrinsic and extrinsic manipulation of defects affecting electrical, optical and thermal properties, that oxide conductors are ideal candidates for plasmonic devices and that the defect engineering approach for property optimization is generally applicable to other conducting metal oxides.
+                    </div>
+                    <div class='publication_allegato'>
+                        <br /><a href='profiles/aflow/images/file/nmat4203.pdf' title='click here to download [new window]' target='_blank'>Nature Materials. DOI: 10.1038/nmat4203</a>
+                    </div>
+                    <br />
+                    <hr>
+                    <a name='publication_8'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/prx_spot2.png' alt='' />
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2>Reformulation of DFT+U as a Pseudohybrid Hubbard Density Functional for Accelerated Materials Discovery</h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i>Luis A. Agapito, Stefano Curtarolo, and Marco Buongiorno Nardelli</i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br /><span>Abstract:<br /></span> The accurate prediction of the electronic properties of materials at a low computational expense is a necessary condition for the development of effective high-throughput quantum-mechanics (HTQM) frameworks for accelerated materials discovery. HTQM infrastructures rely on the predictive capability of density functional theory (DFT), the method of choice for the first-principles study of materials properties. However, DFT suffers from approximations that result in a somewhat inaccurate description of the electronic band structure of semiconductors and insulators. In this article, we introduce ACBN0, a pseudohybrid Hubbard density functional that yields an improved prediction of the band structure of insulators such as transition-metal oxides, as shown for TiO<sub>2</sub>, MnO, NiO, and ZnO, with only a negligible increase in computational cost.</div>
+                    <div class='publication_allegato'>
+                        <br /><a href='profiles/aflow/images/file/PhysRevX.5.011006.pdf' title='click here to download [new window]' target='_blank'>Phys. Rev. X DOI: 10.1103/PhysRevX.5.011006</a>
+                    </div>
+                    <br />
+                    <hr> -->
+                </div>
+            </div>
+            <div class='record_page_under'></div>
+            <div class='set_record set_record_17'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <div class='titolo'>
+                    <h1>Full list of publications</h1>
+                </div>
+            </div>
+            <div class='record_page_under'></div>
+            <div class='set_record set_record_43'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <iframe id='iframe_aflow' src='http://materials.duke.edu/search/arkiv.php' frameborder='0' width='100%'
+                        height='1000' scrolling='auto'></iframe>
+            </div>
+            <div class='record_page_under'></div>
+        </div>
+        <div style='clear:both;'></div>
+    </div>
+</div>
+</body>
+</html>

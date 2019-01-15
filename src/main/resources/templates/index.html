@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation" th:fragment="head">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/index">稀贵金属材料基因组数据库</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="/index">首页</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        应用
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/website/crystal">Crystal Structure</a></li>
+                        <li><a href="/website/electron">Electronic Structure</a></li>
+                        <li><a href="#">Phonon Dispersions</a></li>
+                        <li><a href="#">Thermodynamics</a></li>
+                        <li><a href="#">Publications</a></li>
+                    </ul>
+                </li>
+                <li><a href="/paper">相关文献</a></li>
+                <li><a href="/website/upload">上传</a></li>
+                <li><a href="#">登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div th:replace="search::body"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/website/crystal'">Crystal
+                Structure<br>晶体结构模块
+            </button>
+        </div>
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/website/electron'">Electronic
+                Structures<br>晶体电子结构模块
+            </button>
+        </div>
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary btn-lg">Phonon Dispersions<br>晶体声子谱模块</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-2">
+            <button type="button" class="btn btn-primary btn-lg">Thermodynamics<br>晶体热力学性质模块</button>
+        </div>
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elasticity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>力学性质模块
+            </button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
