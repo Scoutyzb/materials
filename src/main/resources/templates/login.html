@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请您登陆</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css"/>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css"  href="/css/style1.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="headerFont">
+            <h1 style="color: #DAA520; margin-top: 100px;">MATERIAL GENE平台</h1>
+            <p style="color: #DAA520;">西安交通大学SICDP实验室</p>
+        </div>
+
+        <form name= 'login'class="form-login" id="login" action="/login/" method="post">
+            <h2 class="form-login-heading">请您登陆</h2>
+                <!--{% if message %}-->
+                    <!--<div class="alert alert-warning">{{ message }}</div>-->
+                <!--{% endif %}-->
+            <div class="login-wrap">
+                <p>请选择用户类型:</p>
+                <select name="usertype" class="form-control" required>
+                    <option>个人用户</option>
+                    <option>管理员</option>
+                </select><br>
+
+                <input name="username" id="username" type="text" class="form-control" placeholder="用户名" autofocus required>
+                <br>
+                <input name="password" id="password" type="password" class="form-control" placeholder="密码" required><br>
+
+                  <!--{{ login_form.captcha.errors }}-->
+                  <!--{{ login_form.captcha.label_tag }}-->
+                  <!--{{ login_form.captcha }}-->
+
+                <!--<button class="btn btn-theme btn-block"  type="submit"><i class="fa fa-lock"></i> &nbsp; &nbsp;登陆</button>-->
+                <button class="btn btn-theme btn-block" onclick="index()" type="button"><i class="fa fa-user"></i> &nbsp; &nbsp;登陆</button>
+                <button class="btn btn-theme btn-block" onclick="signIn()" type="button"><i class="fa fa-user"></i> &nbsp; &nbsp;注册</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+<!-- js placed at the end of the document so the pages load faster -->
+
+<!--<script type="text/javascript" src="<%=basePath %>/static/js/jquery.js"></script>-->
+<!--<script type="text/javascript" src="<%=basePath %>/static/js/bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="<%=basePath %>/static/js/jquery.backstretch.min.js"></script>-->
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+
+
+<script>
+    $.backstretch("/img/bg.jpg", {speed: 0});
+</script>
+
+<script>
+    function index(){
+        var username = $("#username").val()
+        var password = $("#password").val()
+        $.ajax(
+            {
+                url: '/check',
+                type: 'POST',
+                data: { 'username': username,
+                        'password': password},
+                success: function (data) {
+                       msg = data['msg']
+                       if (data == 0) {
+                             alert("账号不存在")
+                             layer.msg('账号不存在请重新登录')
+                             document.login.action="/login"
+                             document.login.submit()
+                       }
+                       else if(data == 1){
+                           alert("密码错误")
+                           layer.msg('密码错误请重新登录')
+                           document.login.action="/login"
+                           document.login.submit()
+                       }
+                       else {
+                             document.login.action="/index"
+                             document.login.submit()
+                       }
+                },
+                error: function (data) {
+                       alert("账号不存在")
+                       console.log("NO");
+                       }
+            }
+        )
+    }
+</script>
+<script>
+    function signIn(){
+        document.login.action = "/signin"
+        document.login.submit()
+    }
+</script>
+</html>

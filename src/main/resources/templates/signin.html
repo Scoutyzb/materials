@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请您登陆</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css"/>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css"  href="/css/style1.css"/>
+    <link rel="stylesheet" type="text/css"  href="/css/layui.css"/>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/messages_zh.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+
+</head>
+<body>
+<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://www.dawnfly.cn/Public/admin/dialog/layer.js"></script>
+<div class="container">
+    <div class="headerFont">
+        <h1 style="color: #DAA520; margin-top: 100px;">MATERIAL GENE平台</h1>
+        <p style="color: #DAA520;">西安交通大学SICDP实验室</p>
+    </div>
+    <form name="signin" class="form-login" id="sign_in" method="post" action="/signin/" enctype="multipart/form-data">
+        <h2 class="form-login-heading">欢迎注册</h2>
+        <div class="login-wrap" id="choiced">
+            <p>请选择用户类型：</p>
+            <select id="type" name="用户类型选择" class="form-control" autofocus>
+                <option value="none" selected>---请选择---</option>
+                <option value="0">个人用户</option>
+                <!--<option value="1">企业用户</option>-->
+            </select><br>
+            <button class="btn btn-theme btn-block" type="button" onclick="sub()">
+                <i class="fa fa-lock"></i>
+                &nbsp; &nbsp;确定
+            </button>
+            <button class="btn btn-theme btn-block" type="button" onclick="exitt()">
+                <i class="fa fa-lock"></i>
+                &nbsp; &nbsp;取消
+            </button>
+        </div>
+    </form>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="save()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.backstretch.min.js"></script>
+<script>
+    $.backstretch("/img/bg.jpg", {speed: 0});
+</script>
+<script>
+    $(document).click(function () {
+        $("#type").change(function () {
+            var choice = $("#type option:selected").val();
+            if (choice == "0") {
+                $("#choiced").replaceWith("<div class=\"login-wrap\" id=\"choiced\">\n" +
+                    "        <p>请选择用户类型：</p>\n" +
+                    "        <select id=\"type\" name=\"user-type\" class=\"form-control\">\n" +
+                    "            <option value=\"0\" selected>个人用户</option>\n" +
+                    "        </select><br>\n" +
+                    "        <p>请输入用户名：<span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='username' name='username' type=\"text\" class=\"form-control\" placeholder=\"用户名\" autofocus required=\"true\">\n" +
+                    "        <br>\n" +
+                    "        <p>请输入密码：<span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='pwd' name='pwd'type=\"password\" class=\"form-control\" placeholder=\"密码\" required=\"true\"><br>\n" +
+                    "        <p>请再次输入密码：<span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='repwd' name='repwd'type=\"password\" class=\"form-control\" placeholder=\"请再次输入密码\" required=\"true\"><br>\n" +
+                    "        <p>请选择性别：<span style=\"color:red\">*</span></p>\n" +
+                    "        <select id='sex' name=\"sex\" class=\"form-control\">\n" +
+                    "            <option value = '1'>男</option>\n" +
+                    "            <option value = '0'>女</option>\n" +
+                    "        </select><br>\n" +
+                    "        <p>请选择生日：<span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='birthday' name='birthday' type=\"date\" class=\"form-control\" placeholder=\"生日\" style=\"width: 100%\"; step=\"day\"><br>\n" +
+                    "        <p>请输入邮箱： <span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='email' name='email' type=\"email\" class=\"form-control\" placeholder=\"请输入您的邮箱\" autofocus required=\"true\"><br>\n" +
+                    "        <p>请输入您的职业：<span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='job' name='job' type=\"text\" class=\"form-control\" placeholder=\"请输入您的职业\" style=\"width: 100%\" required=\"true\"><br>\n" +
+                    "        <p>请输入组织： <span style=\"color:red\">*</span></p>\n" +
+                    "        <input id='organization' name='organization' type=\"organization\" class=\"form-control\" placeholder=\"请输入您的组织\" autofocus required=\"true\"><br>\n" +
+                    "        <button class=\"btn btn-theme btn-block\" type=\"button\" onclick=\"sub()\">\n" +
+                    "            <i class=\"fa fa-lock\"></i>\n" +
+                    "            &nbsp; &nbsp;确定\n" +
+                    "        </button>" +
+                    "        <button class=\"btn btn-theme btn-block\" type=\"button\" onclick=\"exitt()\">" +
+                    "           <i class=\"fa fa-lock\"></i>" +
+                    "               &nbsp; &nbsp;取消" +
+                    "        </button>" +
+                    "    </div>")
+            }
+            ;
+        });
+    });
+</script>
+
+<script>
+    function sub() {
+        var pwd = $("#pwd").val()
+        var repwd = $("#repwd").val()
+        var type = $("#type").val()
+        var username = $("#username").val()
+        var sex = $("#sex").val()
+        var birthday = $("#birthday").val()
+        var email = $("#email").val()
+        var job = $("#job").val()
+        var organization = $("#organization").val()
+
+
+        var form = document.getElementById('sign_in')
+        console.log(form)
+        var cansub = true
+            if (cansub) {
+                if (pwd != repwd) {
+                    console.error('错误')
+                    layer.msg('两次密码输入不一致')
+                }
+                else {
+                    if (username == '') {
+                        layer.msg('用户名不能为空')
+                    }
+                    if (pwd == '') {
+                        layer.msg('密码不能为空')
+                    }
+                    var msg = 0
+                    $.ajax(
+                        {
+                            url: '/checkUser',
+                            type: 'POST',
+                            data: {
+                                'type': type,
+                                'username': username,
+                                'pwd': pwd,
+                                'sex': sex,
+                                'birthday': birthday,
+                                'email': email,
+                                'job': job,
+                                'organization': organization
+                            },
+                            success: function (data) {
+                                msg = data['msg']
+                                if (data == 1) {
+                                    alert("申请成功,等待管理员同意")
+                                    document.signin.action = "/login"
+                                    document.signin.submit()
+                                }
+                                else {
+                                    alert("账号重复，请重新输入注册信息")
+                                    layer.msg('用户名已存在')
+                                }
+                            },
+                            error: function (data) {
+                                alert("error")
+                                console.log("NO");
+                            }
+                        }
+                    )
+                }
+            }
+    }
+</script>
+<script>
+    function exitt() {
+        window.location.href = "/login/";
+    }
+</script>
+<script>
+    function pop() {
+        console.log('aaaa')
+        $("#myModal").modal('show')
+    }
+</script>
+</html>

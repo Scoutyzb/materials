@@ -1,0 +1,110 @@
+$labelWidth:52px;
+$fontSize:12px;
+
+$htmlColor:#81d183;
+$headColor:#6575d3;
+$inlineColor:#d1d157;
+$blockColor:#d17d47;
+$formColor:#55d157;
+$titleColor:#8591d3;
+$tableColor:#d17d57;
+$menuColor:#d1d1d3;
+$inlineBlockColor:#d17dd3;
+
+html{
+    font-family: "microsoft yahei";
+}
+body{
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+    background:#1C1D26;
+}
+li{list-style: none;color: #fff;}
+.main{
+    margin:50px 0;
+}
+.active{
+    opacity: 1;
+    box-shadow: 1px 1px 5px  #fff ;
+}
+a{
+    text-decoration: none;
+    color:#FF8215 ;
+}
+.info{
+    background:#fff;
+    box-shadow: 1px 1px 5px #000;
+    width: auto;
+    float: left;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    display: none;
+}
+table{
+    border: 0;
+    margin: 0 auto;
+
+    tr{
+        td{
+            width:$labelWidth;
+            height:$labelWidth;
+            border-radius: 10px;
+            text-align: center;
+            border:none;
+            font-size: $fontSize;
+            word-break: break-all;
+            opacity: 0.7;
+            position: relative;
+        }
+    }
+}
+
+.htmlColor{
+    background:$htmlColor;
+}
+.tableColor{
+    background:$tableColor;
+}
+.headColor{
+    background: $headColor;
+}
+.inlineColor{
+    background:$inlineColor;
+}
+.titleColor{
+    background:$titleColor;
+}
+.blockColor{
+    background: $blockColor;
+}
+.formColor{
+    background: $formColor;
+}
+.menuColor{
+    background: $menuColor;
+}
+.inlineBlockColor{
+    background: $inlineBlockColor;
+}
+
+.end{
+    margin-top:100px;
+    ul{
+        float: left;
+        margin-right: 100px;
+        li{
+            height:30px;
+
+            span{
+                display: block;
+                width:20px;
+                height:20px;
+                border-radius: 2px;
+                float:left;
+                margin-right: 10px;
+            }
+        }
+    }
+}

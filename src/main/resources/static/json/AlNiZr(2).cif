@@ -1,0 +1,48 @@
+data_AlNiZr(2)
+_audit_creation_date              2019-01-16
+_audit_creation_method            'Materials Studio'
+_symmetry_space_group_name_H-M    'P1'
+_symmetry_Int_Tables_number       1
+_symmetry_cell_setting            triclinic
+loop_
+_symmetry_equiv_pos_as_xyz
+  x,y,z
+_cell_length_a                    7.3400
+_cell_length_b                    7.3400
+_cell_length_c                    7.3400
+_cell_angle_alpha                 90.0000
+_cell_angle_beta                  90.0000
+_cell_angle_gamma                 90.0000
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_adp_type
+_atom_site_occupancy
+Al1    Al    0.00000   0.00000   0.00000   0.00000  Uiso   1.00
+Al2    Al    0.00000   0.50000   0.50000   0.00000  Uiso   1.00
+Al3    Al    0.50000   0.00000   0.50000   0.00000  Uiso   1.00
+Al4    Al    0.50000   0.50000   0.00000   0.00000  Uiso   1.00
+Al5    Al    0.75000   0.25000   0.75000   0.00000  Uiso   1.00
+Al6    Al    0.25000   0.25000   0.25000   0.00000  Uiso   1.00
+Al7    Al    0.25000   0.75000   0.75000   0.00000  Uiso   1.00
+Al8    Al    0.75000   0.75000   0.25000   0.00000  Uiso   1.00
+Ni9    Ni    0.62500   0.62500   0.62500   0.00000  Uiso   1.00
+Ni10   Ni    0.62500   0.12500   0.12500   0.00000  Uiso   1.00
+Ni11   Ni    0.12500   0.62500   0.12500   0.00000  Uiso   1.00
+Ni12   Ni    0.12500   0.12500   0.62500   0.00000  Uiso   1.00
+Zr13   Zr    0.37500   0.87500   0.12500   0.00000  Uiso   1.00
+Zr14   Zr    0.37500   0.37500   0.62500   0.00000  Uiso   1.00
+Zr15   Zr    0.87500   0.12500   0.37500   0.00000  Uiso   1.00
+Zr16   Zr    0.87500   0.62500   0.87500   0.00000  Uiso   1.00
+Ni17   Ni    0.12500   0.37500   0.87500   0.00000  Uiso   1.00
+Ni18   Ni    0.62500   0.37500   0.37500   0.00000  Uiso   1.00
+Zr19   Zr    0.37500   0.62500   0.37500   0.00000  Uiso   1.00
+Zr20   Zr    0.87500   0.37500   0.12500   0.00000  Uiso   1.00
+Zr21   Zr    0.87500   0.87500   0.62500   0.00000  Uiso   1.00
+Zr22   Zr    0.37500   0.12500   0.87500   0.00000  Uiso   1.00
+Ni23   Ni    0.12500   0.87500   0.37500   0.00000  Uiso   1.00
+Ni24   Ni    0.62500   0.87500   0.87500   0.00000  Uiso   1.00

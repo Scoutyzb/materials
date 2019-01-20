@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjtu.materials.mapper.UpLoadMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.xjtu.materials.pojo.UpLoadMaterial" >
+    <id column="materialID" property="materialid" jdbcType="VARCHAR" />
+    <result column="materialName" property="materialname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="isAuthenticated" property="isauthenticated" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    materialID, materialName, type, isAuthenticated, time, path
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjtu.materials.pojo.UpLoadMaterialExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uploadmaterial
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from uploadmaterial
+    where materialID = #{materialid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from uploadmaterial
+    where materialID = #{materialid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xjtu.materials.pojo.UpLoadMaterialExample" >
+    delete from uploadmaterial
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
+    insert into uploadmaterial (materialID, materialName, type, 
+      isAuthenticated, time, path
+      )
+    values (#{materialid,jdbcType=VARCHAR}, #{materialname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{isauthenticated,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
+    insert into uploadmaterial
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="materialid != null" >
+        materialID,
+      </if>
+      <if test="materialname != null" >
+        materialName,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isauthenticated != null" >
+        isAuthenticated,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="materialid != null" >
+        #{materialid,jdbcType=VARCHAR},
+      </if>
+      <if test="materialname != null" >
+        #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthenticated != null" >
+        #{isauthenticated,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjtu.materials.pojo.UpLoadMaterialExample" resultType="java.lang.Integer" >
+    select count(*) from uploadmaterial
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uploadmaterial
+    <set >
+      <if test="record.materialid != null" >
+        materialID = #{record.materialid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialname != null" >
+        materialName = #{record.materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isauthenticated != null" >
+        isAuthenticated = #{record.isauthenticated,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uploadmaterial
+    set materialID = #{record.materialid,jdbcType=VARCHAR},
+      materialName = #{record.materialname,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      isAuthenticated = #{record.isauthenticated,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
+    update uploadmaterial
+    <set >
+      <if test="materialname != null" >
+        materialName = #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthenticated != null" >
+        isAuthenticated = #{isauthenticated,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where materialID = #{materialid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
+    update uploadmaterial
+    set materialName = #{materialname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      isAuthenticated = #{isauthenticated,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR}
+    where materialID = #{materialid,jdbcType=VARCHAR}
+  </update>
+</mapper>
