@@ -18,49 +18,43 @@
 
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-lg-5">
-            <img src="/img/crystalStructure.img" class="img-rounded">
-        </div>
-        <div class="panel panel-success col-lg-5 col-lg-offset-2">
-            <div class="panel-heading">
-                <h3 class="panel-title">属性</h3>
-            </div>
-            <div class="panel-body">
-                <h4>Lattice Parameters</h4>
-                <dl class="dl-horizontal">
-                    <dt>a</dt>
-                    <dd>{{ data.lattice.a }}</dd>
-                    <dt>b</dt>
-                    <dd>{{ data.lattice.b }}</dd>
-                    <dt>c</dt>
-                    <dd>{{ data.lattice.c }}</dd>
-                    <dt>alpha</dt>
-                    <dd>{{ data.lattice.alpha }}</dd>
-                    <dt>beta</dt>
-                    <dd>{{ data.lattice.beta }}</dd>
-                    <dt>gamma</dt>
-                    <dd>{{ data.lattice.gamma }}</dd>
-                </dl>
+    <!--<div class="row">-->
+        <!--<div class="col-lg-5">-->
+            <!--<img src="/img/crystalStructure.img" class="img-rounded">-->
+        <!--</div>-->
+        <!--<div class="panel panel-success col-lg-5 col-lg-offset-2">-->
+            <!--<div class="panel-heading">-->
+                <!--<h3 class="panel-title">属性</h3>-->
+            <!--</div>-->
+            <!--<div class="panel-body">-->
+                <!--<h4>Lattice Parameters</h4>-->
+                <!--<dl class="dl-horizontal">-->
+                    <!--<dt>a</dt>-->
+                    <!--<dd>{{ data.lattice.a }}</dd>-->
+                    <!--<dt>b</dt>-->
+                    <!--<dd>{{ data.lattice.b }}</dd>-->
+                    <!--<dt>c</dt>-->
+                    <!--<dd>{{ data.lattice.c }}</dd>-->
+                    <!--<dt>alpha</dt>-->
+                    <!--<dd>{{ data.lattice.alpha }}</dd>-->
+                    <!--<dt>beta</dt>-->
+                    <!--<dd>{{ data.lattice.beta }}</dd>-->
+                    <!--<dt>gamma</dt>-->
+                    <!--<dd>{{ data.lattice.gamma }}</dd>-->
+                <!--</dl>-->
 
-                <h4>Lattice Vectors</h4>
-                {% for datum in data.lattice.matrix %}
-                <ul class="list-inline">
-                    {% for item in datum %}
-                    <li>{{ item }}</li>
-                    {% endfor %}
-                </ul>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+                <!--<h4>Lattice Vectors</h4>-->
+                <!--{% for datum in data.lattice.matrix %}-->
+                <!--<ul class="list-inline">-->
+                    <!--{% for item in datum %}-->
+                    <!--<li>{{ item }}</li>-->
+                    <!--{% endfor %}-->
+                <!--</ul>-->
+                <!--{% endfor %}-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <div id="JmolModel" class="row">
-
-
-    </div>
-    <div id="JmolModel1" class="row">
-
-
     </div>
 </div>
 <script>
@@ -70,21 +64,7 @@
             color: "#000000",
             height: 500,
             width: 500,
-            src: "cif/AlHfNi .cif",
-            //script: "load $caffeine",
-            use: "HTML5",
-            j2sPath: "j2s",
-            jarPath: "java",
-            jarFile: "JmolAppletSigned0.jar",
-            isSigned: true,
-            serverURL: "php/jsmol.php",
-            disableInitialConsole: true
-        };
-        var Info1 = {
-            color: "#000000",
-            height: 300,
-            width: 300,
-            src: "cif/HfAlNi_mit.cif",
+            src: "json/AlHfNi.cif",
             //script: "load $caffeine",
             use: "HTML5",
             j2sPath: "j2s",
@@ -95,9 +75,8 @@
             disableInitialConsole: true
         };
         Jmol.getApplet("myJmol", Info);
-        Jmol.getApplet("myJmol1", Info1);
+
         $("#JmolModel").html(Jmol.getAppletHtml("myJmol", Info));
-        $("#JmolModel1").html(Jmol.getAppletHtml("myJmol1", Info1));
     });
 
 

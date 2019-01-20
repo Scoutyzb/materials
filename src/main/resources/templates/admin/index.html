@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="css/admin/bootstrap.min.css" rel="stylesheet">
+    <link href="css/admin/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/admin/animate.css" rel="stylesheet">
+    <link href="css/admin/style.css?v=4.1.0" rel="stylesheet">
+    <title>烟草公司运维管理系统</title>
+</head>
+<!-- 全局js -->
+<script src="js/admin/jquery.min.js"></script>
+<script src="js/admin/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/admin/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="js/admin/plugins/layer/layer.min.js"></script>
+
+<!-- 自定义js -->
+<script src="js/admin/hAdmin.js?v=4.1.0"></script>
+<script type="text/javascript" src="js/admin/index.js"></script>
+
+<!-- 第三方插件 -->
+<script src="js/admin/plugins/pace/pace.min.js"></script>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!-- 引入左侧导航栏 -->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close">
+            <i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
+                                class="clear"> <span class="block m-t-xs"
+                                                     style="font-size: 16px;"> <i class="fa fa-area-chart"></i>
+									<strong class="font-bold">材料基因组后台管理系统</strong>
+							</span>
+						</span>
+                        </a>
+                    </div>
+                    <div class="logo-element"></div>
+                </li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li class="loginLinkLi" id="userNameText">您好</li>
+                <li><a class="J_menuItem" href="homePage"> <i
+                        class="fa fa-home"></i> <span class="nav-label">首页</span>
+                </a></li>
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li><a href=""> <i class="fa fa-paste"></i> <span
+                        class="nav-label">ITIL管理流程</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="eventPage"> <i
+                                class="fa fa-paste"></i> <span class="nav-label">事件管理</span>
+                        </a></li>
+                        <li><a class="J_menuItem" href="problemPage"> <i
+                                class="fa fa-warning"></i> <span class="nav-label">问题管理</span>
+                        </a></li>
+                        <li><a href=""> <i class="fa fa-edit"></i>&nbsp;设备管理<span
+                                class="fa arrow"></span>
+                        </a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="configureEquipmentPage">设备信息库</a></li>
+                                <li><a class="J_menuItem" href="configureUploadPage">新增设备信息</a></li>
+                            </ul>
+                        </li>
+                        <li><a href=""> <i class="fa fa-edit"></i>&nbsp;知识管理<span
+                                class="fa arrow"></span>
+                        </a>
+                            <ul class="nav nav-third-level">
+                                <li><a class="J_menuItem" href="faqPage">知识库</a></li>
+                                <li><a class="J_menuItem" href="faqCommendPage">faq推荐栏</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li><a class="J_menuItem" href="logIndex"> <i
+                        class="fa fa-user-md"></i> <span class="nav-label">日志管理</span>
+                </a></li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li><a href=""> <i class="fa fa-rebel"></i> <span
+                        class="nav-label">用户管理</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="userPage"> <i
+                                class="fa fa-table"></i> <span class="nav-label">用户管理</span>
+                        </a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="changePasswordPage">
+                            <i class="fa fa-table"></i> <span class="nav-label">admin密码修改</span>
+                        </a></li>
+                    </ul>
+                </li>
+                <!--  <li>
+             <a class="J_menuItem" href="userPage.html">
+                 <i class="fa fa-user-plus"></i>
+                 <span class="nav-label">用户管理</span>
+             </a>
+         </li> -->
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <!--
+         <li>
+             <a class="J_menuItem" href="">
+
+                 <span class="nav-label">权限管理</span>
+             </a>
+         </li> -->
+                <li><a href=""> <i class="fa fa-rebel"></i> <span
+                        class="nav-label">权限管理</span> <span class="fa arrow"></span>
+                </a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="permissionPage"> <i
+                                class="fa fa-table"></i> <span class="nav-label">权限列表</span>
+                        </a></li>
+                        <li><a class="J_menuItem" href="permissionAssignPage">
+                            <i class="fa fa-warning"></i> <span class="nav-label">权限分配</span>
+                        </a></li>
+                    </ul>
+                </li>
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li><a class="J_menuItem" href="logout"> <i
+                        class="fa fa-warning"></i> <span class="nav-label">退出</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i
+                        class="fa fa-bars"></i> </a>
+
+                </div>
+            </nav>
+        </div>
+
+        <!-- 其余模块都要嵌入其中 -->
+        <!-- homePage.html为首页 -->
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" width="100%" height="100%" src="homePage" data-id="index_v1.html" seamless></iframe>
+        </div>
+
+    </div>
+    <!--右侧部分结束-->
+
+</div>
+</body>
+</html>
