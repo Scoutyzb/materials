@@ -7,6 +7,9 @@
     <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
     <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- 引入JSmol -->
+    <script type="text/javascript" src="JSmol.min.js"></script>
 </head>
 
 <div th:replace="index::nav"></div>
@@ -51,10 +54,54 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div id="JmolModel" class="row">
+
+
+    </div>
+    <div id="JmolModel1" class="row">
 
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        Jmol.setDocument(0);
+        var Info = {
+            color: "#000000",
+            height: 500,
+            width: 500,
+            src: "cif/AlHfNi .cif",
+            //script: "load $caffeine",
+            use: "HTML5",
+            j2sPath: "j2s",
+            jarPath: "java",
+            jarFile: "JmolAppletSigned0.jar",
+            isSigned: true,
+            serverURL: "php/jsmol.php",
+            disableInitialConsole: true
+        };
+        var Info1 = {
+            color: "#000000",
+            height: 300,
+            width: 300,
+            src: "cif/HfAlNi_mit.cif",
+            //script: "load $caffeine",
+            use: "HTML5",
+            j2sPath: "j2s",
+            jarPath: "java",
+            jarFile: "JmolAppletSigned0.jar",
+            isSigned: true,
+            serverURL: "php/jsmol.php",
+            disableInitialConsole: true
+        };
+        Jmol.getApplet("myJmol", Info);
+        Jmol.getApplet("myJmol1", Info1);
+        $("#JmolModel").html(Jmol.getAppletHtml("myJmol", Info));
+        $("#JmolModel1").html(Jmol.getAppletHtml("myJmol1", Info1));
+    });
+
+
+
+</script>
 </body>
 </html>
