@@ -72,14 +72,11 @@ public class HelloController {
         ModelAndView mv = new ModelAndView("searchPage");
 
         String[] a = name.split("[^a-zA-Z]+");
-        List<UpLoadMaterial> UpLoadMaterials = searchService.SelectByName(a);
-
-//        for(i=0;i<name.length();i++){
-//
-//        }
-//
-//        List<UpLoadMaterial> list = searchService.selectByName()
-
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        System.out.println(Materials);
+        System.out.println(Materials.size());
         return mv;
     }
 

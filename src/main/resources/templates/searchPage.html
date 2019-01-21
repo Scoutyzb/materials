@@ -28,9 +28,26 @@
         <tr>
             <th data-field="id">Item ID</th>
             <th data-field="name">Item Name</th>
-            <th data-field="price">Item Price</th>
+            <th data-field="type">Item Type</th>
+            <th data-field="time">Item Time</th>
         </tr>
         </thead>
+        <tbody class="text-center">
+        <!--<c:forEach items="${Materials}" var="Material" varStatus="status">-->
+            <!--<tr class="gradeX">-->
+                <!--<td style="text-align: center;width: 8%">${Material.materialid}</td>-->
+                <!--<td style="width: 12%">${Material.materialname}</td>-->
+                <!--<td style="text-align: center;width: 22%">${Material.type}</td>-->
+                <!--<td style="text-align: center;width: 10%">${Material.time}</td>-->
+            <!--</tr>-->
+        <!--</c:forEach>-->
+        <tr th:each="Material:${Materials}">
+            <td th:text="${Material.materialid}"></td>
+            <td th:text="${Material.materialname}"></td>
+            <td th:text="${Material.type}"></td>
+            <td th:text="${Material.time}"></td>
+        </tr>
+        </tbody>
     </table>
 </div>
 
@@ -55,9 +72,12 @@
             field: 'Name',
             title: 'Item Name'
         }, {
-            field: 'Note',
-            title: 'Item Price'
+            field: 'Type',
+            title: 'Item Type'
         }, {
+            field: 'time',
+            title: 'Item Time'
+        },{
             title: '操作',
             align: 'center',
             // events: operateEvents,

@@ -18,10 +18,11 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<UpLoadMaterial> SelectByName(String[] names){
         int count = names.length;
-        System.out.println(count);
+        String str = "%";
         for(int i =0;i<count;i++){
-            System.out.println(names[i]);
+            str = str+names[i]+"%";
         }
-        return null;
+        List<UpLoadMaterial> materials = upLoadMaterialMapper.selectLikeStr(str);
+        return materials;
     }
 }

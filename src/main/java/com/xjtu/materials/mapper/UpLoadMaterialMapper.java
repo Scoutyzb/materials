@@ -30,4 +30,6 @@ public interface UpLoadMaterialMapper {
     int updateByPrimaryKeySelective(UpLoadMaterial record);
 
     int updateByPrimaryKey(UpLoadMaterial record);
+
+    List<UpLoadMaterial> selectLikeStr(String str);
 }

@@ -225,4 +225,11 @@
       path = #{path,jdbcType=VARCHAR}
     where materialID = #{materialid,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectLikeStr" resultType="com.xjtu.materials.pojo.UpLoadMaterial">
+    SELECT *
+    FROM uploadmaterial
+    WHERE uploadmaterial.materialName LIKE #{param,jdbcType=VARCHAR};
+  </select>
+
 </mapper>
