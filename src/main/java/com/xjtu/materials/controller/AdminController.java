@@ -27,4 +27,15 @@ public class AdminController {
     public String adminLogin() {
         return "admin/adminLogin";
     }
+
+    /**
+     * @Description homePage页
+     * @Auther Liang
+     * @date 15:26 2019/1/21
+     * @return java.lang.String
+     */
+    @RequestMapping("/adminHomePage")
+    public String homePage() {
+        return "admin/homePage";
+    }
 }
