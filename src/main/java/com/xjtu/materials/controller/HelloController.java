@@ -32,7 +32,7 @@ public class HelloController {
      * @return java.lang.String
      */
     @Autowired
-    UserService userservice;
+    UserService userService;
     @Autowired
     FilePathService filePathService;
     @Autowired
@@ -66,17 +66,15 @@ public class HelloController {
 //        return "searchPage";
 //    }
 
+    //进行高级搜索，获得输入元素对应的金属化合物
     @RequestMapping("/searchPage")
     public ModelAndView searchPage(String name,HttpServletRequest request,HttpSession session) {
-        System.out.println(name);
         ModelAndView mv = new ModelAndView("searchPage");
 
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
-        System.out.println(Materials);
-        System.out.println(Materials.size());
         return mv;
     }
 
@@ -103,7 +101,7 @@ public class HelloController {
     @ResponseBody
     @RequestMapping(value = "/check", method= RequestMethod.POST, produces="application/json;charset=utf-8")
     public String check(@RequestParam("username") String userName, @RequestParam("password") String password, HttpSession session, HttpServletRequest request) {
-        int isExist = userservice.isLogin(userName,password);
+        int isExist = userService.isLogin(userName,password);
         if (isExist==0) {
             return "0";
         }
@@ -111,7 +109,7 @@ public class HelloController {
             return "1";
         }
         else {
-            List<User> list = userservice.loginUserInfo(userName);
+            List<User> list = userService.loginUserInfo(userName);
             session.setAttribute("UserId", list.get(0).getUserid());
             session.setAttribute("UserName", list.get(0).getUsername());
             return "2";
@@ -134,7 +132,7 @@ public class HelloController {
     @RequestMapping(value = "/checkUser", method= RequestMethod.POST, produces="application/json;charset=utf-8")
     public String checkUser(@RequestParam("type") String type, @RequestParam("username") String userName, @RequestParam("pwd") String password, @RequestParam("sex") String sex , @RequestParam("birthday") String birthday ,@RequestParam("email") String email , @RequestParam("job") String job , @RequestParam("organization") String organization ,HttpSession session, HttpServletRequest request) {
         System.out.println("信息："+type+"\n"+userName+"\n"+password+"\n"+sex+"\n"+birthday+"\n"+email+"\n"+job+"\n"+organization+"\n");
-        int isExist = userservice.isExist(type,userName,password,sex,birthday,email,job,organization);
+        int isExist = userService.isExist(type,userName,password,sex,birthday,email,job,organization);
         if(isExist==1){
             return "1";
         }

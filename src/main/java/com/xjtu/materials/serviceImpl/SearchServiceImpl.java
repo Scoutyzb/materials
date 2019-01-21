@@ -15,6 +15,7 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
 
+    //根据输入的元素名，查询数据库中对应的化合物
     @Override
     public List<UpLoadMaterial> SelectByName(String[] names){
         int count = names.length;

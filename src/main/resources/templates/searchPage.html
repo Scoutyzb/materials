@@ -30,71 +30,69 @@
             <th data-field="name">Item Name</th>
             <th data-field="type">Item Type</th>
             <th data-field="time">Item Time</th>
+            <th data-field="操作">操作</th>
         </tr>
         </thead>
         <tbody class="text-center">
-        <!--<c:forEach items="${Materials}" var="Material" varStatus="status">-->
-            <!--<tr class="gradeX">-->
-                <!--<td style="text-align: center;width: 8%">${Material.materialid}</td>-->
-                <!--<td style="width: 12%">${Material.materialname}</td>-->
-                <!--<td style="text-align: center;width: 22%">${Material.type}</td>-->
-                <!--<td style="text-align: center;width: 10%">${Material.time}</td>-->
-            <!--</tr>-->
-        <!--</c:forEach>-->
         <tr th:each="Material:${Materials}">
             <td th:text="${Material.materialid}"></td>
             <td th:text="${Material.materialname}"></td>
             <td th:text="${Material.type}"></td>
             <td th:text="${Material.time}"></td>
+            <td><button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button>
+                <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">电子能带结构</button>
+                <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>
+                <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>
+                <button type="button" class="RoleOfedit btn btn-primary  btn-sm" style="margin-right:15px;">力学性质</button></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<script>
-    $('#table').bootstrapTable({
-        url: '/static/js/data1.json',
-        // striped: true,                      //是否显示行间隔色#}
-        // cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）#}
-        pagination: true,                   //是否显示分页（*）
-        // sortable: false,                     //是否启用排序#}
-        // sortOrder: "asc",                   //排序方式#}
-        // sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）#}
-        // pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录#}
-        // pageSize: rows,                     //每页的记录行数（*）#}
-        // pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）#}
-        // search: false,                      //是否显示表格搜索#}
+<!--<script>-->
+    <!--$('#table').bootstrapTable({-->
+        <!--url: '/static/js/data1.json',-->
+        <!--// striped: true,                      //是否显示行间隔色#}-->
+        <!--// cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）#}-->
+        <!--pagination: true,                   //是否显示分页（*）-->
+        <!--// sortable: false,                     //是否启用排序#}-->
+        <!--// sortOrder: "asc",                   //排序方式#}-->
+        <!--// sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）#}-->
+        <!--// pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录#}-->
+        <!--// pageSize: rows,                     //每页的记录行数（*）#}-->
+        <!--// pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）#}-->
+        <!--// search: false,                      //是否显示表格搜索#}-->
 
-        columns: [{
-            field: 'ID',
-            title: 'Item ID'
-        }, {
-            field: 'Name',
-            title: 'Item Name'
-        }, {
-            field: 'Type',
-            title: 'Item Type'
-        }, {
-            field: 'time',
-            title: 'Item Time'
-        },{
-            title: '操作',
-            align: 'center',
-            // events: operateEvents,
-            formatter: operateFormatter
-        }]
-    })
-    ;
+        <!--columns: [{-->
+            <!--field: 'ID',-->
+            <!--title: 'Item ID'-->
+        <!--}, {-->
+            <!--field: 'Name',-->
+            <!--title: 'Item Name'-->
+        <!--}, {-->
+            <!--field: 'Type',-->
+            <!--title: 'Item Type'-->
+        <!--}, {-->
+            <!--field: 'time',-->
+            <!--title: 'Item Time'-->
+        <!--},{-->
+            <!--title: '操作',-->
+            <!--align: 'center',-->
+            <!--// events: operateEvents,-->
+            <!--formatter: operateFormatter-->
+        <!--}]-->
+    <!--})-->
+    <!--;-->
 
-    function operateFormatter(value, row, index) {
-        return [
-            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button>',
-            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">电子能带结构</button>',
-            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>',
-            '<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>',
-            '<button type="button" class="RoleOfedit btn btn-primary  btn-sm" style="margin-right:15px;">力学性质</button>'
-        ].join('');
-    }
-</script>
+    <!--function operateFormatter(value, row, index) {-->
+        <!--return [-->
+            <!--'<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button>',-->
+            <!--'<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">电子能带结构</button>',-->
+            <!--'<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>',-->
+            <!--'<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>',-->
+            <!--'<button type="button" class="RoleOfedit btn btn-primary  btn-sm" style="margin-right:15px;">力学性质</button>'-->
+        <!--].join('');-->
+    <!--}-->
+<!--</script>-->
 </body>
 </html>
