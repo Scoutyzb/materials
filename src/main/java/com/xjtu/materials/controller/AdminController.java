@@ -83,4 +83,25 @@ public class AdminController {
 
         return mv;
     }
+
+    /**
+     * @Description cif文件管理页面
+     * @Auther Liang
+     * @date 0:16 2019/1/22
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/cifPage")
+    public ModelAndView cifPage () {
+        ModelAndView mv = new ModelAndView("admin/cifPage");
+
+        // 未审核cif文件
+        List<UpLoadMaterial> materials = filePathService.unAuthMaterial();
+
+        // todo: 已审核cif文件
+
+
+        mv.addObject("materials", materials);
+
+        return mv;
+    }
 }
