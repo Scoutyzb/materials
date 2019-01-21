@@ -63,4 +63,24 @@ public class AdminController {
 
         return mv;
     }
+
+    /**
+     * @Description 用户管理页面
+     * @Auther Liang
+     * @date 21:59 2019/1/21
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/userPage")
+    public ModelAndView userPage() {
+        ModelAndView mv = new ModelAndView("admin/userPage");
+
+        // 普通用户数据
+        List<User> generalUsers = userService.getGeneralUser();
+        // 管理员数据
+        List<User> adminUsers = userService.getAdminUser();
+        mv.addObject("generalUsers",generalUsers);
+        mv.addObject("adminUsers",adminUsers);
+
+        return mv;
+    }
 }
