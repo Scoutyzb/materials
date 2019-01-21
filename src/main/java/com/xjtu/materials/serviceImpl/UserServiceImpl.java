@@ -1,7 +1,7 @@
 package com.xjtu.materials.serviceImpl;
 
 import com.xjtu.materials.pojo.User;
-import com.xjtu.materials.service.userService;
+import com.xjtu.materials.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.xjtu.materials.mapper.UserMapper;
@@ -13,12 +13,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class userServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
 
-//
     @Override
     public int isLogin(String userName,String password){
         UserExample example = new UserExample();
@@ -41,6 +40,7 @@ public class userServiceImpl implements userService {
         System.out.println(result);
         return result;
     }
+
     @Override
     public List<User> loginUserInfo(String name){
         UserExample example = new UserExample();
@@ -86,4 +86,20 @@ public class userServiceImpl implements userService {
             return  1;
         }
     }
+
+
+    /**
+     * @Description 返回所有用户
+     * @Auther Liang
+     * @date 16:25 2019/1/21
+     * @return java.util.List<com.xjtu.materials.pojo.User>
+     */
+    @Override
+    public List<User> getAllUser() {
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameIsNotNull();
+        List<User> users = userMapper.selectByExample(example);
+        return users;
+    }
+
 }

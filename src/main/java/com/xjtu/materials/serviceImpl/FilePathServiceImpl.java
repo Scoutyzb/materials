@@ -1,6 +1,9 @@
 package com.xjtu.materials.serviceImpl;
 
 
+import com.xjtu.materials.pojo.UpLoadMaterialExample;
+import com.xjtu.materials.pojo.User;
+import com.xjtu.materials.pojo.UserExample;
 import com.xjtu.materials.service.FilePathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import com.xjtu.materials.pojo.UpLoadMaterial;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -67,4 +71,20 @@ public class FilePathServiceImpl implements FilePathService {
             return "false";
         }
     }
+
+    /**
+     * @Description 返回未审核cif材料
+     * Isauthenticated 状态 ：1：未审核
+     * @Auther Liang
+     * @date 16:50 2019/1/21
+     * @return java.util.List<com.xjtu.materials.pojo.UpLoadMaterial>
+     */
+    @Override
+    public List<UpLoadMaterial> unAuthMaterial() {
+        UpLoadMaterialExample example = new UpLoadMaterialExample();
+        example.createCriteria().andIsauthenticatedEqualTo("1");
+        List<UpLoadMaterial> upLoadMaterials = upLoadMaterialMapper.selectByExample(example);
+        return upLoadMaterials;
+    }
+
 }

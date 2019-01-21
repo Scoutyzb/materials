@@ -44,7 +44,7 @@
                         <div class="col-xs-10">
                             <div class="panel padder-v item">
                                 <div class="h1 text-info font-thin">
-                                    <a href="#"></a>
+                                    <a href="#" th:text="${usersNum}"></a>
                                 </div>
                                 <span class="text-muted text-xs">用户情况</span>
                                 <div class="top text-right w-full">
@@ -61,7 +61,7 @@
                         <div class="col-xs-10">
                             <div class="panel padder-v item">
                                 <div class="font-thin h1">
-                                    <a href="#"></a>
+                                    <a href="#" th:text="${materialsNum}"></a>
                                 </div>
                                 <span class="text-muted text-xs">待审核上传内容</span>
                                 <div class="top text-right w-full">
@@ -82,22 +82,24 @@
                     <h5>任务列表</h5>
                 </div>
                 <div class="ibox-content">
-                    <ul class="todo-list m-t small-list ui-sortable">
+                    <ul class="todo-list m-t small-list ui-sortable" th:each="material : ${materials}">
                         <!--待处理cif-->
                         <li>
                             <a href="#"
-                               class="check-link"><i class="fa fa-square-o"></i> </a>
-                            <span>用户上传cif</span>
-                            <small class="label label-primary"><i class="fa fa-clock-o"></i> ${ls.time}</small>
-                        </li>
-                        <!--待处理出版物-->
-                        <li>
-                            <a href="#"
-                               class="check-link"><i class="fa fa-square-o"></i> </a>
-                            <span>用户上传出版物</span>
-                            <small class="label label-primary"><i class="fa fa-clock-o"></i> 上传时间</small>
+                               class="check-link"><i class="fa fa-square-o"></i></a>
+                            <span th:text="'晶体名称为: ' + ${material.materialname}"></span>
+                            <small class="label label-primary" th:text="${material.time}"><i class="fa fa-clock-o"></i></small>
                         </li>
                     </ul>
+                    <!--<ul class="todo-list m-t small-list ui-sortable" >-->
+                        <!--&lt;!&ndash;待处理出版物&ndash;&gt;-->
+                        <!--<li>-->
+                            <!--<a href="#"-->
+                               <!--class="check-link"><i class="fa fa-square-o"></i> </a>-->
+                            <!--<span>用户上传出版物</span>-->
+                            <!--<small class="label label-primary"><i class="fa fa-clock-o"></i> 上传时间</small>-->
+                        <!--</li>-->
+                    <!--</ul>-->
                 </div>
             </div>
         </div>

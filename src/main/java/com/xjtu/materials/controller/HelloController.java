@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.pojo.UpLoadMaterial;
-import com.xjtu.materials.service.userService;
+import com.xjtu.materials.service.UserService;
 import com.xjtu.materials.service.FilePathService;
 import com.xjtu.materials.service.SearchService;
 
@@ -32,7 +32,7 @@ public class HelloController {
      * @return java.lang.String
      */
     @Autowired
-    userService userservice;
+    UserService userservice;
     @Autowired
     FilePathService filePathService;
     @Autowired
