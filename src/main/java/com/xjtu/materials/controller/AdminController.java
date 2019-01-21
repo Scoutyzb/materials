@@ -14,4 +14,17 @@ public class AdminController {
     public String index1() {
         return "admin/index";
     }
+
+
+
+    /**
+     * @Description 管理员登陆
+     * @Auther Liang
+     * @date 15:09 2019/1/21
+     * @return java.lang.String
+     */
+    @RequestMapping("/adminLogin")
+    public String adminLogin() {
+        return "admin/adminLogin";
+    }
 }
