@@ -1,7 +1,7 @@
 package com.xjtu.materials.serviceImpl;
 
 import com.xjtu.materials.pojo.User;
-import com.xjtu.materials.service.userService;
+import com.xjtu.materials.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.xjtu.materials.mapper.UserMapper;
@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class userServiceImpl implements userService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
 
-//
+    //用户登录，用户身份验证
+    //0表示用户不存在，
+    // 1表示用户密码错误，
+    // 2表示用户密码正确，可以登录
     @Override
     public int isLogin(String userName,String password){
         UserExample example = new UserExample();
@@ -41,6 +44,8 @@ public class userServiceImpl implements userService {
         System.out.println(result);
         return result;
     }
+
+    //根据用户名提取用户信息
     @Override
     public List<User> loginUserInfo(String name){
         UserExample example = new UserExample();
@@ -49,6 +54,7 @@ public class userServiceImpl implements userService {
         return users;
     }
 
+    //用户注册时，判断用户是否已经存在，当不存在是，将登录信息录入数据库
     @Override
     public int isExist(String type,String userName,String password,String sex,String birthday,String email,String job,String organization){
         UserExample example = new UserExample();
