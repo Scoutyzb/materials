@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>paper</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="index::nav"></div>
+
+<div class="container">
+        <!--<div th:text="${paper.publicationname}"></div>-->
+    <!--</div>-->
+    <div style="padding: 20px 100px 10px;">
+        <form class="bs-example bs-example-form" role="form">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="input-group">
+                        <input type="text" id="paper" class="form-control" placeholder="搜索文献">
+                        <span class="input-group-btn">
+                                <select style="width:100px;" id="type" name="type" class="form-control" required>
+                                    <option>按名称</option>
+                                    <option>按作者</option>
+                                    <option>按标签</option>
+                                </select>
+                                <button class="btn btn-default" type="button"
+                                        onclick="location.href='/searchPaper?paperName='+$('#paper').val()+'&searchType='+$('#type').val()">精确搜索</button>
+                            </span>
+                    </div><!-- /input-group -->
+                    <br>
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </form>
+    </div>
+    <div class='contenuti' id='contenuti_3'>
+        <div class='centered' id='centered_publication'>
+            <div class='set set3'>
+                <div style='clear:both;'></div>
+            </div>
+            <div class='set_record set_record_16'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <div>
+                    <span>共查到<span th:text="${Publications.size()}"></span>条数据</span></div>
+                <div class='titolo'>
+                    <h1>Articles on the spot</h1>
+                </div>
+            </div>
+            <div th:each="paper : ${Publications}">
+            <div class='record_page_under'></div>
+            <div class='set_record set_record_10'>
+                <a class='set_records_ancor' name='set_records'></a>
+                <div class='record_page_over'></div>
+                <div class='publication'>
+
+                    <a name='publication_1'></a>
+                    <div>
+                        <div class='publication_img'>
+                            <img height='200' src='profiles/aflow/images/file/natcomm_ml.png' alt=''/>
+                        </div>
+                        <div class='publication_data'>
+                            <div class='publication_titolo'>
+                                <h2><div th:text="${paper.publicationname}"></div></h2>
+                            </div>
+                            <div class='publication_autore'>
+                                <i><div th:text="${paper.publicationauthor}"></div></i>
+                            </div>
+                        </div>
+                        <div style='clear:both;'></div>
+                    </div>
+                    <div class='publication_abstract'>
+                        <br><span>Abstract:<br></span>
+                        <div th:text="${paper.publicationsummary}"></div>
+                    </div>
+                    <div class='publication_allegato'>
+                        <br>
+                        <!--<a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'-->
+                               <!--title='click here to download [new window]' target='_blank'>Nature Communications DOI:-->
+                        <!--10.1038/ncomms15679</a>-->
+                        <a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'>
+                            <span th:text="${paper.publicationdoi}"></span></a>
+                    </div>
+                    <br>
+                    <hr>
+                </div>
+            </div>
+            <!--<div class='record_page_under'></div>-->
+            <!--<div class='set_record set_record_17'>-->
+                <!--<a class='set_records_ancor' name='set_records'></a>-->
+                <!--<div class='record_page_over'></div>-->
+                <!--<div class='titolo'>-->
+                    <!--<h1>Full list of publications</h1>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class='record_page_under'></div>-->
+            <!--<div class='set_record set_record_43'>-->
+                <!--<a class='set_records_ancor' name='set_records'></a>-->
+                <!--<div class='record_page_over'></div>-->
+                <!--<iframe id='iframe_aflow' src='http://materials.duke.edu/search/arkiv.php' frameborder='0' width='100%'-->
+                        <!--height='1000' scrolling='auto'></iframe>-->
+            <!--</div>-->
+            <!--<div class='record_page_under'></div>-->
+        </div>
+        </div>
+        <div style='clear:both;'></div>
+    </div>
+</div>
+</body>
+</html>
