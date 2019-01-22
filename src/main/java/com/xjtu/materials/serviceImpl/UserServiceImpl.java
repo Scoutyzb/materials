@@ -117,25 +117,13 @@ public class UserServiceImpl implements UserService {
      * @return java.util.List<com.xjtu.materials.pojo.User>
      */
     @Override
-    public List<User> getGeneralUser() {
+    public List<User> getUsersByIsAuth(String auth) {
         UserExample example = new UserExample();
-        example.createCriteria().andIsauthenticatedEqualTo("1");
+        example.createCriteria().andIsauthenticatedEqualTo(auth);
         List<User> users = userMapper.selectByExample(example);
         return users;
     }
 
-    /**
-     * @Description 获取管理员
-     * @Auther Liang
-     * @date 22:36 2019/1/21
-     * @return java.util.List<com.xjtu.materials.pojo.User>
-     */
-    @Override
-    public List<User> getAdminUser() {
-        UserExample example = new UserExample();
-        example.createCriteria().andIsauthenticatedEqualTo("2");
-        List<User> users = userMapper.selectByExample(example);
-        return users;
-    }
+
 
 }

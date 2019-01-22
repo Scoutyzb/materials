@@ -11,8 +11,7 @@ public interface UserService {
 
     // 获取所有用户
     List<User> getAllUser();
-    // 获取普通用户
-    List<User> getGeneralUser();
-    // 获取管理员
-    List<User> getAdminUser();
+    // 获取不同状态用户 1、2、3 对应普通、拉黑、管理员用户
+    List<User> getUsersByIsAuth(String auth);
+
 }

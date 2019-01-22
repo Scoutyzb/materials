@@ -238,56 +238,56 @@
     </div>
 </div>
 <script>
-    $(function(){
-        var $td = $("td");
-        alert($td);
-        var $info = $(".info");
-        alert($info);
-        var data;
-        $.ajax({
-            type:"get",
-            url:"/static/js/elements.json",
-            async:true,
-            success:function(d){
-                alert(d);
-                data = d;
-            }
-        });
-        $td.mouseenter(function(e){
-            $(this).mousemove(function(e){
-                mousex = e.clientX;
-                mousey = e.clientY;
-                var $tdCont = $(this).text();
-                if($tdCont!= ""){
-                    $(this).addClass("active");
-                }
-
-                for(var attr in data){
-                    var title = data[attr].name;
-                    if(title == $tdCont){
-
-                        $info.css("display","block");
-                        $info.find("h3").html("<"+title+">");
-                        $info.find("p").html(data[attr].value);
-                        if(mousex > ($(window).width()- $info.width()-10)){
-                            $info.offset({left:mousex - $info.width()-10,top:mousey+10})
-                        }else{
-                            $info.offset({left:mousex +10,top:mousey+10})
-                        }
-                    }
-                }
-
-
-            })
-
-        })
-
-        $td.mouseleave(function(){
-            $(this).removeClass("active");
-            $info.hide();
-        })
-
-    })
+    // $(function(){
+    //     var $td = $("td");
+    //     alert($td);
+    //     var $info = $(".info");
+    //     alert($info);
+    //     var data;
+    //     $.ajax({
+    //         type:"get",
+    //         url:"/static/js/elements.json",
+    //         async:true,
+    //         success:function(d){
+    //             alert(d);
+    //             data = d;
+    //         }
+    //     });
+    //     $td.mouseenter(function(e){
+    //         $(this).mousemove(function(e){
+    //             mousex = e.clientX;
+    //             mousey = e.clientY;
+    //             var $tdCont = $(this).text();
+    //             if($tdCont!= ""){
+    //                 $(this).addClass("active");
+    //             }
+    //
+    //             for(var attr in data){
+    //                 var title = data[attr].name;
+    //                 if(title == $tdCont){
+    //
+    //                     $info.css("display","block");
+    //                     $info.find("h3").html("<"+title+">");
+    //                     $info.find("p").html(data[attr].value);
+    //                     if(mousex > ($(window).width()- $info.width()-10)){
+    //                         $info.offset({left:mousex - $info.width()-10,top:mousey+10})
+    //                     }else{
+    //                         $info.offset({left:mousex +10,top:mousey+10})
+    //                     }
+    //                 }
+    //             }
+    //
+    //
+    //         })
+    //
+    //     })
+    //
+    //     $td.mouseleave(function(){
+    //         $(this).removeClass("active");
+    //         $info.hide();
+    //     })
+    //
+    // })
 </script>
 </body>
 </html>

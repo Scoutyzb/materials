@@ -23,7 +23,7 @@
     <div th:replace="search::body"></div>
     <div th:replace="PTable::body"></div>
 
-    <table id="table" data-toggle="table" data-url="data1.json">
+    <table id="table" data-toggle="table">
         <thead>
         <tr>
             <th data-field="id">Item ID</th>
@@ -35,7 +35,7 @@
         </thead>
         <tbody class="text-center">
         <tr th:each="Material:${Materials}">
-            <td th:text="${Material.materialid}"></td>
+            <td th:text="${MaterialStat.index + 1}"></td>
             <td th:text="${Material.materialname}"></td>
             <td th:text="${Material.type}"></td>
             <td th:text="${Material.time}"></td>

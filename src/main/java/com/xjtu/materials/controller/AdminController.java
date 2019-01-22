@@ -1,6 +1,7 @@
 package com.xjtu.materials.controller;
 
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.mapper.UserMapper;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.FilePathService;
@@ -31,6 +32,9 @@ public class AdminController {
 
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @RequestMapping("/adminIndex")
     public String index1() {
@@ -82,11 +86,15 @@ public class AdminController {
         ModelAndView mv = new ModelAndView("admin/userPage");
 
         // 普通用户数据
-        List<User> generalUsers = userService.getGeneralUser();
+        List<User> generalUsers = userService.getUsersByIsAuth("1");
         // 管理员数据
-        List<User> adminUsers = userService.getAdminUser();
+        List<User> adminUsers = userService.getUsersByIsAuth("2");
+        // 拉黑用户数据
+        List<User> blackListUsers = userService.getUsersByIsAuth("3");
+
         mv.addObject("generalUsers",generalUsers);
         mv.addObject("adminUsers",adminUsers);
+        mv.addObject("blackListUsers",blackListUsers);
 
         return mv;
     }
@@ -140,7 +148,7 @@ public class AdminController {
     }
 
     /**
-     * @Description 对应ajax功能，cif文件后台通过审核
+     * @Description ajax功能，cif文件后台通过审核
      * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
      * @Auther Liang
      * @date 15:28 2019/1/22
@@ -161,6 +169,48 @@ public class AdminController {
         upLoadMaterialMapper.updateByPrimaryKey(material);
 
         System.out.println("未通过审核");
+
+        return "1";
+    }
+
+    /**
+     * @Description ajax功能，管理员后台拉黑用户
+     * Isauthenticated状态： 1 普通用户 2 管理员 3拉黑
+     * @Auther Liang
+     * @date 22:41 2019/1/22
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/addToBlacklist")
+    public String addToBlacklist(HttpServletRequest request) {
+        String userId = request.getParameter("userId");
+
+        User user = userMapper.selectByPrimaryKey(userId);
+
+        user.setIsauthenticated("3");
+
+        userMapper.updateByPrimaryKey(user);
+
+        return "1";
+    }
+
+    /**
+     * @Description ajax功能，管理员后台将用户移出黑名单
+     * @Auther Liang
+     * @date 23:14 2019/1/22
+     * @param request
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/removeFromBlacklist")
+    public String removeFromBlacklist(HttpServletRequest request) {
+        String userId = request.getParameter("userId");
+
+        User user = userMapper.selectByPrimaryKey(userId);
+
+        user.setIsauthenticated("1");
+
+        userMapper.updateByPrimaryKey(user);
 
         return "1";
     }
