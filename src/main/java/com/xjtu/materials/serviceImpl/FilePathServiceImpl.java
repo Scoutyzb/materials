@@ -13,10 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.xjtu.materials.util.FileUtil;
 
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
-import com.xjtu.materials.mapper.PublicationMapper;
-
 import com.xjtu.materials.pojo.UpLoadMaterial;
-import com.xjtu.materials.pojo.Publication;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,17 +25,9 @@ import java.util.UUID;
 public class FilePathServiceImpl implements FilePathService {
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
-    @Autowired
-    PublicationMapper publicationMapper;
 
-    /**
-     * @Description 提交cif材料并存储
-     * @Auther hl
-     * @date 16:00 2019/1/19
-     * @return String Success
-     */
     @Override
-    public String Upload(@RequestParam("file") MultipartFile file,String name,String username){
+    public String Upload(@RequestParam("file") MultipartFile file,String name){
         if(!file.isEmpty()) {
             // 获取文件名称,包含后缀
             String fileName = file.getOriginalFilename();
@@ -71,7 +60,6 @@ public class FilePathServiceImpl implements FilePathService {
             material.setIsauthenticated("1");
             material.setTime(time);
             material.setPath(urlPath);
-            material.setUsername(username);
             upLoadMaterialMapper.insert(material);
             return "success";
         }
@@ -93,32 +81,6 @@ public class FilePathServiceImpl implements FilePathService {
         example.createCriteria().andIsauthenticatedEqualTo(isAuthMaterial);
         List<UpLoadMaterial> upLoadMaterials = upLoadMaterialMapper.selectByExample(example);
         return upLoadMaterials;
-    }
-
-    /**
-     * @Description 提交文献及DIO
-     * @Auther hl
-     * @date 13:44 2019/1/22
-     * @return String Success
-     */
-    @Override
-    public void UploadPublication(String fileName,String authorName,String username,String abstractText,String DIO,String type,String adress){
-        Publication publication = new Publication();
-        Date date=new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String time = format.format(date);
-        String publicationID = UUID.randomUUID().toString();
-        publication.setPublicationid(publicationID);
-        publication.setPublicationname(fileName);
-        publication.setPublicationauthor(authorName);
-        publication.setPublicationsummary(abstractText);
-        publication.setPublicationdoi(DIO);
-        publication.setUsername(username);
-        publication.setUploadtime(time);
-        publication.setPublicationtype(type);
-        publication.setPublicationwebsite(adress);
-        publication.setIsauthenticated("1");
-        publicationMapper.insert(publication);
     }
 
 }

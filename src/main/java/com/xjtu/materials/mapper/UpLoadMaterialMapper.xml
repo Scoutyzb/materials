@@ -3,7 +3,6 @@
 <mapper namespace="com.xjtu.materials.mapper.UpLoadMaterialMapper" >
   <resultMap id="BaseResultMap" type="com.xjtu.materials.pojo.UpLoadMaterial" >
     <id column="materialID" property="materialid" jdbcType="VARCHAR" />
-    <result column="userName" property="username" jdbcType="VARCHAR" />
     <result column="materialName" property="materialname" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="isAuthenticated" property="isauthenticated" jdbcType="VARCHAR" />
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    materialID, userName, materialName, type, isAuthenticated, time, path
+    materialID, materialName, type, isAuthenticated, time, path
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjtu.materials.pojo.UpLoadMaterialExample" >
     select
@@ -102,21 +101,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
-    insert into uploadmaterial (materialID, userName, materialName, 
-      type, isAuthenticated, time, 
-      path)
-    values (#{materialid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{materialname,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{isauthenticated,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
-      #{path,jdbcType=VARCHAR})
+    insert into uploadmaterial (materialID, materialName, type, 
+      isAuthenticated, time, path
+      )
+    values (#{materialid,jdbcType=VARCHAR}, #{materialname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{isauthenticated,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
     insert into uploadmaterial
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="materialid != null" >
         materialID,
-      </if>
-      <if test="username != null" >
-        userName,
       </if>
       <if test="materialname != null" >
         materialName,
@@ -137,9 +133,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="materialid != null" >
         #{materialid,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
       </if>
       <if test="materialname != null" >
         #{materialname,jdbcType=VARCHAR},
@@ -170,9 +163,6 @@
       <if test="record.materialid != null" >
         materialID = #{record.materialid,jdbcType=VARCHAR},
       </if>
-      <if test="record.username != null" >
-        userName = #{record.username,jdbcType=VARCHAR},
-      </if>
       <if test="record.materialname != null" >
         materialName = #{record.materialname,jdbcType=VARCHAR},
       </if>
@@ -196,7 +186,6 @@
   <update id="updateByExample" parameterType="map" >
     update uploadmaterial
     set materialID = #{record.materialid,jdbcType=VARCHAR},
-      userName = #{record.username,jdbcType=VARCHAR},
       materialName = #{record.materialname,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
       isAuthenticated = #{record.isauthenticated,jdbcType=VARCHAR},
@@ -209,9 +198,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
     update uploadmaterial
     <set >
-      <if test="username != null" >
-        userName = #{username,jdbcType=VARCHAR},
-      </if>
       <if test="materialname != null" >
         materialName = #{materialname,jdbcType=VARCHAR},
       </if>
@@ -232,8 +218,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
     update uploadmaterial
-    set userName = #{username,jdbcType=VARCHAR},
-      materialName = #{materialname,jdbcType=VARCHAR},
+    set materialName = #{materialname,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       isAuthenticated = #{isauthenticated,jdbcType=VARCHAR},
       time = #{time,jdbcType=VARCHAR},
@@ -246,4 +231,5 @@
     FROM uploadmaterial
     WHERE uploadmaterial.materialName LIKE #{param,jdbcType=VARCHAR};
   </select>
+
 </mapper>
