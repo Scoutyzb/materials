@@ -81,16 +81,16 @@ public class FilePathServiceImpl implements FilePathService {
     }
 
     /**
-     * @Description 返回未审核cif材料
+     * @Description 按审核状态返回cif材料
      * Isauthenticated 状态 ：1：未审核
      * @Auther Liang
      * @date 16:50 2019/1/21
      * @return java.util.List<com.xjtu.materials.pojo.UpLoadMaterial>
      */
     @Override
-    public List<UpLoadMaterial> unAuthMaterial() {
+    public List<UpLoadMaterial> getByIsAuthMaterial(String isAuthMaterial) {
         UpLoadMaterialExample example = new UpLoadMaterialExample();
-        example.createCriteria().andIsauthenticatedEqualTo("1");
+        example.createCriteria().andIsauthenticatedEqualTo(isAuthMaterial);
         List<UpLoadMaterial> upLoadMaterials = upLoadMaterialMapper.selectByExample(example);
         return upLoadMaterials;
     }

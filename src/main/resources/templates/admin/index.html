@@ -11,7 +11,7 @@
     <link href="css/admin/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="css/admin/animate.css" rel="stylesheet">
     <link href="css/admin/style.css?v=4.1.0" rel="stylesheet">
-    <title>烟草公司运维管理系统</title>
+    <title>材料基因组后台管理系统</title>
 </head>
 <!-- 全局js -->
 <script src="js/admin/jquery.min.js"></script>
@@ -52,7 +52,7 @@
                     <span class="ng-scope"></span>
                 </li>
                 <li class="loginLinkLi" id="userNameText">您好</li>
-                <li><a class="J_menuItem" href="homePage"> <i
+                <li><a class="J_menuItem" href="adminHomePage"> <i
                         class="fa fa-home"></i> <span class="nav-label">首页</span>
                 </a></li>
 
@@ -60,31 +60,17 @@
                     <span class="ng-scope"></span>
                 </li>
                 <li><a href=""> <i class="fa fa-paste"></i> <span
-                        class="nav-label">ITIL管理流程</span> <span class="fa arrow"></span>
+                        class="nav-label">上传内容管理</span> <span class="fa arrow"></span>
                 </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="eventPage"> <i
-                                class="fa fa-paste"></i> <span class="nav-label">事件管理</span>
+                        <li><a class="J_menuItem" href="/cifPage"> <i
+                                class="fa fa-paste"></i> <span class="nav-label">cif管理</span>
                         </a></li>
                         <li><a class="J_menuItem" href="problemPage"> <i
-                                class="fa fa-warning"></i> <span class="nav-label">问题管理</span>
+                                class="fa fa-warning"></i> <span class="nav-label">相关刊物信息管理</span>
                         </a></li>
-                        <li><a href=""> <i class="fa fa-edit"></i>&nbsp;设备管理<span
-                                class="fa arrow"></span>
-                        </a>
-                            <ul class="nav nav-third-level">
-                                <li><a class="J_menuItem" href="configureEquipmentPage">设备信息库</a></li>
-                                <li><a class="J_menuItem" href="configureUploadPage">新增设备信息</a></li>
-                            </ul>
-                        </li>
-                        <li><a href=""> <i class="fa fa-edit"></i>&nbsp;知识管理<span
-                                class="fa arrow"></span>
-                        </a>
-                            <ul class="nav nav-third-level">
-                                <li><a class="J_menuItem" href="faqPage">知识库</a></li>
-                                <li><a class="J_menuItem" href="faqCommendPage">faq推荐栏</a></li>
-                            </ul>
-                        </li>
+
+
                     </ul>
                 </li>
 
@@ -95,7 +81,7 @@
                 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                     <span class="ng-scope"></span>
                 </li>
-                <li><a class="J_menuItem" href="logIndex"> <i
+                <li><a class="J_menuItem" href="#"> <i
                         class="fa fa-user-md"></i> <span class="nav-label">日志管理</span>
                 </a></li>
                 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
@@ -105,48 +91,34 @@
                         class="nav-label">用户管理</span> <span class="fa arrow"></span>
                 </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="userPage"> <i
-                                class="fa fa-table"></i> <span class="nav-label">用户管理</span>
+                        <li><a class="J_menuItem" href="/userPage"> <i
+                                class="fa fa-table"></i> <span class="nav-label">普通用户</span>
                         </a></li>
                     </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="changePasswordPage">
-                            <i class="fa fa-table"></i> <span class="nav-label">admin密码修改</span>
-                        </a></li>
-                    </ul>
-                </li>
-                <!--  <li>
-             <a class="J_menuItem" href="userPage.html">
-                 <i class="fa fa-user-plus"></i>
-                 <span class="nav-label">用户管理</span>
-             </a>
-         </li> -->
-                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                    <span class="ng-scope"></span>
-                </li>
-                <!--
-         <li>
-             <a class="J_menuItem" href="">
 
-                 <span class="nav-label">权限管理</span>
-             </a>
-         </li> -->
-                <li><a href=""> <i class="fa fa-rebel"></i> <span
-                        class="nav-label">权限管理</span> <span class="fa arrow"></span>
-                </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="permissionPage"> <i
-                                class="fa fa-table"></i> <span class="nav-label">权限列表</span>
-                        </a></li>
-                        <li><a class="J_menuItem" href="permissionAssignPage">
-                            <i class="fa fa-warning"></i> <span class="nav-label">权限分配</span>
-                        </a></li>
-                    </ul>
                 </li>
+
                 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                     <span class="ng-scope"></span>
                 </li>
-                <li><a class="J_menuItem" href="logout"> <i
+
+
+                <!--<li><a href=""> <i class="fa fa-rebel"></i> <span-->
+                <!--class="nav-label">权限管理</span> <span class="fa arrow"></span>-->
+                <!--</a>-->
+                <!--<ul class="nav nav-second-level">-->
+                <!--<li><a class="J_menuItem" href="permissionPage"> <i-->
+                <!--class="fa fa-table"></i> <span class="nav-label">权限列表</span>-->
+                <!--</a></li>-->
+                <!--<li><a class="J_menuItem" href="permissionAssignPage">-->
+                <!--<i class="fa fa-warning"></i> <span class="nav-label">权限分配</span>-->
+                <!--</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li><a href="/adminLogin"> <i
                         class="fa fa-warning"></i> <span class="nav-label">退出</span>
                 </a></li>
             </ul>
@@ -168,7 +140,8 @@
         <!-- 其余模块都要嵌入其中 -->
         <!-- homePage.html为首页 -->
         <div class="row J_mainContent" id="content-main">
-            <iframe id="J_iframe" width="100%" height="100%" src="/adminHomePage" data-id="index_v1.html" seamless></iframe>
+            <iframe id="J_iframe" width="100%" height="100%" src="/adminHomePage" data-id="index_v1.html"
+                    seamless></iframe>
         </div>
 
     </div>
