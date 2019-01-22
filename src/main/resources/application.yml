@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/materialgene?useSSL=false
     username: root
     #    password: admin
-    password: admin
+    password: 191903
 
 server:
   port: 8081

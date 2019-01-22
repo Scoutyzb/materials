@@ -71,11 +71,5 @@
                enableUpdateByExample="true">
         </table>
 
-        <table schema="materialgene" tableName="publication"
-               domainObjectName="Publication" enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
-
     </context>
 </generatorConfiguration>

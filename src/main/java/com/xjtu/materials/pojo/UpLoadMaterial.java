@@ -3,8 +3,6 @@ package com.xjtu.materials.pojo;
 public class UpLoadMaterial {
     private String materialid;
 
-    private String username;
-
     private String materialname;
 
     private String type;
@@ -21,14 +19,6 @@ public class UpLoadMaterial {
 
     public void setMaterialid(String materialid) {
         this.materialid = materialid == null ? null : materialid.trim();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
     }
 
     public String getMaterialname() {

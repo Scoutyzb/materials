@@ -11,14 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.pojo.UpLoadMaterial;
-import com.xjtu.materials.pojo.Publication;
-
 import com.xjtu.materials.service.UserService;
 import com.xjtu.materials.service.FilePathService;
 import com.xjtu.materials.service.SearchService;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -154,28 +151,11 @@ public class HelloController {
 
 
     /*
-     * hl_upload_上传cif文件
+     * hl_upload_ajax
      */
     @RequestMapping(value = "/upload_cif", method= RequestMethod.POST, produces="application/json;charset=utf-8")
     public String upload_cif(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
-        String username = (String) session.getAttribute("UserName");
-        if (username == null){
-            return "login";
-        }
-        filePathService.Upload(file,name,username);
-        return "upload";
-    }
-
-    /*
-     * hl_upload_上传文献
-     */
-    @RequestMapping(value = "/upload_publication", method= RequestMethod.POST, produces="application/json;charset=utf-8")
-    public String upload_publication(@RequestParam("fileName") String fileName , @RequestParam("userName") String authorName , @RequestParam("abstractText") String abstractText , @RequestParam("DIO") String DIO , @RequestParam("type") String type , @RequestParam("adress") String adress , HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
-        String username = (String) session.getAttribute("UserName");
-        if (username == null){
-            return "login";
-        }
-        filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
+        filePathService.Upload(file,name);
         return "upload";
     }
 
@@ -185,32 +165,5 @@ public class HelloController {
     @RequestMapping("/indexSearch")
     public String indexSearch() {
         return "upload";
-    }
-
-
-    /**
-     * @Description 首页
-     * @Auther hl
-     * @date 14:21 2019/1/22
-     * @return List<Publication>
-     */
-    @RequestMapping("/searchPaper")
-    public ModelAndView searchPaper(String paperName, String searchType , HttpServletRequest request,HttpSession session) {
-        ModelAndView mv = new ModelAndView("paper1");
-        List<Publication> results = new LinkedList<>();
-        if (searchType.equals("按名称")){
-            results = searchService.SelectByPaperName(paperName);
-        }
-        else if (searchType.equals("按作者")){
-            results = searchService.SelectByUserName(paperName);
-        }
-        else{
-            results = searchService.SelectByType(paperName);
-        }
-
-        mv.addObject("Publications", results);
-        mv.addObject("Number",results.size());
-
-        return mv;
     }
 }
