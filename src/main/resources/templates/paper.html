@@ -18,12 +18,15 @@
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索文献">
+                        <input type="text" id="paper" class="form-control" placeholder="搜索文献">
                         <span class="input-group-btn">
+                                <select style="width:100px;" id="type" name="type" class="form-control" required>
+                                    <option>按名称</option>
+                                    <option>按作者</option>
+                                    <option>按标签</option>
+                                </select>
                                 <button class="btn btn-default" type="button"
-                                        onclick="location.href='/website/crystal'">Go!</button>
-                                <button class="btn btn-default" type="button"
-                                        onclick="location.href='/website/searchPage'">精确搜索</button>
+                                        onclick="location.href='/searchPaper?paperName='+$('#paper').val()+'&searchType='+$('#type').val()">精确搜索</button>
                             </span>
                     </div><!-- /input-group -->
                     <br>
