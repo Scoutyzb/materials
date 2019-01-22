@@ -1,5 +1,6 @@
 package com.xjtu.materials.controller;
 
+import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.FilePathService;
@@ -8,8 +9,11 @@ import javafx.scene.paint.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -24,6 +28,9 @@ public class AdminController {
 
     @Autowired
     FilePathService filePathService;
+
+    @Autowired
+    UpLoadMaterialMapper upLoadMaterialMapper;
 
     @RequestMapping("/adminIndex")
     public String index1() {
@@ -103,5 +110,31 @@ public class AdminController {
         mv.addObject("materials", materials);
 
         return mv;
+    }
+
+
+    /**
+     * @Description 对应ajax功能，后台审核cif文件、修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther Liang
+     * @date 15:28 2019/1/22
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/throughMaterialAudit")
+    public String throughMaterialAudit(HttpServletRequest request) {
+
+        String materialID = request.getParameter("materialID");
+        System.out.println(materialID);
+
+        UpLoadMaterial material =  new UpLoadMaterial();
+        material = upLoadMaterialMapper.selectByPrimaryKey(materialID);
+
+        System.out.println(material);
+        material.setIsauthenticated("2");
+
+        upLoadMaterialMapper.updateByPrimaryKey(material);
+
+        System.out.println("审核成功");
+        return "1";
     }
 }

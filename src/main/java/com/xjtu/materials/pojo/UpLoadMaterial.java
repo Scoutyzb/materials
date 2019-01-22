@@ -60,4 +60,16 @@ public class UpLoadMaterial {
     public void setPath(String path) {
         this.path = path == null ? null : path.trim();
     }
+
+    @Override
+    public String toString() {
+        return "UpLoadMaterial{" +
+                "materialid='" + materialid + '\'' +
+                ", materialname='" + materialname + '\'' +
+                ", type='" + type + '\'' +
+                ", isauthenticated='" + isauthenticated + '\'' +
+                ", time='" + time + '\'' +
+                ", path='" + path + '\'' +
+                '}';
+    }
 }
