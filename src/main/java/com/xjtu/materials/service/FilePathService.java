@@ -8,8 +8,8 @@ import java.util.List;
 public interface FilePathService {
     String Upload(MultipartFile file,String name);
 
-    // 未审核cif材料
-    List<UpLoadMaterial> unAuthMaterial();
+    // 按审核状态选取cif材料
+    List<UpLoadMaterial> getByIsAuthMaterial(String isAuthMaterial);
 
 
 }

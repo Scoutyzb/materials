@@ -61,7 +61,7 @@ public class AdminController {
         ModelAndView mv = new ModelAndView("admin/homePage");
 
         List<User> users = userService.getAllUser();
-        List<UpLoadMaterial> materials = filePathService.unAuthMaterial();
+        List<UpLoadMaterial> materials = filePathService.getByIsAuthMaterial("1");
 
         mv.addObject("users", users);
         mv.addObject("usersNum", users.size());
@@ -101,13 +101,14 @@ public class AdminController {
     public ModelAndView cifPage () {
         ModelAndView mv = new ModelAndView("admin/cifPage");
 
-        // 未审核cif文件
-        List<UpLoadMaterial> materials = filePathService.unAuthMaterial();
-
-        // todo: 已审核cif文件
-
+        // 3类审核状态的cif文件
+        List<UpLoadMaterial> materials = filePathService.getByIsAuthMaterial("1");
+        List<UpLoadMaterial> authMaterials = filePathService.getByIsAuthMaterial("2");
+        List<UpLoadMaterial> unAuthMaterials = filePathService.getByIsAuthMaterial("3");
 
         mv.addObject("materials", materials);
+        mv.addObject("authMaterials", authMaterials);
+        mv.addObject("unAuthMaterials", unAuthMaterials);
 
         return mv;
     }
