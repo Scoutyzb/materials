@@ -114,7 +114,8 @@ public class AdminController {
 
 
     /**
-     * @Description 对应ajax功能，后台审核cif文件、修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Description 对应ajax功能，cif文件后台通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
      * @Auther Liang
      * @date 15:28 2019/1/22
      * @return java.lang.String
@@ -126,8 +127,7 @@ public class AdminController {
         String materialID = request.getParameter("materialID");
         System.out.println(materialID);
 
-        UpLoadMaterial material =  new UpLoadMaterial();
-        material = upLoadMaterialMapper.selectByPrimaryKey(materialID);
+        UpLoadMaterial material = upLoadMaterialMapper.selectByPrimaryKey(materialID);
 
         System.out.println(material);
         material.setIsauthenticated("2");
@@ -135,6 +135,32 @@ public class AdminController {
         upLoadMaterialMapper.updateByPrimaryKey(material);
 
         System.out.println("审核成功");
+        return "1";
+    }
+
+    /**
+     * @Description 对应ajax功能，cif文件后台通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther Liang
+     * @date 15:28 2019/1/22
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/unThroughMaterialAudit")
+    public String unThroughMaterialAudit(HttpServletRequest request) {
+
+        String materialID = request.getParameter("materialID");
+        System.out.println(materialID);
+
+        UpLoadMaterial material = upLoadMaterialMapper.selectByPrimaryKey(materialID);
+
+        System.out.println(material);
+        material.setIsauthenticated("3");
+
+        upLoadMaterialMapper.updateByPrimaryKey(material);
+
+        System.out.println("未通过审核");
+
         return "1";
     }
 }

@@ -193,17 +193,17 @@
 
         function noAudit(id) {
 
-            var userId = document.getElementById(id).id;
-            if (confirm("确认将其加入黑名单？")) {
+            var materialID = document.getElementById(id).id;
+            if (confirm("确认不通过审核？")) {
                 $.ajax({
                     type: "POST",
-                    url: "noAudit",
+                    url: "/unThroughMaterialAudit",
                     data: {
-                        "userId": userId
+                        "materialID": materialID
                     },
                     dataType: "json",
                     success: function (data) {
-                        alert("加入黑名单");
+                        alert("未通过");
                         window.location.reload();
                     }
 
