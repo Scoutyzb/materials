@@ -78,7 +78,7 @@ public class LogServiceImpl implements LogService {
         log.setMethodlogicname("UploadFile");
         log.setMethod("上传文件");
         log.setParamid(objectID);
-        log.setLogtype("1");
+        log.setLogtype("UpLoadMaterial");
         logMapper.insert(log);
     }
 
@@ -102,7 +102,7 @@ public class LogServiceImpl implements LogService {
         log.setMethodlogicname("UploadPublication");
         log.setMethod("上传文献");
         log.setParamid(objectID);
-        log.setLogtype("1");
+        log.setLogtype("Publication");
         logMapper.insert(log);
     }
 
@@ -126,7 +126,7 @@ public class LogServiceImpl implements LogService {
         log.setMethodlogicname("DeleteUser");
         log.setMethod("拉黑用户");
         log.setParamid(userId);
-        log.setLogtype("1");
+        log.setLogtype("User");
         logMapper.insert(log);
     }
 
@@ -149,7 +149,7 @@ public class LogServiceImpl implements LogService {
         log.setMethodlogicname("FileReviewSuccess");
         log.setMethod("稀贵金属cif文件审核通过");
         log.setParamid(materialID);
-        log.setLogtype("1");
+        log.setLogtype("UpLoadMaterial");
         logMapper.insert(log);
     }
 
@@ -172,7 +172,55 @@ public class LogServiceImpl implements LogService {
         log.setMethodlogicname("FileReviewFailed");
         log.setMethod("稀贵金属cif文件未审核通过");
         log.setParamid(materialID);
-        log.setLogtype("1");
+        log.setLogtype("UpLoadMaterial");
+        logMapper.insert(log);
+    }
+    /**
+     * @Description 对应ajax功能，Publication文献后台通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:45 2019/1/23
+     * @return java.lang.String
+     */
+    public void UploadPublicationsSuccess(String adminID,String materialID){
+        Log log = new Log();
+        Date date=new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = format.format(date);
+        String logID = UUID.randomUUID().toString();
+        log.setLogid(logID);
+        log.setUserid(adminID);
+        log.setUsertype("管理员");
+        log.setLogtime(time);
+
+        log.setMethodlogicname("PublicationReviewSuccess");
+        log.setMethod("文献审核通过");
+        log.setParamid(materialID);
+        log.setLogtype("Publication");
+        logMapper.insert(log);
+    }
+    /**
+     * @Description 对应ajax功能，Publication文献后台未通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:50 2019/1/23
+     * @return java.lang.String
+     */
+    public void UploadPublicationsFailed(String adminID,String materialID){
+        Log log = new Log();
+        Date date=new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = format.format(date);
+        String logID = UUID.randomUUID().toString();
+        log.setLogid(logID);
+        log.setUserid(adminID);
+        log.setUsertype("管理员");
+        log.setLogtime(time);
+
+        log.setMethodlogicname("PublicationReviewfailed");
+        log.setMethod("文献未审核通过");
+        log.setParamid(materialID);
+        log.setLogtype("Publication");
         logMapper.insert(log);
     }
 

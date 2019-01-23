@@ -44,4 +44,20 @@ public interface LogService {
      * @return void
      */
      void UploadFilesFailed(String adminID,String materialID);
+    /**
+     * @Description 对应ajax功能，Publication文献后台通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:45 2019/1/23
+     * @return java.lang.String
+     */
+     void UploadPublicationsSuccess(String adminID,String materialID);
+    /**
+     * @Description 对应ajax功能，Publication文献后台未通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:50 2019/1/23
+     * @return java.lang.String
+     */
+     void UploadPublicationsFailed(String adminID,String materialID);
 }
