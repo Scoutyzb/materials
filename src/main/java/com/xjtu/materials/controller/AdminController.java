@@ -2,16 +2,16 @@ package com.xjtu.materials.controller;
 
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.mapper.UserMapper;
+import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.FilePathService;
+import com.xjtu.materials.service.PublicationService;
 import com.xjtu.materials.service.UserService;
-import javafx.scene.paint.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,15 +26,14 @@ import java.util.List;
 public class AdminController {
     @Autowired
     UserService userService;
-
     @Autowired
     FilePathService filePathService;
-
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
-
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    PublicationService publicationService;
 
     @RequestMapping("/adminIndex")
     public String index1() {
@@ -213,5 +212,27 @@ public class AdminController {
         userMapper.updateByPrimaryKey(user);
 
         return "1";
+    }
+
+    /**
+     * @Description  后台文献信息 publicationPage.html
+     * @Auther Liang
+     * @date 23:40 2019/1/22
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/publicationPage")
+    public ModelAndView publicationPage() {
+        ModelAndView mv = new ModelAndView("admin/publicationPage");
+
+        List<Publication> publications = publicationService.getPublicationsByIsAuth("1");
+        List<Publication> unAuthPublications = publicationService.getPublicationsByIsAuth("3");
+        List<Publication> authPublications = publicationService.getPublicationsByIsAuth("2");
+
+        mv.addObject("publications", publications);
+        mv.addObject("authPublications", authPublications);
+        mv.addObject("unAuthPublications", unAuthPublications);
+
+        System.out.println(publications);
+        return mv;
     }
 }
