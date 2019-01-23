@@ -302,7 +302,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "/throughMaterialAudit",
+                    url: "/throughPublicationAudit",
                     data: {
                         "materialID": materialID
                     },
@@ -325,7 +325,7 @@
                 if (confirm("确认不通过审核？")) {
                     $.ajax({
                         type: "POST",
-                        url: "/unThroughMaterialAudit",
+                        url: "/unThroughPublicationAudit",
                         data: {
                             "materialID": materialID
                         },

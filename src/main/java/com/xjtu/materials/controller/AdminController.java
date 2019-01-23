@@ -2,6 +2,8 @@ package com.xjtu.materials.controller;
 
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.mapper.UserMapper;
+import com.xjtu.materials.mapper.PublicationMapper;
+
 import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
@@ -38,6 +40,8 @@ public class AdminController {
     UserMapper userMapper;
     @Autowired
     PublicationService publicationService;
+    @Autowired
+    PublicationMapper publicationMapper;
 
     @Autowired
     LogService logService;
@@ -160,12 +164,7 @@ public class AdminController {
 
         System.out.println("审核成功");
 
-        /**
-         * @Description cif文件通过审核的日志文件
-         * @Auther hl
-         * @date 11:30 2019/1/23
-         * @return void
-         */
+        //cif文件通过审核的日志文件
         logService.UploadFilesSuccess(adminID,materialID);
         return "1";
     }
@@ -194,12 +193,7 @@ public class AdminController {
 
         System.out.println("未通过审核");
 
-        /**
-         * @Description cif文件未通过审核的日志文件
-         * @Auther hl
-         * @date 11:35 2019/1/23
-         * @return void
-         */
+        //cif文件未通过审核的日志文件
         logService.UploadFilesFailed(adminID,materialID);
 
         return "1";
@@ -277,5 +271,62 @@ public class AdminController {
 
         System.out.println(publications);
         return mv;
+    }
+
+    /**
+     * @Description 对应ajax功能，Publication文献后台通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:45 2019/1/23
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/throughPublicationAudit")
+    public String throughPublicationAudit(HttpSession session, HttpServletRequest request) {
+        String adminID = (String) session.getAttribute("UserId");
+
+        String materialID = request.getParameter("materialID");
+        System.out.println(materialID);
+
+        Publication publication = publicationMapper.selectByPrimaryKey(materialID);
+
+        System.out.println(publication);
+        publication.setIsauthenticated("2");
+
+        publicationMapper.updateByPrimaryKey(publication);
+
+        System.out.println("审核成功");
+
+        //文献通过审核日志
+        logService.UploadPublicationsSuccess(adminID,materialID);
+        return "1";
+    }
+    /**
+     * @Description 对应ajax功能，Publication文献后台未通过审核
+     * 修改Isauthenticated 状态：1 未审核 2 通过审核 3 不通过审核
+     * @Auther hl
+     * @date 13:50 2019/1/23
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/unThroughPublicationAudit")
+    public String unThroughPublicationAudit(HttpSession session, HttpServletRequest request) {
+        String adminID = (String) session.getAttribute("UserId");
+
+        String materialID = request.getParameter("materialID");
+        System.out.println(materialID);
+
+        Publication publication = publicationMapper.selectByPrimaryKey(materialID);
+
+        System.out.println(publication);
+        publication.setIsauthenticated("3");
+
+        publicationMapper.updateByPrimaryKey(publication);
+
+        System.out.println("审核未成功");
+
+        //文献未通过审核
+        logService.UploadPublicationsFailed(adminID,materialID);
+        return "1";
     }
 }
