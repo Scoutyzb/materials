@@ -73,7 +73,7 @@ public class FilePathServiceImpl implements FilePathService {
             material.setPath(urlPath);
             material.setUsername(username);
             upLoadMaterialMapper.insert(material);
-            return "success";
+            return materialID;
         }
         else {
             return "false";
@@ -102,7 +102,7 @@ public class FilePathServiceImpl implements FilePathService {
      * @return String Success
      */
     @Override
-    public void UploadPublication(String fileName,String authorName,String username,String abstractText,String DIO,String type,String adress){
+    public String UploadPublication(String fileName,String authorName,String username,String abstractText,String DIO,String type,String adress){
         Publication publication = new Publication();
         Date date=new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -119,6 +119,7 @@ public class FilePathServiceImpl implements FilePathService {
         publication.setPublicationwebsite(adress);
         publication.setIsauthenticated("1");
         publicationMapper.insert(publication);
+        return publicationID;
     }
 
 }

@@ -59,23 +59,31 @@
         <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
             是否生成 example类 -->
 
-        <table schema="materialgene" tableName="user"
-               domainObjectName="User" enableCountByExample="true"
+        <!--<table schema="materialgene" tableName="user"-->
+               <!--domainObjectName="User" enableCountByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--enableUpdateByExample="true">-->
+        <!--</table>-->
+
+        <!--<table schema="materialgene" tableName="upLoadMaterial"-->
+               <!--domainObjectName="UpLoadMaterial" enableCountByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--enableUpdateByExample="true">-->
+        <!--</table>-->
+
+        <!--<table schema="materialgene" tableName="publication"-->
+               <!--domainObjectName="Publication" enableCountByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--enableUpdateByExample="true">-->
+        <!--</table>-->
+
+        <table schema="materialgene" tableName="log"
+               domainObjectName="Log" enableCountByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                enableUpdateByExample="true">
         </table>
 
-        <table schema="materialgene" tableName="upLoadMaterial"
-               domainObjectName="UpLoadMaterial" enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
 
-        <table schema="materialgene" tableName="publication"
-               domainObjectName="Publication" enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
 
     </context>
 </generatorConfiguration>

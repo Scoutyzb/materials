@@ -56,15 +56,15 @@ public class SearchServiceImpl implements SearchService {
         return publications;
     }
     /**
-     * @Description 使用文献标签进行检索
+     * @Description 使用标记类型进行检索
      * @Auther hl
-     * @date 17:09 2019/1/22
+     * @date 15:35 2019/1/22
      * @return List<Publication>
      */
     @Override
     public List<Publication> SelectByType(String type){
-        String typeName = "%"+type+"%";
-        List<Publication> publications = publicationMapper.selectLikeType(typeName);
+        String tName = "%"+type+"%";
+        List<Publication> publications = publicationMapper.selectLikeType(tName);
         return publications;
     }
 }

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjtu.materials.mapper.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.xjtu.materials.pojo.Log" >
+    <id column="logID" property="logid" jdbcType="VARCHAR" />
+    <result column="userID" property="userid" jdbcType="VARCHAR" />
+    <result column="userType" property="usertype" jdbcType="VARCHAR" />
+    <result column="logTime" property="logtime" jdbcType="VARCHAR" />
+    <result column="methodLogicName" property="methodlogicname" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="paramID" property="paramid" jdbcType="VARCHAR" />
+    <result column="logType" property="logtype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    logID, userID, userType, logTime, methodLogicName, method, paramID, logType
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjtu.materials.pojo.LogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where logID = #{logid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from log
+    where logID = #{logid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xjtu.materials.pojo.LogExample" >
+    delete from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjtu.materials.pojo.Log" >
+    insert into log (logID, userID, userType, 
+      logTime, methodLogicName, method, 
+      paramID, logType)
+    values (#{logid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, 
+      #{logtime,jdbcType=VARCHAR}, #{methodlogicname,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{paramid,jdbcType=VARCHAR}, #{logtype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjtu.materials.pojo.Log" >
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logID,
+      </if>
+      <if test="userid != null" >
+        userID,
+      </if>
+      <if test="usertype != null" >
+        userType,
+      </if>
+      <if test="logtime != null" >
+        logTime,
+      </if>
+      <if test="methodlogicname != null" >
+        methodLogicName,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="paramid != null" >
+        paramID,
+      </if>
+      <if test="logtype != null" >
+        logType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=VARCHAR},
+      </if>
+      <if test="methodlogicname != null" >
+        #{methodlogicname,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="paramid != null" >
+        #{paramid,jdbcType=VARCHAR},
+      </if>
+      <if test="logtype != null" >
+        #{logtype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjtu.materials.pojo.LogExample" resultType="java.lang.Integer" >
+    select count(*) from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update log
+    <set >
+      <if test="record.logid != null" >
+        logID = #{record.logid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userID = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertype != null" >
+        userType = #{record.usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logtime != null" >
+        logTime = #{record.logtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.methodlogicname != null" >
+        methodLogicName = #{record.methodlogicname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null" >
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paramid != null" >
+        paramID = #{record.paramid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logtype != null" >
+        logType = #{record.logtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update log
+    set logID = #{record.logid,jdbcType=VARCHAR},
+      userID = #{record.userid,jdbcType=VARCHAR},
+      userType = #{record.usertype,jdbcType=VARCHAR},
+      logTime = #{record.logtime,jdbcType=VARCHAR},
+      methodLogicName = #{record.methodlogicname,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      paramID = #{record.paramid,jdbcType=VARCHAR},
+      logType = #{record.logtype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjtu.materials.pojo.Log" >
+    update log
+    <set >
+      <if test="userid != null" >
+        userID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        userType = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        logTime = #{logtime,jdbcType=VARCHAR},
+      </if>
+      <if test="methodlogicname != null" >
+        methodLogicName = #{methodlogicname,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="paramid != null" >
+        paramID = #{paramid,jdbcType=VARCHAR},
+      </if>
+      <if test="logtype != null" >
+        logType = #{logtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where logID = #{logid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xjtu.materials.pojo.Log" >
+    update log
+    set userID = #{userid,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=VARCHAR},
+      logTime = #{logtime,jdbcType=VARCHAR},
+      methodLogicName = #{methodlogicname,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      paramID = #{paramid,jdbcType=VARCHAR},
+      logType = #{logtype,jdbcType=VARCHAR}
+    where logID = #{logid,jdbcType=VARCHAR}
+  </update>
+</mapper>

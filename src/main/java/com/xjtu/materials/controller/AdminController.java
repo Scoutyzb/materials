@@ -6,6 +6,7 @@ import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.FilePathService;
 import com.xjtu.materials.service.UserService;
+import com.xjtu.materials.service.LogService;
 import javafx.scene.paint.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -36,11 +38,22 @@ public class AdminController {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    LogService logService;
+
     @RequestMapping("/adminIndex")
     public String index1() {
         return "admin/index";
     }
 
+//    @RequestMapping("/adminIndex")
+//    public String index1(HttpSession session, HttpServletRequest request) {
+//        String username = (String) session.getAttribute("UserName");
+//        String userID = (String) session.getAttribute("UserId");
+//        System.out.println("管理员姓名："+username);
+//        System.out.println("管理员ID："+userID);
+//        return "admin/index";
+//    }
 
 
     /**
@@ -131,7 +144,8 @@ public class AdminController {
      */
     @ResponseBody
     @RequestMapping("/throughMaterialAudit")
-    public String throughMaterialAudit(HttpServletRequest request) {
+    public String throughMaterialAudit(HttpSession session, HttpServletRequest request) {
+        String adminID = (String) session.getAttribute("UserId");
 
         String materialID = request.getParameter("materialID");
         System.out.println(materialID);
@@ -144,6 +158,14 @@ public class AdminController {
         upLoadMaterialMapper.updateByPrimaryKey(material);
 
         System.out.println("审核成功");
+
+        /**
+         * @Description cif文件通过审核的日志文件
+         * @Auther hl
+         * @date 11:30 2019/1/23
+         * @return void
+         */
+        logService.UploadFilesSuccess(adminID,materialID);
         return "1";
     }
 
@@ -156,7 +178,8 @@ public class AdminController {
      */
     @ResponseBody
     @RequestMapping("/unThroughMaterialAudit")
-    public String unThroughMaterialAudit(HttpServletRequest request) {
+    public String unThroughMaterialAudit(HttpSession session, HttpServletRequest request) {
+        String adminID = (String) session.getAttribute("UserId");
 
         String materialID = request.getParameter("materialID");
         System.out.println(materialID);
@@ -170,6 +193,14 @@ public class AdminController {
 
         System.out.println("未通过审核");
 
+        /**
+         * @Description cif文件未通过审核的日志文件
+         * @Auther hl
+         * @date 11:35 2019/1/23
+         * @return void
+         */
+        logService.UploadFilesFailed(adminID,materialID);
+
         return "1";
     }
 
@@ -182,7 +213,9 @@ public class AdminController {
      */
     @ResponseBody
     @RequestMapping("/addToBlacklist")
-    public String addToBlacklist(HttpServletRequest request) {
+    public String addToBlacklist(HttpSession session, HttpServletRequest request) {
+        String adminID = (String) session.getAttribute("UserId");
+
         String userId = request.getParameter("userId");
 
         User user = userMapper.selectByPrimaryKey(userId);
@@ -190,6 +223,14 @@ public class AdminController {
         user.setIsauthenticated("3");
 
         userMapper.updateByPrimaryKey(user);
+
+        /**
+         * @Description 添加管理员拉黑用户日志
+         * @Auther hl
+         * @date 11:10 2019/1/23
+         * @return void
+         */
+        logService.UploadUsers(adminID,userId);
 
         return "1";
     }
