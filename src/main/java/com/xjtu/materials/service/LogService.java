@@ -1,8 +1,14 @@
 package com.xjtu.materials.service;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.xjtu.materials.pojo.Log;
+
+import java.util.List;
 
 public interface LogService {
+
+    // 获取所有日志
+    List<Log> getAllLog();
+
     /**
      * @Description 上传文件日志
      * @Auther hl

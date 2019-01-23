@@ -17,6 +17,27 @@ public class Log {
 
     private String logtype;
 
+    // 额外添加
+    private User operator;
+    // 被操作者名字
+    private String beOperator;
+
+    public String getBeOperator() {
+        return beOperator;
+    }
+
+    public void setBeOperator(String beOperator) {
+        this.beOperator = beOperator;
+    }
+
+    public User getOperator() {
+        return operator;
+    }
+
+    public void setOperator(User operator) {
+        this.operator = operator;
+    }
+
     public String getLogid() {
         return logid;
     }
@@ -79,5 +100,21 @@ public class Log {
 
     public void setLogtype(String logtype) {
         this.logtype = logtype == null ? null : logtype.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "logid='" + logid + '\'' +
+                ", userid='" + userid + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", logtime='" + logtime + '\'' +
+                ", methodlogicname='" + methodlogicname + '\'' +
+                ", method='" + method + '\'' +
+                ", paramid='" + paramid + '\'' +
+                ", logtype='" + logtype + '\'' +
+                ", operator=" + operator +
+                ", beOperator='" + beOperator + '\'' +
+                '}';
     }
 }

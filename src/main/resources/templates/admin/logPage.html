@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>操作日志</title>
+    <!--<link rel="shortcut icon" href="favicon.ico" />-->
+    <link href="css/admin/bootstrap.min.css?v=3.3.6" rel="stylesheet"/>
+    <link href="css/admin/font-awesome.css?v=4.4.0" rel="stylesheet"/>
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+
+    <link href="css/admin/style.css?v=4.1.0" rel="stylesheet"/>
+
+    <link href="css/media/style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- 全局js -->
+    <script src="js/admin/jquery.min.js?v=2.1.4"></script>
+    <script src="js/admin/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/admin/plugins/jeditable/jquery.jeditable.js"></script>
+    <!-- Data Tables -->
+    <script src="js/admin/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/admin/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <!-- 自定义js -->
+    <script src="js/admin/content.js?v=1.0.0"></script>
+
+</head>
+
+
+<body class="gray-bg">
+<input type="hidden" id="base" value="${basePath}"/>
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row" style="height: 100%">
+        <div class="col-sm-6" style="width: 100%; height: 100%">
+            <div class="tabs-container">
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <!--360浏览器优先以webkit内核解析-->
+                        <div class="wrapper wrapper-content animated fadeIn">
+                            <div class="row">
+                                <div class="col-sm-6" style="width: 100%">
+                                    <div class="tabs-container">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#tab-31" aria-expanded="true"
+                                                                  th:text="'日志【'+${logs.size()}+'】'"></a>
+                                            </li>
+                                        </ul>
+
+
+                                        <div class="tab-content">
+
+                                            <!-- 用户信息 -->
+                                            <div id="tab-31" class="tab-pane active">
+                                                <div class="ibox-title">
+                                                    <h5>日志</h5>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                        <thead>
+                                                        <tr>
+                                                            <th style="text-align: center;"><input type="checkbox"
+                                                                                                   class="i-checks"
+                                                                                                   onclick="swapCheck()">
+                                                            </th>
+                                                            <th style="text-align: center;">序号</th>
+                                                            <th style="text-align: center;">操作名</th>
+                                                            <th style="text-align: center;">操作人</th>
+                                                            <th style="text-align: center;">被操作对象</th>
+                                                            <th style="text-align: center;">被操作对象类型</th>
+                                                            <th style="text-align: center;">操作时间</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr class="gradeX" th:each="log : ${logs}"
+                                                            th:attr="id=@{log.id}" id>
+                                                            <td style="text-align: center;"><input type="checkbox"
+                                                                                                   class="i-checks"
+                                                                                                   name="input[]"
+                                                                                                   value>
+                                                            </td>
+                                                            <td style="text-align: center;"
+                                                                th:text="${logStat.index+1 }"></td>
+
+                                                            <td style="text-align: center;" th:text="${log.method}"></td>
+                                                            <td style="text-align: center;" th:text="${log.getOperator().getUsername()}"></td>
+                                                            <td style="text-align: center;" th:text="${log.beOperator}"></td>
+                                                            <td style="text-align: center;" th:text="${log.logtype}"></td>
+                                                            <td style="text-align: center;" th:text="${log.logtime}"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page-Level Scripts -->
+        <script>
+            $(document).ready(function () {
+                $('.dataTables-example').dataTable();
+
+                /* Init DataTables */
+                var oTable = $('#editable').dataTable();
+
+                /* Apply the jEditable handlers to the table */
+                oTable.$('td').editable('../example_ajax.php', {
+                    "callback": function (sValue, y) {
+                        var aPos = oTable.fnGetPosition(this);
+                        oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+                    },
+                    "submitdata": function (value, settings) {
+                        return {
+                            "row_id": this.parentNode.getAttribute('id'),
+                            "column": oTable.fnGetPosition(this)[2]
+                        };
+                    },
+
+                    "width": "90%",
+                    "height": "100%"
+                });
+
+
+            });
+
+            function fnClickAddRow() {
+                $('#editable').dataTable().fnAddData([
+                    "Custom row",
+                    "New row",
+                    "New row",
+                    "New row",
+                    "New row"]);
+
+            }
+        </script>
+
+        <script>
+
+            /* 审核通过 */
+            function throughAudit(id) {
+
+                var materialID = document.getElementById(id).id;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/throughMaterialAudit",
+                    data: {
+                        "materialID": materialID
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        alert("审核通过");
+                        window.location.reload();
+                    }
+
+                })
+                return true;
+
+            }
+
+            /* 审核加入黑名单 */
+
+            function noAudit(id) {
+
+                var materialID = document.getElementById(id).id;
+                if (confirm("确认不通过审核？")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/unThroughMaterialAudit",
+                        data: {
+                            "materialID": materialID
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            alert("未通过");
+                            window.location.reload();
+                        }
+
+                    });
+                } else {
+                    return;
+                }
+                return true;
+
+            }
+
+
+            /* 查看用户详情 */
+            function userInfo(id) {
+                var userId = document.getElementById(id).parentElement.id;
+                alert(userId);
+
+                $.ajax({
+                    type: "POST",
+                    url: "showUserInfo",
+                    data: {
+                        "userId": userId
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        alert("查看用户信息");
+                        window.location.reload();
+                    }
+
+                })
+                return true;
+
+            }
+
+
+            //checkbox 全选/取消全选
+            var isCheckAll = false;
+
+            function swapCheck() {
+                if (isCheckAll) {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = false;
+                    });
+                    isCheckAll = false;
+                } else {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = true;
+                    });
+                    isCheckAll = true;
+                }
+            }
+
+            //批量审核通过
+            $("#b1").click(function () {
+                var checkedSubject = document.getElementsByName('input[]');//获取到复选框的名称
+                var checkedIds = "";
+
+                //因为获得的是数组，所以要循环 为每一个checked赋值
+                for (var i = 0; i < checkedSubject.length; i++) {
+                    if (checkedSubject[i].checked == true) {
+                        checkedIds += checkedSubject[i].value + ",";
+                    }
+                }
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "selectUserPass",
+                    data: {
+                        checkedIds: checkedIds
+                    },
+                    traditional: true,//这里设置为true
+                    success: function (data) {
+                        alert("审核成功");
+                        window.location.reload();
+                    }
+
+                })
+
+            });
+
+            //批量审核不通过
+            $("#b2").click(function () {
+                var checkedSubject = document.getElementsByName('input[]');//获取到复选框的名称
+                var checkedIds = "";
+
+                //因为获得的是数组，所以要循环 为每一个checked赋值
+                for (var i = 0; i < checkedSubject.length; i++) {
+                    if (checkedSubject[i].checked == true) {
+                        checkedIds += checkedSubject[i].value + ",";
+                    }
+                }
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "selectUserUnPass",
+                    data: {
+                        checkedIds: checkedIds
+                    },
+                    traditional: true,//这里设置为true
+                    success: function (data) {
+                        alert("审核未通过成功");
+                        window.location.reload();
+                    }
+
+                })
+
+            });
+
+            /* 将软件添加至标准库 */
+            function changeRole(id) {
+                //获取配置软件ID
+                var userId = document.getElementById(id).id;
+
+                $.ajax({
+                    type: "POST",
+                    url: "changeRole",
+                    data: {
+                        "userId": userId
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        var list = data.list; //获取后台json'
+                        $("#userId").val(data.userId);
+
+                        if (list.length == 0) {
+                            $("#tbody1").html("");
+                        } else {
+                            var permissionHtml = "";
+
+                            for (var i = 0; i < list.length; i++) {
+                                permissionHtml = permissionHtml
+
+                                    + '<tr class="gradeX" id=""><td style="text-align: center;width: 87%" >'
+                                    + '<input type="radio" name="browser" onclick="check(this.value)" id="' + list[i].roleId + '" value="' + list[i].roleName + '">' + list[i].roleName + '<br /> </td>  </tr> '
+
+                                $("#tbody1")[0].innerHTML = permissionHtml;
+                            }
+
+                            var permissionHtml2 = '您为该用户分配的角色是：<input type="text" id="answer" size="20">';
+                            $("#table")[2].innerHTML = permissionHtml2;
+                        }
+
+                    }
+
+                })
+            }
+
+            function check(browser) {
+                document.getElementById("answer").value = browser
+            }
+
+
+            /* 提交计算机更改  */
+            function updateUserRole() {
+                //获取模态框数据
+                var userId = $('#userId').val();
+                var roleId = $('input[name="browser"]:checked ').attr('id');
+
+                $.ajax({
+                    type: "POST",
+                    url: "updateUserRole",
+                    data: {
+                        "userId": userId,
+                        "roleId": roleId
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.value == 0) {
+                            alert("用户名或者角色为空");
+                            window.location.reload();
+                        } else {
+                            alert("角色替换成功");
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+
+            //操作成功
+            function codefans() {
+                var box = document.getElementById("success");
+                box.style.display = "none";
+            }
+
+
+        </script>
+    </div>
+</div>
+<div class="success" id="success"
+     style="z-index:1001;position:fixed;top:40%;left:45%;width:220px;background: #f3f3f3;text-align: center;border:1px solid black;border-radius:3px;display:none">
+    <div style="margin-top:30px; margin-bottom:30px;"><img src="images/true.png"
+                                                           style="width:20px;height:20px;margin-right:10px;">
+        <h2 style="font-size:16px;display:inline-block;line-height:22px;vertical-align:top">操作成功</h2></div>
+</div>
+</body>
+</html>

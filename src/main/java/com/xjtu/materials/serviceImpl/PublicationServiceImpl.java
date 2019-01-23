@@ -21,10 +21,10 @@ public class PublicationServiceImpl implements PublicationService {
     PublicationMapper publicationMapper;
 
     /**
-     * @Description
+     * @Description 按状态查询文献
      * @Auther Liang
      * @date 0:14 2019/1/23
-     * @param isAuthMaterial
+     * @param isAuthMaterial 表示要查询的文献的状态 1 待审核 2 通过审核 3 未通过审核
      * @return java.util.List<com.xjtu.materials.pojo.Publication>
      */
     @Override

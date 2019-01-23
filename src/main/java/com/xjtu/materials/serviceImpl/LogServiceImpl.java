@@ -1,22 +1,62 @@
 package com.xjtu.materials.serviceImpl;
 
+import com.xjtu.materials.mapper.LogMapper;
+import com.xjtu.materials.mapper.PublicationMapper;
+import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.mapper.UserMapper;
+import com.xjtu.materials.pojo.Log;
+import com.xjtu.materials.pojo.LogExample;
+import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.xjtu.materials.pojo.Log;
-
-import com.xjtu.materials.mapper.LogMapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class LogServiceImpl implements LogService {
     @Autowired
     LogMapper logMapper;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    PublicationMapper publicationMapper;
+    @Autowired
+    UpLoadMaterialMapper upLoadMaterialMapper;
+
+    /**
+     * @Description 获取所有日志
+     * @Auther Liang
+     * @date 14:18 2019/1/23
+     * @return java.util.List<com.xjtu.materials.pojo.Log>
+     */
+    public List<Log> getAllLog() throws NullPointerException {
+        LogExample example = new LogExample();
+        example.createCriteria().andLogidIsNotNull();
+        List<Log> logs = logMapper.selectByExample(example);
+        for (Log log : logs) {
+            // 封装操作用户
+            User user = userMapper.selectByPrimaryKey(log.getUserid());
+            // System.out.println(log.getUserid()+"--->"+user);
+            log.setOperator(user);
+            // 封装被操作对象名
+            log.setOperator(userMapper.selectByPrimaryKey(log.getUserid()));
+            String beOperator = "";
+            switch (log.getLogtype()) {
+                case "User": beOperator = userMapper.selectByPrimaryKey(log.getParamid()).getUsername(); break;
+                case "Publication": beOperator = publicationMapper.selectByPrimaryKey(log.getParamid()).getPublicationname(); break;
+                case "UpLoadMaterial": beOperator = upLoadMaterialMapper.selectByPrimaryKey(log.getParamid()).getMaterialname(); break;
+                default:break;
+            }
+
+            log.setBeOperator(beOperator);
+        }
+
+        return logs;
+    }
 
     /**
      * @Description 上传文件日志

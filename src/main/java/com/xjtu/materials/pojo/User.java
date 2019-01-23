@@ -90,4 +90,19 @@ public class User {
     public void setRegistranttime(String registranttime) {
         this.registranttime = registranttime == null ? null : registranttime.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid='" + userid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", job='" + job + '\'' +
+                ", organization='" + organization + '\'' +
+                ", role='" + role + '\'' +
+                ", isauthenticated='" + isauthenticated + '\'' +
+                ", registranttime='" + registranttime + '\'' +
+                '}';
+    }
 }

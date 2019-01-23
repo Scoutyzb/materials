@@ -2,15 +2,14 @@ package com.xjtu.materials.controller;
 
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.mapper.UserMapper;
+import com.xjtu.materials.pojo.Log;
 import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.FilePathService;
+import com.xjtu.materials.service.LogService;
 import com.xjtu.materials.service.PublicationService;
 import com.xjtu.materials.service.UserService;
-import com.xjtu.materials.service.LogService;
-import javafx.scene.paint.Material;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +37,6 @@ public class AdminController {
     UserMapper userMapper;
     @Autowired
     PublicationService publicationService;
-
     @Autowired
     LogService logService;
 
@@ -276,6 +274,24 @@ public class AdminController {
         mv.addObject("unAuthPublications", unAuthPublications);
 
         System.out.println(publications);
+        return mv;
+    }
+
+    /**
+     * @Description 后台日志展示页 logPage.html
+     * @Auther Liang
+     * @date 14:01 2019/1/23
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/logPage")
+    public ModelAndView logPage() {
+        ModelAndView mv = new ModelAndView("admin/logPage");
+
+        List<Log> logs = logService.getAllLog();
+
+        mv.addObject("logs", logs);
+
+        System.out.println(logs);
         return mv;
     }
 }
