@@ -58,15 +58,21 @@
     <!--</div>-->
     <div id="JmolModel" class="row">
     </div>
+    <input id="materialName" type="hidden" th:attr="value=${materialName}">
 </div>
-<script>
+<script type="text/javascript">
+
+
     $(document).ready(function(){
         Jmol.setDocument(0);
+        var address = $('#materialName').val();
+        address = "cif/" + address + ".cif";
+        
         var Info = {
             color: "#000000",
             height: 500,
             width: 500,
-            src: "json/AlHfNi.cif",
+            src: address,
             //script: "load $caffeine",
             use: "HTML5",
             j2sPath: "j2s",
