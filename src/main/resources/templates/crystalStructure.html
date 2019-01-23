@@ -10,6 +10,8 @@
 
     <!-- 引入JSmol -->
     <script type="text/javascript" src="JSmol.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 </head>
 
 <div th:replace="index::nav"></div>
@@ -89,4 +91,7 @@
 
 </script>
 </body>
+<script>
+    $.backstretch("/img/timg.jpg", {speed: 0});
+</script>
 </html>
