@@ -39,7 +39,7 @@
             <td th:text="${Material.materialname}"></td>
             <td th:text="${Material.type}"></td>
             <td th:text="${Material.time}"></td>
-            <td><button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button>
+            <td><a th:href="'/crystal?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">晶体结构</button></a>
                 <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">电子能带结构</button>
                 <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>
                 <button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>

@@ -1,23 +1,24 @@
 package com.xjtu.materials.controller;
 
+import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.pojo.Publication;
+import com.xjtu.materials.pojo.UpLoadMaterial;
+import com.xjtu.materials.pojo.User;
+import com.xjtu.materials.service.FilePathService;
+import com.xjtu.materials.service.LogService;
+import com.xjtu.materials.service.SearchService;
+import com.xjtu.materials.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.xjtu.materials.pojo.User;
-import com.xjtu.materials.pojo.UpLoadMaterial;
-import com.xjtu.materials.pojo.Publication;
-
-import com.xjtu.materials.service.UserService;
-import com.xjtu.materials.service.FilePathService;
-import com.xjtu.materials.service.SearchService;
-import com.xjtu.materials.service.LogService;
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,12 +30,7 @@ import java.util.List;
  */
 @Controller
 public class HelloController {
-    /**
-     * @Description 测试用
-     * @Auther Liang
-     * @date 15:42 2019/1/15
-     * @return java.lang.String
-     */
+
     @Autowired
     UserService userService;
     @Autowired
@@ -43,8 +39,15 @@ public class HelloController {
     SearchService searchService;
     @Autowired
     LogService logService;
+    @Autowired
+    UpLoadMaterialMapper upLoadMaterialMapper;
 
-
+    /**
+     * @Description 测试用
+     * @Auther Liang
+     * @date 15:42 2019/1/15
+     * @return java.lang.String
+     */
     @RequestMapping("/")
     public String hello() {
         return "index";
@@ -84,8 +87,13 @@ public class HelloController {
     }
 
     @RequestMapping("/crystal")
-    public String crystal() {
-        return "crystalStructure";
+    public ModelAndView crystal(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("crystalStructure");
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+
+        mv.addObject("materialName", materialName);
+
+        return mv;
     }
 
     @RequestMapping("/electron")
