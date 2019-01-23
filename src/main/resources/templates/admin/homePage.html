@@ -55,11 +55,11 @@
                 <div class="col-sm-12">
                     <div class="row row-sm text-center">
                         <div class="col-xs-10">
-                            <div class="panel padder-v item">
+                            <div class="panel padder-v item bg-info">
                                 <div class="font-thin h1">
                                     <a href="/cifPage" th:text="${materialsNum}"></a>
                                 </div>
-                                <span class="text-muted text-xs">待审核上传内容</span>
+                                <span class="text-muted text-xs">待审核上传文件</span>
                                 <div class="top text-right w-full">
                                     <i class="fa fa-caret-down text-warning m-r-sm"></i>
 
@@ -69,7 +69,24 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row row-sm text-center">
+                        <div class="col-xs-10">
+                            <div class="panel padder-v item bg-primary">
+                                <div class="font-thin h1">
+                                    <a href="/publicationPage" th:text="${publications.size()}"></a>
+                                </div>
+                                <span class="text-muted text-xs">待审核上传文献</span>
+                                <div class="top text-right w-full">
+                                    <i class="fa fa-caret-down text-warning m-r-sm"></i>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="col-sm-9">

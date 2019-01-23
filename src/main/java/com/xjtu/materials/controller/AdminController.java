@@ -81,11 +81,15 @@ public class AdminController {
 
         List<User> users = userService.getAllUser();
         List<UpLoadMaterial> materials = filePathService.getByIsAuthMaterial("1");
+        List<Publication> publications = publicationService.getPublicationsByIsAuth("1");
 
         mv.addObject("users", users);
         mv.addObject("usersNum", users.size());
         mv.addObject("materials", materials);
         mv.addObject("materialsNum", materials.size());
+        mv.addObject("publications", publications);
+
+
 
         return mv;
     }
