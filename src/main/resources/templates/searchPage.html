@@ -16,6 +16,8 @@
     <!-- 元素周期表样式 -->
     <link rel="stylesheet" type="text/css" href="/PTableStyle.css"/>
 
+    <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+
 </head>
 <body>
 <div th:replace="index::nav"></div>
@@ -95,4 +97,7 @@
     <!--}-->
 <!--</script>-->
 </body>
+<script>
+    $.backstretch("/img/timg.jpg", {speed: 0});
+</script>
 </html>
