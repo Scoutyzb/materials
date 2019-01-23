@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>cif文件管理</title>
+    <title>用户管理</title>
     <!--<link rel="shortcut icon" href="favicon.ico" />-->
     <link href="css/admin/bootstrap.min.css?v=3.3.6" rel="stylesheet"/>
     <link href="css/admin/font-awesome.css?v=4.4.0" rel="stylesheet"/>
@@ -42,12 +42,12 @@
                                     <div class="tabs-container">
                                         <ul class="nav nav-tabs">
                                             <li class="active"><a data-toggle="tab" href="#tab-31" aria-expanded="true"
-                                                                  th:text="'未审核cif文件【'+${materials.size()}+'】'"></a>
+                                                                  th:text="'未审核cif文件【'+${publications.size()}+'】'"></a>
                                             </li>
                                             <li class=""><a data-toggle="tab" href="#tab-32" aria-expanded="false"
-                                                            th:text="'通过审核cif文件【'+${authMaterials.size()}+'】'"></a></li>
+                                                            th:text="'通过审核cif文件【'+${authPublications.size()}+'】'"></a></li>
                                             <li class=""><a data-toggle="tab" href="#tab-33" aria-expanded="false"
-                                                            th:text="'未通过审核cif文件【'+${unAuthMaterials.size()}+'】'"></a>
+                                                            th:text="'未通过审核cif文件【'+${unAuthPublications.size()}+'】'"></a>
                                             </li>
                                         </ul>
 
@@ -84,31 +84,31 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr class="gradeX" th:each="material : ${materials}"
-                                                            th:attr="id=@{material.id}" id>
+                                                        <tr class="gradeX" th:each="publication : ${publications}"
+                                                            th:attr="id=@{publication.id}" id>
                                                             <td style="text-align: center;"><input type="checkbox"
                                                                                                    class="i-checks"
                                                                                                    name="input[]"
                                                                                                    value>
                                                             </td>
                                                             <td style="text-align: center;"
-                                                                th:text="${materialStat.index+1 }"></td>
+                                                                th:text="${publicationStat.index+1 }"></td>
 
-                                                            <td th:text="${material.materialname }"></td>
+                                                            <td th:text="${publication.publicationname }"></td>
                                                             <td class="center" style="text-align: center;"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${material.isauthenticated }"></td>
+                                                                th:text="${publication.isauthenticated }"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${material.time }"></td>
+                                                                th:text="${publication.uploadtime}"></td>
                                                             <td style="text-align: center;" id=>
                                                                 <button class="" type="button"
-                                                                        th:attr="id=${material.materialid}"
+                                                                        th:attr="id=${publication.publicationid}"
                                                                         onclick="throughAudit(this.id)"><i
                                                                         class="fa fa-check text-navy"></i></button>
                                                                 <button class="btn btn-white btn-sm"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="未通过审核"
-                                                                        th:attr="id=${material.materialid}"
+                                                                        th:attr="id=${publication.publicationid}"
                                                                         onclick="noAudit(this.id)"><i
                                                                         class="fa fa-trash-o"></i></button>
                                                             </td>
@@ -124,15 +124,15 @@
                                                 <div class="ibox-title">
                                                     <h5>通过审核cif文件信息</h5>
                                                     <!--<div class="ibox-tools">-->
-                                                        <!--<a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>-->
-                                                        <!--<a class="dropdown-toggle" data-toggle="dropdown"-->
-                                                           <!--href="table_data_tables.html#"> <i class="fa fa-wrench"></i>-->
-                                                        <!--</a>-->
-                                                        <!--<ul class="dropdown-menu dropdown-user">-->
-                                                            <!--<li><a href="table_data_tables.html#">选项1</a></li>-->
-                                                            <!--<li><a href="table_data_tables.html#">选项2</a></li>-->
-                                                        <!--</ul>-->
-                                                        <!--<a class="close-link"> <i class="fa fa-times"></i> </a>-->
+                                                    <!--<a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>-->
+                                                    <!--<a class="dropdown-toggle" data-toggle="dropdown"-->
+                                                    <!--href="table_data_tables.html#"> <i class="fa fa-wrench"></i>-->
+                                                    <!--</a>-->
+                                                    <!--<ul class="dropdown-menu dropdown-user">-->
+                                                    <!--<li><a href="table_data_tables.html#">选项1</a></li>-->
+                                                    <!--<li><a href="table_data_tables.html#">选项2</a></li>-->
+                                                    <!--</ul>-->
+                                                    <!--<a class="close-link"> <i class="fa fa-times"></i> </a>-->
                                                     <!--</div>-->
                                                 </div>
                                                 <div class="ibox-content">
@@ -152,7 +152,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr class="gradeX" th:each="authMaterial : ${authMaterials}"
+                                                        <tr class="gradeX" th:each="authPublication : ${authPublications}"
                                                             th:attr="id=@{authMaterial.id}" id>
                                                             <td style="text-align: center;"><input type="checkbox"
                                                                                                    class="i-checks"
@@ -160,19 +160,19 @@
                                                                                                    value>
                                                             </td>
                                                             <td style="text-align: center;"
-                                                                th:text="${authMaterialStat.index+1 }"></td>
+                                                                th:text="${authPublicationStat.index+1 }"></td>
 
-                                                            <td th:text="${authMaterial.materialname }"></td>
+                                                            <td th:text="${authPublication.publicationname }"></td>
                                                             <td class="center" style="text-align: center;"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${authMaterial.isauthenticated }"></td>
+                                                                th:text="${authPublication.isauthenticated }"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${authMaterial.time }"></td>
+                                                                th:text="${authPublication.uploadtime }"></td>
                                                             <td style="text-align: center;" id=>
                                                                 <button class="btn btn-white btn-sm"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="未通过审核"
-                                                                        th:attr="id=${authMaterial.materialid}"
+                                                                        th:attr="id=${authPublication.publicationid}"
                                                                         onclick="noAudit(this.id)"><i
                                                                         class="fa fa-trash-o"></i></button>
                                                             </td>
@@ -187,15 +187,15 @@
                                                 <div class="ibox-title">
                                                     <h5>未通过审核cif文件信息</h5>
                                                     <!--<div class="ibox-tools">-->
-                                                        <!--<a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>-->
-                                                        <!--<a class="dropdown-toggle" data-toggle="dropdown"-->
-                                                           <!--href="table_data_tables.html#"> <i class="fa fa-wrench"></i>-->
-                                                        <!--</a>-->
-                                                        <!--<ul class="dropdown-menu dropdown-user">-->
-                                                            <!--<li><a href="table_data_tables.html#">选项1</a></li>-->
-                                                            <!--<li><a href="table_data_tables.html#">选项2</a></li>-->
-                                                        <!--</ul>-->
-                                                        <!--<a class="close-link"> <i class="fa fa-times"></i> </a>-->
+                                                    <!--<a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>-->
+                                                    <!--<a class="dropdown-toggle" data-toggle="dropdown"-->
+                                                    <!--href="table_data_tables.html#"> <i class="fa fa-wrench"></i>-->
+                                                    <!--</a>-->
+                                                    <!--<ul class="dropdown-menu dropdown-user">-->
+                                                    <!--<li><a href="table_data_tables.html#">选项1</a></li>-->
+                                                    <!--<li><a href="table_data_tables.html#">选项2</a></li>-->
+                                                    <!--</ul>-->
+                                                    <!--<a class="close-link"> <i class="fa fa-times"></i> </a>-->
                                                     <!--</div>-->
                                                 </div>
                                                 <div class="ibox-content">
@@ -215,25 +215,25 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr class="gradeX" th:each="unAuthMaterial : ${unAuthMaterials}"
-                                                            th:attr="id=@{unAuthMaterials.id}" id>
+                                                        <tr class="gradeX" th:each="unAuthPublication : ${unAuthPublications}"
+                                                            th:attr="id=@{unAuthPublication.id}" id>
                                                             <td style="text-align: center;"><input type="checkbox"
                                                                                                    class="i-checks"
                                                                                                    name="input[]"
                                                                                                    value>
                                                             </td>
                                                             <td style="text-align: center;"
-                                                                th:text="${unAuthMaterialStat.index+1 }"></td>
+                                                                th:text="${unAuthPublicationStat.index+1 }"></td>
 
-                                                            <td th:text="${unAuthMaterial.materialname }"></td>
+                                                            <td th:text="${unAuthPublication.publicationname }"></td>
                                                             <td class="center" style="text-align: center;"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${unAuthMaterial.isauthenticated }"></td>
+                                                                th:text="${unAuthPublication.isauthenticated }"></td>
                                                             <td style="text-align: center;"
-                                                                th:text="${unAuthMaterial.time }"></td>
+                                                                th:text="${unAuthPublication.uploadtime }"></td>
                                                             <td style="text-align: center;" id=>
                                                                 <button type="button"
-                                                                        th:attr="id=${unAuthMaterial.materialid}"
+                                                                        th:attr="id=${unAuthPublication.publicationid}"
                                                                         onclick="throughAudit(this.id)"><i
                                                                         class="fa fa-check text-navy"></i></button>
                                                             </td>

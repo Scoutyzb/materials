@@ -100,4 +100,20 @@ public class Publication {
     public void setIsauthenticated(String isauthenticated) {
         this.isauthenticated = isauthenticated == null ? null : isauthenticated.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "publicationid='" + publicationid + '\'' +
+                ", publicationname='" + publicationname + '\'' +
+                ", publicationauthor='" + publicationauthor + '\'' +
+                ", publicationsummary='" + publicationsummary + '\'' +
+                ", publicationtype='" + publicationtype + '\'' +
+                ", publicationdoi='" + publicationdoi + '\'' +
+                ", publicationwebsite='" + publicationwebsite + '\'' +
+                ", username='" + username + '\'' +
+                ", uploadtime='" + uploadtime + '\'' +
+                ", isauthenticated='" + isauthenticated + '\'' +
+                '}';
+    }
 }
