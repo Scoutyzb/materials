@@ -9,7 +9,7 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- 引入JSmol -->
-    <script type="text/javascript" src="JSmol.min.js"></script>
+    <script type="text/javascript" src="JSmol.full.js"></script>
 
     <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 </head>
@@ -69,21 +69,27 @@
         address = "cif/" + address + ".cif";
 
         var Info = {
-            color: "#000000",
+            color: "#ffffff",
             height: 500,
             width: 500,
             src: address,
-            //script: "load $caffeine",
+            load: ' {1 1 1};set showUnitCell on',
+            // script: "load $" + address,
             use: "HTML5",
             j2sPath: "j2s",
             jarPath: "java",
             jarFile: "JmolAppletSigned0.jar",
             isSigned: true,
             serverURL: "php/jsmol.php",
-            disableInitialConsole: true
+            // addSelectionOptions: true,
+            menuFile: "jmol.mnu",
+            language: "zh-CN",
+            disableInitialConsole: true,
+            showUnitCell: true
         };
-        Jmol.getApplet("myJmol", Info);
+        var jmol = Jmol.getApplet("myJmol", Info);
 
+        // Jmol.loadFile(Jmol.getApplet(), address, 'load "" {1 1 1}');
         $("#JmolModel").html(Jmol.getAppletHtml("myJmol", Info));
     });
 
