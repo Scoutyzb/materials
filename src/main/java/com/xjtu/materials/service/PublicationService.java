@@ -12,4 +12,6 @@ import java.util.List;
 public interface PublicationService {
     // 按审核状态选取cif材料
     List<Publication> getPublicationsByIsAuth(String isAuthMaterial);
+    // 获取所有出版物
+    List<Publication> getAllPublications();
 }

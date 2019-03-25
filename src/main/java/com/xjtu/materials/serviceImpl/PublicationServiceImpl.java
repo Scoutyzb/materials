@@ -35,4 +35,17 @@ public class PublicationServiceImpl implements PublicationService {
         return publications;
     }
 
+    /**
+     * @Description 获取所有出版物
+     * @Auther Liang
+     * @date 22:11 2019/3/25
+     * @return java.util.List<com.xjtu.materials.pojo.Publication>
+     */
+    @Override
+    public List<Publication> getAllPublications() {
+        PublicationExample example = new PublicationExample();
+        example.createCriteria().andPublicationnameIsNotNull();
+        List<Publication> publications = publicationMapper.selectByExample(example);
+        return publications;
+    }
 }
