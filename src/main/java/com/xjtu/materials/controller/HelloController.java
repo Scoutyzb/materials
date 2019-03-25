@@ -64,6 +64,18 @@ public class HelloController {
         return "index";
     }
 
+
+    @RequestMapping("/fore")
+    public String fore() {
+        return "fore";
+    }
+
+    @RequestMapping("/searchPage1")
+    public String searchPage1() {
+        return "searchPage1";
+    }
+
+
     @RequestMapping("/paper")
     public String paper() {
         return "paper";

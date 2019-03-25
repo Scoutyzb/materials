@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Materials Project </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1118.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"488418a6fe","applicationID":"176556248","transactionName":"MlYDZxNRXUBVB0xRXQscJ0YPU0daWwoXTUYMXxIdAl9dXVEHTFdAX14FUU8MX1xXBVRLDEtEE1IRQFZX","queueTime":1,"applicationTime":885,"agent":""}</script>
+
+  <!--    <meta name="viewport" content="user-scalable = no">
+     -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="keywords" content="Materials Design, Materials Database, Materials Information, Materials Tools" />
+  <meta name="description" content="The Materials Project's mission is to accelerate the the discovery of new technological materials through advanced scientific computing and innovative design tools." />
+  <link rel="search"
+      type="application/opensearchdescription+xml"
+      title="Search Materials Project"
+      href='/static/opensearch.25669ffdaab0.xml'>
+  <link rel="shortcut icon" href='/static/images/favicon.00f51d402f3d.png' />
+  <link rel="stylesheet" href='/static/stylesheets/less/compiled/nucleus.5db1710fde48.css' charset="utf-8">
+  <link rel="stylesheet" href='/static/stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
+<script type="text/javascript">
+if (!window.console) window.console = {};
+if (!window.console.log) window.console.log = function () {};
+</script>
+
+
+
+  <script src="/static/components/requirejs/require.a0fb07562cea.js" data-main="/static/js/dist/config.fa1f1c266ba8.js"></script>
+  <script type="text/javascript">
+  window.onload = function () {
+    require(["base"], function () {
+          window.PATH = "/static/js/redesign/views/";
+          window.STATIC_URL = "/static/";
+          window.GROUPS = JSON.parse("[]");
+          window.SANDBOX = "core";
+          $("span.chemform").each(function () {
+            $(this).html(_.htmlFormula($(this).text()))
+          })
+        
+
+    });
+  };
+  </script>
+
+
+
+<script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-26097776-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+</script>
+
+</head>
+<body>
+  
+  <header>
+  
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="navbar-inner">  
+     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <div class="nav-collapse">
+      <a class="brand" href="/"><img src="/static/images/Logo/Mp-logo-v5.ad467cf84f15.png"></a>
+      <ul class="nav pull-right" role="navigation"> 
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li class=dropdown>
+          <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">About <b class="caret"></b></a>  
+          <ul class="dropdown-menu">
+            <li role="presentation">
+              <a href="/about">About</a>
+            </li>
+            <li role="presentation">
+              <a class="" href="https://discuss.materialsproject.org" target="_blank">
+  Forum
+</a>
+
+           </li>
+            <li role="presentation">
+              <a href="/press">Press</a>
+            </li>
+            <li role="presentation">
+              <a href="/references">Publications</a>
+            </li>
+            <li role="presentation">
+              <a href="/citing">Citing</a>
+            </li>
+            <li role="presentation">
+              <a href="/infrastructure">Infrastructure</a>
+            </li>
+          </ul>
+        </li>
+
+      
+        
+          
+<li class="dropdown">
+  <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">Apps <b class="caret"></b></a>
+
+  <ul class="dropdown-menu">
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#search/materials/">Materials Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#search/batteries/">Battery Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/xtaltoolkit">Crystal Toolkit</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/structurepredictor">Structure Predictor</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/phasediagram/">Phase Diagram</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/pourbaixdiagram">Pourbaix Diagram</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/reactioncalculator">Reaction Calculator</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#search/thermo">Thermodynamical Data</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#compare">Compare Elements</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#search/porous/">Nanoporous Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#search/molecules/">Molecules Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/rfbdashboard/">RFB Dashboard</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/#apps/xas/">XAS Matcher</a>
+    </li>
+    <li role="presentation">
+      <a href="/janrain/loginpage/?next=/apps/synthesis/">Synthesis Descriptions</a>
+    </li>
+  </ul>
+</li>
+
+        
+      
+
+        
+<li class="dropdown">
+  <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">Documentation <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li role="presentation">
+      <a href="/docs/api">API</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/calculations">Calculations Guide</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/phasediagram">Phase Diagram</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/pourbaixdiagram">Pourbaix Diagram</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/battery">Battery Search</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/rxncalculator">Reaction Calculator</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/xtaltoolkit">Crystal Toolkit</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/structurepredictor">Structure Predictor</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/nanoporous">Nanoporous Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/molecules">Molecules Explorer</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/rfbdashboard">RFB Dashboard</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/xas">XAS Matcher</a>
+    </li>
+    <li role="presentation">
+      <a href="/docs/error_checking">Error Checking</a>
+    </li>
+    <li role="separator" class="divider"
+        style="border-bottom: 1px solid #6F6F6F;"></li>
+    <li role="presentation">
+      <a href="//wiki.materialsproject.org">Wiki</a>
+    </li>
+  </ul>
+</li>
+
+        <li>
+        <li>
+          <a href="/open">API</a>
+        </li>
+        
+        <li>
+          <a href="/janrain/loginpage?next=/"> Login</a>
+        </li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  </header>
+  
+  
+
+<div class="hero-unit darkTheme" id="intro">
+  <div class="container">
+    <div class="row" >
+      <h1 class="span4">
+        <img class="lattices-graphic" src="/static/images/gfx/Lattices-color.7a4eaab1a5ab.png">
+        <div>The</div>
+        <div>Materials</div>
+        <div>Project</div>
+      </h1>
+      <div class="span8">
+        <p class="lead">Harnessing the power of supercomputing and state of the art electronic structure methods, the Materials Project provides open web-based access to computed information on known and predicted materials as well as powerful analysis tools to inspire and design novel materials.
+        </p>
+        <p class="pull-down">
+          <a href="/about" class="btn btn-inverse btn-large">Learn more</a>
+          <a href="https://www.youtube.com/playlist?list=PLTjFYVNE7LTjHJwV994iQHS-bIkh3UXKJ"
+             class="tout-tutorials btn btn-danger">
+            <i class="yt-icon-youtube"></i>
+            Tutorials
+          </a>
+          <span class="register-block">
+            <a href="/janrain/loginpage/?next=/" class="btn btn-link btn-large">Sign In or Register</a> <small>to start using</small>
+          </span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <div class="container">
+    <div class="row pull-up">
+      <div class="span10 offset1 newsfeed">
+        <h4>News</h4><hr>
+        
+          March 11, 2019:
+          <strong>New App to Predict Interface Reactions Between Solids</strong> <br>
+          <p>We are proud to officially launch an application that calculates possible interface reactions between solids using
+thermodynamic driving forces. <a href="https://materialsproject.org/static/newsletter/announce-interfacerxns.html" target="_blank">More
+info</a>.</p>
+        
+          Feb. 13, 2019:
+          <strong>Database V2019.02 Released</strong> <br>
+          <p>We have added over 47,000 new compounds! We also improved feedback on structure submission via the Crystal Toolkit. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
+info</a> coming soon.</p>
+        
+          Nov. 1, 2018:
+          <strong>Database V2018.11 Released</strong> <br>
+          <p>In this major release, we have changed the grouping of magnetic materials and
+fixed many display/labeling issues. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
+info</a>.</p>
+        
+          Aug. 23, 2018:
+          <strong>MP book chapter released</strong> <br>
+          <p>Our contributed chapter to Springer's <a href="https://doi.org/10.1007/978-3-319-42913-7" target="_blank">Handbook of Materials
+Modeling</a> has been <a href="https://doi.org/10.1007/978-3-319-42913-7_60-1" target="_blank">released
+online</a>.</p>
+        
+          Aug. 3, 2018:
+          <strong>X-Ray Absorption Spectra: Browse, Compare, and Automatically Match</strong> <br>
+          <p>We now have more than 500,000 K-edge X-ray absorption near edge (XANES) spectra
+for more than 50,000 unique materials. <a href="https://materialsproject.org/static/newsletter/announce-xas.html" target="_blank">More
+info</a>.</p>
+        
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+  <div id="home-carousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item">
+        <img src="/static/images/screenshots/detailpage02.0b6e5fd7ee44.png">
+      </div>
+      <div class="item">
+        <img src="/static/images/screenshots/batt_01.992e4f75b939.png">
+      </div>
+      <div class="item">
+        <img src="/static/images/screenshots/stability.b87bcea3e9e2.png">
+      </div>
+      <div class="item">
+        <img src="/static/images/screenshots/xtaltoolkit02.0ce0fd68ed31.png">
+      </div>
+      <div class="item">
+        <img src="/static/images/screenshots/reactioncalc.cfd8b7cb4b97.png">
+      </div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control hidden-phone left" href="#home-carousel" data-slide="prev">
+      <i class="icon icon-left-open-big"></i>
+    </a>
+    <a class="carousel-control hidden-phone right" href="#home-carousel" data-slide="next">
+      <i class="icon icon-right-open-big"></i>
+    </a>
+    <ol class="showcase carousel-indicators">
+      <li class="span2 active" data-target="#home-carousel" data-slide-to="0">
+        <h6 class="caps">Explore Materials</h6>
+        <p class="description">Search for materials information by chemistry, composition, or property</p>
+      </li>
+      <li class="span2" data-target="#home-carousel" data-slide-to="1">
+        <h6 class="caps">Explore Batteries</h6>
+        <p class="description">
+          Find candidate materials for lithium batteries. Get voltage profiles and oxygen evolution data.
+        </p>
+      </li>
+      <li class="span2" data-target="#home-carousel" data-slide-to="2">
+        <h6 class="caps">Visualize Stability</h6>
+        <p class="description">Generate phase and pourbaix diagrams to find stable phases and study reaction pathways</p>
+      </li>
+      <li class="span2" data-target="#home-carousel" data-slide-to="3">
+        <h6 class="caps">Invent Structures</h6>
+        <p class="description">Design new compounds with our structure editor and substitution algorithms</p>
+      </li>
+      <li class="span2" data-target="#home-carousel" data-slide-to="4">
+        <h6 class="caps">Calculate</h6>
+        <p class="description">Calculate the enthalpy of 10,000+ reactions and compare with experimental values</p>
+      </li>
+    </ol>
+  </div>
+
+  
+<div class="hero-unit stats">
+  <div id="db-stats">
+    <h4> Database Statistics</h4>
+    <ul class="row inline">
+      <li>
+	<h2 class="well">133,691</h2>
+	<small class="caps">inorganic compounds</small>
+      </li>
+      <li>
+	<h2 class="well">58,329</h2>
+	<small class="caps">bandstructures</small>
+      </li>
+      <li>
+	<h2 class="well">21,954</h2>
+	<small class="caps">molecules</small>
+      </li>
+      <li>
+	<h2 class="well">530,243</h2>
+	<small class="caps">nanoporous materials</small>
+      </li>
+    </ul>
+    <ul class="row inline">
+      <li>
+	<h2 class="well">13,942</h2>
+	<small class="caps">elastic tensors</small>
+      </li>
+      <li>
+	<h2 class="well">3,028</h2>
+	<small class="caps">piezoelectric tensors</small>
+      </li>
+      <li>
+	<h2 class="well">3,628</h2>
+	<small class="caps">intercalation electrodes</small>
+      </li>
+      <li>
+	<h2 class="well">16,128</h2>
+	<small class="caps">conversion electrodes</small>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+  <footer>
+  
+  
+  <hr>
+<ul class="text-center inline">
+	<li>
+  	<a href="/about">About</a>
+	</li>
+	<li>
+	  <a class="" href="https://discuss.materialsproject.org" target="_blank">
+  Forum
+</a>
+
+	</li>
+	<li>
+	  <a href="/citing">Citing</a>
+	</li>
+	<li>
+  	  <a href="/terms">Terms of Use</a>
+	</li>
+	<li>
+  	<a href="/open">API</a>
+	</li>
+</ul>
+<div class="pad-top row text-center">
+	  <small>
+		    Powered by <a href="http://pymatgen.org">pymatgen</a>,
+      <a href="https://materialsproject.github.io/custodian">custodian</a>,
+      <a href="https://materialsproject.github.io/fireworks">fireworks</a>,
+      and <a href="https://hackingmaterials.github.io/atomate">atomate</a>.
+	</small>
+</div>
+
+  </footer>
+  <!-- Manged at https://cdn.fontawesome.com by dwinston-->
+  <script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
+</body>
+</html>
