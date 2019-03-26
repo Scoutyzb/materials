@@ -28,12 +28,12 @@ public class ForeController {
      */
     @RequestMapping("/fore")
     public String fore() {
-        return "fore";
+        return "foreWeb/fore";
     }
 
     @RequestMapping("/searchPage1")
     public String searchPage1() {
-        return "searchPage1";
+        return "foreWeb/searchPage1";
     }
 
     /**
@@ -49,5 +49,16 @@ public class ForeController {
 
         mv.addObject("Publications", publications);
         return mv;
+    }
+
+    /**
+     * @Description 晶体结构
+     * @Auther HL
+     * @date 1:20 2019/3/26
+     * @return java.lang.String
+     */
+    @RequestMapping("/crystalStructure1")
+    public String crystalStructure1() {
+        return "foreWeb/crystalStructure1";
     }
 }
