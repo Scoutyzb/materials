@@ -1,7 +1,6 @@
 package com.xjtu.materials.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,11 +18,11 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/cif/**").addResourceLocations("file:D:\\cif\\");
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("*")
-                .allowedOrigins("*")
-                .allowedHeaders("*");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedMethods("*")
+//                .allowedOrigins("*")
+//                .allowedHeaders("*");
+//    }
 }

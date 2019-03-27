@@ -1,0 +1,2949 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Materials Project </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1118.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"488418a6fe","applicationID":"176556248","transactionName":"MlYDZxNRXUBVB0xRXQscJ0YPU0daWwoXTUYMXxIdAl9dXVEHTFdAX14FUU8MX1xXBVRLDEtEE1IRQFZX","queueTime":1,"applicationTime":267,"agent":""}</script>
+
+    <!--    <meta name="viewport" content="user-scalable = no">
+       -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="keywords" content="Materials Design, Materials Database, Materials Information, Materials Tools" />
+    <meta name="description" content="The Materials Project's mission is to accelerate the the discovery of new technological materials through advanced scientific computing and innovative design tools." />
+    <link rel="search"
+          type="application/opensearchdescription+xml"
+          title="Search Materials Project"
+          href='/static/opensearch.25669ffdaab0.xml'>
+    <link rel="shortcut icon" href='/images/favicon.00f51d402f3d.png' />
+    <link rel="stylesheet" href='stylesheets/less/compiled/nucleus.5db1710fde48.css' charset="utf-8">
+    <link rel="stylesheet" href='stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
+    <script type="text/javascript">
+        if (!window.console) window.console = {};
+        if (!window.console.log) window.console.log = function () {};
+    </script>
+
+
+
+    <script src="components/requirejs/require.a0fb07562cea.js" data-main="js/dist/config.fa1f1c266ba8.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            require(["base"], function () {
+                window.PATH = "/static/js/";
+                window.STATIC_URL = "/static/";
+                window.GROUPS = JSON.parse("[]");
+                window.SANDBOX = "core";
+                $("span.chemform").each(function () {
+                    $(this).html(_.htmlFormula($(this).text()))
+                })
+
+                require(["SearchRouter", "backbone"], function(SearchRouter){
+                    window.Router = new SearchRouter();
+                    window.newsfeed_items = ''
+                });
+
+            });
+        };
+    </script>
+
+
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26097776-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+</head>
+<body>
+
+<header>
+
+
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <a class="brand" href="/"><img src="/images/Logo/Mp-logo-v5.ad467cf84f15.png"></a>
+                <ul class="nav pull-right" role="navigation">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class=dropdown>
+                        <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation">
+                                <a href="/about">About</a>
+                            </li>
+                            <li role="presentation">
+                                <a class="" href="https://discuss.materialsproject.org" target="_blank">
+                                    Forum
+                                </a>
+
+                            </li>
+                            <li role="presentation">
+                                <a href="/press">Press</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/references">Publications</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/citing">Citing</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/infrastructure">Infrastructure</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="dropdown">
+                        <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">Apps <b class="caret"></b></a>
+
+                        <ul class="dropdown-menu">
+                            <li role="presentation">
+                                <a href="/#search/materials/">Materials Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#search/batteries/">Battery Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/xtaltoolkit">Crystal Toolkit</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/structurepredictor">Structure Predictor</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/phasediagram/">Phase Diagram</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/pourbaixdiagram">Pourbaix Diagram</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/reactioncalculator">Reaction Calculator</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#search/thermo">Thermodynamical Data</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#compare">Compare Elements</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#search/porous/">Nanoporous Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#search/molecules/">Molecules Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/rfbdashboard/">RFB Dashboard</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/#apps/xas/">XAS Matcher</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/apps/synthesis/">Synthesis Descriptions</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <li class="dropdown">
+                        <a data-toggle=dropdown role="button" class="dropdown-toggle" href="#">Documentation <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation">
+                                <a href="/docs/api">API</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/calculations">Calculations Guide</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/phasediagram">Phase Diagram</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/pourbaixdiagram">Pourbaix Diagram</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/battery">Battery Search</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/rxncalculator">Reaction Calculator</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/xtaltoolkit">Crystal Toolkit</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/structurepredictor">Structure Predictor</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/nanoporous">Nanoporous Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/molecules">Molecules Explorer</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/rfbdashboard">RFB Dashboard</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/xas">XAS Matcher</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/docs/error_checking">Error Checking</a>
+                            </li>
+                            <li role="separator" class="divider"
+                                style="border-bottom: 1px solid #6F6F6F;"></li>
+                            <li role="presentation">
+                                <a href="//wiki.materialsproject.org">Wiki</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                    <li>
+                        <a href="/open">API</a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.youtube.com/playlist?list=PLTjFYVNE7LTjHJwV994iQHS-bIkh3UXKJ"
+                           class="nav-tutorials-link yt-icon-youtube-play">
+                            Tutorials
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard" data-icon="&gt;" class="icon"> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/janrain/logout" ><i title="logout" class="icon-logout"></i></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+<nav class="navbar apps-nav navbar-inverse navbar-static-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav inline" role="navigation"></ul>
+            <div class="pad-top">
+                <span class="app-desc"></span>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <!--<div id='init-loading' class="modal-backdrop">-->
+        <!--<div class='rotating fontastic-molecule'></div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="span10" id="main-content">
+            <div id="searchfield">
+                <strong class='offset1'id='search-label'></strong>
+
+
+
+                <form class="searchbox">
+                    <div id="note" class="note"></div>
+                    <img class="pt-icon" src="/images/new/periodictable.cf315c4e4483.png">
+                    <div class="input-prepend"></div>
+                </form>
+
+
+
+                <section id="pt-section">
+                    <div class='pt-wrapper' id="elements">
+                        <div class="periodic-row"><!-- Row One -->
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class="face front">
+                                        <i class="hidden-phone">1</i>
+                                        <strong class="symbol">H</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">2</i>
+                                        <strong class="symbol">He</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- //Row One -->
+
+                        <div class="periodic-row"><!-- Row Two -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">3</i>
+                                        <strong class="symbol">Li</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">4</i>
+                                        <strong class="symbol">Be</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">5</i>
+                                        <strong class="symbol">B</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">6</i>
+                                        <strong class="symbol">C</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">7</i>
+                                        <strong class="symbol">N</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">8</i>
+                                        <strong class="symbol">O</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">9</i>
+                                        <strong class="symbol">F</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">10</i>
+                                        <strong class="symbol">Ne</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Two -->
+
+                        <div class="periodic-row"><!-- Row Three -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">11</i>
+                                        <strong class="symbol">Na</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">12</i>
+                                        <strong class="symbol">Mg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">13</i>
+                                        <strong class="symbol">Al</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">14</i>
+                                        <strong class="symbol">Si</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">15</i>
+                                        <strong class="symbol">P</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">16</i>
+                                        <strong class="symbol">S</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">17</i>
+                                        <strong class="symbol">Cl</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">18</i>
+                                        <strong class="symbol">Ar</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Three -->
+
+                        <div class="periodic-row"><!-- Row Four -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">19</i>
+                                        <strong class="symbol">K</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">20</i>
+                                        <strong class="symbol">Ca</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">21</i>
+                                        <strong class="symbol">Sc</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">22</i>
+                                        <strong class="symbol">Ti</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">23</i>
+                                        <strong class="symbol">V</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">24</i>
+                                        <strong class="symbol">Cr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">25</i>
+                                        <strong class="symbol">Mn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">26</i>
+                                        <strong class="symbol">Fe</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">27</i>
+                                        <strong class="symbol">Co</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">28</i>
+                                        <strong class="symbol">Ni</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">29</i>
+                                        <strong class="symbol">Cu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">30</i>
+                                        <strong class="symbol">Zn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">31</i>
+                                        <strong class="symbol">Ga</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">32</i>
+                                        <strong class="symbol">Ge</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">33</i>
+                                        <strong class="symbol">As</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">34</i>
+                                        <strong class="symbol">Se</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">35</i>
+                                        <strong class="symbol">Br</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">36</i>
+                                        <strong class="symbol">Kr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Four -->
+
+                        <div class="periodic-row"><!-- Row Five -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">37</i>
+                                        <strong class="symbol">Rb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">38</i>
+                                        <strong class="symbol">Sr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">39</i>
+                                        <strong class="symbol">Y</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">40</i>
+                                        <strong class="symbol">Zr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">41</i>
+                                        <strong class="symbol">Nb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">42</i>
+                                        <strong class="symbol">Mo</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">43</i>
+                                        <strong class="symbol">Tc</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">44</i>
+                                        <strong class="symbol">Ru</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">45</i>
+                                        <strong class="symbol">Rh</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">46</i>
+                                        <strong class="symbol">Pd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">47</i>
+                                        <strong class="symbol">Ag</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">48</i>
+                                        <strong class="symbol">Cd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">49</i>
+                                        <strong class="symbol">In</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">50</i>
+                                        <strong class="symbol">Sn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">51</i>
+                                        <strong class="symbol">Sb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">52</i>
+                                        <strong class="symbol">Te</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">53</i>
+                                        <strong class="symbol">I</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">54</i>
+                                        <strong class="symbol">Xe</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Five -->
+
+                        <div class="periodic-row"><!-- Row Six -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">55</i>
+                                        <strong class="symbol">Cs</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">56</i>
+                                        <strong class="symbol">Ba</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthanoid-transitional-metal'>
+                                <div class='chip long'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">57-71</i>
+                                        <strong class="symbol">La-Lu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">72</i>
+                                        <strong class="symbol">Hf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">73</i>
+                                        <strong class="symbol">Ta</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">74</i>
+                                        <strong class="symbol">W</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">75</i>
+                                        <strong class="symbol">Re</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">76</i>
+                                        <strong class="symbol">Os</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">77</i>
+                                        <strong class="symbol">Ir</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">78</i>
+                                        <strong class="symbol">Pt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">79</i>
+                                        <strong class="symbol">Au</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">80</i>
+                                        <strong class="symbol">Hg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">81</i>
+                                        <strong class="symbol">Tl</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">82</i>
+                                        <strong class="symbol">Pb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">83</i>
+                                        <strong class="symbol">Bi</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">84</i>
+                                        <strong class="symbol">Po</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">85</i>
+                                        <strong class="symbol">At</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">86</i>
+                                        <strong class="symbol">Rn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Six -->
+
+                        <div class="periodic-row"><!-- Row Seven -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">87</i>
+                                        <strong class="symbol">Fr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">88</i>
+                                        <strong class="symbol">Ra</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid-transitional-metal'>
+                                <div class='chip long'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">89-103</i>
+                                        <strong class="symbol">Ac-Lr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">104</i>
+                                        <strong class="symbol">Rf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">105</i>
+                                        <strong class="symbol">Db</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">106</i>
+                                        <strong class="symbol">Sg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">107</i>
+                                        <strong class="symbol">Bh</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">108</i>
+                                        <strong class="symbol">Hs</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">109</i>
+                                        <strong class="symbol">Mt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">110</i>
+                                        <strong class="symbol">Ds</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">111</i>
+                                        <strong class="symbol">Rg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">112</i>
+                                        <strong class="symbol">Cn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Seven -->
+
+                        <div class='element-blank full'></div>
+
+                        <div class="periodic-row"><!-- Row Eight -->
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">57</i>
+                                        <strong class="symbol">La</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">58</i>
+                                        <strong class="symbol">Ce</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">59</i>
+                                        <strong class="symbol">Pr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">60</i>
+                                        <strong class="symbol">Nd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">61</i>
+                                        <strong class="symbol">Pm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">62</i>
+                                        <strong class="symbol">Sm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">63</i>
+                                        <strong class="symbol">Eu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">64</i>
+                                        <strong class="symbol">Gd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">65</i>
+                                        <strong class="symbol">Tb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">66</i>
+                                        <strong class="symbol">Dy</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">67</i>
+                                        <strong class="symbol">Ho</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">68</i>
+                                        <strong class="symbol">Er</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">69</i>
+                                        <strong class="symbol">Tm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">70</i>
+                                        <strong class="symbol">Yb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">71</i>
+                                        <strong class="symbol">Lu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+
+                        </div><!-- //Row Eight -->
+
+                        <div class="periodic-row"><!-- Row Nine -->
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">89</i>
+                                        <strong class="symbol">Ac</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">90</i>
+                                        <strong class="symbol">Th</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">91</i>
+                                        <strong class="symbol">Pa</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">92</i>
+                                        <strong class="symbol">U</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">93</i>
+                                        <strong class="symbol">Np</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">94</i>
+                                        <strong class="symbol">Pu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">95</i>
+                                        <strong class="symbol">Am</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">96</i>
+                                        <strong class="symbol">Cm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">97</i>
+                                        <strong class="symbol">Bk</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">98</i>
+                                        <strong class="symbol">Cf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">99</i>
+                                        <strong class="symbol">Es</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">100</i>
+                                        <strong class="symbol">Fm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">101</i>
+                                        <strong class="symbol">Md</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">102</i>
+                                        <strong class="symbol">No</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">103</i>
+                                        <strong class="symbol">Lr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Nine -->
+                    </div><!-- //pt-wrapper -->
+
+                </section>
+
+            </div>
+            <div id="results">
+
+                <script type="text/template" id="results-template">
+                    <% if (loading){ %>
+                    <center><%= loadingIcon %></center>
+
+                    <%  }  else {
+                    if (!_.isEmpty(query)){ %>
+                    <ul class='filters'>
+                        <% _.forEach(query,  function(text){ %>
+                        <li class="label-bg" data-attribute="<%- text %>">
+                            <i class="icon" data-icon="V"></i> <%- _.prettyName(text) %>
+                        </li>
+                        <%  }); %>
+                    </ul>
+                    <% }
+                    if (dataExists) { %>
+                    <div class="table-responsive">
+                        <table class='table table-bordered table-striped table-hover fixed'>
+                            <thead> </thead><tbody></tbody>
+                        </table>
+                    </div>
+                    <% }else{ %>
+                    <center class="sans-data">
+                        <div class="icon" data-icon="#"></div>
+                        <div> No data available </div>
+                    </center>
+                    <!--<% }-->
+
+                    <!--} %>-->
+                </script>
+
+
+            </div>
+        </div>
+        <div id="sidebar" class="span2 sidebar hidden">
+
+
+            <div class="sb-content" data-route="search/molecules">
+                <div class="padded">
+
+                    <span class="label">EA </span>
+                    <span> (eV)</span>
+                    <div data-key="EA" data-max="10" data-min="-10" data-step=0.1 class="slider range"></div>
+
+                    <span class="label">IE </span>
+                    <span> (eV)</span>
+                    <div data-key="IE" data-max="10" data-min="-10" data-step=0.1 class="slider range"></div>
+
+                    <section class="padded">
+                        <div class="label">Charge</div>
+                        <select class="multiselect" data-key="charge" multiple>
+                            <option>1</option>
+                            <option>0</option>
+                            <option>-1</option>
+                        </select>
+                    </section>
+
+                    <section class="padded">
+                        <div class="label select">Point Group</div>
+                        <select class="selectpicker" data-key="pointgroup" data-width="70px">
+                            <option>Any</option>
+                            <option>C*v</option>
+                            <option>C1</option>
+                            <option>C1h</option>
+                            <option>C1v</option>
+                            <option>C2</option>
+                            <option>C2h</option>
+                            <option>C2v</option>
+                            <option>C3</option>
+                            <option>C3h</option>
+                            <option>C3v</option>
+                            <option>C5</option>
+                            <option>C5v</option>
+                            <option>Ci</option>
+                            <option>Cs</option>
+                            <option>D*h</option>
+                            <option>D2</option>
+                            <option>D2d</option>
+                            <option>D2h</option>
+                            <option>D3</option>
+                            <option>D3d</option>
+                            <option>D3h</option>
+                            <option>D6h</option>
+                            <option>Kh</option>
+                            <option>Oh</option>
+                            <option>S2</option>
+                            <option>S4</option>
+                            <option>Td</option>
+                        </select>
+                    </section>
+
+                    <section class="padded">
+                        <div class="label">Functional Groups</div>
+                        <select class="multiselect" multiple data-key="functional_groups">
+                            <option>-C(O)CH3</option>
+                            <option>-C4H9</option>
+                            <option>-C5H6</option>
+                            <option>-C=CH2</option>
+                            <option>-CBr3</option>
+                            <option>-CCH</option>
+                            <option>-CCl3</option>
+                            <option>-CF3</option>
+                            <option>-CH2CH3</option>
+                            <option>-CH3</option>
+                            <option>-CN</option>
+                            <option>-COOH</option>
+                            <option>-Cl</option>
+                            <option>-F</option>
+                            <option>-N(CH3)2</option>
+                            <option>-NH2</option>
+                            <option>-NHC(O)CH3</option>
+                            <option>-NHCH3</option>
+                            <option>-NO2</option>
+                            <option>-O(CH2CH2O)2CH3</option>
+                            <option>-O(CH2CH2O)3CH3</option>
+                            <option>-O(CH2O)2CH3</option>
+                            <option>-OCH2CH2OCH3</option>
+                            <option>-OCH2OCH3</option>
+                            <option>-OCH3</option>
+                            <option>-OH</option>
+                        </select>
+                    </section>
+
+                    <section class="padded">
+                        <div class="label">Base Molecule</div>
+                        <select class="multiselect" data-key="base_molecule" multiple>
+                            <option>anthrachinon</option>
+                            <option>dbbb</option>
+                            <option>pyrazine</option>
+                            <option>quinoxaline</option>
+                            <option>s3</option>
+                            <option>s5</option>
+                            <option>s6</option>
+                            <option>tetrathiafulvulene</option>
+                            <option>thiane</option>
+                            <option>thiophene</option>
+                            <option>viologen</option>
+                        </select>
+                    </section>
+
+                    <div class="pull-down">
+                        <a class="btn btn-small" href="/molecules/submission">Upload Structure</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sb-content" data-route="apps/rfbdashboard">
+
+                <form>
+                    <div class="label">Type of Redox Flow Battery</div>
+                    <select class="battery" name="battery">
+                        <option name="aqueous" value="aqueous">Aqueous Redox Flow</option>
+                        <option selected="selected" name="nonaqeuous" value="nonaqueous">Non-Aqueous Redox Flow</option>
+                    </select>
+                </form>
+
+
+                <div class="padded">
+                    <div class="label">Battery Price Target ($/kWh)</div>
+                    <div data-units="$/kWh" data-key="targetCost" data-from="100"
+                         data-max="500" data-min="0" data-step=5 class="slider"></div>
+
+                    <div class="label">Actives Molality Target (mol/kg)</div>
+                    <div data-units="mol/kg" data-key="targetMolality" data-from="9.6"
+                         data-max="40.0" data-min="0.1" data-step=0.02 class="slider"></div>
+
+                </div>
+
+
+                <div class="advanced" name="echemtitle"><a>Electrochemical Parameters (V vs Li<sup>+</sup>/Li<sup>0</sup>) &rarr;</a></div>
+                <section class="hidden">
+                    <form class="aqueous-mode">
+                        <div class="label">pH Value</div>
+                        <input value="6" step="0.1" name="pH" type="number" class="text-field"/>
+                    </form>
+                    <form class="nonaqueous-mode">
+                        <div class="label">High Potential Stability Limit</div>
+                        <input value="4.5" step="0.1" name="upper" type="number" class="text-field"/>
+                        <div class="label">Low Potential Stability Limit</div>
+                        <input value="0.5" step="0.1" name="lower" type="number" class="text-field"/>
+                        <div class="label">Low Potential Counter Electrode</div>
+                        <input value="1" step="0.1" name="lowPotCounterElectrode" type="number" class="text-field"/>
+                        <div class="label">High Potential Counter Electrode</div>
+                        <input value="4" step="0.1" name="highPotCounterElectrode" type="number" class="text-field"/>
+                    </form>
+                    <form>
+                        <div class="label">Area-Specific Resistance (&Omega;-cm<sup>2</sup>)</div>
+                        <input value=5 step="0.1" name="rasr" type="number" class="text-field"/>
+                    </form>
+
+                    <form class="aqueous-mode">
+                        <div class="label">Voltage Offset for Low/High Potential Counter Electrodes (V)</div>
+                        <input value=0.0 step="0.1" name="voffset" type="number" class="text-field"/>
+                    </form>
+
+
+                </section>
+
+                <!--  <div class="advanced"><a>Advanced &rarr;</a></div>
+                <section class="hidden">-->
+                <div class="advanced"><a>Cost Parameters &rarr;</a></div>
+                <section class="hidden">
+                    <form>
+                        <div class="label">Reactor Cost Per Unit Area ($/m<sup>2</sup>)</div>
+                        <input value=107.5 step="0.1" name="ca" type="number" class="text-field"/>
+                        <div class="label">Salt Cost Per Unit Mass ($/kg)</div>
+                        <input value=20 step="0.1" name="cmsalt" type="number" class="text-field"/>
+                        <div class="label">Solvent Cost Per Unit Mass ($/kg)</div>
+                        <input value=2 step="0.1" name="cmsolv" type="number" class="text-field"/>
+                        <div class="label">Actives Cost Per Unit Mass ($/kg)</div>
+                        <input value=5 step="0.1" name="cm" type="number" class="text-field"/>
+                        <div class="label">Addition To Price ($/kW)</div>
+                        <input value=112.5 step="0.1" name="cadd" type="number" class="text-field"/>
+                        <div class="label">Balance of plant ($/kW)</div>
+                        <input value=102.5 step="0.1" name="cbop" type="number" class="text-field"/>
+                        <!-- value above is 202.5 in target_solubility.py -->
+                    </form>
+                </section>
+
+                <div class="advanced"><a>Operating Conditions &rarr;</a></div>
+                <section class="hidden">
+                    <form>
+                        <div class="label">System Discharge Time (hrs)</div>
+                        <input value=5 step="0.1" name="td" type="number" class="text-field"/>
+                        <div class="label">Allowable State-Of-Charge Range</div>
+                        <input value=0.8 step="0.1" name="chi" type="number" class="text-field"/>
+                        <div class="label">Discharge Voltage Efficiency (%)</div>
+                        <input value=91.6 step="0.1" name="epsilonvd" type="number" class="text-field"/>
+                        <div class="label">Round-trip Coulombic Efficiency (%)</div>
+                        <input value=97.0 step="0.1" name="epsilonqrt" type="number" class="text-field"/>
+                        <div class="label">Discharge System Efficiency (%)</div>
+                        <input value=94.0 step="0.1" name="epsilonsysd" type="number" class="text-field"/>
+                    </form>
+                </section>
+
+                <div class="advanced"><a>Salt Parameters &rarr;</a></div>
+                <section class="hidden">
+                    <form>
+                        <div class="label">Mean Molar Salt Ratio (mol/mol)</div>
+                        <input value=0.20 step="0.01" name="rsalt" type="number" class="text-field"/>
+                        <div class="label">Salt Molecular Weight (g/mol)</div>
+                        <input value=100 step="1" name="saltMolWt" type="number" class="text-field"/>
+                    </form>
+                </section>
+
+                <div class="advanced"><a>Plot Axis Limits &rarr;</a></div>
+                <section class="hidden">
+                    <form>
+                        <div class="label">Max Equilibrium Potential (V vs Li<sup>+</sup>/Li<sup>0</sup>)</div>
+                        <input value=5 step="0.1" name="maxEP" type="number" class="text-field"/>
+                        <div class="label">Max Equivalent Weight (g/mol e<sup>-</sup>)</div>
+                        <input value=400 step="0.1" name="maxEW" type="number" class="text-field"/>
+                    </form>
+                </section>
+
+                <!--  </section>-->
+            </div>
+
+
+
+            <div class="sb-content" data-route="search/materials">
+                <div class="padded">
+
+                    <div class="label">Material Tags</div>
+                    <form>
+                        <input id="material-tags" placeholder="e.g., Imgreite" name="tags" type="text" class="text-field"/>
+                    </form>
+
+                    <div class="label">Band Gap (eV)</div>
+                    <div data-key="band_gap" data-max="10" data-min="0" data-step='0.1' class="slider range"></div>
+
+                    <div class="label">Energy Above Hull</div>
+                    <div data-units="eV/atom" data-key="e_above_hull"
+                         data-max="6" data-min="0" data-step=.01 class="slider range"></div>
+
+                    <div class="label">Formation Energy</div>
+                    <div data-units="eV" data-key="formation_energy_per_atom"
+                         data-max="4" data-step='0.01' data-min="-4" class="slider range"></div>
+
+                    <div class="label"># unit cell sites</div>
+                    <div data-key="nsites" data-max="296" data-step='1' data-min="1" class="slider range"></div>
+
+                    <div class="label">Density</div>
+                    <div data-key="density" data-units="g/cm<sup>3</sup>" data-min="0.0" data-max="24.6" data-step=0.1 class="slider range"></div>
+
+                    <div class="label" >Volume</div>
+                    <div data-key="volume" data-units='Å<sup>3</sup>' data-max="7697.8" data-min="7.0" class="slider range"></div>
+
+                    <section>
+                        <div class="label">Crystal Systems</div>
+                        <select class="multiselect" multiple data-key="crystal_system">
+                            <option>hexagonal</option>
+                            <option>monoclinic</option>
+                            <option>orthorhombic</option>
+                            <option>cubic</option>
+                            <option>tetragonal</option>
+                            <option>trigonal</option>
+                            <option>triclinic</option>
+                        </select>
+                    </section>
+
+                    <section>
+                        <div class="label">Spacegroup Number</div>
+                        <select class="multiselect" multiple data-key="spacegroup.number">
+
+                            <option>0</option>
+
+                            <option>1</option>
+
+                            <option>2</option>
+
+                            <option>3</option>
+
+                            <option>4</option>
+
+                            <option>5</option>
+
+                            <option>6</option>
+
+                            <option>7</option>
+
+                            <option>8</option>
+
+                            <option>9</option>
+
+                            <option>10</option>
+
+                            <option>11</option>
+
+                            <option>12</option>
+
+                            <option>13</option>
+
+                            <option>14</option>
+
+                            <option>15</option>
+
+                            <option>16</option>
+
+                            <option>17</option>
+
+                            <option>18</option>
+
+                            <option>19</option>
+
+                            <option>20</option>
+
+                            <option>21</option>
+
+                            <option>22</option>
+
+                            <option>23</option>
+
+                            <option>24</option>
+
+                            <option>25</option>
+
+                            <option>26</option>
+
+                            <option>27</option>
+
+                            <option>28</option>
+
+                            <option>29</option>
+
+                            <option>30</option>
+
+                            <option>31</option>
+
+                            <option>32</option>
+
+                            <option>33</option>
+
+                            <option>34</option>
+
+                            <option>35</option>
+
+                            <option>36</option>
+
+                            <option>37</option>
+
+                            <option>38</option>
+
+                            <option>39</option>
+
+                            <option>40</option>
+
+                            <option>41</option>
+
+                            <option>42</option>
+
+                            <option>43</option>
+
+                            <option>44</option>
+
+                            <option>45</option>
+
+                            <option>46</option>
+
+                            <option>47</option>
+
+                            <option>48</option>
+
+                            <option>49</option>
+
+                            <option>50</option>
+
+                            <option>51</option>
+
+                            <option>52</option>
+
+                            <option>53</option>
+
+                            <option>54</option>
+
+                            <option>55</option>
+
+                            <option>56</option>
+
+                            <option>57</option>
+
+                            <option>58</option>
+
+                            <option>59</option>
+
+                            <option>60</option>
+
+                            <option>61</option>
+
+                            <option>62</option>
+
+                            <option>63</option>
+
+                            <option>64</option>
+
+                            <option>65</option>
+
+                            <option>66</option>
+
+                            <option>67</option>
+
+                            <option>68</option>
+
+                            <option>69</option>
+
+                            <option>70</option>
+
+                            <option>71</option>
+
+                            <option>72</option>
+
+                            <option>73</option>
+
+                            <option>74</option>
+
+                            <option>75</option>
+
+                            <option>76</option>
+
+                            <option>77</option>
+
+                            <option>78</option>
+
+                            <option>79</option>
+
+                            <option>80</option>
+
+                            <option>81</option>
+
+                            <option>82</option>
+
+                            <option>83</option>
+
+                            <option>84</option>
+
+                            <option>85</option>
+
+                            <option>86</option>
+
+                            <option>87</option>
+
+                            <option>88</option>
+
+                            <option>90</option>
+
+                            <option>91</option>
+
+                            <option>92</option>
+
+                            <option>94</option>
+
+                            <option>95</option>
+
+                            <option>96</option>
+
+                            <option>97</option>
+
+                            <option>98</option>
+
+                            <option>99</option>
+
+                            <option>100</option>
+
+                            <option>102</option>
+
+                            <option>103</option>
+
+                            <option>104</option>
+
+                            <option>105</option>
+
+                            <option>106</option>
+
+                            <option>107</option>
+
+                            <option>108</option>
+
+                            <option>109</option>
+
+                            <option>110</option>
+
+                            <option>111</option>
+
+                            <option>112</option>
+
+                            <option>113</option>
+
+                            <option>114</option>
+
+                            <option>115</option>
+
+                            <option>116</option>
+
+                            <option>117</option>
+
+                            <option>118</option>
+
+                            <option>119</option>
+
+                            <option>120</option>
+
+                            <option>121</option>
+
+                            <option>122</option>
+
+                            <option>123</option>
+
+                            <option>124</option>
+
+                            <option>125</option>
+
+                            <option>126</option>
+
+                            <option>127</option>
+
+                            <option>128</option>
+
+                            <option>129</option>
+
+                            <option>130</option>
+
+                            <option>131</option>
+
+                            <option>132</option>
+
+                            <option>133</option>
+
+                            <option>134</option>
+
+                            <option>135</option>
+
+                            <option>136</option>
+
+                            <option>137</option>
+
+                            <option>138</option>
+
+                            <option>139</option>
+
+                            <option>140</option>
+
+                            <option>141</option>
+
+                            <option>142</option>
+
+                            <option>143</option>
+
+                            <option>144</option>
+
+                            <option>145</option>
+
+                            <option>146</option>
+
+                            <option>147</option>
+
+                            <option>148</option>
+
+                            <option>149</option>
+
+                            <option>150</option>
+
+                            <option>151</option>
+
+                            <option>152</option>
+
+                            <option>153</option>
+
+                            <option>154</option>
+
+                            <option>155</option>
+
+                            <option>156</option>
+
+                            <option>157</option>
+
+                            <option>158</option>
+
+                            <option>159</option>
+
+                            <option>160</option>
+
+                            <option>161</option>
+
+                            <option>162</option>
+
+                            <option>163</option>
+
+                            <option>164</option>
+
+                            <option>165</option>
+
+                            <option>166</option>
+
+                            <option>167</option>
+
+                            <option>169</option>
+
+                            <option>170</option>
+
+                            <option>172</option>
+
+                            <option>173</option>
+
+                            <option>174</option>
+
+                            <option>175</option>
+
+                            <option>176</option>
+
+                            <option>177</option>
+
+                            <option>178</option>
+
+                            <option>179</option>
+
+                            <option>180</option>
+
+                            <option>181</option>
+
+                            <option>182</option>
+
+                            <option>183</option>
+
+                            <option>184</option>
+
+                            <option>185</option>
+
+                            <option>186</option>
+
+                            <option>187</option>
+
+                            <option>188</option>
+
+                            <option>189</option>
+
+                            <option>190</option>
+
+                            <option>191</option>
+
+                            <option>192</option>
+
+                            <option>193</option>
+
+                            <option>194</option>
+
+                            <option>195</option>
+
+                            <option>196</option>
+
+                            <option>197</option>
+
+                            <option>198</option>
+
+                            <option>199</option>
+
+                            <option>200</option>
+
+                            <option>201</option>
+
+                            <option>202</option>
+
+                            <option>203</option>
+
+                            <option>204</option>
+
+                            <option>205</option>
+
+                            <option>206</option>
+
+                            <option>208</option>
+
+                            <option>210</option>
+
+                            <option>211</option>
+
+                            <option>212</option>
+
+                            <option>213</option>
+
+                            <option>214</option>
+
+                            <option>215</option>
+
+                            <option>216</option>
+
+                            <option>217</option>
+
+                            <option>218</option>
+
+                            <option>219</option>
+
+                            <option>220</option>
+
+                            <option>221</option>
+
+                            <option>222</option>
+
+                            <option>223</option>
+
+                            <option>224</option>
+
+                            <option>225</option>
+
+                            <option>226</option>
+
+                            <option>227</option>
+
+                            <option>228</option>
+
+                            <option>229</option>
+
+                            <option>230</option>
+
+                        </select>
+                    </section>
+                    <section>
+                        <div class="label">Spacegroup Symbol</div>
+                        <select class="multiselect" multiple data-key="spacegroup.symbol">
+
+                            <option>(0)</option>
+
+                            <option>C2</option>
+
+                            <option>C2/c</option>
+
+                            <option>C2/m</option>
+
+                            <option>C222</option>
+
+                            <option>C222_1</option>
+
+                            <option>C2ce</option>
+
+                            <option>C2cm</option>
+
+                            <option>C2me</option>
+
+                            <option>C2mm</option>
+
+                            <option>Cc</option>
+
+                            <option>Cc2e</option>
+
+                            <option>Cc2m</option>
+
+                            <option>Ccc2</option>
+
+                            <option>Ccce</option>
+
+                            <option>Cccm</option>
+
+                            <option>Ccm2_1</option>
+
+                            <option>Ccme</option>
+
+                            <option>Ccmm</option>
+
+                            <option>Cm</option>
+
+                            <option>Cm2e</option>
+
+                            <option>Cm2m</option>
+
+                            <option>Cmc2_1</option>
+
+                            <option>Cmce</option>
+
+                            <option>Cmcm</option>
+
+                            <option>Cmm2</option>
+
+                            <option>Cmme</option>
+
+                            <option>Cmmm</option>
+
+                            <option>F-43c</option>
+
+                            <option>F-43m</option>
+
+                            <option>F222</option>
+
+                            <option>F23</option>
+
+                            <option>F2dd</option>
+
+                            <option>F2mm</option>
+
+                            <option>F4_132</option>
+
+                            <option>Fd-3c</option>
+
+                            <option>Fd-3m</option>
+
+                            <option>Fd2d</option>
+
+                            <option>Fd3</option>
+
+                            <option>Fdd2</option>
+
+                            <option>Fddd</option>
+
+                            <option>Fm-3c</option>
+
+                            <option>Fm-3m</option>
+
+                            <option>Fm2m</option>
+
+                            <option>Fm3</option>
+
+                            <option>Fmm2</option>
+
+                            <option>Fmmm</option>
+
+                            <option>I-4</option>
+
+                            <option>I-42d</option>
+
+                            <option>I-42m</option>
+
+                            <option>I-43d</option>
+
+                            <option>I-43m</option>
+
+                            <option>I-4c2</option>
+
+                            <option>I-4m2</option>
+
+                            <option>I222</option>
+
+                            <option>I23</option>
+
+                            <option>I2_12_12_1</option>
+
+                            <option>I2_13</option>
+
+                            <option>I2cb</option>
+
+                            <option>I2cm</option>
+
+                            <option>I2mb</option>
+
+                            <option>I2mm</option>
+
+                            <option>I4</option>
+
+                            <option>I4/m</option>
+
+                            <option>I4/mcm</option>
+
+                            <option>I4/mmm</option>
+
+                            <option>I422</option>
+
+                            <option>I432</option>
+
+                            <option>I4_1</option>
+
+                            <option>I4_1/a</option>
+
+                            <option>I4_1/acd</option>
+
+                            <option>I4_1/amd</option>
+
+                            <option>I4_122</option>
+
+                            <option>I4_132</option>
+
+                            <option>I4_1cd</option>
+
+                            <option>I4_1md</option>
+
+                            <option>I4cm</option>
+
+                            <option>I4mm</option>
+
+                            <option>Ia-3d</option>
+
+                            <option>Ia3</option>
+
+                            <option>Iba2</option>
+
+                            <option>Ibam</option>
+
+                            <option>Ibca</option>
+
+                            <option>Ibmm</option>
+
+                            <option>Ic2a</option>
+
+                            <option>Ic2m</option>
+
+                            <option>Icma</option>
+
+                            <option>Im-3m</option>
+
+                            <option>Im2a</option>
+
+                            <option>Im2m</option>
+
+                            <option>Im3</option>
+
+                            <option>Ima2</option>
+
+                            <option>Imcb</option>
+
+                            <option>Imcm</option>
+
+                            <option>Imm2</option>
+
+                            <option>Imma</option>
+
+                            <option>Immm</option>
+
+                            <option>P-1</option>
+
+                            <option>P-3</option>
+
+                            <option>P-31c</option>
+
+                            <option>P-31m</option>
+
+                            <option>P-3c1</option>
+
+                            <option>P-3m1</option>
+
+                            <option>P-4</option>
+
+                            <option>P-42_1c</option>
+
+                            <option>P-42_1m</option>
+
+                            <option>P-42c</option>
+
+                            <option>P-42m</option>
+
+                            <option>P-43m</option>
+
+                            <option>P-43n</option>
+
+                            <option>P-4b2</option>
+
+                            <option>P-4c2</option>
+
+                            <option>P-4m2</option>
+
+                            <option>P-4n2</option>
+
+                            <option>P-6</option>
+
+                            <option>P-62c</option>
+
+                            <option>P-62m</option>
+
+                            <option>P-6c2</option>
+
+                            <option>P-6m2</option>
+
+                            <option>P1</option>
+
+                            <option>P2</option>
+
+                            <option>P2/c</option>
+
+                            <option>P2/m</option>
+
+                            <option>P222</option>
+
+                            <option>P222_1</option>
+
+                            <option>P22_12</option>
+
+                            <option>P22_12_1</option>
+
+                            <option>P23</option>
+
+                            <option>P2_1</option>
+
+                            <option>P2_1/c</option>
+
+                            <option>P2_1/m</option>
+
+                            <option>P2_122</option>
+
+                            <option>P2_122_1</option>
+
+                            <option>P2_12_12</option>
+
+                            <option>P2_12_12_1</option>
+
+                            <option>P2_13</option>
+
+                            <option>P2_1ab</option>
+
+                            <option>P2_1am</option>
+
+                            <option>P2_1ca</option>
+
+                            <option>P2_1cn</option>
+
+                            <option>P2_1ma</option>
+
+                            <option>P2_1mn</option>
+
+                            <option>P2_1nb</option>
+
+                            <option>P2_1nm</option>
+
+                            <option>P2aa</option>
+
+                            <option>P2an</option>
+
+                            <option>P2cb</option>
+
+                            <option>P2cm</option>
+
+                            <option>P2mb</option>
+
+                            <option>P2mm</option>
+
+                            <option>P2nn</option>
+
+                            <option>P3</option>
+
+                            <option>P312</option>
+
+                            <option>P31c</option>
+
+                            <option>P31m</option>
+
+                            <option>P321</option>
+
+                            <option>P3_1</option>
+
+                            <option>P3_112</option>
+
+                            <option>P3_121</option>
+
+                            <option>P3_2</option>
+
+                            <option>P3_212</option>
+
+                            <option>P3_221</option>
+
+                            <option>P3c1</option>
+
+                            <option>P3m1</option>
+
+                            <option>P4</option>
+
+                            <option>P4/m</option>
+
+                            <option>P4/mbm</option>
+
+                            <option>P4/mcc</option>
+
+                            <option>P4/mmm</option>
+
+                            <option>P4/mnc</option>
+
+                            <option>P4/n</option>
+
+                            <option>P4/nbm</option>
+
+                            <option>P4/ncc</option>
+
+                            <option>P4/nmm</option>
+
+                            <option>P4/nnc</option>
+
+                            <option>P42_12</option>
+
+                            <option>P4_1</option>
+
+                            <option>P4_122</option>
+
+                            <option>P4_12_12</option>
+
+                            <option>P4_132</option>
+
+                            <option>P4_2</option>
+
+                            <option>P4_2/m</option>
+
+                            <option>P4_2/mbc</option>
+
+                            <option>P4_2/mcm</option>
+
+                            <option>P4_2/mmc</option>
+
+                            <option>P4_2/mnm</option>
+
+                            <option>P4_2/n</option>
+
+                            <option>P4_2/nbc</option>
+
+                            <option>P4_2/ncm</option>
+
+                            <option>P4_2/nmc</option>
+
+                            <option>P4_2/nnm</option>
+
+                            <option>P4_22_12</option>
+
+                            <option>P4_232</option>
+
+                            <option>P4_2bc</option>
+
+                            <option>P4_2mc</option>
+
+                            <option>P4_2nm</option>
+
+                            <option>P4_3</option>
+
+                            <option>P4_322</option>
+
+                            <option>P4_32_12</option>
+
+                            <option>P4_332</option>
+
+                            <option>P4bm</option>
+
+                            <option>P4cc</option>
+
+                            <option>P4mm</option>
+
+                            <option>P4nc</option>
+
+                            <option>P6/m</option>
+
+                            <option>P6/mcc</option>
+
+                            <option>P6/mmm</option>
+
+                            <option>P622</option>
+
+                            <option>P6_1</option>
+
+                            <option>P6_122</option>
+
+                            <option>P6_222</option>
+
+                            <option>P6_3</option>
+
+                            <option>P6_3/m</option>
+
+                            <option>P6_3/mcm</option>
+
+                            <option>P6_3/mmc</option>
+
+                            <option>P6_322</option>
+
+                            <option>P6_3cm</option>
+
+                            <option>P6_3mc</option>
+
+                            <option>P6_4</option>
+
+                            <option>P6_422</option>
+
+                            <option>P6_5</option>
+
+                            <option>P6_522</option>
+
+                            <option>P6cc</option>
+
+                            <option>P6mm</option>
+
+                            <option>Pa3</option>
+
+                            <option>Pb2_1a</option>
+
+                            <option>Pb2_1m</option>
+
+                            <option>Pb2b</option>
+
+                            <option>Pb2n</option>
+
+                            <option>Pba2</option>
+
+                            <option>Pbaa</option>
+
+                            <option>Pbab</option>
+
+                            <option>Pbam</option>
+
+                            <option>Pbc2_1</option>
+
+                            <option>Pbca</option>
+
+                            <option>Pbcb</option>
+
+                            <option>Pbcm</option>
+
+                            <option>Pbcn</option>
+
+                            <option>Pbma</option>
+
+                            <option>Pbmb</option>
+
+                            <option>Pbmm</option>
+
+                            <option>Pbmn</option>
+
+                            <option>Pbn2_1</option>
+
+                            <option>Pbna</option>
+
+                            <option>Pbnb</option>
+
+                            <option>Pbnm</option>
+
+                            <option>Pbnn</option>
+
+                            <option>Pc</option>
+
+                            <option>Pc2_1b</option>
+
+                            <option>Pc2_1n</option>
+
+                            <option>Pc2a</option>
+
+                            <option>Pca2_1</option>
+
+                            <option>Pcaa</option>
+
+                            <option>Pcab</option>
+
+                            <option>Pcam</option>
+
+                            <option>Pcan</option>
+
+                            <option>Pcca</option>
+
+                            <option>Pccb</option>
+
+                            <option>Pccm</option>
+
+                            <option>Pccn</option>
+
+                            <option>Pcm2_1</option>
+
+                            <option>Pcma</option>
+
+                            <option>Pcmb</option>
+
+                            <option>Pcmm</option>
+
+                            <option>Pcmn</option>
+
+                            <option>Pcnb</option>
+
+                            <option>Pcnm</option>
+
+                            <option>Pcnn</option>
+
+                            <option>Pm</option>
+
+                            <option>Pm-3m</option>
+
+                            <option>Pm-3n</option>
+
+                            <option>Pm2_1b</option>
+
+                            <option>Pm2_1n</option>
+
+                            <option>Pm2a</option>
+
+                            <option>Pm2m</option>
+
+                            <option>Pm3</option>
+
+                            <option>Pmaa</option>
+
+                            <option>Pmab</option>
+
+                            <option>Pmc2_1</option>
+
+                            <option>Pmca</option>
+
+                            <option>Pmcb</option>
+
+                            <option>Pmcm</option>
+
+                            <option>Pmcn</option>
+
+                            <option>Pmm2</option>
+
+                            <option>Pmma</option>
+
+                            <option>Pmmb</option>
+
+                            <option>Pmmm</option>
+
+                            <option>Pmmn</option>
+
+                            <option>Pmn2_1</option>
+
+                            <option>Pmna</option>
+
+                            <option>Pmnb</option>
+
+                            <option>Pmnm</option>
+
+                            <option>Pmnn</option>
+
+                            <option>Pn-3m</option>
+
+                            <option>Pn-3n</option>
+
+                            <option>Pn2_1a</option>
+
+                            <option>Pn2_1m</option>
+
+                            <option>Pn2b</option>
+
+                            <option>Pn2n</option>
+
+                            <option>Pn3</option>
+
+                            <option>Pna2_1</option>
+
+                            <option>Pnaa</option>
+
+                            <option>Pnab</option>
+
+                            <option>Pnam</option>
+
+                            <option>Pnan</option>
+
+                            <option>Pnc2</option>
+
+                            <option>Pnca</option>
+
+                            <option>Pncb</option>
+
+                            <option>Pncm</option>
+
+                            <option>Pncn</option>
+
+                            <option>Pnm2_1</option>
+
+                            <option>Pnma</option>
+
+                            <option>Pnmb</option>
+
+                            <option>Pnmm</option>
+
+                            <option>Pnmn</option>
+
+                            <option>Pnn2</option>
+
+                            <option>Pnna</option>
+
+                            <option>Pnnb</option>
+
+                            <option>Pnnm</option>
+
+                            <option>Pnnn</option>
+
+                            <option>R-3</option>
+
+                            <option>R-3c</option>
+
+                            <option>R-3m</option>
+
+                            <option>R3</option>
+
+                            <option>R32</option>
+
+                            <option>R3c</option>
+
+                            <option>R3m</option>
+
+                        </select>
+                    </section>
+
+                    <div class="advanced">
+                        <a id="has-properties-sidebar-toggle"
+                           style="font-size:1.3em">Has properties &rarr;</a></div>
+                    <div class="hidden">
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_bandstructure" type="checkbox" name="has_bandstructure">
+                                Elec. structure
+                                <a class="fontastic-white-question" title="electronic bandstructure, density of states"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_phonons" type="checkbox" name="has_phonons">
+                                Vibrational
+                                <a class="fontastic-white-question" title="phonon dispersion and density of states, heat capacity, entropy, dielectric tensor, born effective charges"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_xas" type="checkbox" name="has_xas">
+                                X-Ray Abs.
+                                <a class="fontastic-white-question" title="X-Ray Absorption Near-Edge Spectrum (XANES) K-edge spectrum"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_surfaces" type="checkbox" name="has_surfaces">
+                                Surface
+                                <a class="fontastic-white-question" title="surface energy, work function. Currently, elemental systems only."
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_elasticity" type="checkbox" name="has_elasticity">
+                                Elastic
+                                <a class="fontastic-white-question" title="tensor, bulk and shear moduli, Poisson's ratio"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_piezo" type="checkbox" name="has_piezo">
+                                Piezoelectric
+                                <a class="fontastic-white-question" title="tensor, max modulus and direction"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_diel" type="checkbox" name="has_diel">
+                                Dielectric
+                                <a class="fontastic-white-question" title="tensor, dielectric constant, refractive index"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                        <form class="checkbox" style="padding-top:0">
+                            <label>
+                                <input data-key="has_eos" type="checkbox" name="has_eos">
+                                Eqns of State
+                                <a class="fontastic-white-question" title="energy/atom vs volume/atom and fits"
+                                   data-toggle="tooltip" data-placement="top"></a>
+                            </label>
+                        </form>
+                    </div>
+
+                    <div class="advanced"><a>Elasticity &rarr;</a></div>
+                    <div class="hidden">
+
+                        <div class="label">Poisson's Ratio</div>
+                        <div class="slider range" data-key="elasticity.homogeneous_poisson" data-min="-1" data-max="0.5" data-step="0.1"></div>
+
+                        <div class="label">Elastic Anisotropy</div>
+                        <div class="slider range" data-key="elasticity.universal_anisotropy" data-min="0" data-max="398" data-step="1"></div>
+
+                        <div class="label">Shear Modulus G<sub>VRH</sub></div>
+                        <div class="slider range" data-key="elasticity.G_Voigt_Reuss_Hill" data-min="2" data-max="523" data-step="1"></div>
+
+                        <div class="label">Bulk Modulus K<sub>VRH</sub></div>
+                        <div class="slider range" data-key="elasticity.K_Voigt_Reuss_Hill" data-min="6" data-max="436" data-step="1"></div>
+                    </div>
+
+                    <div class="advanced"><a>Piezoelectricity &rarr;</a></div>
+                    <div class="hidden">
+
+                        <div class="label">Piezoelectric Modulus &#x2016;<em>e</em><sub>ij</sub>&#x2016;<sub>max</sub></div>
+                        <div class="slider range" data-key="piezo.eij_max" data-min="0" data-max="46.2" data-step="0.1"></div>
+                    </div>
+
+                    <div class="advanced"><a>Dielectricity &rarr;</a></div>
+                    <div class="hidden">
+
+                        <div class="label">
+                            <em>&epsilon;</em><sub>poly</sub><sup>&infin;</sup>
+                        </div>
+                        <div class="slider range" data-key="diel.poly_electronic" data-min="1" data-max="257" data-step="0.1"></div>
+
+                        <div class="label">
+                            <em>&epsilon;</em><sub>poly</sub>
+                        </div>
+                        <div class="slider range" data-key="diel.poly_total" data-min="2" data-max="278" data-step="0.1"></div>
+
+                        <div class="label">
+                            Refractive index
+                        </div>
+                        <div class="slider range" data-key="diel.n" data-min="1" data-max="17" data-step="0.1"></div>
+                        <form class="checkbox">
+                            <label>
+                                <input data-key="diel.pot_ferroelectric" type="checkbox" name="diel.pot_ferroelectric"  value="">
+                                Potentially ferroelectric
+                            </label>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="sb-content" data-route="search/batteries">
+                <div class="padded">
+                    <form class='radio'>
+                        <label>
+                            <input data-key="intercalation" type="radio" name="battype"  value="" checked>
+                            Intercalation
+                        </label>
+                        <label>
+                            <input data-key="conversion" type="radio" name="battype" value="">
+                            Conversion
+                        </label>
+                    </form>
+
+                    <section class="padded">
+                        <div class="label">Working Ion</div>
+                        <select class="multiselect" data-key="working_ion" multiple>
+
+                            <option>Li</option>
+
+                            <option>Mg</option>
+
+                            <option>Ca</option>
+
+                            <option>Zn</option>
+
+                            <option>Al</option>
+
+                            <option>Y</option>
+
+                        </select>
+                    </section>
+
+
+                    <div class="label">Avg. Voltage</div>
+                    <div data-key="average_voltage" data-units="V"
+                         data-max="12"
+                         data-min="-2"  data-step='0.1' class="slider range"></div>
+
+                    <div class="label">Volumetric Capacity</div>
+                    <div data-key="capacity_vol"
+                         data-max="3269" data-units="Ah/l"
+                         data-min="35" data-step="10" class="slider range"></div>
+
+                    <div class="label">Gravimetric Capacity</div>
+                    <div data-key="capacity_grav" data-units="mAh/g"
+                         data-max="680"
+                         data-min="6" data-step="10" class="slider range"></div>
+
+                    <div class="advanced"><a>Advanced &rarr;</a></div>
+                    <section class="hidden">
+
+                        <div class="label">Max. Voltage Step</div>
+                        <div data-units="V" data-key="max_voltage_step" data-max="7" data-min="0.0" data-step='0.1' class="slider"></div>
+
+                        <div class="label">Max. Volume Change</div>
+                        <div data-units="%" data-key="max_delta_volume" data-step='0.1' data-max="2" data-min="0.0" class="slider"></div>
+
+                        <div class="label">Max. Instability</div>
+                        <div data-key="max_instability" data-max="3" data-min="0.0" data-step='0.01' class="slider"></div>
+
+                    </section>
+                </div>
+            </div>
+
+
+            <div class="sb-content" data-route="apps/phasediagram">
+                <div id="openEl" class="pull-down"></div>
+            </div>
+
+
+            <div class="sb-content" data-route="apps/xtaltoolkit">
+                <div id="editor-sidebar"></div>
+            </div>
+
+            <div class="sb-content" data-route="search/porous">
+                <div class="padded">
+                    <div class="label">Temperature (K)</div>
+                    <div data-units="K" data-key="temperature"
+                         data-max="600" data-min="0" data-step=1 class="slider range"></div>
+
+                    <div class="label">Pressure (kPa)</div>
+                    <div data-units="kPa" data-key="pressure"
+                         data-max="30000" data-min="0" data-step=1 class="slider range"></div>
+
+                    <form class="checkbox">
+                        <label>
+                            <input data-key="isothP" type="checkbox" name="isothP"  value="">
+                            Has Isotherm Data
+                        </label>
+                    </form>
+
+                    <div class="label">Formula (Regex)</div>
+                    <form class="porous-formula">
+                        <input placeholder="e.g., Fe.*O" name="porous-formula-regex" type="text" class="text-field"/>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<footer>
+
+
+    <hr>
+    <ul class="text-center inline">
+        <li>
+            <a href="/about">About</a>
+        </li>
+        <li>
+            <a class="" href="https://discuss.materialsproject.org" target="_blank">
+                Forum
+            </a>
+
+        </li>
+        <li>
+            <a href="/citing">Citing</a>
+        </li>
+        <li>
+            <a href="/terms">Terms of Use</a>
+        </li>
+        <li>
+            <a href="/open">API</a>
+        </li>
+    </ul>
+    <div class="pad-top row text-center">
+        <small>
+            Powered by <a href="http://pymatgen.org">pymatgen</a>,
+            <a href="https://materialsproject.github.io/custodian">custodian</a>,
+            <a href="https://materialsproject.github.io/fireworks">fireworks</a>,
+            and <a href="https://hackingmaterials.github.io/atomate">atomate</a>.
+        </small>
+    </div>
+
+</footer>
+<!-- Manged at https://cdn.fontawesome.com by dwinston-->
+<script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
+</body>
+</html>
