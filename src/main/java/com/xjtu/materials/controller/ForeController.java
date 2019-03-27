@@ -41,6 +41,11 @@ public class ForeController {
         return "foreWeb/index";
     }
 
+    @RequestMapping("/index2")
+    public String index2() {
+        return "foreWeb/index1";
+    }
+
     /**
      * @Description 出版物页
      * @Auther Liang
