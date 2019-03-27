@@ -1,8 +1,9 @@
 define(["require"], function() {
   return requirejs.config({
     deps: ["base"],
-    baseUrl: '/static/js/dist',
-    urlArgs: "cachebust=1426a36",
+    // baseUrl: '/static/js/dist',
+    baseUrl: '/js/dist',
+    // urlArgs: "cachebust=1426a36",
     paths: {
       "jquery": "../../components/jquery/dist/jquery",
       "backbone": "../../components/backbone/backbone",

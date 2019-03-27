@@ -269,10 +269,12 @@
 
 
     <script src="components/requirejs/require.a0fb07562cea.js" data-main="js/dist/config.fa1f1c266ba8.js"></script>
+    <!--<script src="js/dist/base.js"></script>-->
+    <!--<script src="js/dist/SearchRouter.js"></script>-->
     <script type="text/javascript">
         window.onload = function () {
             require(["base"], function () {
-                window.PATH = "/static/js/redesign/views/";
+                window.PATH = "/static/js/dist/";
                 window.STATIC_URL = "/static/";
                 window.GROUPS = JSON.parse("[]");
                 window.SANDBOX = "core";
@@ -308,8 +310,8 @@
     </script>
 
 </head>
-<script src="js/admin/jquery.min.js"></script>
-<script src="js/admin/bootstrap.min.js?v=3.3.6"></script>
+<!--<script src="js/admin/jquery.min.js"></script>-->
+<!--<script src="js/admin/bootstrap.min.js?v=3.3.6"></script>-->
 
 
 <body>
@@ -372,169 +374,6 @@
                     <div id="note" class="note"></div>
                     <img class="pt-icon" src="images/new/periodictable.cf315c4e4483.png">
                     <div class="input-prepend"></div>
-                    <div class="input-prepend"><select class="selectpicker" data-width="190px" style="display: none;">
-                        <optgroup label="Explore Materials" data-route="search/materials">
-                            <option data-placeholder="Na-O" data-key="elements"
-                                    data-content="<span class='fontastic-search menu-icon'></span> 按元素"></option>
-                            <option data-placeholder="Fe2O3" data-key="reduced_cell_formula"
-                                    data-content="<span class='fontastic-search menu-icon'></span> by Formula"></option>
-                            <option data-placeholder="mp-203 mp-604" data-key="task_id"
-                                    data-content="<span class='fontastic-search menu-icon'></span> by IDs"></option>
-                            <option data-placeholder="{'elements':{'$in':['Li']}, 'nelements':2}" data-key="mpquery"
-                                    data-content="<span class='fontastic-search menu-icon'></span> by mpquery"></option>
-                            <option data-placeholder="" data-key="structure"
-                                    data-content="<span class='fontastic-search menu-icon'></span> by Structure"></option>
-                        </optgroup>
-                        <optgroup label="Explore Batteries" data-route="search/batteries">
-                            <option data-placeholder="Co-O" data-key="elements"
-                                    data-content="<span class='fontastic-battery menu-icon'></span> by Elements"></option>
-                            <option data-placeholder="LiCoO3" data-key="reduced_cell_formula"
-                                    data-content="<span class='fontastic-battery menu-icon'></span> by Formula"></option>
-                            <option data-placeholder="mp-715480" data-key="material_ids"
-                                    data-content="<span class='fontastic-battery menu-icon'></span> by Material IDs"></option>
-                            <option data-placeholder="mp-300585354" data-key="battid"
-                                    data-content="<span class='fontastic-battery menu-icon'></span> by Battery IDs"></option>
-                        </optgroup>
-                        <optgroup label="Crystal Toolkit" data-route="apps/xtaltoolkit">
-                            <option data-placeholder="mp-604 mp-203" data-key="materialIDs"
-                                    data-content="<span class='fontastic-tools menu-icon'></span> by Material IDs"></option>
-                            <option data-placeholder="mp-300764362 mp-30000000490" data-key="battIDs"
-                                    data-content="<span class='fontastic-tools menu-icon'></span> by Battery IDs"></option>
-                        </optgroup>
-                        <option data-placeholder="" data-route="apps/structurepredictor" data-key=""
-                                data-content="<span class='fontastic-struct-predictor menu-icon'></span> Structure Predictor"></option>
-                        <option data-placeholder="Li2O Ni Fe" data-route="apps/phasediagram" data-key=""
-                                data-content="<span class='fontastic-phase-diagram-2 menu-icon'></span> Phase Diagram"></option>
-                        <option data-placeholder="" data-route="apps/pourbaixdiagram" data-key=""
-                                data-content="<span class='fontastic-pourbaix-diagram menu-icon'></span> Pourbaix Diagram"></option>
-                        <option data-placeholder="" data-route="apps/reactioncalculator" data-key=""
-                                data-content="<span class='fontastic-beaker menu-icon'></span> Calculate Reaction"></option>
-                        <option data-placeholder="Fe2O3" data-route="search/thermo" data-key="formula"
-                                data-content="<span class='fontastic-thermometer-1 menu-icon'></span> Thermo"></option>
-                        <option data-placeholder="" data-route="compare" data-key=""
-                                data-content="<span class='fontastic-git-compare menu-icon'></span> Compare Elements"></option>
-                        <option data-placeholder="" data-route="search/porous" data-key=""
-                                data-content="<span class='fontastic-nanoporous menu-icon'></span> Nanoporous Explorer"></option>
-                        <optgroup label="Explore Molecules" data-route="search/molecules">
-                            <option data-placeholder="H-C-O-P" data-key="elements"
-                                    data-content="<span class='fontastic-molecule-2 menu-icon'></span> by Elements"></option>
-                            <option data-placeholder="H2C3O3" data-key="reduced_cell_formula"
-                                    data-content="<span class='fontastic-molecule-2 menu-icon'></span> by Formula"></option>
-                            <option data-placeholder="InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3" data-key="inchi"
-                                    data-content="<span class='fontastic-molecule-2 menu-icon'></span> by Inchi"></option>
-                        </optgroup>
-                        <option data-placeholder="" data-route="apps/rfbdashboard" data-key=""
-                                data-content="<span class='fontastic-beaker-science-flask menu-icon'></span> RFB Dashboard"></option>
-                        <option data-placeholder="" data-route="apps/xas" data-key=""
-                                data-content="<span class='yt-icon-xas-match menu-icon'></span> XAS Matcher"></option>
-                        <option data-placeholder="" data-route="apps/interfacereactions" data-key=""
-                                data-content="<span class='yt-icon-interface menu-icon'></span> Interface Reactions"></option>
-                    </select>
-                        <div class="btn-group bootstrap-select" style="width: 190px;">
-                            <button type="button" class="btn dropdown-toggle selectpicker btn-default"
-                                    data-toggle="dropdown"><span class="filter-option pull-left"><span
-                                    class="fontastic-search menu-icon"></span> 按元素</span>&nbsp;<span
-                                    class="caret"></span></button>
-                            <div class="dropdown-menu open">
-                                <ul class="dropdown-menu inner selectpicker" role="menu">
-                                    <li rel="0" class="selected">
-                                        <dt><span class="text">查找材料</span></dt>
-                                        <a tabindex="0" class="opt " style=""><span
-                                                class="fontastic-search menu-icon"></span> 按元素<i
-                                                class="glyphicon glyphicon-ok icon-ok check-mark"></i></a>
-                                    </li>
-                                    <!--<li rel="1"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-search menu-icon"></span> by Formula<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="2"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-search menu-icon"></span> by IDs<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="3"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-search menu-icon"></span> by mpquery<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="4"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-search menu-icon"></span> by Structure<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="5">-->
-                                        <!--<div class="div-contain">-->
-                                            <!--<div class="divider"></div>-->
-                                        <!--</div>-->
-                                        <!--<dt><span class="text">Explore Batteries</span></dt>-->
-                                        <!--<a tabindex="0" class="opt " style=""><span-->
-                                                <!--class="fontastic-battery menu-icon"></span> by Elements<i-->
-                                                <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="6"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-battery menu-icon"></span> by Formula<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="7"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-battery menu-icon"></span> by Material IDs<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="8"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-battery menu-icon"></span> by Battery IDs<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="9">-->
-                                        <!--<div class="div-contain">-->
-                                            <!--<div class="divider"></div>-->
-                                        <!--</div>-->
-                                        <!--<dt><span class="text">Crystal Toolkit</span></dt>-->
-                                        <!--<a tabindex="0" class="opt " style=""><span-->
-                                                <!--class="fontastic-tools menu-icon"></span> by Material IDs<i-->
-                                                <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="10"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-tools menu-icon"></span> by Battery IDs<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="11"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-struct-predictor menu-icon"></span> Structure Predictor<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="12"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-phase-diagram-2 menu-icon"></span> Phase Diagram<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="13"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-pourbaix-diagram menu-icon"></span> Pourbaix Diagram<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="14"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-beaker menu-icon"></span> Calculate Reaction<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="15"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-thermometer-1 menu-icon"></span> Thermo<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="16"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-git-compare menu-icon"></span> Compare Elements<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="17"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-nanoporous menu-icon"></span> Nanoporous Explorer<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="18">-->
-                                        <!--<div class="div-contain">-->
-                                            <!--<div class="divider"></div>-->
-                                        <!--</div>-->
-                                        <!--<dt><span class="text">Explore Molecules</span></dt>-->
-                                        <!--<a tabindex="0" class="opt " style=""><span-->
-                                                <!--class="fontastic-molecule-2 menu-icon"></span> 按元素<i-->
-                                                <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="19"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-molecule-2 menu-icon"></span> by Formula<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="20"><a tabindex="0" class="opt " style=""><span-->
-                                            <!--class="fontastic-molecule-2 menu-icon"></span> by Inchi<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="21"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="fontastic-beaker-science-flask menu-icon"></span> RFB Dashboard<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="22"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="yt-icon-xas-match menu-icon"></span> XAS Matcher<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                    <!--<li rel="23"><a tabindex="0" class="" style=""><span-->
-                                            <!--class="yt-icon-interface menu-icon"></span> Interface Reactions<i-->
-                                            <!--class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>-->
-                                </ul>
-                            </div>
-                        </div>
-                        <input id="input-primary" class="search-query chemform" type="text" placeholder="Na-O"><i
-                                id="input-clear" class="icon-cancel"></i>
-                        <button id="submit-search" class="disabled btn" type="submit">search</button>
-                    </div>
-
                 </form>
 
 
@@ -1534,33 +1373,33 @@
             <div id="results">
 
                 <!--<script type="text/template" id="results-template">-->
-                    <!--<% if (loading){ %>-->
-                    <!--<center><%= loadingIcon %></center>-->
+                <!--<% if (loading){ %>-->
+                <!--<center><%= loadingIcon %></center>-->
 
-                    <!--<%  }  else {-->
-                    <!--if (!_.isEmpty(query)){ %>-->
-                    <!--<ul class='filters'>-->
-                        <!--<% _.forEach(query,  function(text){ %>-->
-                        <!--<li class="label-bg" data-attribute="<%- text %>">-->
-                            <!--<i class="icon" data-icon="V"></i> <%- _.prettyName(text) %>-->
-                        <!--</li>-->
-                        <!--<%  }); %>-->
-                    <!--</ul>-->
-                    <!--<% }-->
-                    <!--if (dataExists) { %>-->
-                    <!--<div class="table-responsive">-->
-                        <!--<table class='table table-bordered table-striped table-hover fixed'>-->
-                            <!--<thead> </thead><tbody></tbody>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<% }else{ %>-->
-                    <!--<center class="sans-data">-->
-                        <!--<div class="icon" data-icon="#"></div>-->
-                        <!--<div> No data available </div>-->
-                    <!--</center>-->
-                    <!--<% }-->
+                <!--<%  }  else {-->
+                <!--if (!_.isEmpty(query)){ %>-->
+                <!--<ul class='filters'>-->
+                <!--<% _.forEach(query,  function(text){ %>-->
+                <!--<li class="label-bg" data-attribute="<%- text %>">-->
+                <!--<i class="icon" data-icon="V"></i> <%- _.prettyName(text) %>-->
+                <!--</li>-->
+                <!--<%  }); %>-->
+                <!--</ul>-->
+                <!--<% }-->
+                <!--if (dataExists) { %>-->
+                <!--<div class="table-responsive">-->
+                <!--<table class='table table-bordered table-striped table-hover fixed'>-->
+                <!--<thead> </thead><tbody></tbody>-->
+                <!--</table>-->
+                <!--</div>-->
+                <!--<% }else{ %>-->
+                <!--<center class="sans-data">-->
+                <!--<div class="icon" data-icon="#"></div>-->
+                <!--<div> No data available </div>-->
+                <!--</center>-->
+                <!--<% }-->
 
-                    <!--} %>-->
+                <!--} %>-->
                 <!--</script>-->
 
 
@@ -1579,13 +1418,398 @@
                     </ul>
 
                     <div class="table-responsive">
-                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="DTTT_container"><a class="DTTT_button DTTT_button_copy btn" id="ToolTables_DataTables_Table_0_0"><span>Copy</span><div style="position: absolute; left: 0px; top: 0px; width: 51px; height: 30px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="components/datatables-tabletools/media/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="51" height="30" name="ZeroClipboard_TableToolsMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=51&amp;height=30" wmode="transparent"></div></a><a class="DTTT_button DTTT_button_print btn" id="ToolTables_DataTables_Table_0_1" title="View print view"><span>Print</span></a><a class="DTTT_button DTTT_button_collection btn" id="ToolTables_DataTables_Table_0_2"><span>Export</span></a></div><div class="ColVis"><button class="ColVis_Button ColVis_MasterButton btn"><span>Show / hide columns</span></button></div><div class="clear"></div><div class="dataTables_length" id="DataTables_Table_0_length"><label><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="" style="display: none;"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select><div class="btn-group bootstrap-select" style="width: 70px;"><button type="button" class="btn dropdown-toggle selectpicker dropdown" data-toggle="dropdown"><span class="filter-option pull-left">100</span>&nbsp;<span class="caret"></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner selectpicker" role="menu"><li rel="0"><a tabindex="0" class="" style=""><span class="text">10</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="1"><a tabindex="0" class="" style=""><span class="text">25</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="2"><a tabindex="0" class="" style=""><span class="text">50</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li><li rel="3" class="selected"><a tabindex="0" class="" style=""><span class="text">100</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li></ul></div></div> records per page</label><div class="btn-group"><button id="select" class="btn btn-small fontastic-check-1"> Batch Structures</button><button id="edit" class="btn btn-small fontastic-edit-pen-1" disabled="disabled"> Edit Structures</button></div></div><table class="table table-bordered table-striped table-hover fixed dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                            <thead> <tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Materials Id: activate to sort column ascending">Materials Id</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Formula: activate to sort column ascending">Formula</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Spacegroup: activate to sort column ascending">Spacegroup</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Formation Energy (eV): activate to sort column ascending">Formation Energy (eV)</th><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="E Above Hull (eV): activate to sort column ascending">E Above Hull (eV)</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Band Gap (eV): activate to sort column ascending">Band Gap (eV)</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Volume: activate to sort column ascending">Volume</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Nsites: activate to sort column ascending">Nsites</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Density (gm/cc): activate to sort column ascending">Density (gm/cc)</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 4%;"><span class="fontastic-edit-pen-1"></span></th></tr></thead><tbody><tr role="row" class="odd"><td>mp-1901</td><td><span class="chemform">NaO<sub>2</sub></span></td><td>Pnnm</td><td>-0.907</td><td class="sorting_1">0</td><td>0.000</td><td>83.383</td><td>6</td><td>2.19</td><td><input id="mp-1901" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-2340</td><td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td><td>P<span style="text-decoration:overline;">6</span>2m</td><td>-1.312</td><td class="sorting_1">0</td><td>1.736</td><td>153.906</td><td>12</td><td>2.524</td><td><input id="mp-2340" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-2352</td><td><span class="chemform">Na<sub>2</sub>O</span></td><td>Fm<span style="text-decoration:overline;">3</span>m</td><td>-1.454</td><td class="sorting_1">0</td><td>1.874</td><td>43.789</td><td>3</td><td>2.35</td><td><input id="mp-2352" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1204051</td><td><span class="chemform">Na<sub>2</sub>O<sub>9</sub></span></td><td>P2<sub>1</sub>/c</td><td>-0.475</td><td class="sorting_1">0.02</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>711.013</td><td>44</td><td>1.775</td><td><input id="mp-1204051" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-614</td><td><span class="chemform">NaO<sub>2</sub></span></td><td>Pa<span style="text-decoration:overline;">3</span></td><td>-0.887</td><td class="sorting_1">0.02</td><td>0.000</td><td>168.459</td><td>12</td><td>2.168</td><td><input id="mp-614" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1180346</td><td><span class="chemform">NaO<sub>2</sub></span></td><td>Pbca</td><td>-0.882</td><td class="sorting_1">0.025</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>313.791</td><td>24</td><td>2.328</td><td><input id="mp-1180346" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-755072</td><td><span class="chemform">Na<sub>2</sub>O</span></td><td>Pnnm</td><td>-1.418</td><td class="sorting_1">0.037</td><td>1.030</td><td>101.888</td><td>6</td><td>2.02</td><td><input id="mp-755072" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1119338</td><td><span class="chemform">Na<sub>2</sub>O</span></td><td>P<span style="text-decoration:overline;">6</span>2m</td><td>-1.378</td><td class="sorting_1">0.076</td><td>1.625<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>121.174</td><td>9</td><td>2.548</td><td><input id="mp-1119338" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-1180165</td><td><span class="chemform">NaO<sub>2</sub></span></td><td>Pbca</td><td>-0.829</td><td class="sorting_1">0.078</td><td>0.028<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>313.474</td><td>24</td><td>2.33</td><td><input id="mp-1180165" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-22464</td><td><span class="chemform">NaO<sub>3</sub></span></td><td>Imm2</td><td>-0.601</td><td class="sorting_1">0.079</td><td>0.578</td><td>55.672</td><td>4</td><td>2.117</td><td><input id="mp-22464" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-755413</td><td><span class="chemform">Na<sub>2</sub>O</span></td><td>R<span style="text-decoration:overline;">3</span>m</td><td>-1.375</td><td class="sorting_1">0.079</td><td>1.091</td><td>98.924</td><td>6</td><td>2.081</td><td><input id="mp-755413" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-776952</td><td><span class="chemform">Na<sub>2</sub>O</span></td><td>P3</td><td>-1.375</td><td class="sorting_1">0.08</td><td>1.509</td><td>123.223</td><td>9</td><td>2.506</td><td><input id="mp-776952" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-1220954</td><td><span class="chemform">NaO<sub>2</sub></span></td><td>R<span style="text-decoration:overline;">3</span>m</td><td>-0.79</td><td class="sorting_1">0.117</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>37.143</td><td>3</td><td>2.458</td><td><input id="mp-1220954" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1173794</td><td><span class="chemform">Na<sub>6</sub>O</span></td><td>Cmm2</td><td>-0.481</td><td class="sorting_1">0.142</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>744.362</td><td>21</td><td>1.03</td><td><input id="mp-1173794" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-1201981</td><td><span class="chemform">NaO<sub>8</sub></span></td><td>P2<sub>1</sub>/c</td><td>-0.121</td><td class="sorting_1">0.182</td><td>0.044<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>621.133</td><td>36</td><td>1.615</td><td><input id="mp-1201981" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1094115</td><td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td><td>Cmcm</td><td>-1.111</td><td class="sorting_1">0.201</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>50.675</td><td>4</td><td>2.555</td><td><input id="mp-1094115" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-1061395</td><td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td><td>Pm<span style="text-decoration:overline;">3</span>m</td><td>-1.088</td><td class="sorting_1">0.225</td><td>0.000</td><td>24.051</td><td>2</td><td>2.692</td><td><input id="mp-1061395" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1180536</td><td><span class="chemform">NaO<sub>8</sub></span></td><td>P2<sub>1</sub>/c</td><td>-0.067</td><td class="sorting_1">0.235</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>596.97</td><td>36</td><td>1.68</td><td><input id="mp-1180536" type="checkbox"></td></tr><tr role="row" class="odd"><td>mp-1180226</td><td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td><td>Pbcm</td><td>-1.047</td><td class="sorting_1">0.266</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>105.833</td><td>8</td><td>2.447</td><td><input id="mp-1180226" type="checkbox"></td></tr><tr role="row" class="even"><td>mp-1180210</td><td><span class="chemform">NaO<sub>5</sub></span></td><td>C2/m</td><td>-0.113</td><td class="sorting_1">0.341</td><td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning" data-toggle="tooltip" title="" data-original-title="gap value is approximate and using a loose k-point mesh"><span class="typcn typcn-warning"></span></span></td><td>169.445</td><td>12</td><td>2.019</td><td><input id="mp-1180210" type="checkbox"></td></tr></tbody>
-                        </table><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 20 of 20 entries</div><div class="dataTables_paginate paging_bootstrap pagination" id="DataTables_Table_0_paginate"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li class="next disabled"><a href="#">Next → </a></li></ul></div></div>
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline no-footer">
+                            <div class="DTTT_container"><a class="DTTT_button DTTT_button_copy btn"
+                                                           id="ToolTables_DataTables_Table_0_0"><span>Copy</span>
+                                <div style="position: absolute; left: 0px; top: 0px; width: 51px; height: 30px; z-index: 99;">
+                                    <embed id="ZeroClipboard_TableToolsMovie_1"
+                                           src="components/datatables-tabletools/media/swf/copy_csv_xls_pdf.swf"
+                                           loop="false" menu="false" quality="best" bgcolor="#ffffff" width="51"
+                                           height="30" name="ZeroClipboard_TableToolsMovie_1" align="middle"
+                                           allowscriptaccess="always" allowfullscreen="false"
+                                           type="application/x-shockwave-flash"
+                                           pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                           flashvars="id=1&amp;width=51&amp;height=30" wmode="transparent">
+                                </div>
+                            </a><a class="DTTT_button DTTT_button_print btn" id="ToolTables_DataTables_Table_0_1"
+                                   title="View print view"><span>Print</span></a><a
+                                    class="DTTT_button DTTT_button_collection btn" id="ToolTables_DataTables_Table_0_2"><span>Export</span></a>
+                            </div>
+                            <div class="ColVis">
+                                <button class="ColVis_Button ColVis_MasterButton btn"><span>Show / hide columns</span>
+                                </button>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="dataTables_length" id="DataTables_Table_0_length"><label><select
+                                    name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class=""
+                                    style="display: none;">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                                <div class="btn-group bootstrap-select" style="width: 70px;">
+                                    <button type="button" class="btn dropdown-toggle selectpicker dropdown"
+                                            data-toggle="dropdown"><span class="filter-option pull-left">100</span>&nbsp;<span
+                                            class="caret"></span></button>
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner selectpicker" role="menu">
+                                            <li rel="0"><a tabindex="0" class="" style=""><span class="text">10</span><i
+                                                    class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+                                            <li rel="1"><a tabindex="0" class="" style=""><span class="text">25</span><i
+                                                    class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+                                            <li rel="2"><a tabindex="0" class="" style=""><span class="text">50</span><i
+                                                    class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+                                            <li rel="3" class="selected"><a tabindex="0" class="" style=""><span
+                                                    class="text">100</span><i
+                                                    class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                records per page</label>
+                                <div class="btn-group">
+                                    <button id="select" class="btn btn-small fontastic-check-1"> Batch Structures
+                                    </button>
+                                    <button id="edit" class="btn btn-small fontastic-edit-pen-1" disabled="disabled">
+                                        Edit Structures
+                                    </button>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-striped table-hover fixed dataTable no-footer"
+                                   id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Materials Id: activate to sort column ascending">
+                                        Materials Id
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Formula: activate to sort column ascending">Formula
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Spacegroup: activate to sort column ascending">
+                                        Spacegroup
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Formation Energy (eV): activate to sort column ascending">Formation
+                                        Energy (eV)
+                                    </th>
+                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="E Above Hull (eV): activate to sort column ascending">E Above Hull
+                                        (eV)
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Band Gap (eV): activate to sort column ascending">Band
+                                        Gap (eV)
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Volume: activate to sort column ascending">Volume
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Nsites: activate to sort column ascending">Nsites
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                        colspan="1" aria-label="Density (gm/cc): activate to sort column ascending">
+                                        Density (gm/cc)
+                                    </th>
+                                    <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
+                                        style="width: 4%;"><span class="fontastic-edit-pen-1"></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr role="row" class="odd">
+                                    <td>mp-1901</td>
+                                    <td><span class="chemform">NaO<sub>2</sub></span></td>
+                                    <td>Pnnm</td>
+                                    <td>-0.907</td>
+                                    <td class="sorting_1">0</td>
+                                    <td>0.000</td>
+                                    <td>83.383</td>
+                                    <td>6</td>
+                                    <td>2.19</td>
+                                    <td><input id="mp-1901" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-2340</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td>
+                                    <td>P<span style="text-decoration:overline;">6</span>2m</td>
+                                    <td>-1.312</td>
+                                    <td class="sorting_1">0</td>
+                                    <td>1.736</td>
+                                    <td>153.906</td>
+                                    <td>12</td>
+                                    <td>2.524</td>
+                                    <td><input id="mp-2340" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-2352</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O</span></td>
+                                    <td>Fm<span style="text-decoration:overline;">3</span>m</td>
+                                    <td>-1.454</td>
+                                    <td class="sorting_1">0</td>
+                                    <td>1.874</td>
+                                    <td>43.789</td>
+                                    <td>3</td>
+                                    <td>2.35</td>
+                                    <td><input id="mp-2352" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1204051</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O<sub>9</sub></span></td>
+                                    <td>P2<sub>1</sub>/c</td>
+                                    <td>-0.475</td>
+                                    <td class="sorting_1">0.02</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>711.013</td>
+                                    <td>44</td>
+                                    <td>1.775</td>
+                                    <td><input id="mp-1204051" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-614</td>
+                                    <td><span class="chemform">NaO<sub>2</sub></span></td>
+                                    <td>Pa<span style="text-decoration:overline;">3</span></td>
+                                    <td>-0.887</td>
+                                    <td class="sorting_1">0.02</td>
+                                    <td>0.000</td>
+                                    <td>168.459</td>
+                                    <td>12</td>
+                                    <td>2.168</td>
+                                    <td><input id="mp-614" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1180346</td>
+                                    <td><span class="chemform">NaO<sub>2</sub></span></td>
+                                    <td>Pbca</td>
+                                    <td>-0.882</td>
+                                    <td class="sorting_1">0.025</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>313.791</td>
+                                    <td>24</td>
+                                    <td>2.328</td>
+                                    <td><input id="mp-1180346" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-755072</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O</span></td>
+                                    <td>Pnnm</td>
+                                    <td>-1.418</td>
+                                    <td class="sorting_1">0.037</td>
+                                    <td>1.030</td>
+                                    <td>101.888</td>
+                                    <td>6</td>
+                                    <td>2.02</td>
+                                    <td><input id="mp-755072" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1119338</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O</span></td>
+                                    <td>P<span style="text-decoration:overline;">6</span>2m</td>
+                                    <td>-1.378</td>
+                                    <td class="sorting_1">0.076</td>
+                                    <td>1.625<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>121.174</td>
+                                    <td>9</td>
+                                    <td>2.548</td>
+                                    <td><input id="mp-1119338" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-1180165</td>
+                                    <td><span class="chemform">NaO<sub>2</sub></span></td>
+                                    <td>Pbca</td>
+                                    <td>-0.829</td>
+                                    <td class="sorting_1">0.078</td>
+                                    <td>0.028<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>313.474</td>
+                                    <td>24</td>
+                                    <td>2.33</td>
+                                    <td><input id="mp-1180165" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-22464</td>
+                                    <td><span class="chemform">NaO<sub>3</sub></span></td>
+                                    <td>Imm2</td>
+                                    <td>-0.601</td>
+                                    <td class="sorting_1">0.079</td>
+                                    <td>0.578</td>
+                                    <td>55.672</td>
+                                    <td>4</td>
+                                    <td>2.117</td>
+                                    <td><input id="mp-22464" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-755413</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O</span></td>
+                                    <td>R<span style="text-decoration:overline;">3</span>m</td>
+                                    <td>-1.375</td>
+                                    <td class="sorting_1">0.079</td>
+                                    <td>1.091</td>
+                                    <td>98.924</td>
+                                    <td>6</td>
+                                    <td>2.081</td>
+                                    <td><input id="mp-755413" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-776952</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O</span></td>
+                                    <td>P3</td>
+                                    <td>-1.375</td>
+                                    <td class="sorting_1">0.08</td>
+                                    <td>1.509</td>
+                                    <td>123.223</td>
+                                    <td>9</td>
+                                    <td>2.506</td>
+                                    <td><input id="mp-776952" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-1220954</td>
+                                    <td><span class="chemform">NaO<sub>2</sub></span></td>
+                                    <td>R<span style="text-decoration:overline;">3</span>m</td>
+                                    <td>-0.79</td>
+                                    <td class="sorting_1">0.117</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>37.143</td>
+                                    <td>3</td>
+                                    <td>2.458</td>
+                                    <td><input id="mp-1220954" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1173794</td>
+                                    <td><span class="chemform">Na<sub>6</sub>O</span></td>
+                                    <td>Cmm2</td>
+                                    <td>-0.481</td>
+                                    <td class="sorting_1">0.142</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>744.362</td>
+                                    <td>21</td>
+                                    <td>1.03</td>
+                                    <td><input id="mp-1173794" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-1201981</td>
+                                    <td><span class="chemform">NaO<sub>8</sub></span></td>
+                                    <td>P2<sub>1</sub>/c</td>
+                                    <td>-0.121</td>
+                                    <td class="sorting_1">0.182</td>
+                                    <td>0.044<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>621.133</td>
+                                    <td>36</td>
+                                    <td>1.615</td>
+                                    <td><input id="mp-1201981" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1094115</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td>
+                                    <td>Cmcm</td>
+                                    <td>-1.111</td>
+                                    <td class="sorting_1">0.201</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>50.675</td>
+                                    <td>4</td>
+                                    <td>2.555</td>
+                                    <td><input id="mp-1094115" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-1061395</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td>
+                                    <td>Pm<span style="text-decoration:overline;">3</span>m</td>
+                                    <td>-1.088</td>
+                                    <td class="sorting_1">0.225</td>
+                                    <td>0.000</td>
+                                    <td>24.051</td>
+                                    <td>2</td>
+                                    <td>2.692</td>
+                                    <td><input id="mp-1061395" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1180536</td>
+                                    <td><span class="chemform">NaO<sub>8</sub></span></td>
+                                    <td>P2<sub>1</sub>/c</td>
+                                    <td>-0.067</td>
+                                    <td class="sorting_1">0.235</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>596.97</td>
+                                    <td>36</td>
+                                    <td>1.68</td>
+                                    <td><input id="mp-1180536" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td>mp-1180226</td>
+                                    <td><span class="chemform">Na<sub>2</sub>O<sub>2</sub></span></td>
+                                    <td>Pbcm</td>
+                                    <td>-1.047</td>
+                                    <td class="sorting_1">0.266</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>105.833</td>
+                                    <td>8</td>
+                                    <td>2.447</td>
+                                    <td><input id="mp-1180226" type="checkbox"></td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td>mp-1180210</td>
+                                    <td><span class="chemform">NaO<sub>5</sub></span></td>
+                                    <td>C2/m</td>
+                                    <td>-0.113</td>
+                                    <td class="sorting_1">0.341</td>
+                                    <td>0.000<span class="pull-right label-bg warning-tooltip label-bg-warning"
+                                                   data-toggle="tooltip" title=""
+                                                   data-original-title="gap value is approximate and using a loose k-point mesh"><span
+                                            class="typcn typcn-warning"></span></span></td>
+                                    <td>169.445</td>
+                                    <td>12</td>
+                                    <td>2.019</td>
+                                    <td><input id="mp-1180210" type="checkbox"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                Showing 1 to 20 of 20 entries
+                            </div>
+                            <div class="dataTables_paginate paging_bootstrap pagination"
+                                 id="DataTables_Table_0_paginate">
+                                <ul>
+                                    <li class="prev disabled"><a href="#">← Previous</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li class="next disabled"><a href="#">Next → </a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                </div></div>
-
+                </div>
+            </div>
 
 
             <!--<div id="results">-->
@@ -5521,6 +5745,7 @@
 
 </footer>
 <!-- Manged at https://cdn.fontawesome.com by dwinston-->
-<script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
+<!--<script src="js/fd3b9caec8.js"></script>-->
+<!--<script src="https://cdn.fontawesome.com/js/stats.js"></script>-->
 </body>
 </html>
