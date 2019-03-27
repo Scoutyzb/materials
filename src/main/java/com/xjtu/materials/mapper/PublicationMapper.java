@@ -36,4 +36,6 @@ public interface PublicationMapper {
     List<Publication> selectLikeUName(String uName);
 
     List<Publication> selectLikeType(String typeName);
+
+    List<String> selectByUserId(String userId);
 }

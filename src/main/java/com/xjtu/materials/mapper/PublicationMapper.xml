@@ -307,4 +307,10 @@
     WHERE publication.publicationType LIKE #{param,jdbcType=VARCHAR};
   </select>
 
+  <select id="selectByUserId" resultType="java.lang.String">
+    SELECT publicationName
+    FROM log,publication
+    WHERE log.userID=#{param,jdbcType=VARCHAR} AND log.logType="Publication" AND log.paramID=publication.publicationID;
+  </select>
+
 </mapper>

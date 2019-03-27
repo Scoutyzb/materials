@@ -246,4 +246,10 @@
     FROM uploadmaterial
     WHERE uploadmaterial.materialName LIKE #{param,jdbcType=VARCHAR};
   </select>
+
+  <select id="selectByUserId" resultType="java.lang.String">
+    SELECT uploadmaterial.materialName
+    FROM log,uploadmaterial
+    WHERE log.userID = #{param,jdbcType=VARCHAR} AND log.logType="UpLoadMaterial" AND uploadmaterial.materialID=log.paramID;
+  </select>
 </mapper>

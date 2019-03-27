@@ -1,12 +1,22 @@
 package com.xjtu.materials.controller;
 
+import com.xjtu.materials.pojo.Log;
 import com.xjtu.materials.pojo.Publication;
+import com.xjtu.materials.pojo.UpLoadMaterial;
+import com.xjtu.materials.service.IndexService;
 import com.xjtu.materials.service.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,6 +29,8 @@ public class ForeController {
 
     @Autowired
     PublicationService publicationService;
+    @Autowired
+    IndexService indexService;
 
     /**
      * @Description 首页
@@ -35,15 +47,33 @@ public class ForeController {
     public String searchPage1() {
         return "foreWeb/searchPage1";
     }
+//    @RequestMapping(value = "/upload_cif", method= RequestMethod.POST, produces="application/json;charset=utf-8")
+////    public String upload_cif(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
+////        String username = (String) session.getAttribute("UserName");
+////        String userID = (String) session.getAttribute("UserId");
+////
+////        if (username == null){
+////            return "login";
+////        }
+////        String objectID = filePathService.Upload(file,name,username);
+////        logService.UploadLog(userID,objectID);
+////        return "upload";
+////    }
 
     @RequestMapping("/index1")
-    public String index1() {
-        return "foreWeb/index";
-    }
+    public ModelAndView index(HttpSession session, HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("foreWeb/index1");
 
-    @RequestMapping("/index2")
-    public String index2() {
-        return "foreWeb/index1";
+        String userName = (String)session.getAttribute("UserName");
+        String userId = (String)session.getAttribute("UserId");
+        List<String> Materials = indexService.findMaterial(userId);
+        List<String> Publications = indexService.Publications(userId);
+        List<Log> Logs = indexService.Logs(userId);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Publications", Publications);
+        mv.addObject("Logs", Logs);
+        return mv;
     }
 
     /**

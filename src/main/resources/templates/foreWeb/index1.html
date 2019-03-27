@@ -72,57 +72,117 @@
                 <button type="button" class="btn btn-info btn-lg" onclick="location.href='/searchPage1?name='">Crystal
                     Structure<br>晶体结构模块
                 </button>
+                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                 <button type="button" class="btn btn-info btn-lg" onclick="location.href='/website/electron'">Electronic
                     Structures<br>晶体电子结构模块
                 </button>
+                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                 <button type="button" class="btn btn-info btn-lg">Phonon Dispersions<br> 晶体声子谱模块</button>
+                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                 <button type="button" class="btn btn-info btn-lg">  Thermodynamics  <br>晶体热力学性质模块</button>
+                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
                 <button type="button" class="btn btn-info btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elasticity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>力学性质模块
                 </button>
             </div>
         </div>
 
         <section id="about-intro">
-            <div class="row">
-                <h1 class="text-center">About the Materials Project</h1>
-            </div>
+            <!--<div class="row">-->
+                <!--<h1 class="text-center">About the Materials Project</h1>-->
+            <!--</div>-->
 
             <div class="row">
                 <div class="span4">
-                    <center class="graphic">
-                        <img src="/images/gfx/Software-01.dd6466bd1f09.png" />
+                    <!--<center class="graphic">-->
+                        <!--<img src="/images/gfx/Software-01.dd6466bd1f09.png" />-->
+                        <!--<p class="text-center">新闻热点</p>-->
                         <div class="stage"></div>
-                    </center>
+                    <!--</center>-->
                     <div class="text-info">
-                        <h4 class="text-center">software</h4>
-                        <p class="lead">
-                            By computing properties of all known materials, the Materials Project aims to remove guesswork from materials design in a variety of applications. Experimental research can be targeted to the most promising compounds from computational data sets. Researchers will be able to data-mine scientific trends in materials properties.
-                            By providing materials researchers with the information they need to design better,
-                            the Materials Project aims to accelerate innovation in materials research.</p>
+                        <h4 class="text-center">新闻热点</h4>
+                        March 11, 2019:
+                        <strong>New App to Predict Interface Reactions Between Solids</strong> <br>
+                        <p>We are proud to officially launch an application that calculates possible interface reactions between solids using
+                            thermodynamic driving forces. <a href="https://materialsproject.org/static/newsletter/announce-interfacerxns.html" target="_blank">More
+                                info</a>.</p>
+
+                        Feb. 13, 2019:
+                        <strong>Database V2019.02 Released</strong> <br>
+                        <p>We have added over 47,000 new compounds! We also improved feedback on structure submission via the Crystal Toolkit. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
+                            info</a> coming soon.</p>
+
+                        Nov. 1, 2018:
+                        <strong>Database V2018.11 Released</strong> <br>
+                        <p>In this major release, we have changed the grouping of magnetic materials and
+                            fixed many display/labeling issues. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
+                                info</a>.</p>
+
+                        Aug. 23, 2018:
+                        <strong>MP book chapter released</strong> <br>
+                        <p>Our contributed chapter to Springer's <a href="https://doi.org/10.1007/978-3-319-42913-7" target="_blank">Handbook of Materials
+                            Modeling</a> has been <a href="https://doi.org/10.1007/978-3-319-42913-7_60-1" target="_blank">released
+                            online</a>.</p>
+
+                        Aug. 3, 2018:
+                        <strong>X-Ray Absorption Spectra: Browse, Compare, and Automatically Match</strong> <br>
+                        <p>We now have more than 500,000 K-edge X-ray absorption near edge (XANES) spectra
+                            for more than 50,000 unique materials. <a href="https://materialsproject.org/static/newsletter/announce-xas.html" target="_blank">More
+                                info</a>.</p>
                     </div>
                 </div>
                 <div class="span4">
-                    <center class="graphic">
-                        <img src="/images/gfx/Supercomputers-01.9842ea8ff8a1.png" />
+                    <!--<center class="graphic">-->
+                        <!--<img src="/images/gfx/Supercomputers-01.9842ea8ff8a1.png" />-->
                         <div class="stage"></div>
-                    </center>
+                    <!--</center>-->
                     <div class="text-info">
-                        <h4 class="text-center">supercomputers</h4>
-                        <p class="lead">
-                            Supercomputing clusters at national laboratories provide the infrastructure that enables our computations, data, and algorithms to run at unparalleled speed. We principally use the Lawrence Berkeley National Laboratory's <a href="//www.nersc.gov/">NERSC</a> Scientific Computing Center and Computational Research Division, but we are also active with Oak Ridge's <a href="//www.olcf.ornl.gov/">OLCF</a>, Argonne's <a href="//www.alcf.anl.gov/">ALCF</a>, and San Diego's <a href="//www.sdsc.edu/">SDSC</a>.
-                        </p>
+                        <h4 class="text-center">推荐材料</h4>
+                        <div class="ibox-content">
+                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center;">序号</th>
+                                    <th style="text-align: center;">材料名</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="gradeX" th:each="Material : ${Materials}">
+                                    <td style="text-align: center;"
+                                        th:text="${MaterialStat.index+1 }"></td>
+
+                                    <td style="text-align: center;" th:text="${Material}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
                 <div class="span4">
-                    <center class="graphic">
-                        <img src="/images/gfx/Synthesis-01.5c446078df0d.png" />
+                    <!--<center class="graphic">-->
+                        <!--<img src="/images/gfx/Synthesis-01.5c446078df0d.png" />-->
                         <div class="stage"></div>
-                    </center>
+                    <!--</center>-->
                     <div class="text-info">
-                        <h4 class="text-center">screening</h4>
-                        <p class="lead">
-                            Computational materials science is now powerful enough that it can predict many properties of materials before those materials are ever synthesized in the lab. By scaling materials computations over supercomputing clusters, we have predicted several new battery materials which were made and tested in the lab. Recently, we have also identified new transparent conducting oxides and thermoelectric materials using this approach.
-                        </p>
+                        <h4 class="text-center">推荐文献</h4>
+                        <div class="ibox-content">
+                            <table class="table table-striped table-bordered table-hover dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center;">序号</th>
+                                    <th style="text-align: center;">文献名</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="gradeX" th:each="Publication : ${Publications}">
+                                    <td style="text-align: center;"
+                                        th:text="${PublicationStat.index+1 }"></td>
+
+                                    <td style="text-align: center;" th:text="${Publication}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,15 +193,35 @@
     <div class="container">
         <div class="row padded">
             <div class="span6" id="open-source">
-                <h2>Open APIs</h2>
-                <p>For information about our materials API and pymatgen analysis code, please check our <a href="/open">API page</a> and visit the <a href="https://materialsproject.github.io/fireworks/">Fireworks page</a> for details about our open source scientific workflow software.</p>
+                <h2>历史记录</h2>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">序号</th>
+                            <th style="text-align: center;">操作人ID</th>
+                            <th style="text-align: center;">操作类型</th>
+                            <th style="text-align: center;">操作时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="gradeX" th:each="Log : ${Logs}">
+                            <td style="text-align: center;"
+                                th:text="${LogStat.index+1 }"></td>
+                            <td style="text-align: center;" th:text="${Log.userid}"></td>
+                            <td style="text-align: center;" th:text="${Log.method}"></td>
+                            <td style="text-align: center;" th:text="${Log.logtime}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="span6">
-                <h2>Get In Touch</h2>
+                <h2>图标统计</h2>
                 <p class="text-center">
-                    Questions? Feedback? We'd love to hear from you via our
-                    <a href="https://discuss.materialsproject.org"
-                       target="_blank">discussion forum</a>.
+                <div id="dos-graph">
+                    <img src="/images/electronic_structure/bandstructure/plot/mp-1901.png" />
+                </div>
                 </p>
             </div>
         </div>
@@ -154,32 +234,32 @@
     <hr>
     <ul class="text-center inline">
         <li>
-            <a href="/about">About</a>
+            <a href="/about">关于</a>
         </li>
         <li>
-            <a class="" href="https://discuss.materialsproject.org" target="_blank">
-                Forum
+            <a class="" href="" target="_blank">
+                论坛
             </a>
 
         </li>
         <li>
-            <a href="/citing">Citing</a>
+            <a href="/citing">引用</a>
         </li>
         <li>
-            <a href="/terms">Terms of Use</a>
+            <a href="/terms">我们的团队</a>
         </li>
         <li>
             <a href="/open">API</a>
         </li>
     </ul>
-    <div class="pad-top row text-center">
-        <small>
-            Powered by <a href="http://pymatgen.org">pymatgen</a>,
-            <a href="https://materialsproject.github.io/custodian">custodian</a>,
-            <a href="https://materialsproject.github.io/fireworks">fireworks</a>,
-            and <a href="https://hackingmaterials.github.io/atomate">atomate</a>.
-        </small>
-    </div>
+    <!--<div class="pad-top row text-center">-->
+    <!--<small>-->
+    <!--由 <a href="http://pymatgen.org">pymatgen</a>,-->
+    <!--<a href="https://materialsproject.github.io/custodian">custodian</a>,-->
+    <!--<a href="https://materialsproject.github.io/fireworks">fireworks</a>,-->
+    <!--and <a href="https://hackingmaterials.github.io/atomate">atomate</a>.-->
+    <!--</small>-->
+    <!--</div>-->
 
 </footer>
 <!-- Manged at https://cdn.fontawesome.com by dwinston-->

@@ -32,4 +32,7 @@ public interface UpLoadMaterialMapper {
     int updateByPrimaryKey(UpLoadMaterial record);
 
     List<UpLoadMaterial> selectLikeStr(String str);
+
+    List<String> selectByUserId(String userId);
+
 }

@@ -255,4 +255,10 @@
       logType = #{logtype,jdbcType=VARCHAR}
     where logID = #{logid,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByUserId" resultType="com.xjtu.materials.pojo.Log">
+    SELECT *
+    FROM log
+    WHERE log.userID=#{param,jdbcType=VARCHAR};
+  </select>
 </mapper>
