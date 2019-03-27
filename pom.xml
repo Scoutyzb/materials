@@ -100,6 +100,26 @@
                     <include>**/mapper/*Mapper.xml</include>
                 </includes>
             </resource>
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<filtering>true</filtering>-->
+                <!--<excludes>-->
+                    <!--<exclude>static/report/**</exclude>-->
+                    <!--<exclude>**/*.woff</exclude>-->
+                    <!--<exclude>**/*.woff2</exclude>-->
+                    <!--<exclude>**/*.ttf</exclude>-->
+                <!--</excludes>-->
+            <!--</resource>-->
+            <!--<resource>-->
+                <!--<directory>src/main/resources</directory>-->
+                <!--<filtering>false</filtering>-->
+                <!--<includes>-->
+                    <!--<include>static/report/**</include>-->
+                    <!--<include>**/*.woff</include>-->
+                    <!--<include>**/*.woff2</include>-->
+                    <!--<include>**/*.ttf</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
         </resources>
 
         <plugins>
@@ -116,7 +136,37 @@
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-resources-plugin</artifactId>-->
+                <!--<version>3.1.0</version>-->
+                <!--<configuration>-->
+                    <!--<includeEmptyDirs>true</includeEmptyDirs>-->
+                    <!--&lt;!&ndash; 不添加此节点，编译时会修改损坏字体的二进制文件 &ndash;&gt;-->
+                    <!--<resources>-->
+                        <!--<resource>-->
+                            <!--<directory>src/main/resources</directory>-->
+                            <!--<filtering>true</filtering>-->
+                            <!--<excludes>-->
+                                <!--<exclude>**/*.woff</exclude>-->
+                                <!--<exclude>**/*.woff2</exclude>-->
+                                <!--<exclude>**/*.ttf</exclude>-->
+                            <!--</excludes>-->
+                        <!--</resource>-->
+                        <!--<resource>-->
+                            <!--<directory>src/main/resources</directory>-->
+                            <!--<filtering>false</filtering>-->
+                            <!--<includes>-->
+                                <!--<include>**/*.woff</include>-->
+                                <!--<include>**/*.woff2</include>-->
+                                <!--<include>**/*.ttf</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</resources>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
+
 
     </build>
 </project>

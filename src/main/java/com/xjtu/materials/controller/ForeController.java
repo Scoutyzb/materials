@@ -1,6 +1,7 @@
 package com.xjtu.materials.controller;
 
 import com.xjtu.materials.pojo.Log;
+import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.service.IndexService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,9 @@ public class ForeController {
     PublicationService publicationService;
     @Autowired
     IndexService indexService;
+    @Autowired
+    UpLoadMaterialMapper upLoadMaterialMapper;
+
 
     /**
      * @Description 首页
@@ -98,7 +103,17 @@ public class ForeController {
      * @return java.lang.String
      */
     @RequestMapping("/crystalStructure1")
-    public String crystalStructure1() {
-        return "foreWeb/crystalStructure1";
+    public ModelAndView crystalStructure1(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("/foreWeb/crystalStructure1");
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+
+        mv.addObject("materialName", materialName);
+
+        return mv;
+    }
+
+    @RequestMapping("/get_default_app")
+    public ModelAndView get_default_app() {
+        return null;
     }
 }
