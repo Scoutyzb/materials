@@ -1,24 +1,18 @@
 package com.xjtu.materials.controller;
 
-import com.xjtu.materials.pojo.Log;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.pojo.Log;
 import com.xjtu.materials.pojo.Publication;
-import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.service.IndexService;
 import com.xjtu.materials.service.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -114,6 +108,9 @@ public class ForeController {
 
     @RequestMapping("/get_default_app")
     public ModelAndView get_default_app() {
-        return null;
-    }
+    return null;
 }
+
+//    /fore/paper
+//    /paper
+            }

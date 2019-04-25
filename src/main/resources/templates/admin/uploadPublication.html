@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Upload</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/upload/body.css">
+    <link rel="stylesheet" type="text/css"  href="/css/style1.css"/>
+    <!--layUI-->
+    <link rel="stylesheet" type="text/css"  href="/css/layui.css"/>
+
+    <link rel="stylesheet" href='stylesheets/less/compiled/nucleus.5db1710fde48.css' charset="utf-8">
+    <link rel="stylesheet" href='stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/animate.b59dfce2ff0e.css">
+
+    <script src="/js/layui.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+<h1 style="color: #DAA520; margin-top: 100px;">上传文献端口：</h1>
+<br/>
+<form action="/upload_publication" class="form-login" method="post" enctype="multipart/form-data">
+<p>请输入文献名称:</p>
+<input type="text" class="form-control" name="fileName" />
+<p>请输入文献作者:</p>
+<input type="text" class="form-control" name="userName" />
+<p>请输入文献摘要:</p>
+<input type="text" class="form-control" name="abstractText" />
+<p>请输入文献标签:</p>
+<input type="text" class="form-control" name="type" />
+<p>请输入文献DIO:</p>
+<input type="text" class="form-control" name="DIO" />
+<p>请输入文献DIO网址:</p>
+<input type="text" class="form-control" name="adress" />
+<input id="submit_form1" type="submit" class="btn btn-success save" value="保存"/>
+</form>
+</div>
+
+</body>
+</html>

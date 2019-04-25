@@ -283,9 +283,7 @@ public class AdminController {
     @RequestMapping("/logPage")
     public ModelAndView logPage() {
         ModelAndView mv = new ModelAndView("admin/logPage");
-
         List<Log> logs = logService.getAllLog();
-
         mv.addObject("logs", logs);
 
         System.out.println(logs);
@@ -348,5 +346,16 @@ public class AdminController {
         //文献未通过审核
         logService.UploadPublicationsFailed(adminID,materialID);
         return "1";
+    }
+
+    @RequestMapping("/uploadCif")
+    public ModelAndView uploadCif() {
+        ModelAndView mv = new ModelAndView("admin/upLoadCif");
+        return mv;
+    }
+    @RequestMapping("/uploadPublication")
+    public ModelAndView uploadPublication() {
+        ModelAndView mv = new ModelAndView("admin/uploadPublication");
+        return mv;
     }
 }
