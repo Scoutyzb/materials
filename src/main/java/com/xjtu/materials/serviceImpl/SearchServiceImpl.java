@@ -1,14 +1,11 @@
 package com.xjtu.materials.serviceImpl;
 
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.xjtu.materials.pojo.Publication;
-import com.xjtu.materials.pojo.UpLoadMaterial;
+import com.xjtu.materials.mapper.PublicationMapper;
+import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.pojo.*;
 import com.xjtu.materials.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.xjtu.materials.mapper.UpLoadMaterialMapper;
-import com.xjtu.materials.mapper.PublicationMapper;
 
 import java.util.List;
 
@@ -66,5 +63,13 @@ public class SearchServiceImpl implements SearchService {
         String tName = "%"+type+"%";
         List<Publication> publications = publicationMapper.selectLikeType(tName);
         return publications;
+    }
+
+    @Override
+    public List<UpLoadMaterial> selectAll(){
+        UpLoadMaterialExample example = new UpLoadMaterialExample();
+        example.createCriteria().andMaterialidIsNotNull();
+        List<UpLoadMaterial> materials = upLoadMaterialMapper.selectByExample(example);
+        return materials;
     }
 }

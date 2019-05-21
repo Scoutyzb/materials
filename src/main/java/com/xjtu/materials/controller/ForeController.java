@@ -1,25 +1,25 @@
 package com.xjtu.materials.controller;
 
-import com.xjtu.materials.pojo.Log;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
+import com.xjtu.materials.pojo.Log;
 import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.service.IndexService;
 import com.xjtu.materials.service.PublicationService;
+import com.xjtu.materials.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Liang
@@ -35,6 +35,8 @@ public class ForeController {
     IndexService indexService;
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
+    @Autowired
+    SearchService searchService;
 
 
     /**
@@ -115,5 +117,20 @@ public class ForeController {
     @RequestMapping("/get_default_app")
     public ModelAndView get_default_app() {
         return null;
+    }
+
+    /**
+     * @Description ajax返回查询结果
+     * @Auther Liang
+     * @date 20:36 2019/3/31
+     * @return java.lang.String
+     */
+    @RequestMapping("/searchData")
+    @ResponseBody
+    public Object searchData() throws JsonProcessingException {
+        List<UpLoadMaterial> materials = searchService.selectAll();
+        Map<String,Object> returnMap=new HashMap<>();
+        returnMap.put("data", materials);
+        return returnMap;
     }
 }

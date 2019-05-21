@@ -274,8 +274,8 @@
     <script type="text/javascript">
         window.onload = function () {
             require(["base"], function () {
-                window.PATH = "/static/js/dist/";
-                window.STATIC_URL = "/static/";
+                window.PATH = "/js/dist/";
+                window.STATIC_URL = "/";
                 window.GROUPS = JSON.parse("[]");
                 window.SANDBOX = "core";
                 $("span.chemform").each(function () {
@@ -308,7 +308,12 @@
         })();
 
     </script>
-
+    <!--<script type="text/javascript">-->
+        <!--$("#submit-search").click(function() {-->
+            <!--window.location.href = "/fore";-->
+            <!--}-->
+        <!--)-->
+    <!--</script>-->
 </head>
 <!--<script src="js/admin/jquery.min.js"></script>-->
 <!--<script src="js/admin/bootstrap.min.js?v=3.3.6"></script>-->

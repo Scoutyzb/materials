@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SearchService {
     List<UpLoadMaterial> SelectByName(String[] names);
+    List<UpLoadMaterial> selectAll();
     List<Publication> SelectByPaperName(String paperName);
     List<Publication> SelectByUserName(String userName);
     List<Publication> SelectByType(String type);
