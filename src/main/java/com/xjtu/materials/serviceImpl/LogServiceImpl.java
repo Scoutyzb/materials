@@ -40,7 +40,7 @@ public class LogServiceImpl implements LogService {
         for (Log log : logs) {
             // 封装操作用户
             User user = userMapper.selectByPrimaryKey(log.getUserid());
-            // System.out.println(log.getUserid()+"--->"+user);
+            //System.out.println(log.getUserid()+"--->"+user);
             log.setOperator(user);
             // 封装被操作对象名
             log.setOperator(userMapper.selectByPrimaryKey(log.getUserid()));
@@ -54,7 +54,6 @@ public class LogServiceImpl implements LogService {
 
             log.setBeOperator(beOperator);
         }
-
         return logs;
     }
 

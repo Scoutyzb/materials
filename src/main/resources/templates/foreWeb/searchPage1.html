@@ -275,7 +275,7 @@
         window.onload = function () {
             require(["base"], function () {
                 window.PATH = "/js/dist/";
-                window.STATIC_URL = "/";
+                window.STATIC_URL = "/static/";
                 window.GROUPS = JSON.parse("[]");
                 window.SANDBOX = "core";
                 $("span.chemform").each(function () {
@@ -321,7 +321,7 @@
 
 <body>
 <header>
-    <div th:replace="foreWeb/index::nav"></div>
+    <div th:replace="foreWeb/index1::nav"></div>
 </header>
 
 

@@ -1,5 +1,6 @@
 package com.xjtu.materials.controller;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.Log;
@@ -134,3 +135,7 @@ public class ForeController {
         return returnMap;
     }
 }
+
+//    /fore/paper
+//    /paper
+    
