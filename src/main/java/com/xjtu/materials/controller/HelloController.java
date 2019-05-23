@@ -1,13 +1,12 @@
 package com.xjtu.materials.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
-import com.xjtu.materials.service.FilePathService;
-import com.xjtu.materials.service.LogService;
-import com.xjtu.materials.service.SearchService;
-import com.xjtu.materials.service.UserService;
+import com.xjtu.materials.service.*;
 import com.xjtu.materials.util.CSVUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +43,11 @@ public class HelloController {
     LogService logService;
     @Autowired
     UpLoadMaterialMapper upLoadMaterialMapper;
+    @Autowired
+    ChartService chartService;
+
+    // json处理工具
+    private ObjectMapper mapper = new ObjectMapper();
 
     /**
      * @Description 测试用
@@ -65,7 +69,7 @@ public class HelloController {
      * @return java.lang.String
      */
     @RequestMapping("/")
-    public ModelAndView hello() {
+    public ModelAndView hello() throws JsonProcessingException {
         ModelAndView mv = new ModelAndView("index");
         List<String> dataList = new ArrayList<String>();
         // 总台密度图
@@ -110,10 +114,31 @@ public class HelloController {
 
             }
         }
+        // 能带密度图
+        List<float[][]> data_band = chartService.getBandData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co Band Structure(2).csv");
+//        for (float[] data : data_band.get(0)) {
+//            for (int i = 0; i < 4; i++) {
+//                System.out.print(data[i] + " ");
+//            }
+//            System.out.println(" ");
+//        }
+        // 测试
+
+
+        int[][] ex1 = new int[][]{{1, 1}, {2, 2}, {3, 3}, {4, 5}};
+        int[][] ex2 = new int[][]{{1, 0}, {2, 0}, {3, 1}, {4, 2}};
+
+        List<int[][]> res = new ArrayList<>();
+        res.add(ex1);
+        res.add(ex2);
+
+
         mv.addObject("dataF", dataF);
         mv.addObject("data_fen_s", data_fen_s);
         mv.addObject("data_fen_p", data_fen_p);
         mv.addObject("data_fen_d", data_fen_d);
+        mv.addObject("data_band", data_band);
+        mv.addObject("res", res);
         return mv;
     }
 
