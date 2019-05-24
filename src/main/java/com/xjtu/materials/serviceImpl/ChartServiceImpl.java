@@ -23,7 +23,7 @@ public class ChartServiceImpl implements ChartService {
         float[][] temp1;
         float[][] temp2;
         if (data != null && !data.isEmpty()) {
-            for (int i = 0, j = 0; i < data.size(); i++) {
+            for (int i = 0; i < data.size(); i++) {
                 String s = data.get(i);
 
                 String[] as = s.split(",");
@@ -44,7 +44,6 @@ public class ChartServiceImpl implements ChartService {
                     data_band2.clear();
                     continue;
                 }
-                System.out.println(j);
                 if (as.length >= 2) {
                     data_band1.add(new float[]{Float.valueOf(as[0]), Float.valueOf(as[1])});
 //                    data_band1[j][0] = Float.valueOf(as[0]);
@@ -59,5 +58,59 @@ public class ChartServiceImpl implements ChartService {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<float[][]> getFenData(String address) {
+        List<float[][]> res = new ArrayList<>();
+        List<String> data_fen = new ArrayList<>();
+        data_fen = CSVUtils.importCsv(new File(address));
+        float[][] data_fen_s = new float[data_fen.size()][2];
+        float[][] data_fen_p = new float[data_fen.size()][2];
+        float[][] data_fen_d = new float[data_fen.size()][2];
+        if (data_fen != null && !data_fen.isEmpty()) {
+            for (int j = 0; j < data_fen.size(); j++) {
+                String s = data_fen.get(j);
+                String[] as = s.split(",");
+                if (as.length >= 2) {
+                    data_fen_s[j][0] = Float.valueOf(as[0]);
+                    data_fen_s[j][1] = Float.valueOf(as[1]);
+                }
+                if (as.length >= 4) {
+                    data_fen_p[j][0] = Float.valueOf(as[2]);
+                    data_fen_p[j][1] = Float.valueOf(as[3]);
+                }
+                if (as.length >= 6) {
+                    data_fen_d[j][0] = Float.valueOf(as[4]);
+                    data_fen_d[j][1] = Float.valueOf(as[5]);
+                }
+
+            }
+        }
+        res.add(data_fen_s);
+        res.add(data_fen_p);
+        res.add(data_fen_d);
+        return res;
+    }
+
+    @Override
+    public float[][] getZongData(String addrenss) {
+        List<String> dataList = new ArrayList<String>();
+        dataList = CSVUtils.importCsv(new File(addrenss));
+        float[][] dataZong = new float[dataList.size()][2];
+        if (dataList != null && !dataList.isEmpty()) {
+            for (int i = 0; i < dataList.size(); i++) {
+                if (i != 0) {//不读取第一行
+                    String s = dataList.get(i);
+//                    System.out.println("第i行:" + s);
+                    String[] as = s.split(",");
+                    dataZong[i][0] = Float.valueOf(as[0]);
+                    dataZong[i][1] = Float.valueOf(as[1]);
+//                    System.out.println(dataZong[i][0]);
+//                    System.out.println(dataZong[i][1]);
+                }
+            }
+        }
+        return dataZong;
     }
 }

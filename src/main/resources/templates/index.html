@@ -85,14 +85,14 @@
 <!-- 能带分布图 -->
 <div id = "main2" style = "width: 600px;height:400px;">
 </div>
-<!-- 测试 -->
-<div id = "mainTest" style = "width: 600px;height:400px;">
-</div>
+<!--&lt;!&ndash; 测试 &ndash;&gt;-->
+<!--<div id = "mainTest" style = "width: 600px;height:400px;">-->
+<!--</div>-->
 </body>
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
-    var dataList = [[${dataF}]];
+    var dataZong = [[${dataZong}]];
     // console.log("数据：" + dataList);
     // 指定图表的配置项和数据
     var option = {
@@ -122,7 +122,7 @@
         series: [{
             type: 'line',
             smooth: true,
-            data: dataList
+            data: dataZong
         }]
     };
 
@@ -230,66 +230,66 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option_band);
 </script>
-<script th:inline="javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart1 = echarts.init(document.getElementById('mainTest'));
-    var res = [[${res}]];
-    console.log("res：" + res);
-    console.log("reslength：" + res.length);
-    console.log("type：" + typeof(res));
-    var seriesData = [];
-    for (var i = 0; i < res.length; i++) {
-        var obj = new Object();
-        obj.type = 'line';
-        obj.data = res[i];
-        seriesData[i] = obj;
-    }
-    // 指定图表的配置项和数据
-    var option_test = {
-        title: {
-            text: '总态密度图'
-        },
-        tooltip: {},
-        xAxis: {},
-        yAxis: {},
-        dataZoom: [
-            {
-                type: 'inside',
-                xAxisIndex: [0],
-                start: 0,
-                end: 100
-            },
-            {
-                type: 'inside',
-                yAxisIndex: [0],
-                start: 0,
-                end: 100
-            }
-        ],
+<!--<script th:inline="javascript">-->
+    <!--// 基于准备好的dom，初始化echarts实例-->
+    <!--var myChart1 = echarts.init(document.getElementById('mainTest'));-->
+    <!--var res = [[${res}]];-->
+    <!--console.log("res：" + res);-->
+    <!--console.log("reslength：" + res.length);-->
+    <!--console.log("type：" + typeof(res));-->
+    <!--var seriesData = [];-->
+    <!--for (var i = 0; i < res.length; i++) {-->
+        <!--var obj = new Object();-->
+        <!--obj.type = 'line';-->
+        <!--obj.data = res[i];-->
+        <!--seriesData[i] = obj;-->
+    <!--}-->
+    <!--// 指定图表的配置项和数据-->
+    <!--var option_test = {-->
+        <!--title: {-->
+            <!--text: '总态密度图'-->
+        <!--},-->
+        <!--tooltip: {},-->
+        <!--xAxis: {},-->
+        <!--yAxis: {},-->
+        <!--dataZoom: [-->
+            <!--{-->
+                <!--type: 'inside',-->
+                <!--xAxisIndex: [0],-->
+                <!--start: 0,-->
+                <!--end: 100-->
+            <!--},-->
+            <!--{-->
+                <!--type: 'inside',-->
+                <!--yAxisIndex: [0],-->
+                <!--start: 0,-->
+                <!--end: 100-->
+            <!--}-->
+        <!--],-->
 
-        series: seriesData
+        <!--series: seriesData-->
 
-        //     [
-        //
-        //     {
-        //         "type":"line",
-        //         "data":[
-        //             [1,1],[2,2],[3,3],[4,5]
-        //         ]
-        //     },
-        //     {
-        //         type:"line",
-        //         data:[
-        //             [1,0],[2,0],[3,1],[4,2]
-        //         ]
-        //     }
-        // ]
+        <!--//     [-->
+        <!--//-->
+        <!--//     {-->
+        <!--//         "type":"line",-->
+        <!--//         "data":[-->
+        <!--//             [1,1],[2,2],[3,3],[4,5]-->
+        <!--//         ]-->
+        <!--//     },-->
+        <!--//     {-->
+        <!--//         type:"line",-->
+        <!--//         data:[-->
+        <!--//             [1,0],[2,0],[3,1],[4,2]-->
+        <!--//         ]-->
+        <!--//     }-->
+        <!--// ]-->
 
-    };
+    <!--};-->
 
-    // 使用刚指定的配置项和数据显示图表。
-    myChart1.setOption(option_test);
-</script>
+    <!--// 使用刚指定的配置项和数据显示图表。-->
+    <!--myChart1.setOption(option_test);-->
+<!--</script>-->
 <script>
     // $.backstretch("/img/timg.jpg", {speed: 0});
 </script>

@@ -7,7 +7,6 @@ import com.xjtu.materials.pojo.Publication;
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.User;
 import com.xjtu.materials.service.*;
-import com.xjtu.materials.util.CSVUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -71,74 +69,32 @@ public class HelloController {
     @RequestMapping("/")
     public ModelAndView hello() throws JsonProcessingException {
         ModelAndView mv = new ModelAndView("index");
-        List<String> dataList = new ArrayList<String>();
-        // 总台密度图
-        dataList = CSVUtils.importCsv(new File("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co DOS.csv"));
-        float[][] dataF = new float[dataList.size()][2];
-        if (dataList != null && !dataList.isEmpty()) {
-            for (int i = 0; i < dataList.size(); i++) {
-                if (i != 0) {//不读取第一行
-                    String s = dataList.get(i);
-//                    System.out.println("第i行:" + s);
-                    String[] as = s.split(",");
-                    dataF[i][0] = Float.valueOf(as[0]);
-                    dataF[i][1] = Float.valueOf(as[1]);
-//                    System.out.println(dataF[i][0]);
-//                    System.out.println(dataF[i][1]);
-                }
-            }
-        }
+        float[][] dataZong = chartService.getZongData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co DOS.csv");
 
         // 分态密度图
-        List<String> data_fen = new ArrayList<>();
-        data_fen = CSVUtils.importCsv(new File("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co PDOS.csv"));
-        Float[][] data_fen_s = new Float[data_fen.size()][2];
-        Float[][] data_fen_p = new Float[data_fen.size()][2];
-        Float[][] data_fen_d = new Float[data_fen.size()][2];
-        if (data_fen != null && !data_fen.isEmpty()) {
-            for (int j = 0; j < data_fen.size(); j++) {
-                String s = data_fen.get(j);
-                String[] as = s.split(",");
-                if (as.length >= 2) {
-                    data_fen_s[j][0] = Float.valueOf(as[0]);
-                    data_fen_s[j][1] = Float.valueOf(as[1]);
-                }
-                if (as.length >= 4) {
-                    data_fen_p[j][0] = Float.valueOf(as[2]);
-                    data_fen_p[j][1] = Float.valueOf(as[3]);
-                }
-                if (as.length >= 6) {
-                    data_fen_d[j][0] = Float.valueOf(as[4]);
-                    data_fen_d[j][1] = Float.valueOf(as[5]);
-                }
+        List<float[][]> data_fen = new ArrayList<>();
+        data_fen = chartService.getFenData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co PDOS.csv");
+        float[][] data_fen_s = data_fen.get(0);
+        float[][] data_fen_p = data_fen.get(1);
+        float[][] data_fen_d = data_fen.get(2);
 
-            }
-        }
         // 能带密度图
         List<float[][]> data_band = chartService.getBandData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co Band Structure(2).csv");
-//        for (float[] data : data_band.get(0)) {
-//            for (int i = 0; i < 4; i++) {
-//                System.out.print(data[i] + " ");
-//            }
-//            System.out.println(" ");
-//        }
-        // 测试
+
+        // test数据
+//        int[][] ex1 = new int[][]{{1, 1}, {2, 2}, {3, 3}, {4, 5}};
+//        int[][] ex2 = new int[][]{{1, 0}, {2, 0}, {3, 1}, {4, 2}};
+//        List<int[][]> res = new ArrayList<>();
+//        res.add(ex1);
+//        res.add(ex2);
 
 
-        int[][] ex1 = new int[][]{{1, 1}, {2, 2}, {3, 3}, {4, 5}};
-        int[][] ex2 = new int[][]{{1, 0}, {2, 0}, {3, 1}, {4, 2}};
-
-        List<int[][]> res = new ArrayList<>();
-        res.add(ex1);
-        res.add(ex2);
-
-
-        mv.addObject("dataF", dataF);
+        mv.addObject("dataZong", dataZong);
         mv.addObject("data_fen_s", data_fen_s);
         mv.addObject("data_fen_p", data_fen_p);
         mv.addObject("data_fen_d", data_fen_d);
         mv.addObject("data_band", data_band);
-        mv.addObject("res", res);
+//        mv.addObject("res", res);
         return mv;
     }
 
