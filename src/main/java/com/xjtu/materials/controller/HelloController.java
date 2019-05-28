@@ -68,7 +68,7 @@ public class HelloController {
     public ModelAndView hello() {
         ModelAndView mv = new ModelAndView("index");
         List<String> dataList = new ArrayList<String>();
-        // 总台密度图
+        //总态密度图
         dataList = CSVUtils.importCsv(new File("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co DOS.csv"));
         float[][] dataF = new float[dataList.size()][2];
         if (dataList != null && !dataList.isEmpty()) {
@@ -88,6 +88,7 @@ public class HelloController {
         // 分态密度图
         List<String> data_fen = new ArrayList<>();
         data_fen = CSVUtils.importCsv(new File("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co PDOS.csv"));
+//        data_fen = CSVUtils.importCsv(new File("D:\\晶体材料\\分态密度数据\\Al3Co PDOS.csv"));
         Float[][] data_fen_s = new Float[data_fen.size()][2];
         Float[][] data_fen_p = new Float[data_fen.size()][2];
         Float[][] data_fen_d = new Float[data_fen.size()][2];
