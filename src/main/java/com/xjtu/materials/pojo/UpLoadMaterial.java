@@ -15,6 +15,12 @@ public class UpLoadMaterial {
 
     private String path;
 
+    private String generaldensitypath;
+
+    private String partitiondensitypath;
+
+    private String energydensitypath;
+
     public String getMaterialid() {
         return materialid;
     }
@@ -71,15 +77,27 @@ public class UpLoadMaterial {
         this.path = path == null ? null : path.trim();
     }
 
-    @Override
-    public String toString() {
-        return "UpLoadMaterial{" +
-                "materialid='" + materialid + '\'' +
-                ", materialname='" + materialname + '\'' +
-                ", type='" + type + '\'' +
-                ", isauthenticated='" + isauthenticated + '\'' +
-                ", time='" + time + '\'' +
-                ", path='" + path + '\'' +
-                '}';
+    public String getGeneraldensitypath() {
+        return generaldensitypath;
+    }
+
+    public void setGeneraldensitypath(String generaldensitypath) {
+        this.generaldensitypath = generaldensitypath == null ? null : generaldensitypath.trim();
+    }
+
+    public String getPartitiondensitypath() {
+        return partitiondensitypath;
+    }
+
+    public void setPartitiondensitypath(String partitiondensitypath) {
+        this.partitiondensitypath = partitiondensitypath == null ? null : partitiondensitypath.trim();
+    }
+
+    public String getEnergydensitypath() {
+        return energydensitypath;
+    }
+
+    public void setEnergydensitypath(String energydensitypath) {
+        this.energydensitypath = energydensitypath == null ? null : energydensitypath.trim();
     }
 }

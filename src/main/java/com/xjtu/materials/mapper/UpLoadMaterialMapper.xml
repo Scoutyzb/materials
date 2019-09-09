@@ -9,6 +9,9 @@
     <result column="isAuthenticated" property="isauthenticated" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="VARCHAR" />
     <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="generalDensityPath" property="generaldensitypath" jdbcType="VARCHAR" />
+    <result column="partitionDensityPath" property="partitiondensitypath" jdbcType="VARCHAR" />
+    <result column="energyDensityPath" property="energydensitypath" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    materialID, userName, materialName, type, isAuthenticated, time, path
+    materialID, userName, materialName, type, isAuthenticated, time, path, generalDensityPath, 
+    partitionDensityPath, energyDensityPath
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjtu.materials.pojo.UpLoadMaterialExample" >
     select
@@ -104,10 +108,12 @@
   <insert id="insert" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
     insert into uploadmaterial (materialID, userName, materialName, 
       type, isAuthenticated, time, 
-      path)
+      path, generalDensityPath, partitionDensityPath, 
+      energyDensityPath)
     values (#{materialid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{materialname,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{isauthenticated,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
-      #{path,jdbcType=VARCHAR})
+      #{path,jdbcType=VARCHAR}, #{generaldensitypath,jdbcType=VARCHAR}, #{partitiondensitypath,jdbcType=VARCHAR}, 
+      #{energydensitypath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xjtu.materials.pojo.UpLoadMaterial" >
     insert into uploadmaterial
@@ -133,6 +139,15 @@
       <if test="path != null" >
         path,
       </if>
+      <if test="generaldensitypath != null" >
+        generalDensityPath,
+      </if>
+      <if test="partitiondensitypath != null" >
+        partitionDensityPath,
+      </if>
+      <if test="energydensitypath != null" >
+        energyDensityPath,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="materialid != null" >
@@ -155,6 +170,15 @@
       </if>
       <if test="path != null" >
         #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="generaldensitypath != null" >
+        #{generaldensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="partitiondensitypath != null" >
+        #{partitiondensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="energydensitypath != null" >
+        #{energydensitypath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +212,15 @@
       <if test="record.path != null" >
         path = #{record.path,jdbcType=VARCHAR},
       </if>
+      <if test="record.generaldensitypath != null" >
+        generalDensityPath = #{record.generaldensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partitiondensitypath != null" >
+        partitionDensityPath = #{record.partitiondensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.energydensitypath != null" >
+        energyDensityPath = #{record.energydensitypath,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +234,10 @@
       type = #{record.type,jdbcType=VARCHAR},
       isAuthenticated = #{record.isauthenticated,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=VARCHAR},
-      path = #{record.path,jdbcType=VARCHAR}
+      path = #{record.path,jdbcType=VARCHAR},
+      generalDensityPath = #{record.generaldensitypath,jdbcType=VARCHAR},
+      partitionDensityPath = #{record.partitiondensitypath,jdbcType=VARCHAR},
+      energyDensityPath = #{record.energydensitypath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +263,15 @@
       <if test="path != null" >
         path = #{path,jdbcType=VARCHAR},
       </if>
+      <if test="generaldensitypath != null" >
+        generalDensityPath = #{generaldensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="partitiondensitypath != null" >
+        partitionDensityPath = #{partitiondensitypath,jdbcType=VARCHAR},
+      </if>
+      <if test="energydensitypath != null" >
+        energyDensityPath = #{energydensitypath,jdbcType=VARCHAR},
+      </if>
     </set>
     where materialID = #{materialid,jdbcType=VARCHAR}
   </update>
@@ -237,7 +282,10 @@
       type = #{type,jdbcType=VARCHAR},
       isAuthenticated = #{isauthenticated,jdbcType=VARCHAR},
       time = #{time,jdbcType=VARCHAR},
-      path = #{path,jdbcType=VARCHAR}
+      path = #{path,jdbcType=VARCHAR},
+      generalDensityPath = #{generaldensitypath,jdbcType=VARCHAR},
+      partitionDensityPath = #{partitiondensitypath,jdbcType=VARCHAR},
+      energyDensityPath = #{energydensitypath,jdbcType=VARCHAR}
     where materialID = #{materialid,jdbcType=VARCHAR}
   </update>
 

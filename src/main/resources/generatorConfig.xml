@@ -66,10 +66,16 @@
         <!--</table>-->
 
         <!--<table schema="materialgene" tableName="upLoadMaterial"-->
-               <!--domainObjectName="UpLoadMaterial" enableCountByExample="true"-->
-               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
-               <!--enableUpdateByExample="true">-->
-        <!--</table>-->
+                       <!--domainObjectName="UpLoadMaterial" enableCountByExample="true"-->
+                       <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+                       <!--enableUpdateByExample="true">-->
+    <!--</table>-->
+
+        <table schema="materialgene" tableName="knows"
+               domainObjectName="Knows" enableCountByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true">
+        </table>
 
         <!--<table schema="materialgene" tableName="publication"-->
                <!--domainObjectName="Publication" enableCountByExample="true"-->
@@ -77,11 +83,11 @@
                <!--enableUpdateByExample="true">-->
         <!--</table>-->
 
-        <table schema="materialgene" tableName="log"
-               domainObjectName="Log" enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
+        <!--<table schema="materialgene" tableName="log"-->
+               <!--domainObjectName="Log" enableCountByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--enableUpdateByExample="true">-->
+        <!--</table>-->
 
 
 

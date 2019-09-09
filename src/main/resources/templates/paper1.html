@@ -13,6 +13,81 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
     <script src="components/requirejs/require.a0fb07562cea.js" data-main="js/dist/config.fa1f1c266ba8.js"></script>
     <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <!--&lt;!&ndash;jquery.dataTables&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <meta charset="utf-8">
+    <style type="text/css">
+
+        a:link,
+        a:hover,
+        a:visited,
+        a:active {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            background: #fff;
+        }
+
+        .card-holder {
+            position: fixed;
+            width: 0px;
+            overflow: visible;
+        }
+
+        .card-wrapper {
+            display: inline-block;
+            float: right;
+            clear: both;
+        }
+
+        .card {
+            position: relative;
+            left: 32px;
+            padding: 16px 32px 16px 64px;
+            margin: 8px;
+            x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            transition: all 0.3s ease-in-out 0.1s;
+        }
+
+        .card:hover {
+            position: relative;
+            left: 100%;
+            margin-left: -32px;
+            box-shadow:
+                    0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+                    0 8px 8px -8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-content {
+            display: inline-block;
+            color: #fff;
+            font-family: 'Droid Sans', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .bg-01 { background: #539770; }
+        .bg-02 { background: #4B7D74; }
+        .bg-03 { background: #8DC2BC; }
+        .bg-04 { background: #EDD6B4; }
+        .bg-05 { background: #BE7467; }
+        .bg-06 { background: #E2AE63; }
+
+    </style>
 </head>
 <body>
 

@@ -69,17 +69,17 @@ public class HelloController {
     @RequestMapping("/")
     public ModelAndView hello() throws JsonProcessingException {
         ModelAndView mv = new ModelAndView("index");
-        float[][] dataZong = chartService.getZongData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co DOS.csv");
+        float[][] dataZong = chartService.getZongData("D:\\data\\generalDensity\\Al3Co DOS.csv");
 
         // 分态密度图
         List<float[][]> data_fen = new ArrayList<>();
-        data_fen = chartService.getFenData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co PDOS.csv");
+        data_fen = chartService.getFenData("D:\\data\\partitionDensity\\Al3Co PDOS.csv");
         float[][] data_fen_s = data_fen.get(0);
         float[][] data_fen_p = data_fen.get(1);
         float[][] data_fen_d = data_fen.get(2);
 
         // 能带密度图
-        List<float[][]> data_band = chartService.getBandData("F:\\learning\\作业\\材料基因组\\数据说明\\Al3Co Band Structure(2).csv");
+        List<float[][]> data_band = chartService.getBandData("D:\\data\\bandDensity\\Al3Co Band Structure(2).csv");
 
         // test数据
 //        int[][] ex1 = new int[][]{{1, 1}, {2, 2}, {3, 3}, {4, 5}};
@@ -108,11 +108,6 @@ public class HelloController {
     public String index1() {
         return "index";
     }
-
-
-
-
-
 
 
     @RequestMapping("/paper")

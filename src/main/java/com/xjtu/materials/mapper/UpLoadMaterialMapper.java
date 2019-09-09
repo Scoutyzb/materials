@@ -2,10 +2,10 @@ package com.xjtu.materials.mapper;
 
 import com.xjtu.materials.pojo.UpLoadMaterial;
 import com.xjtu.materials.pojo.UpLoadMaterialExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface UpLoadMaterialMapper {
@@ -34,5 +34,4 @@ public interface UpLoadMaterialMapper {
     List<UpLoadMaterial> selectLikeStr(String str);
 
     List<String> selectByUserId(String userId);
-
 }

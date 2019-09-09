@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xjtu.materials.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.xjtu.materials.pojo.News" >
+    <id column="newsID" property="newsid" jdbcType="VARCHAR" />
+    <result column="newsTitle" property="newstitle" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="eye" property="eye" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xjtu.materials.pojo.News" extends="BaseResultMap" >
+    <result column="article" property="article" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    newsID, newsTitle, author, type, note, score, num, time, eye
+  </sql>
+  <sql id="Blob_Column_List" >
+    article
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.xjtu.materials.pojo.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xjtu.materials.pojo.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where newsID = #{newsid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news
+    where newsID = #{newsid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xjtu.materials.pojo.NewsExample" >
+    delete from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xjtu.materials.pojo.News" >
+    insert into news (newsID, newsTitle, author, 
+      type, note, score, 
+      num, time, eye, article
+      )
+    values (#{newsid,jdbcType=VARCHAR}, #{newstitle,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{num,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{eye,jdbcType=VARCHAR}, #{article,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xjtu.materials.pojo.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsid != null" >
+        newsID,
+      </if>
+      <if test="newstitle != null" >
+        newsTitle,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="eye != null" >
+        eye,
+      </if>
+      <if test="article != null" >
+        article,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsid != null" >
+        #{newsid,jdbcType=VARCHAR},
+      </if>
+      <if test="newstitle != null" >
+        #{newstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null" >
+        #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null" >
+        #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xjtu.materials.pojo.NewsExample" resultType="java.lang.Integer" >
+    select count(*) from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update news
+    <set >
+      <if test="record.newsid != null" >
+        newsID = #{record.newsid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newstitle != null" >
+        newsTitle = #{record.newstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eye != null" >
+        eye = #{record.eye,jdbcType=VARCHAR},
+      </if>
+      <if test="record.article != null" >
+        article = #{record.article,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update news
+    set newsID = #{record.newsid,jdbcType=VARCHAR},
+      newsTitle = #{record.newstitle,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      eye = #{record.eye,jdbcType=VARCHAR},
+      article = #{record.article,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update news
+    set newsID = #{record.newsid,jdbcType=VARCHAR},
+      newsTitle = #{record.newstitle,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      eye = #{record.eye,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xjtu.materials.pojo.News" >
+    update news
+    <set >
+      <if test="newstitle != null" >
+        newsTitle = #{newstitle,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null" >
+        eye = #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null" >
+        article = #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where newsID = #{newsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xjtu.materials.pojo.News" >
+    update news
+    set newsTitle = #{newstitle,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      eye = #{eye,jdbcType=VARCHAR},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where newsID = #{newsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xjtu.materials.pojo.News" >
+    update news
+    set newsTitle = #{newstitle,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      eye = #{eye,jdbcType=VARCHAR}
+    where newsID = #{newsid,jdbcType=VARCHAR}
+  </update>
+</mapper>

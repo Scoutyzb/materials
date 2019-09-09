@@ -27,6 +27,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -97,6 +103,18 @@
             <version>2.7.0</version>
         </dependency>
 
+        <!--c foreach-->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -107,26 +125,6 @@
                     <include>**/mapper/*Mapper.xml</include>
                 </includes>
             </resource>
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<filtering>true</filtering>-->
-                <!--<excludes>-->
-                    <!--<exclude>static/report/**</exclude>-->
-                    <!--<exclude>**/*.woff</exclude>-->
-                    <!--<exclude>**/*.woff2</exclude>-->
-                    <!--<exclude>**/*.ttf</exclude>-->
-                <!--</excludes>-->
-            <!--</resource>-->
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<filtering>false</filtering>-->
-                <!--<includes>-->
-                    <!--<include>static/report/**</include>-->
-                    <!--<include>**/*.woff</include>-->
-                    <!--<include>**/*.woff2</include>-->
-                    <!--<include>**/*.ttf</include>-->
-                <!--</includes>-->
-            <!--</resource>-->
         </resources>
 
         <plugins>

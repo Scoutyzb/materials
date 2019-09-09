@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>总台密度图</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href='stylesheets/less/compiled/nucleus.5db1710fde48.css' charset="utf-8">
+    <link rel="stylesheet" href='stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
+    <!--jquery + bootstrap-->
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <!--jquery.dataTables-->
+    <link rel="stylesheet" href='http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' charset="utf-8">
+    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.js"></script>
+
+    <!--&lt;!&ndash;jquery.dataTables&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <meta charset="utf-8">
+    <style type="text/css">
+
+        a:link,
+        a:hover,
+        a:visited,
+        a:active {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            background: #fff;
+        }
+
+        .card-holder {
+            position: fixed;
+            width: 0px;
+            overflow: visible;
+        }
+
+        .card-wrapper {
+            display: inline-block;
+            float: right;
+            clear: both;
+        }
+
+        .card {
+            position: relative;
+            left: 32px;
+            padding: 16px 32px 16px 64px;
+            margin: 8px;
+            x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            transition: all 0.3s ease-in-out 0.1s;
+        }
+
+        .card:hover {
+            position: relative;
+            left: 100%;
+            margin-left: -32px;
+            box-shadow:
+                    0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+                    0 8px 8px -8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-content {
+            display: inline-block;
+            color: #fff;
+            font-family: 'Droid Sans', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .bg-01 { background: #539770; }
+        .bg-02 { background: #4B7D74; }
+        .bg-03 { background: #8DC2BC; }
+        .bg-04 { background: #EDD6B4; }
+        .bg-05 { background: #BE7467; }
+        .bg-06 { background: #E2AE63; }
+
+    </style>
+
+
+</head>
+<body>
+<header>
+    <div th:replace="foreWeb/index1::nav"></div>
+</header>
+<div class="row">
+<div class="span11">
+<div class="row">
+    <div class="span11 panel">
+        <div class="row">
+            <div class="span9">
+                <div class="box-header span9">
+                    <div class="row">
+                        <div class="span9">
+                            <h4 align="centwe">总态密度图</h4>
+                        </div>
+                        <!--<div class="span2">-->
+                        <!--<h5>Density of States</h5>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="row panel-body">
+                    <div class="span9" align="left">
+                        <!--总态密度图-->
+                        <div id="main" style="width: 700px;height:500px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="row panel-body">
+                    <div class="span6">
+                        <p class="pull-down text-right">旋转标志 ↑ ↓</p>
+                    </div>
+                </div>
+                <div class="row panel-body">
+                    <div class="text-center">
+                        <button class="btn btn-primary make-interactive">互动情节</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="span2">
+
+                <h4>材料信息</h4>
+                <table class="table data table-bordered">
+
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h5>最后的磁力矩</h5>
+                            <span class="value">1.000 μ<sub>B</sub></span>
+                            <p class="help-text">在所提供的磁性排序内计算单元电池的总磁矩（见下文）。 通常精确到第二位数。</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>磁性Ordering</h5>
+                            <span class="value">
+          FM
+        </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>Formation能量/原子</h5>
+                            <span class="value">-0.907 eV</span>
+                            <p class="help-text">
+                                从归一化为单位晶胞中每个原子的元素计算形成能。
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>HULL/原子上方的能量</h5>
+                            <span class="value">0.000 eV</span>
+                            <p class="help-text">
+                                    在eV / atom中，该材料在该化学组成下分解成最稳定材料组的
+                                能量。针对导致材料成分的所有潜在化学组合测试稳定性。 例如，
+                                将测试 Co 2 O 3结构对其它Co 2 O 3结构的分解，对Co和O 2混合
+                                物的分解， 以及对CoO和O 2混合物的分解。
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>密度</h5>
+                            <span class="value">2.19 g/cm<sup>3</sup></span>
+                            <p class="help-text">
+                                计算的体积结晶密度，通常被低估，因为计算的细胞体积平均被高估了 <a href="/docs/error_checking#vol-change">3% (+/- 6%)</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>分解为</h5>
+                            <span class="value">
+                                    Stable
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5>带隙</h5>
+                            <span class="value">
+          0.000 eV
+        </span>
+
+                            <p class="help-text">
+                                In general, <a href="/docs/calculations#Band_gaps">Band Gap</a> 用常见的交换相关函数计算，如LDA和
+                                <a href="/docs/calculations">GGA</a> 被严重低估了。 据报道，文献中的分歧通常为~50％。 材料项
+                                目的一些内部测试支持这些陈述; 通常，我们发现带隙被低估了约40％。 我们还发现几种已知的绝缘体
+                                预计是金属的。
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--<h4>Space Group</h4>-->
+                <!--<table class="table data table-bordered" id="spacegroup">-->
+
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<h5>Hermann Mauguin</h5>-->
+
+                            <!--<a href="http://img.chem.ucl.ac.uk/sgp/large/058az1.htm" class="spacegroup-link fontastic-white-question pull-right"></a>-->
+
+                            <!--<span class="value">Pnnm [58]</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<h5>Hall</h5>-->
+                            <!--<span class="value">-P 2 2n </span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<h5>Point Group</h5>-->
+                            <!--<span class="value">mmm </span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>-->
+                            <!--<h5>Crystal System</h5>-->
+                            <!--<span class="value">orthorhombic</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+    </div>
+</div>
+
+    <!--Lattice Parameters栏-->
+    <div class="span3">
+        <p class="help-text">
+            Displaying lattice parameters for primitive cell; note that calculated cell volumes are typically
+            overestimated on average by <a href="/docs/error_checking#vol-change">3% (+/- 6%)</a>. Note the
+            primitive cell may appear less symmetric than the conventional cell representation (see "Structure
+            Type" selector below the 3d structure)
+        </p>
+        <div id="final-structures">
+            <div id="lattice-params">
+                <h4>
+                    图形参数
+                </h4>
+
+
+                <div class="tab-pane active" id="comp-lattice">
+                    <ul>
+                        <li>
+                            <span class="badge">a</span>
+                            <div class="value">
+                                <div>3.474 Å</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="badge">b</span>
+                            <div class="value">
+                                <div>4.230 Å</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="badge">c</span>
+                            <div class="value">
+                                <div>5.675 Å</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <span class="badge">α</span>
+                            <div class="value">
+                                <div>90.000°</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="badge">β</span>
+                            <div class="value">
+                                <div>90.000°</div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="badge">γ</span>
+                            <div class="value">
+                                <div>90.000°</div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <span class="label-bg">体积</span>
+                        <strong>83.383 Å<sup>3</sup></strong>
+                    </div>
+
+                </div>
+
+
+                <!-- end tab-content -->
+
+            </div>
+
+            <div class="structures pull-down">
+                <header>
+                    <h4>最终结构</h4>
+                    <div class="download-cif">
+                        <div class="download-cif btn-group pull-right">
+                            <button class="btn btn-primary btn-small dropdown-toggle" data-toggle="dropdown">
+                                <span class="typcn typcn-download"></span> CIF
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="cif-options dropdown-menu dropdown-menu-right">
+                                <li><a data-ciftype="computed" href="#">
+                                    计算</a></li>
+                                <li><a data-ciftype="conventional_standard" href="#">
+                                    常规标准</a></li>
+                                <li><a data-ciftype="primitive" href="#">
+                                    原始细胞</a></li>
+                                <li><a data-ciftype="symmetrized" href="#">
+                                    对称</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>分数坐标</div>
+                </header>
+
+                <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="dataTables_scroll">
+                        <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 237px; padding-left: 0px;">
+                                <table class="table table-bordered coordinates dataTable no-footer" role="grid" style="margin-left: 0px; width: 237px;">
+                                    <thead>
+                                    <tr class="structure-summary" role="row">
+                                        <th colspan="4" rowspan="1" style="width: 244px;"><span class="chemform">O</span></th>
+                                    </tr>
+                                    <tr class="abc" role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 81px;" aria-sort="ascending" aria-label="a: activate to sort column ascending">
+                                            <div class="badge">a</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 81px;" aria-label=" b : activate to sort column ascending">
+                                            <div class="badge">b</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 82px;" aria-label=" c : activate to sort column ascending">
+                                            <div class="badge">c</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="dataTables_scrollBody" style="overflow: auto; height: 146px; width: 100%;">
+                            <table class="table table-bordered coordinates dataTable no-footer" id="DataTables_Table_2" role="grid" style="width: 100%;">
+                                <thead>
+                                <tr class="structure-summary" role="row" style="height: 0px;">
+                                    <th colspan="4" rowspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 244px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;"><span class="chemform">O</span></div>
+                                    </th>
+                                </tr>
+                                <tr class="abc" role="row" style="height: 0px;">
+                                    <th class="sorting" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 81px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">a</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 81px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">b</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 82px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">c</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">0</td>
+                                    <td>0.1159</td>
+                                    <td>0.4179</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td class="sorting_1">0</td>
+                                    <td>0.8841</td>
+                                    <td>0.5821</td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">0.5</td>
+                                    <td>0.3841</td>
+                                    <td>0.9179</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td class="sorting_1">0.5</td>
+                                    <td>0.6159</td>
+                                    <td>0.0821</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="DataTables_Table_3_wrapper" class="dataTables_wrapper no-footer">
+                    <div class="dataTables_scroll">
+                        <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 237px; padding-left: 0px;">
+                                <table class="table table-bordered coordinates dataTable no-footer" role="grid" style="margin-left: 0px; width: 237px;">
+                                    <thead>
+                                    <tr class="structure-summary" role="row">
+                                        <th colspan="4" rowspan="1" style="width: 244px;"><span class="chemform">Na</span></th>
+                                    </tr>
+                                    <tr class="abc" role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 81px;" aria-sort="ascending" aria-label="a: activate to sort column ascending">
+                                            <div class="badge">a</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 81px;" aria-label=" b : activate to sort column ascending">
+                                            <div class="badge">b</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 82px;" aria-label=" c : activate to sort column ascending">
+                                            <div class="badge">c</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="dataTables_scrollBody" style="overflow: auto; height: 72px; width: 100%;">
+                            <table class="table table-bordered coordinates dataTable no-footer" id="DataTables_Table_3" role="grid" style="width: 100%;">
+                                <thead>
+                                <tr class="structure-summary" role="row" style="height: 0px;">
+                                    <th colspan="4" rowspan="1" style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 244px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;"><span class="chemform">Na</span></div>
+                                    </th>
+                                </tr>
+                                <tr class="abc" role="row" style="height: 0px;">
+                                    <th class="sorting" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 81px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">a</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 81px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">b</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 82px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="badge">c</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td class="sorting_1">0.5</td>
+                                    <td>0.5</td>
+                                    <td>0.5</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--Lattice Parameters结束-->
+
+
+
+
+</div>
+<div class="span12">
+    <h4> 相似材料
+        <img src="/images/beta-speech-bubble-whitefill.9c514595bf34.png" alt="beta feature" title="beta feature" class="beta-feature" style="height: 25px; vertical-align: baseline;">
+    </h4>
+    相异度量的解释:
+    <a href="/docs/structuresimilarity" target="_blank">文档</a>.
+    <br>
+    <div class="row" style="margin-top: -5px;">
+        <div class="span6">
+            <table class="substrates table table-bordered table-striped" style="margin-top: 0px !important;">
+                <thead>
+                <tr><th>材料名称</th>
+                    <th>相异度</th>
+                    <th>元素标签</th>
+                    <th>元素数量</th>
+                </tr></thead>
+                <tbody>
+
+                <!--<tr>-->
+                <!--<td>-->
+                <!--<span class="chemform">Mg<sub>3</sub>(HO<sub>2</sub>)<sub>2</sub></span>-->
+                <!--(<a href="/materials/mp-30243" target="_blank">mp-30243</a>)-->
+                <!--</td>-->
+                <!--<td>0.4230</td>-->
+                <!--<td>0.017</td>-->
+                <!--<td>3</td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>
+                        <span class="chemform">Mg<sub>3</sub>(HO<sub>2</sub>)<sub>2</sub></span>
+                        (<a href="/materials/mp-30243" target="_blank">mp-30243</a>)
+                    </td>
+                    <td>0.4230</td>
+                    <td>0.017</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="chemform"></span>
+                        <a href="/materials/mp-30243" target="_blank"> </a>
+                    </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- Consider adding something like e.g. https://github.com/ninjaconcept/d3-force-directed-graph/blob/master/example/3-user-interaction.html for interactive d3 force directed graph -->
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <div class="span6">
+            显示最多5个相似的元素，二元，三元，四元等结构（相异阈值0.75）。
+            <!--<strong>E<sub>hull</sub></strong>: 每个原子的能量高于船体[eV]-->
+            <!--atom [eV].-->
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <hr>
+    <ul class="text-center inline">
+        <li>
+            <a href="/about">关于</a>
+        </li>
+        <li>
+            <a class="" href="" target="_blank">
+                论坛
+            </a>
+
+        </li>
+        <li>
+            <a href="/citing">引用</a>
+        </li>
+        <li>
+            <a href="/terms">我们的团队</a>
+        </li>
+        <li>
+            <a href="/open">API</a>
+        </li>
+    </ul>
+</footer>
+
+</body>
+<script th:inline="javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    var dataZong = [[${dataZong}]];
+    // console.log("数据：" + dataList);
+    // 指定图表的配置项和数据
+    var option = {
+        // title: {
+        //     text: '总态密度图'
+        // },
+        tooltip: {},
+        // legend: {
+        //     data:['销量']
+        // },
+        xAxis: {},
+        yAxis: {},
+        dataZoom: [
+            {
+                type: 'inside',
+                xAxisIndex: [0],
+                start: 0,
+                end: 100
+            },
+            {
+                type: 'inside',
+                yAxisIndex: [0],
+                start: 0,
+                end: 100
+            }
+        ],
+        series: [{
+            type: 'line',
+            smooth: true,
+            data: dataZong
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</html>

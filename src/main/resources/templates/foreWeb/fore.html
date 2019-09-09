@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title> 稀贵金属材料项目 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1118.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"488418a6fe","applicationID":"176556248","transactionName":"MlYDZxNRXUBVB0xRXQscJ0YPU0daWwoXTUYMXxIdAl9dXVEHTFdAX14FUU8MX1xXBVRLDEtEE1IRQFZX","queueTime":0,"applicationTime":877,"agent":""}</script>
-
     <!--    <meta name="viewport" content="user-scalable = no">
        -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
@@ -263,36 +262,156 @@
     <div class="row pull-up">
         <div class="span10 offset1 newsfeed">
             <h4>新闻</h4><hr>
+            <div>
+                <span>共<span th:text="${News.size()}"></span>条数据</span></div>
+            <div th:each="news : ${News}">
+                <div class='publication_data'>
+                <div class='publication_titolo'>
+                    <strong><a href="#"><div th:text="${news.newstitle}"></div></a></strong>
+                </div>
+                <div class='publication_autore'>
+                    <span>作者:<span th:text="${news.author}"></span></span>
+                </div>
+                </div>
+                <div class='publication_abstract'>
+                    <span>Abstract:<br></span>
+                    <div th:text="${news.note}"></div>
+                </div>
+                <div class='publication_allegato'>
+                        时间：<span th:text="${news.time}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热度：<span th:text="${news.score}"></span> ℃
+                </div>
+                <br>
+            </div>
+            <!--<div data-th-unless="${#lists.isEmpty(News)}">-->
+                <!--<h4>新闻</h4><hr>-->
+                <!--<div>-->
+                    <!--<ul>-->
+                        <!--<li data-th-each="new:${News}">-->
+                            <!--<span data-th-text="${new.newstitle}"></span>-->
+                            <!--<span data-th-text="${new.author}"></span>-->
+                            <!--<span data-th-text="${new.note}"></span>-->
+                            <!--<span data-th-text="${new.time}"></span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
 
-            March 11, 2019:
-            <strong>New App to Predict Interface Reactions Between Solids</strong> <br>
-            <p>We are proud to officially launch an application that calculates possible interface reactions between solids using
-                thermodynamic driving forces. <a href="https://materialsproject.org/static/newsletter/announce-interfacerxns.html" target="_blank">More
-                    info</a>.</p>
 
-            Feb. 13, 2019:
-            <strong>Database V2019.02 Released</strong> <br>
-            <p>We have added over 47,000 new compounds! We also improved feedback on structure submission via the Crystal Toolkit. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
-                info</a> coming soon.</p>
 
-            Nov. 1, 2018:
-            <strong>Database V2018.11 Released</strong> <br>
-            <p>In this major release, we have changed the grouping of magnetic materials and
-                fixed many display/labeling issues. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More
-                    info</a>.</p>
+                    <!--<div th:each="new : ${News}">-->
+                        <!--<div class='set_record set_record_10'>-->
+                            <!--<div class='record_page_over'></div>-->
+                            <!--<div class='News'>-->
+                                <!--<div>-->
+                                    <!--<div class='publication_img'>-->
+                                        <!--<img height='200' src='profiles/aflow/images/file/natcomm_ml.png' alt=''/>-->
+                                    <!--</div>-->
+                                    <!--<div class='publication_data'>-->
+                                        <!--<div class='publication_titolo'>-->
+                                            <!--<h2><div th:text="${new.newstitle}"></div></h2>-->
+                                        <!--</div>-->
+                                        <!--<div class='publication_autore'>-->
+                                            <!--<i><div th:text="${new.author}"></div></i>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div style='clear:both;'></div>-->
+                                <!--</div>-->
+                                <!--<div class='publication_abstract'>-->
+                                    <!--<br><span>Abstract:<br></span>-->
+                                    <!--<div th:text="${new.note}"></div>-->
+                                <!--</div>-->
+                                <!--<div class='publication_allegato'>-->
+                                    <!--<br>-->
+                                    <!--&lt;!&ndash;<a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'&ndash;&gt;-->
+                                    <!--&lt;!&ndash;title='click here to download [new window]' target='_blank'>Nature Communications DOI:&ndash;&gt;-->
+                                    <!--&lt;!&ndash;10.1038/ncomms15679</a>&ndash;&gt;-->
+                                    <!--<a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'>-->
+                                        <!--<span th:text="${new.score}"></span></a>-->
+                                <!--</div>-->
+                                <!--<br>-->
+                                <!--<hr>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-            Aug. 23, 2018:
-            <strong>MP book chapter released</strong> <br>
-            <p>Our contributed chapter to Springer's <a href="https://doi.org/10.1007/978-3-319-42913-7" target="_blank">Handbook of Materials
-                Modeling</a> has been <a href="https://doi.org/10.1007/978-3-319-42913-7_60-1" target="_blank">released
-                online</a>.</p>
 
-            Aug. 3, 2018:
-            <strong>X-Ray Absorption Spectra: Browse, Compare, and Automatically Match</strong> <br>
-            <p>We now have more than 500,000 K-edge X-ray absorption near edge (XANES) spectra
-                for more than 50,000 unique materials. <a href="https://materialsproject.org/static/newsletter/announce-xas.html" target="_blank">More
-                    info</a>.</p>
+            <!--<div th:each="new : ${News}">-->
+                <!--<div class='record_page_under'></div>-->
+                <!--<div class='set_record set_record_10'>-->
+                    <!--<a class='set_records_ancor' name='set_records'></a>-->
+                    <!--<div class='record_page_over'></div>-->
+                    <!--<div class='publication'>-->
 
+                        <!--<a name='publication_1'></a>-->
+                        <!--<div>-->
+                            <!--<div class='publication_img'>-->
+                                <!--<img height='200' src='profiles/aflow/images/file/natcomm_ml.png' alt=''/>-->
+                            <!--</div>-->
+                            <!--<div class='publication_data'>-->
+                                <!--<div class='publication_titolo'>-->
+                                    <!--<h2><div th:text="${paper.publicationname}"></div></h2>-->
+                                <!--</div>-->
+                                <!--<div class='publication_autore'>-->
+                                    <!--<i><div th:text="${paper.publicationauthor}"></div></i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div style='clear:both;'></div>-->
+                        <!--</div>-->
+                        <!--<div class='publication_abstract'>-->
+                            <!--<br><span>Abstract:<br></span>-->
+                            <!--<div th:text="${paper.publicationsummary}"></div>-->
+                        <!--</div>-->
+                        <!--<div class='publication_allegato'>-->
+                            <!--<br>-->
+                            <!--&lt;!&ndash;<a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'&ndash;&gt;-->
+                            <!--&lt;!&ndash;title='click here to download [new window]' target='_blank'>Nature Communications DOI:&ndash;&gt;-->
+                            <!--&lt;!&ndash;10.1038/ncomms15679</a>&ndash;&gt;-->
+                            <!--<a href='http://materials.duke.edu/auro/AUROARTICULA/ncomms15679.pdf'>-->
+                                <!--<span th:text="${paper.publicationdoi}"></span></a>-->
+                        <!--</div>-->
+                        <!--<br>-->
+                        <!--<hr>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<table>-->
+                <!--<tr th:each="news : ${News}">-->
+                    <!--<td th:text = "${news.time}"></td>-->
+                    <!--<a href="#"><td th:text = "${news.newstitle}"></td></a>-->
+                    <!--<td th:text = "${news.note}"></td>-->
+                <!--</tr>-->
+            <!--</table>-->
+
+            <!--<c:foreach  items="${News}" var="news" varStatus="i">-->
+                <!--${news.time}-->
+            <!--<strong>${news.newstitle}</strong> <br>-->
+            <!--<p>${news.note} <a href="https://materialsproject.org/static/newsletter/announce-interfacerxns.html" target="_blank">More-->
+                    <!--info</a>.</p>-->
+            <!--</c:foreach>-->
+
+            <!--Feb. 13, 2019:-->
+            <!--<strong>Database V2019.02 Released</strong> <br>-->
+            <!--<p>We have added over 47,000 new compounds! We also improved feedback on structure submission via the Crystal Toolkit. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More-->
+                <!--info</a> coming soon.</p>-->
+
+            <!--Nov. 1, 2018:-->
+            <!--<strong>Database V2018.11 Released</strong> <br>-->
+            <!--<p>In this major release, we have changed the grouping of magnetic materials and-->
+                <!--fixed many display/labeling issues. <a href="https://discuss.materialsproject.org/t/materials-project-database-release-log/1609" target="_blank">More-->
+                    <!--info</a>.</p>-->
+
+            <!--Aug. 23, 2018:-->
+            <!--<strong>MP book chapter released</strong> <br>-->
+            <!--<p>Our contributed chapter to Springer's <a href="https://doi.org/10.1007/978-3-319-42913-7" target="_blank">Handbook of Materials-->
+                <!--Modeling</a> has been <a href="https://doi.org/10.1007/978-3-319-42913-7_60-1" target="_blank">released-->
+                <!--online</a>.</p>-->
+
+            <!--Aug. 3, 2018:-->
+            <!--<strong>X-Ray Absorption Spectra: Browse, Compare, and Automatically Match</strong> <br>-->
+            <!--<p>We now have more than 500,000 K-edge X-ray absorption near edge (XANES) spectra-->
+                <!--for more than 50,000 unique materials. <a href="https://materialsproject.org/static/newsletter/announce-xas.html" target="_blank">More-->
+                    <!--info</a>.</p>-->
         </div>
     </div>
 </div>

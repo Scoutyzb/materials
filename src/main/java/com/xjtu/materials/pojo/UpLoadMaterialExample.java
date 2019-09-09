@@ -593,6 +593,216 @@ public class UpLoadMaterialExample {
             addCriterion("path not between", value1, value2, "path");
             return (Criteria) this;
         }
+
+        public Criteria andGeneraldensitypathIsNull() {
+            addCriterion("generalDensityPath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathIsNotNull() {
+            addCriterion("generalDensityPath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathEqualTo(String value) {
+            addCriterion("generalDensityPath =", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathNotEqualTo(String value) {
+            addCriterion("generalDensityPath <>", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathGreaterThan(String value) {
+            addCriterion("generalDensityPath >", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathGreaterThanOrEqualTo(String value) {
+            addCriterion("generalDensityPath >=", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathLessThan(String value) {
+            addCriterion("generalDensityPath <", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathLessThanOrEqualTo(String value) {
+            addCriterion("generalDensityPath <=", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathLike(String value) {
+            addCriterion("generalDensityPath like", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathNotLike(String value) {
+            addCriterion("generalDensityPath not like", value, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathIn(List<String> values) {
+            addCriterion("generalDensityPath in", values, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathNotIn(List<String> values) {
+            addCriterion("generalDensityPath not in", values, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathBetween(String value1, String value2) {
+            addCriterion("generalDensityPath between", value1, value2, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andGeneraldensitypathNotBetween(String value1, String value2) {
+            addCriterion("generalDensityPath not between", value1, value2, "generaldensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathIsNull() {
+            addCriterion("partitionDensityPath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathIsNotNull() {
+            addCriterion("partitionDensityPath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathEqualTo(String value) {
+            addCriterion("partitionDensityPath =", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathNotEqualTo(String value) {
+            addCriterion("partitionDensityPath <>", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathGreaterThan(String value) {
+            addCriterion("partitionDensityPath >", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathGreaterThanOrEqualTo(String value) {
+            addCriterion("partitionDensityPath >=", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathLessThan(String value) {
+            addCriterion("partitionDensityPath <", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathLessThanOrEqualTo(String value) {
+            addCriterion("partitionDensityPath <=", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathLike(String value) {
+            addCriterion("partitionDensityPath like", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathNotLike(String value) {
+            addCriterion("partitionDensityPath not like", value, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathIn(List<String> values) {
+            addCriterion("partitionDensityPath in", values, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathNotIn(List<String> values) {
+            addCriterion("partitionDensityPath not in", values, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathBetween(String value1, String value2) {
+            addCriterion("partitionDensityPath between", value1, value2, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andPartitiondensitypathNotBetween(String value1, String value2) {
+            addCriterion("partitionDensityPath not between", value1, value2, "partitiondensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathIsNull() {
+            addCriterion("energyDensityPath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathIsNotNull() {
+            addCriterion("energyDensityPath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathEqualTo(String value) {
+            addCriterion("energyDensityPath =", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathNotEqualTo(String value) {
+            addCriterion("energyDensityPath <>", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathGreaterThan(String value) {
+            addCriterion("energyDensityPath >", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathGreaterThanOrEqualTo(String value) {
+            addCriterion("energyDensityPath >=", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathLessThan(String value) {
+            addCriterion("energyDensityPath <", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathLessThanOrEqualTo(String value) {
+            addCriterion("energyDensityPath <=", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathLike(String value) {
+            addCriterion("energyDensityPath like", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathNotLike(String value) {
+            addCriterion("energyDensityPath not like", value, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathIn(List<String> values) {
+            addCriterion("energyDensityPath in", values, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathNotIn(List<String> values) {
+            addCriterion("energyDensityPath not in", values, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathBetween(String value1, String value2) {
+            addCriterion("energyDensityPath between", value1, value2, "energydensitypath");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnergydensitypathNotBetween(String value1, String value2) {
+            addCriterion("energyDensityPath not between", value1, value2, "energydensitypath");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
