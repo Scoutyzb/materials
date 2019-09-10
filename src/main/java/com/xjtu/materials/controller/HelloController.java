@@ -226,21 +226,6 @@ public class HelloController {
     }
 
     /*
-     * hl_upload_上传文献
-     */
-    @RequestMapping(value = "/upload_publication", method= RequestMethod.POST, produces="application/json;charset=utf-8")
-    public String upload_publication(@RequestParam("fileName") String fileName , @RequestParam("userName") String authorName , @RequestParam("abstractText") String abstractText , @RequestParam("DIO") String DIO , @RequestParam("type") String type , @RequestParam("adress") String adress , HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
-        String username = (String) session.getAttribute("UserName");
-        String userID = (String) session.getAttribute("UserId");
-        if (username == null){
-            return "login";
-        }
-        String objectID = filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
-        logService.UploadpuPlicationLog(userID,objectID);
-        return "upload";
-    }
-
-    /*
      * hl_indexSearch_from
      */
     @RequestMapping("/indexSearch")

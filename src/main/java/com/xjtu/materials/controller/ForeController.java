@@ -7,12 +7,14 @@ import com.xjtu.materials.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,10 @@ public class ForeController {
     ChartService chartService;
     @Autowired
     NewsService newsService;
+    @Autowired
+    FilePathService filePathService;
+    @Autowired
+    LogService logService;
 
 
 
@@ -333,6 +339,37 @@ public class ForeController {
     }
 
     /**
+     * @Description 上传出版物页
+     * @Auther HL
+     * @date 21:39 2019/9/10
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/upload_publication")
+    public String upload_publication() {
+        return "foreWeb/upload_publication";
+    }
+
+    /**
+     * @Description 上传出版物
+     * @Auther HL
+     * @date 21:39 2019/9/29
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping(value = "/uploadP", method= RequestMethod.POST, produces="application/json;charset=utf-8")
+    public String uploadPublication(@RequestParam("fileName") String fileName , @RequestParam("userName") String authorName , @RequestParam("abstractText") String abstractText , @RequestParam("DIO") String DIO , @RequestParam("type") String type , @RequestParam("adress") String adress , HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
+        String username = (String) session.getAttribute("UserName");
+        String userID = (String) session.getAttribute("UserId");
+        if (username == null){
+            return "login";
+        }
+        String objectID = filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
+        logService.UploadpuPlicationLog(userID,objectID);
+        return "foreWeb/upload_publication";
+    }
+
+
+
+    /**
      * @Description 晶体结构
      * @Auther HL
      * @date 1:20 2019/3/26
@@ -358,10 +395,11 @@ public class ForeController {
     @RequestMapping("/bandDensity")
     public ModelAndView bandDensity(@RequestParam(value = "id") String id) {
         ModelAndView mv = new ModelAndView("/foreWeb/bandDensity");
-        String Path = upLoadMaterialMapper.selectByPrimaryKey(id).getEnergydensitypath();
 
+        //此处更新路径
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+        String Path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" Band Structure.csv";
         // 能带密度图
-//        List<float[][]> data_band = chartService.getBandData("D:\\data\\bandDensity\\Al3Co Band Structure(2).csv");
         List<float[][]> data_band = chartService.getBandData(Path);
 
         mv.addObject("data_band", data_band);
@@ -378,9 +416,11 @@ public class ForeController {
     @RequestMapping("/generalDensity")
     public ModelAndView generalDensity(@RequestParam(value = "id") String id) {
         ModelAndView mv = new ModelAndView("/foreWeb/generalDensity");
-        String Path = upLoadMaterialMapper.selectByPrimaryKey(id).getGeneraldensitypath();
-        float[][] dataZong = chartService.getZongData(Path);
+        //此处更新路径
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+        String Path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" DOS.csv";
 
+        float[][] dataZong = chartService.getZongData(Path);
         mv.addObject("dataZong", dataZong);
 
         return mv;
@@ -395,7 +435,8 @@ public class ForeController {
     @RequestMapping("/partitionDensity")
     public ModelAndView partitionDensity(@RequestParam(value = "id") String id) {
         ModelAndView mv = new ModelAndView("/foreWeb/partitionDensity");
-        String Path = upLoadMaterialMapper.selectByPrimaryKey(id).getPartitiondensitypath();
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+        String Path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" PDOS.csv";
         // 分态密度图
         List<float[][]> data_fen = new ArrayList<>();
         data_fen = chartService.getFenData(Path);
@@ -430,6 +471,7 @@ public class ForeController {
         returnMap.put("data", materials);
         return returnMap;
     }
+
 }
 
 //    /fore/paper
