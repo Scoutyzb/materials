@@ -8,6 +8,7 @@
     <properties resource="application.yml" />
     <!-- mysql驱动的位置 这个是MySQL连接的jar包，你需要指定你自己计算机上的jar包的位置-->
     <classPathEntry location="F:\workspace\idea\materials\lib\mysql-connector-java-5.1.36.jar" />
+<!--    <classPathEntry location="D:\IDEA\IntelliJ IDEA 2019.1.3\workspace\materials\lib\mysql-connector-java-5.1.36.jar" />-->
 
     <context id="Tables" targetRuntime="MyBatis3">
 

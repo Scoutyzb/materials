@@ -14,8 +14,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //registry.addResourceHandler("/images/**").addResourceLocations("file:E:\\IDEA\\IntelliJ IDEA 2018.2\\workspace\\pic_gradient\\src\\main\\resources\\static\\images\\");
-        registry.addResourceHandler("/cif/**").addResourceLocations("file:D:\\data\\cif\\");
+//        registry.addResourceHandler("/cif/**").addResourceLocations("file:D:\\data\\cif\\");
+        registry.addResourceHandler("/cif/**").addResourceLocations("file:D:\\data\\");
     }
 
 //    @Override
