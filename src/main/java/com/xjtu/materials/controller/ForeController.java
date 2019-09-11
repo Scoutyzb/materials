@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.*;
 import com.xjtu.materials.service.*;
+import com.xjtu.materials.util.ReadFromFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -344,6 +345,29 @@ public class ForeController {
         String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
 
         mv.addObject("materialName", materialName);
+
+        return mv;
+    }
+
+    @RequestMapping("/crystalStructure2")
+    public ModelAndView crystalStructure2(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("/crystalStructure2");
+//        AlNiZr(2).cif
+        // 读cif文件
+        List<String[]> stringOfFile = ReadFromFile.readFileByLines("D:\\data\\cif\\AlNiZr(2).cif");
+        String[] para = new String[6];
+        for (int i = 0; i < stringOfFile.size(); i++) {
+            if (stringOfFile.get(i)[0].equals("_cell_length_a")) {
+                for (int j = 0; j < 6; j++) {
+                    para[j] = stringOfFile.get(i + j)[1];
+                }
+            }
+        }
+
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+
+        mv.addObject("materialName", materialName);
+        mv.addObject("para", para);
 
         return mv;
     }
