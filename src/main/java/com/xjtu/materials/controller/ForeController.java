@@ -291,10 +291,70 @@ public class ForeController {
 //    }
 
 
-    //进行高级搜索，获得输入元素对应的金属化合物
+    //总览搜索页
     @RequestMapping("/searchPage1")
     public ModelAndView searchPage1(String name, HttpServletRequest request, HttpSession session) {
         ModelAndView mv = new ModelAndView("foreWeb/searchPage");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
+    }
+
+    @RequestMapping("/searchPage2")
+    public ModelAndView searchPage2(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/searchPage2");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
+    }
+
+    @RequestMapping("/searchPage3")
+    public ModelAndView searchPage3(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/searchPage3");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
+    }
+
+    @RequestMapping("/searchPage4")
+    public ModelAndView searchPage4(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/searchPage4");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
+    }
+
+    @RequestMapping("/searchPage5")
+    public ModelAndView searchPage5(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/searchPage5");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
+    }
+
+    @RequestMapping("/searchPage6")
+    public ModelAndView searchPage6(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/searchPage6");
 
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
