@@ -1185,7 +1185,9 @@
                         <td th:text="${Material.materialname}"></td>
                         <td th:text="${Material.type}"></td>
                         <td th:text="${Material.time}"></td>
-                        <td><a th:href="'/crystalStructure2?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
+                        <td><a th:href="'/electronicStructure?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
+                        <td><a th:href="'/electronicStructure?id=test'"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">测试用</button></a>
+
                             <!--                            <a th:href="'/bandDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">电子能带结构</button></a>-->
                             <!--                            <a th:href="'/generalDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">总态密度图</button></a>-->
                             <!--                            <a th:href="'/partitionDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">分态密度图</button></a>-->

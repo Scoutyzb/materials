@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>electronicStructure</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+
+</head>
+
+<div th:replace="index::nav"></div>
+
+<div th:replace="search::body"></div>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <img src="/img/crystalStructure.img" class="img-rounded">
+        </div>
+        <div class="panel panel-success col-lg-5 col-lg-offset-2">
+            <div class="panel-heading">
+                <h3 class="panel-title">属性</h3>
+            </div>
+            <div class="panel-body">
+                <h4>Lattice Parameters</h4>
+                <dl class="dl-horizontal">
+                    <dt>a</dt>
+                    <dd>{{ data.lattice.a }}</dd>
+                    <dt>b</dt>
+                    <dd>{{ data.lattice.b }}</dd>
+                    <dt>c</dt>
+                    <dd>{{ data.lattice.c }}</dd>
+                    <dt>alpha</dt>
+                    <dd>{{ data.lattice.alpha }}</dd>
+                    <dt>beta</dt>
+                    <dd>{{ data.lattice.beta }}</dd>
+                    <dt>gamma</dt>
+                    <dd>{{ data.lattice.gamma }}</dd>
+                </dl>
+
+                <h4>Lattice Vectors</h4>
+                {% for datum in data.lattice.matrix %}
+                <ul class="list-inline">
+                    {% for item in datum %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+    </div>
+</div>
+</body>
+<script>
+    $.backstretch("/img/timg.jpg", {speed: 0});
+</script>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--仅显示3维动画页面-->
 <head>
     <title>晶体结构</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -451,7 +452,7 @@
             <span class="vertical-line"></span>
             <span class="detail-section">
 				<h5><small>ID:</small></h5>
-				<h4>mp-1901</h4>
+				<h4>-</h4>
 			</span>
             <span class="vertical-line"></span>
             <span class="detail-section">
@@ -460,10 +461,7 @@
 
 
             <span class="detail-section pull-right">
-    <button class="btn btn-primary" id="toggle-guides">
-      <span class="icon" data-icon="0"></span>
-      <span class="text">帮助指南</span>
-    </button>
+
   </span>
         </div>
         <div class="row">
@@ -483,25 +481,7 @@
 
 
                         <hr class="pull-up">
-                        <button class="btn btn-primary" id="edit-xtal">编辑晶体</button>
-
-                        <div class="launch-pd btn-group">
-                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                生成相图
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="pd-options dropdown-menu dropdown-menu-right">
-
-                                <li><a data-pdtype="phase" href="#">
-                                    成分相图</a></li>
-
-
-                                <li><a data-pdtype="pourbaix" href="#">
-                                    稳定性（Pourbaix）</a></li>
-
-                            </ul>
-                        </div>
-
+                        <button class="btn btn-primary" id="edit-xtal">导出数据</button>
 
                         <div class="pull-down pull-up">
                             <strong>标签: </strong>
@@ -576,28 +556,18 @@
 
                             <div class="structures pull-down">
                                 <header>
-                                    <h4>最终结构</h4>
-                                    <div class="download-cif">
-                                        <div class="download-cif btn-group pull-right">
-                                            <button class="btn btn-primary btn-small dropdown-toggle"
-                                                    data-toggle="dropdown">
-                                                <span class="typcn typcn-download"></span> CIF
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="cif-options dropdown-menu dropdown-menu-right">
-                                                <li><a data-ciftype="computed" href="#">
-                                                    计算</a></li>
-                                                <li><a data-ciftype="conventional_standard" href="#">
-                                                    常规标准</a></li>
-                                                <li><a data-ciftype="primitive" href="#">
-                                                    原始细胞</a></li>
-                                                <li><a data-ciftype="symmetrized" href="#">
-                                                    对称</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div>分数坐标</div>
+                                    <h4>显示不同计算方法获得数据库信息</h4>
                                 </header>
+                                <!-- 4项按钮 -->
+                                <button class="btn btn-primary btn-small">LDA
+                                </button>
+                                <button class="btn btn-primary btn-small">PBE
+                                </button>
+                                <button class="btn btn-primary btn-small">SCAN
+                                </button>
+                                <button class="btn btn-primary btn-small">PBEsol
+                                </button>
+                                <!-- 4按钮结束 -->
 
                                 <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper no-footer">
                                     <div class="dataTables_scroll">

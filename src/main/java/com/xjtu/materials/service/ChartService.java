@@ -1,5 +1,7 @@
 package com.xjtu.materials.service;
 
+import org.python.antlr.ast.Str;
+
 import java.util.List;
 
 public interface ChartService {
@@ -8,5 +10,8 @@ public interface ChartService {
     // 分态图数据
     List<float[][]> getFenData(String address);
     // 总态图数据
-    float[][] getZongData(String addrenss);
+    float[][] getZongData(String address);
+    // Mech
+    List<float[][]> getMechData(String address);
+
 }

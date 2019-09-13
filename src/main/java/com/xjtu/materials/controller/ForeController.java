@@ -5,6 +5,7 @@ import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.*;
 import com.xjtu.materials.service.*;
 import com.xjtu.materials.util.ReadFromFile;
+import org.python.antlr.ast.Str;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -451,7 +452,7 @@ public class ForeController {
         ModelAndView mv = new ModelAndView("/crystalStructure2");
 //        AlNiZr(2).cif
         // 读cif文件
-        List<String[]> stringOfFile = ReadFromFile.readFileByLines("D:\\data\\cif\\AlNiZr(2).cif");
+        List<String[]> stringOfFile = ReadFromFile.readFileByLines("D:\\data\\Al2Hf\\PBE\\crystal structure\\Al2Hf.cif");
         String[] para = new String[6];
         for (int i = 0; i < stringOfFile.size(); i++) {
             if (stringOfFile.get(i)[0].equals("_cell_length_a")) {
@@ -465,6 +466,54 @@ public class ForeController {
 
         mv.addObject("materialName", materialName);
         mv.addObject("para", para);
+
+        return mv;
+    }
+
+    @RequestMapping("/electronicStructure")
+    public ModelAndView electronicStructure(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("/electronicStructure");
+
+        String materialName = "Al2Hf";
+
+        //此处更新路径
+        String Path = "D:\\data\\Al2Hf\\PBE\\electronic properties\\Al2Hf Band Structure.csv";
+        // 能带密度图
+        List<float[][]> data_band = chartService.getBandData(Path);
+        // 总态密度
+        String PathZong = "D:\\data\\Al2Hf\\PBE\\electronic properties\\Al2Hf DOS.csv";
+        float[][] dataZong = chartService.getZongData(Path);
+        // PDOS
+        String pathPDOS = "D:\\data\\Al2Hf\\PBE\\electronic properties\\Al2Hf PDOS.csv";
+        List<float[][]> dataPDOS = chartService.getFenData(pathPDOS);
+
+        for (int i = 0; i < dataPDOS.size(); i++) {
+            for (int j = 0; j < dataPDOS.get(i).length; j++) {
+                System.out.println(dataPDOS.get(i)[j][0]);
+                System.out.println(dataPDOS.get(i)[j][1]);
+            }
+        }
+
+        mv.addObject("data_band", data_band);
+        mv.addObject("materialName", materialName);
+        mv.addObject("dataZong", dataZong);
+        mv.addObject("dataPDOS", dataPDOS);
+
+        return mv;
+    }
+
+    @RequestMapping("/elasticity")
+    public ModelAndView elasticity(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("/elasticity");
+
+        String materialName = "Al2Hf";
+
+        // PDOS
+        String pathElas = "D:\\data\\Al2Hf\\PBE\\mechanical property\\Al2Hf Elastic Constants.txt";
+        List<float[][]> dataPDOS = chartService.getMechData(pathElas);
+
+        mv.addObject("materialName", materialName);
+        mv.addObject("dataPDOS", dataPDOS);
 
         return mv;
     }

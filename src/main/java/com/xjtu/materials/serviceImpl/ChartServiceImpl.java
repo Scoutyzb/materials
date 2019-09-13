@@ -2,6 +2,7 @@ package com.xjtu.materials.serviceImpl;
 
 import com.xjtu.materials.service.ChartService;
 import com.xjtu.materials.util.CSVUtils;
+import com.xjtu.materials.util.ReadFromFile;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -113,4 +114,64 @@ public class ChartServiceImpl implements ChartService {
         }
         return dataZong;
     }
+
+    @Override
+    public List<float[][]> getMechData(String address) {
+        List<float[][]> res = new ArrayList<>();
+        // 读取Cij
+        List<String[]> readInLine = ReadFromFile.readFileByLines(address);
+        int line = 0;
+        for (int i = 0; i < readInLine.size(); i++) {
+            if (readInLine.get(i).length >=4 && "Elastic".equals(readInLine.get(i)[1]) && "Cij".equals(readInLine.get(i)[4])) {
+                line = i;
+                break;
+            }
+        }
+        // Cij
+        float[][] cij = new float[6][6];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                cij[i][j] = Float.parseFloat(readInLine.get(i + line + 3)[j + 1]);
+            }
+        }
+        // Sij
+        float[][] sij = new float[6][6];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                sij[i][j] = Float.parseFloat(readInLine.get(i + line + 14)[j + 1]);
+            }
+        }
+        // B和 G
+        int lineBG = 0;
+        float data_B = 0;
+        float data_G = 0;
+
+        for (int i = line; i < readInLine.size(); i++) {
+            String[] tempStr = readInLine.get(i);
+            if (tempStr.length > 5 && "Elastic".equals(tempStr[1]) && "polycrystalline".equals(tempStr[4])) {
+                lineBG = i;
+            }
+        }
+        for (int i = 0; i < 6; i++) {
+            if (readInLine.get(i + lineBG).length > 5 && "Bulk".equals(readInLine.get(i + lineBG)[0])){
+                data_B = Float.parseFloat(readInLine.get(i + lineBG)[5]);
+            }
+            if (readInLine.get(i + lineBG).length > 7 && "Shear".equals(readInLine.get(i + lineBG)[0])){
+                data_G = Float.parseFloat(readInLine.get(i + lineBG)[7]);
+            }
+        }
+        float[][] tempBG = new float[1][2];
+        tempBG[0][0] = data_B;
+        tempBG[0][1] = data_G;
+        // 结果
+        res.add(cij);
+        res.add(sij);
+        res.add(tempBG);
+        // res中 0 位cij，1位sij，2位 2个B和G
+        return res;
+    }
+
+
+
+
 }
