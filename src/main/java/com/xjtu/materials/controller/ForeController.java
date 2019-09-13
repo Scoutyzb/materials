@@ -4,12 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xjtu.materials.mapper.UpLoadMaterialMapper;
 import com.xjtu.materials.pojo.*;
 import com.xjtu.materials.service.*;
+import com.xjtu.materials.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,12 +59,8 @@ public class ForeController {
     @RequestMapping("/fore")
     public ModelAndView fore(HttpServletRequest request, HttpSession session){
         ModelAndView mv = new ModelAndView("foreWeb/fore");
-        System.out.println("1");
         List<News> News = newsService.AllNews();
-        System.out.println("News的长度"+News.size());
-        System.out.println("2");
         mv.addObject("News", News);
-        System.out.println("3");
         return mv;
     }
 
@@ -367,6 +366,35 @@ public class ForeController {
         return "foreWeb/upload_publication";
     }
 
+    /**
+     * @Description 上传文件页面
+     * @Auther HL
+     * @date 21:39 2019/9/29
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping("/uploadFile")
+    public String uploadFile() {
+        return "foreWeb/uploadFile";
+    }
+
+
+    /**
+     * @Description 上传cif
+     * @Auther HL
+     * @date 21:39 2019/9/29
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping(value="/upload_cif", method=RequestMethod.POST)
+    public String uploadFileFolder(HttpServletRequest request, HttpSession session) {
+        String username = (String) session.getAttribute("UserName");
+        String userID = (String) session.getAttribute("UserId");
+        MultipartHttpServletRequest params=((MultipartHttpServletRequest) request);
+        List<MultipartFile> files = params.getFiles("folder");     //fileFolder为文件项的name值
+        List<String> data =  FileUtil.saveMultiFile("D:\\data", files);
+        String meterialID = filePathService.Upload(data,username);
+        logService.UploadLog(userID,meterialID);
+        return "foreWeb/uploadFile";
+    }
 
 
     /**
@@ -381,7 +409,6 @@ public class ForeController {
         String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
 
         mv.addObject("materialName", materialName);
-
         return mv;
     }
 

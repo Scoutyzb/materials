@@ -37,48 +37,91 @@ public class FilePathServiceImpl implements FilePathService {
      * @date 16:00 2019/1/19
      * @return String Success
      */
-    @Override
-    public String Upload(@RequestParam("file") MultipartFile file,String name,String username){
-        if(!file.isEmpty()) {
-            // 获取文件名称,包含后缀
-            String fileName = file.getOriginalFilename();
+     @Override
+     public String Upload(List<String> data, String username){
 
-            // 存放在这个路径下：该路径是该工程目录下的static文件下：(注：该文件可能需要自己创建)
-            // 放在static下的原因是，存放的是静态文件资源，即通过浏览器输入本地服务器地址，加文件名时是可以访问到的
-//            String path = ClassUtils.getDefaultClassLoader().getResource("").getPath()+"static/json/";
-//            String path = "E:\\IDEA\\IntelliJ IDEA 2018.2\\workspace\\materials\\src\\main\\resources\\static\\json\\" ;
-            String path = "D:\\cif\\" ;
+         if(data != null){
+             String name = data.get(0);
+             String path = data.get(1);
+             String materialID = null;
+             // 接着创建对应的实体类，将以下路径进行添加，然后通过数据库操作方法写入
+             UpLoadMaterial material = new UpLoadMaterial();
+             Date date=new Date();
+             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+             String time = format.format(date);
+             String type = "1";
 
-            try {
-                // 该方法是对文件写入的封装，在util类中，导入该包即可使用，后面会给出方法
-                FileUtil.fileupload(file.getBytes(), path, fileName);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            // 接着创建对应的实体类，将以下路径进行添加，然后通过数据库操作方法写入
-            UpLoadMaterial material = new UpLoadMaterial();
-            Date date=new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String time = format.format(date);
-            String materialID = UUID.randomUUID().toString();
-            String urlPath = path+fileName;
-            String type = "1";
-            material.setMaterialid(materialID);
-            material.setMaterialname(name);
-            material.setType(type);
-            material.setIsauthenticated("1");
-            material.setTime(time);
-            material.setPath(urlPath);
-            material.setUsername(username);
-            upLoadMaterialMapper.insert(material);
-            return materialID;
-        }
-        else {
-            return "false";
-        }
-    }
+             UpLoadMaterialExample example = new UpLoadMaterialExample();
+             example.createCriteria().andMaterialnameEqualTo(name);
+             List<UpLoadMaterial> upLoadMaterials = upLoadMaterialMapper.selectByExample(example);
+             if (upLoadMaterials.size() == 1){
+                 materialID = upLoadMaterials.get(0).getMaterialid();
+                 material.setMaterialid(materialID);
+                 material.setMaterialname(name);
+                 material.setType(type);
+                 material.setIsauthenticated("1");
+                 material.setTime(time);
+                 material.setPath(path);
+                 material.setUsername(username);
+                 upLoadMaterialMapper.updateByPrimaryKeySelective(material);
+             }else{
+                 materialID = UUID.randomUUID().toString();
+                 material.setMaterialid(materialID);
+                 material.setMaterialname(name);
+                 material.setType(type);
+                 material.setIsauthenticated("1");
+                 material.setTime(time);
+                 material.setPath(path);
+                 material.setUsername(username);
+                 upLoadMaterialMapper.insert(material);
+             }
+             return materialID;
+         }else{
+             return "false";
+         }
+     }
+//    @Override
+//    public String Upload(@RequestParam("file") MultipartFile file,String username){
+//        if(!file.isEmpty()) {
+//            // 获取文件名称,包含后缀
+//            String fileName = file.getOriginalFilename();
+//            System.out.println("文件夹名"+fileName);
+//            // 存放在这个路径下：该路径是该工程目录下的static文件下：(注：该文件可能需要自己创建)
+//            // 放在static下的原因是，存放的是静态文件资源，即通过浏览器输入本地服务器地址，加文件名时是可以访问到的
+////            String path = ClassUtils.getDefaultClassLoader().getResource("").getPath()+"static/json/";
+////            String path = "E:\\IDEA\\IntelliJ IDEA 2018.2\\workspace\\materials\\src\\main\\resources\\static\\json\\" ;
+//            String path = "D:\\data\\" ;
+//
+//            try {
+//                // 该方法是对文件写入的封装，在util类中，导入该包即可使用，后面会给出方法
+//                FileUtil.fileupload(file.getBytes(), path, fileName);
+//            } catch (IOException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//
+//            // 接着创建对应的实体类，将以下路径进行添加，然后通过数据库操作方法写入
+//            UpLoadMaterial material = new UpLoadMaterial();
+//            Date date=new Date();
+//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            String time = format.format(date);
+//            String materialID = UUID.randomUUID().toString();
+//            String urlPath = path+fileName;
+//            String type = "1";
+//            material.setMaterialid(materialID);
+//            material.setMaterialname(fileName);
+//            material.setType(type);
+//            material.setIsauthenticated("1");
+//            material.setTime(time);
+//            material.setPath(urlPath);
+//            material.setUsername(username);
+//            upLoadMaterialMapper.insert(material);
+//            return materialID;
+//        }
+//        else {
+//            return "false";
+//        }
+//    }
 
     /**
      * @Description 按审核状态返回cif材料

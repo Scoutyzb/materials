@@ -209,21 +209,21 @@ public class HelloController {
     }
 
 
-    /*
-     * hl_upload_上传cif文件
-     */
-    @RequestMapping(value = "/upload_cif", method= RequestMethod.POST, produces="application/json;charset=utf-8")
-    public String upload_cif(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
-        String username = (String) session.getAttribute("UserName");
-        String userID = (String) session.getAttribute("UserId");
-
-        if (username == null){
-            return "login";
-        }
-        String objectID = filePathService.Upload(file,name,username);
-        logService.UploadLog(userID,objectID);
-        return "upload";
-    }
+//    /*
+//     * hl_upload_上传cif文件
+//     */
+//    @RequestMapping(value = "/upload_cif", method= RequestMethod.POST, produces="application/json;charset=utf-8")
+//    public String upload_cif(@RequestParam("file") MultipartFile file, @RequestParam("name") String name,HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
+//        String username = (String) session.getAttribute("UserName");
+//        String userID = (String) session.getAttribute("UserId");
+//
+//        if (username == null){
+//            return "login";
+//        }
+//        String objectID = filePathService.Upload(file,name,username);
+//        logService.UploadLog(userID,objectID);
+//        return "upload";
+//    }
 
     /*
      * hl_indexSearch_from
