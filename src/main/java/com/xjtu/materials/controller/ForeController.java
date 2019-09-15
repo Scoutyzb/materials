@@ -419,7 +419,7 @@ public class ForeController {
         String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
 
         // PDOS
-        String pathElas = "D:\\data\\"+materialName+"\\PBE\\mechanical property\\"+materialName+" Elastic Constants.csv";
+        String pathElas = "D:\\data\\"+materialName+"\\PBE\\mechanical property\\"+materialName+" Elastic Constants.txt";
         List<float[][]> mechData = chartService.getMechData(pathElas);
 
         mv.addObject("materialName", materialName);
