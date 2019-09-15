@@ -263,39 +263,13 @@
     <link rel="stylesheet" href='stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
     <!-- LH -->
-    <script type="text/javascript" src="JSmol.full.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.js"></script>
 
     <script type="text/javascript">
         if (!window.console) window.console = {};
         if (!window.console.log) window.console.log = function () {
         };
     </script>
-
-
-    <script src="/static/scomponents/requirejs/require.a0fb07562cea.js"
-            data-main="/static/js/dist/config.fa1f1c266ba8.js"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            require(["base"], function () {
-                window.PATH = "js/redesign/views/";
-                window.STATIC_URL = "/static/";
-                window.GROUPS = JSON.parse("[]");
-                window.SANDBOX = "core";
-                $("span.chemform").each(function () {
-                    $(this).html(_.htmlFormula($(this).text()))
-                })
-
-                require(["Material"],
-                    function (Material) {
-                        $(document).ready(function () {
-                            window.Material = new Material("mp-1901", "NaO2")
-                        });
-                    })
-
-            });
-        };
-    </script>
-
 
     <script type="text/javascript">
 
@@ -313,36 +287,6 @@
         })();
 
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            Jmol.setDocument(0);
-            var address = $('#materialName').val();
-            address = "cif/" + address + ".cif";
-
-            var Info = {
-                color: "#000000",
-                height: 500,
-                width: 500,
-                src: address,
-                // load: ' {1 1 1};set showUnitCell on',
-                // script: "load $" + address,
-                use: "HTML5",
-                j2sPath: "j2s",
-                jarPath: "java",
-                jarFile: "JmolAppletSigned0.jar",
-                isSigned: true,
-                serverURL: "php/jsmol.php",
-                // addSelectionOptions: true,
-                menuFile: "jmol.mnu",
-                language: "zh-CN",
-                disableInitialConsole: true,
-                showUnitCell: true
-            };
-            var jmol = Jmol.getApplet("myJmol", Info);
-            $("#JmolModel").html(Jmol.getAppletHtml("myJmol", Info));
-        });
-    </script>
-
 
     <meta charset="utf-8">
     <style type="text/css">
@@ -467,31 +411,37 @@
         <div class="row">
             <div class="span12">
                 <div class="row">
-                    <div class="span1">
-                    </div>
                     <div class="span6">
-                        <!-- 三维显示部分 -->
-                        <div id="jsmol">
-                            <div id="jmolApplet_appletinfotablediv" style="width:516px;height:516px;position:relative">
-                                <div id="JmolModel"
-                                     style="z-index: 9999; width: 100%; height: 100%; left: 0px; display: block;">
+                        <!--电子能带结构图显示部分-->
+                        <div class="box-header span9">
+                            <div class="row">
+                                <div class="span9">
+                                    <h4 align="centwe">电子能带结构图</h4>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- 4项按钮 -->
-                        <header>
-                            <h4>显示不同计算方法获得数据库信息</h4>
-                        </header>
-                        <button class="btn btn-primary btn-small">LDA
-                        </button>
-                        <button class="btn btn-primary btn-small">PBE
-                        </button>
-                        <button class="btn btn-primary btn-small">SCAN
-                        </button>
-                        <button class="btn btn-primary btn-small">PBEsol
-                        </button>
-                        <!-- 4按钮结束 -->
+                        <div class="row panel-body">
+                            <div class="span9" align="left">
+                                <div id = "main" style = "width: 600px;height:600px;">
+                                </div>
+                            </div>
+                        </div>
+                        <!--电子能带结构图显示部分结束-->
+                        <div class="structures pull-down">
+                            <header>
+                                <h4>显示不同计算方法获得数据库信息</h4>
+                            </header>
+                            <!-- 4项按钮 -->
+                            <button class="btn btn-primary btn-small">LDA
+                            </button>
+                            <button class="btn btn-primary btn-small">PBE
+                            </button>
+                            <button class="btn btn-primary btn-small">SCAN
+                            </button>
+                            <button class="btn btn-primary btn-small">PBEsol
+                            </button>
+                            <!-- 4按钮结束 -->
+                        </div>
 
                         <hr class="pull-up">
                         <button class="btn btn-primary" id="edit-xtal">导出数据</button>
@@ -510,27 +460,20 @@
                         <!--Lattice Parameters栏-->
                         <div id="final-structures">
                             <div id="lattice-params">
-                                <h4>
-                                    Mechanical Moduli（力学模量性质选择栏）
-                                </h4>
+                                <h4>Mechanical Moduli</h4>
+                                <h4>（力学模量性质）</h4>
                                 <div class="tab-pane active" id="comp-lattice">
                                     <ul>
                                         <li>
                                             <span class="badge">B</span>
                                             <div class="value">
-<!--                                                <div th:text="${para[0]}"></div>-->
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span class="badge">E</span>
-                                            <div class="value">
-<!--                                                <div th:text="${para[1]}"></div>-->
+                                                <div th:text="${mechData.get(2)[0][0]}"></div>
                                             </div>
                                         </li>
                                         <li>
                                             <span class="badge">G</span>
                                             <div class="value">
-<!--                                                <div th:text="${para[2]}"></div>-->
+                                                <div th:text="${mechData.get(2)[0][1]}"></div>
                                             </div>
                                         </li>
                                     </ul>
@@ -541,17 +484,80 @@
 
                             </div>
                             <div>
-                                <h4>Elasticity Data（弹性力学性质数据选择栏）</h4>
+                                <h4>Elasticity Data</h4>
+                                <h4>（弹性力学性质数据）</h4>
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-small">B/G/E/v
-                                </button>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-small col-md-2">Cij
-                                </button>
-                                <button class="btn btn-primary btn-small col-md-2">Sij
-                                </button>
+                                <table class="table">
+                                    <caption><h3>Cij</h3></caption>
+                                    <tbody>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[0]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[1]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[2]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[3]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[4]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(0)[5]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table">
+                                    <caption><h3>Sij</h3></caption>
+                                    <tbody>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[0]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[1]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[2]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[3]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[4]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div th:each="num : ${mechData.get(1)[5]}">
+                                            <td th:text="${num}"></td>
+                                        </div>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
 
@@ -566,7 +572,51 @@
 
 
 <!-- Manged at https://cdn.fontawesome.com by dwinston-->
-<script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
+<!--<script src="https://use.fontawesome.com/fd3b9caec8.js"></script>-->
 
 </body>
+<script th:inline="javascript">
+    // 基于准备好的dom，初始化echarts实例
+    console.log("进入JS");
+    var myChart = echarts.init(document.getElementById('main'));
+    var dataZong = [[${mechData.get(3)}]];
+    for (var i = 0; i < 100; i++) {
+        console.log(dataZong[i][0])
+    }
+    // console.log("数据：" + dataList);
+    // 指定图表的配置项和数据
+    var option = {
+        // title: {
+        //     text: '总态密度图'
+        // },
+        tooltip: {},
+        // legend: {
+        //     data:['销量']
+        // },
+        xAxis: {},
+        yAxis: {},
+        dataZoom: [
+            {
+                type: 'inside',
+                xAxisIndex: [0],
+                start: 0,
+                end: 100
+            },
+            {
+                type: 'inside',
+                yAxisIndex: [0],
+                start: 0,
+                end: 100
+            }
+        ],
+        series: [{
+            type: 'line',
+            smooth: true,
+            data: dataZong
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
 </html>

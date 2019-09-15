@@ -537,10 +537,10 @@ public class ForeController {
 
         // PDOS
         String pathElas = "D:\\data\\Al2Hf\\PBE\\mechanical property\\Al2Hf Elastic Constants.txt";
-        List<float[][]> dataPDOS = chartService.getMechData(pathElas);
+        List<float[][]> mechData = chartService.getMechData(pathElas);
 
         mv.addObject("materialName", materialName);
-        mv.addObject("dataPDOS", dataPDOS);
+        mv.addObject("mechData", mechData);
 
         return mv;
     }

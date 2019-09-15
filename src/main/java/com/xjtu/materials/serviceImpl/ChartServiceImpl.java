@@ -4,6 +4,7 @@ import com.xjtu.materials.service.ChartService;
 import com.xjtu.materials.util.CSVUtils;
 import com.xjtu.materials.util.ReadFromFile;
 import org.springframework.stereotype.Service;
+import static java.lang.Math.pow;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -160,6 +161,19 @@ public class ChartServiceImpl implements ChartService {
                 data_G = Float.parseFloat(readInLine.get(i + lineBG)[7]);
             }
         }
+
+        // 圆圈图数据 3组
+        float[][] data_pict1 = new float[100][2];
+        float[][] data_pict2 = new float[100][2];
+        float[][] data_pict3 = new float[100][2];
+        // 第1组  100模式
+        double angle = 0;
+        for (int i = 0; i < 100; i++) {
+            angle = Math.PI / 100 * i;
+            data_pict1[i][0] = (float)(calcul_100E(angle, sij) / Math.sin(angle));
+            data_pict1[i][1] = (float)(calcul_100E(angle, sij) / Math.cos(angle));
+        }
+
         float[][] tempBG = new float[1][2];
         tempBG[0][0] = data_B;
         tempBG[0][1] = data_G;
@@ -167,11 +181,19 @@ public class ChartServiceImpl implements ChartService {
         res.add(cij);
         res.add(sij);
         res.add(tempBG);
+        res.add(data_pict1);
         // res中 0 位cij，1位sij，2位 2个B和G
         return res;
     }
 
+    private static double calcul_100E(double angle, float[][] sij){
+        double n1 = 0;
+        double n2 = Math.sin(angle);
+        double n3 = Math.cos(angle);
 
-
+        double res = sij[1][1] * pow(n2, 4) + sij[2][2] * pow(n3, 4) + 4 * sij[1][3] * n3 * pow(n2, 3) + 4 * sij[2][3] * n2 * pow(n3, 3) +
+                (2 * sij[1][2] + 4 * sij[3][3]) * pow(n2, 2) * pow(n3, 2);
+        return res;
+    }
 
 }
