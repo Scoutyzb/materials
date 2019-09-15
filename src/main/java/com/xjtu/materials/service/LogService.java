@@ -15,7 +15,7 @@ public interface LogService {
      * @date 0:30 2019/1/23
      * @return void
      */
-    void UploadLog(String userID, String objectID);
+    void UploadLog(String userID, String objectID, String method);
     /**
      * @Description 提交文献日志
      * @Auther hl
