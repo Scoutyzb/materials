@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>下载文件</title>
+
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href='stylesheets/less/compiled/nucleus.5db1710fde48.css' charset="utf-8">
+    <link rel="stylesheet" href='stylesheets/less/compiled/app.12ad2f516774.css' charset="utf-8">
+    <!--jquery + bootstrap-->
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <!--jquery.dataTables-->
+    <link rel="stylesheet" href='http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' charset="utf-8">
+    <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <!--&lt;!&ndash;jquery.dataTables&ndash;&gt;-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <meta charset="utf-8">
+    <style type="text/css">
+
+        a:link,
+        a:hover,
+        a:visited,
+        a:active {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            background: #fff;
+        }
+
+        .card-holder {
+            position: fixed;
+            width: 0px;
+            overflow: visible;
+        }
+
+        .card-wrapper {
+            display: inline-block;
+            float: right;
+            clear: both;
+        }
+
+        .card {
+            position: relative;
+            left: 32px;
+            padding: 16px 32px 16px 64px;
+            margin: 8px;
+            x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            transition: all 0.3s ease-in-out 0.1s;
+        }
+
+        .card:hover {
+            position: relative;
+            left: 100%;
+            margin-left: -32px;
+            box-shadow:
+                    0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+                    0 8px 8px -8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-content {
+            display: inline-block;
+            color: #fff;
+            font-family: 'Droid Sans', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .bg-01 { background: #539770; }
+        .bg-02 { background: #4B7D74; }
+        .bg-03 { background: #8DC2BC; }
+        .bg-04 { background: #EDD6B4; }
+        .bg-05 { background: #BE7467; }
+        .bg-06 { background: #E2AE63; }
+
+    </style>
+
+</head>
+<body>
+
+<header>
+    <div th:replace="foreWeb/index1::nav"></div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="span10" id="main-content">
+            <!-- 搜索区域 -->
+            <div id="searchfield">
+                <strong class="offset1" id="search-label">Explore Materials
+                    <small id="syntax-help"><a href="#syntax-modal" data-toggle="modal">高级搜索语法</a></small>
+                </strong>
+
+                <form class="searchbox">
+                    <div id="note" class="note"></div>
+                    <img class="pt-icon" src="images/new/periodictable.cf315c4e4483.png" style="visibility: visible;">
+                    <div class="input-prepend">
+                        <select class="selectpicker" data-width="190px" style="display: none;">
+                            <optgroup label="Explore Materials" data-route="search/materials">
+                                <option data-placeholder="Na-O" data-key="elements"
+                                        data-content="<span class='fontastic-search menu-icon'></span> by Elements"></option>
+                            </optgroup>
+                        </select>
+                        <div class="btn-group bootstrap-select" style="width: 190px;">
+                            <button type="button" class="btn dropdown-toggle selectpicker btn-default"
+                                    data-toggle="dropdown"><span><span
+                                    class="fontastic-search menu-icon"></span> 按元素</span>&nbsp;<span
+                                    class="caret"></span></button>
+                        </div>
+                        <input id="input-primary" class="search-query chemform" type="text" placeholder="Na-O">
+                        <i id="input-clear" class="icon-cancel"></i>
+                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage1?name='+$('#input-primary').val()">
+                            高级检索
+                        </button>
+                    </div>
+                </form>
+
+                <section id="pt-section">
+                    <div class='pt-wrapper' id="elements">
+                        <div class="periodic-row"><!-- Row One -->
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class="face front">
+                                        <i class="hidden-phone">1</i>
+                                        <strong class="symbol">H</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">2</i>
+                                        <strong class="symbol">He</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div><!-- //Row One -->
+
+                        <div class="periodic-row"><!-- Row Two -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">3</i>
+                                        <strong class="symbol">Li</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">4</i>
+                                        <strong class="symbol">Be</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">5</i>
+                                        <strong class="symbol">B</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">6</i>
+                                        <strong class="symbol">C</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">7</i>
+                                        <strong class="symbol">N</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">8</i>
+                                        <strong class="symbol">O</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">9</i>
+                                        <strong class="symbol">F</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">10</i>
+                                        <strong class="symbol">Ne</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Two -->
+
+                        <div class="periodic-row"><!-- Row Three -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">11</i>
+                                        <strong class="symbol">Na</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">12</i>
+                                        <strong class="symbol">Mg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">13</i>
+                                        <strong class="symbol">Al</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">14</i>
+                                        <strong class="symbol">Si</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">15</i>
+                                        <strong class="symbol">P</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">16</i>
+                                        <strong class="symbol">S</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">17</i>
+                                        <strong class="symbol">Cl</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">18</i>
+                                        <strong class="symbol">Ar</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Three -->
+
+                        <div class="periodic-row"><!-- Row Four -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">19</i>
+                                        <strong class="symbol">K</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">20</i>
+                                        <strong class="symbol">Ca</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">21</i>
+                                        <strong class="symbol">Sc</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">22</i>
+                                        <strong class="symbol">Ti</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">23</i>
+                                        <strong class="symbol">V</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">24</i>
+                                        <strong class="symbol">Cr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">25</i>
+                                        <strong class="symbol">Mn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">26</i>
+                                        <strong class="symbol">Fe</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">27</i>
+                                        <strong class="symbol">Co</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">28</i>
+                                        <strong class="symbol">Ni</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">29</i>
+                                        <strong class="symbol">Cu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">30</i>
+                                        <strong class="symbol">Zn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">31</i>
+                                        <strong class="symbol">Ga</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">32</i>
+                                        <strong class="symbol">Ge</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">33</i>
+                                        <strong class="symbol">As</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-non-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">34</i>
+                                        <strong class="symbol">Se</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">35</i>
+                                        <strong class="symbol">Br</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">36</i>
+                                        <strong class="symbol">Kr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Four -->
+
+                        <div class="periodic-row"><!-- Row Five -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">37</i>
+                                        <strong class="symbol">Rb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">38</i>
+                                        <strong class="symbol">Sr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">39</i>
+                                        <strong class="symbol">Y</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">40</i>
+                                        <strong class="symbol">Zr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">41</i>
+                                        <strong class="symbol">Nb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">42</i>
+                                        <strong class="symbol">Mo</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">43</i>
+                                        <strong class="symbol">Tc</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">44</i>
+                                        <strong class="symbol">Ru</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">45</i>
+                                        <strong class="symbol">Rh</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">46</i>
+                                        <strong class="symbol">Pd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">47</i>
+                                        <strong class="symbol">Ag</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">48</i>
+                                        <strong class="symbol">Cd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">49</i>
+                                        <strong class="symbol">In</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">50</i>
+                                        <strong class="symbol">Sn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">51</i>
+                                        <strong class="symbol">Sb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">52</i>
+                                        <strong class="symbol">Te</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">53</i>
+                                        <strong class="symbol">I</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">54</i>
+                                        <strong class="symbol">Xe</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Five -->
+
+                        <div class="periodic-row"><!-- Row Six -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">55</i>
+                                        <strong class="symbol">Cs</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">56</i>
+                                        <strong class="symbol">Ba</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthanoid-transitional-metal'>
+                                <div class='chip long'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">57-71</i>
+                                        <strong class="symbol">La-Lu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">72</i>
+                                        <strong class="symbol">Hf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">73</i>
+                                        <strong class="symbol">Ta</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">74</i>
+                                        <strong class="symbol">W</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">75</i>
+                                        <strong class="symbol">Re</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">76</i>
+                                        <strong class="symbol">Os</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">77</i>
+                                        <strong class="symbol">Ir</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">78</i>
+                                        <strong class="symbol">Pt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">79</i>
+                                        <strong class="symbol">Au</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">80</i>
+                                        <strong class="symbol">Hg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">81</i>
+                                        <strong class="symbol">Tl</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">82</i>
+                                        <strong class="symbol">Pb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">83</i>
+                                        <strong class="symbol">Bi</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-metalloid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">84</i>
+                                        <strong class="symbol">Po</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-halogen'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">85</i>
+                                        <strong class="symbol">At</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-noble-gas'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">86</i>
+                                        <strong class="symbol">Rn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Six -->
+
+                        <div class="periodic-row"><!-- Row Seven -->
+                            <div class='element-alkali-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">87</i>
+                                        <strong class="symbol">Fr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-alkali-earth-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">88</i>
+                                        <strong class="symbol">Ra</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid-transitional-metal'>
+                                <div class='chip long'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">89-103</i>
+                                        <strong class="symbol">Ac-Lr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">104</i>
+                                        <strong class="symbol">Rf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">105</i>
+                                        <strong class="symbol">Db</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">106</i>
+                                        <strong class="symbol">Sg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">107</i>
+                                        <strong class="symbol">Bh</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">108</i>
+                                        <strong class="symbol">Hs</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">109</i>
+                                        <strong class="symbol">Mt</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">110</i>
+                                        <strong class="symbol">Ds</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">111</i>
+                                        <strong class="symbol">Rg</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-transition-metal'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">112</i>
+                                        <strong class="symbol">Cn</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Seven -->
+
+                        <div class='element-blank full'></div>
+
+                        <div class="periodic-row"><!-- Row Eight -->
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">57</i>
+                                        <strong class="symbol">La</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">58</i>
+                                        <strong class="symbol">Ce</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">59</i>
+                                        <strong class="symbol">Pr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">60</i>
+                                        <strong class="symbol">Nd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">61</i>
+                                        <strong class="symbol">Pm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">62</i>
+                                        <strong class="symbol">Sm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">63</i>
+                                        <strong class="symbol">Eu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">64</i>
+                                        <strong class="symbol">Gd</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">65</i>
+                                        <strong class="symbol">Tb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">66</i>
+                                        <strong class="symbol">Dy</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">67</i>
+                                        <strong class="symbol">Ho</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">68</i>
+                                        <strong class="symbol">Er</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">69</i>
+                                        <strong class="symbol">Tm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">70</i>
+                                        <strong class="symbol">Yb</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-lanthoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">71</i>
+                                        <strong class="symbol">Lu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-blank'></div>
+
+                        </div><!-- //Row Eight -->
+
+                        <div class="periodic-row"><!-- Row Nine -->
+                            <div class='element-blank'></div>
+                            <div class='element-blank'></div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">89</i>
+                                        <strong class="symbol">Ac</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">90</i>
+                                        <strong class="symbol">Th</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">91</i>
+                                        <strong class="symbol">Pa</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">92</i>
+                                        <strong class="symbol">U</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">93</i>
+                                        <strong class="symbol">Np</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">94</i>
+                                        <strong class="symbol">Pu</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">95</i>
+                                        <strong class="symbol">Am</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">96</i>
+                                        <strong class="symbol">Cm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">97</i>
+                                        <strong class="symbol">Bk</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">98</i>
+                                        <strong class="symbol">Cf</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">99</i>
+                                        <strong class="symbol">Es</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">100</i>
+                                        <strong class="symbol">Fm</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">101</i>
+                                        <strong class="symbol">Md</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">102</i>
+                                        <strong class="symbol">No</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='element-actinoid'>
+                                <div class='chip'>
+                                    <div class='face front'>
+                                        <i class="hidden-phone">103</i>
+                                        <strong class="symbol">Lr</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- //Row Nine -->
+                    </div><!-- //pt-wrapper -->
+
+                </section>
+            </div>
+        </div>
+        <!--span10-->
+
+    </div>
+    <!--row-->
+
+    <div class = "row">
+        <div class="col-md-6 col-md-offset-3">
+            <!-- 查询结果列表 -->
+            <div id="results" class = "">
+                <table id="table" data-toggle="table">
+                    <thead>
+                    <tr>
+                        <th data-field="id" style="text-align:center;">编号</th>
+                        <th data-field="name" style="text-align:center;">名称</th>
+                        <th data-field="type" style="text-align:center;">类型</th>
+                        <th data-field="time" style="text-align:center;">更新时间</th>
+                        <th data-field="操作" style="text-align:center;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    <tr th:each="Material:${Materials}">
+                        <td th:text="${MaterialStat.index + 1}"></td>
+                        <td th:text="${Material.materialname}"></td>
+                        <td th:text="${Material.type}"></td>
+                        <td th:text="${Material.time}"></td>
+<!--                        <td><a th:href="'/downLoadFile?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;" th:attr="id=${Material.materialid}" onclick="addToBlacklist(this.id)">下载</button></a>-->
+                        <td ><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;" th:attr="id=${Material.materialid}" onclick="addToBlacklist(this.id)">下载</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--result 结束-->
+        </div>
+    </div>
+
+</div>
+<!--container-->
+
+
+<footer>
+    <hr>
+    <ul class="text-center inline">
+        <li>
+            <a href="/about">关于</a>
+        </li>
+        <li>
+            <a class="" href="" target="_blank">
+                论坛
+            </a>
+
+        </li>
+        <li>
+            <a href="/citing">引用</a>
+        </li>
+        <li>
+            <a href="/terms">我们的团队</a>
+        </li>
+        <li>
+            <a href="/open">API</a>
+        </li>
+    </ul>
+</footer>
+
+
+<script type="text/javascript">
+    // 点击某元素,class为active则加入搜索框
+    $(document).ready(function () {
+        var elements = document.getElementsByClassName("chip");
+        var elemCount = elements.length;
+        for (var i = 0; i < elemCount; i++) {
+            elements[i].onclick = function (e) {
+                var className = $(this).children().attr("class");
+                console.log(className);
+                var inputVal = $("#input-primary").val();
+                console.log(inputVal)
+                if (className.indexOf("active") !== -1) {
+                    $(this).children().removeClass("active");
+                    if (inputVal.length === 0) {
+                        console.log($(this).find("strong").val());
+                        $("#input-primary").val($(this).find("strong").html())
+                    } else {
+                        $("#input-primary").val(inputVal + " " + $(this).find("strong").html());
+                    }
+                } else {
+                    $(this).children().addClass("active");
+                    if (inputVal.length === 0) {
+                        console.log($(this).find("strong").val());
+                        $("#input-primary").val($(this).find("strong").html())
+                    } else {
+                        $("#input-primary").val(inputVal + " " + $(this).find("strong").html());
+                    }
+                }
+            }
+        }
+    });
+</script>
+<script>
+    function addToBlacklist(id) {
+        var materialId = document.getElementById(id).id;
+        alert(materialId)
+        if (confirm("确认将cif文件下载在桌面上？")) {
+            $.ajax({
+                type: "POST",
+                url: "/downLoadFile",
+                data: {
+                    "materialId": materialId
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert("文件已经下载！");
+                    window.location.reload();
+                }
+            });
+        } else {
+            return
+        }
+        return true;
+
+    }
+</script>
+
+</body>
+</html>

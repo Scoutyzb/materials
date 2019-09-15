@@ -64,7 +64,7 @@ public class LogServiceImpl implements LogService {
      * @return void
      */
     @Override
-    public void UploadLog(String userID, String objectID){
+    public void UploadLog(String userID, String objectID, String method){
         Log log = new Log();
         Date date=new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -75,7 +75,7 @@ public class LogServiceImpl implements LogService {
         log.setUsertype("用户");
         log.setLogtime(time);
         log.setMethodlogicname("UploadFile");
-        log.setMethod("上传文件");
+        log.setMethod(method);
         log.setParamid(objectID);
         log.setLogtype("UpLoadMaterial");
         logMapper.insert(log);

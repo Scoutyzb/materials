@@ -1,8 +1,10 @@
 package com.xjtu.materials.util;
 
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.web.multipart.MultipartFile;
 import sun.font.TrueTypeFont;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,7 +28,7 @@ public class FileUtil {
     }
 
     /**
-     * 在basePath下保存上传的文件夹
+     * 在basePath下全部替换上传的文件夹
      * @param basePath
      * @param files
      */
@@ -134,6 +136,46 @@ public class FileUtil {
 //                e.printStackTrace();
 //            }
 //        }
+    }
+    /**
+     * 在basePath下部分覆盖上传的文件夹
+     * @param basePath
+     * @param files
+     */
+    public static List<String> saveMultiFile1(String basePath, List<MultipartFile> files) {
+        if(files.size() > 1){
+            List<String> data = new ArrayList<>();
+            if (basePath.endsWith("/")) {
+                basePath = basePath.substring(0, basePath.length() - 1);
+            }
+            //获得文件夹元素的值item
+            String dir = files.get(0).getOriginalFilename();
+            String item = dir.substring(0, dir.indexOf("/"));
+            //使用data存储元素信息
+            data.add(item);
+            //获得data路径下是否存在item
+            String path = basePath+"\\"+item;
+            //使用data存储文件路径信息
+            data.add(path);
+            //若同名文件夹之前已经存在，则删除文件夹
+            //将文件夹存入指定路径
+            for (MultipartFile file : files) {
+                // 获取文件名
+                String fileName = file.getOriginalFilename();
+                String filePath = basePath + "/" + fileName;
+                makeDir(filePath);
+                File dest = new File(filePath);
+                try {
+                    file.transferTo(dest);
+                } catch (IllegalStateException | IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return data;
+        }else{
+            return null;
+        }
     }
 
 
