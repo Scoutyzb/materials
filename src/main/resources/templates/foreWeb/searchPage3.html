@@ -128,7 +128,7 @@
                         </div>
                         <input id="input-primary" class="search-query chemform" type="text" placeholder="Na-O">
                         <i id="input-clear" class="icon-cancel"></i>
-                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage1?name='+$('#input-primary').val()">
+                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage3?name='+$('#input-primary').val()">
                             高级检索
                         </button>
                     </div>
@@ -1169,7 +1169,7 @@
         <div class="col-md-6 col-md-offset-3">
             <!-- 查询结果列表 -->
             <div id="results" class = "">
-                <table id="table" data-toggle="table">
+                <table id="table" data-toggle="table" class="table">
                     <thead>
                     <tr>
                         <th data-field="id" style="text-align:center;">编号</th>
@@ -1185,8 +1185,8 @@
                         <td th:text="${Material.materialname}"></td>
                         <td th:text="${Material.type}"></td>
                         <td th:text="${Material.time}"></td>
-                        <td><a th:href="'/electronicStructure?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
-                        <td><a th:href="'/electronicStructure?id=test'"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">测试用</button></a>
+                        <td th:if="${isExist[MaterialStat.index]} eq 1"><a th:href="'/electronicStructure?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
+<!--                        <td><a th:href="'/electronicStructure?id=test'"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">测试用</button></a>-->
 
                             <!--                            <a th:href="'/bandDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">电子能带结构</button></a>-->
                             <!--                            <a th:href="'/generalDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">总态密度图</button></a>-->
