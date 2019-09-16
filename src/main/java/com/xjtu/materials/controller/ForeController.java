@@ -433,7 +433,7 @@ public class ForeController {
         List<float[][]> data_band = chartService.getBandData(Path);
         // 总态密度
         String PathZong = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" DOS.csv";
-        float[][] dataZong = chartService.getZongData(Path);
+        float[][] dataZong = chartService.getZongData(PathZong);
         // PDOS
         String pathPDOS = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" PDOS.csv";
         List<float[][]> dataPDOS = chartService.getFenData(pathPDOS);

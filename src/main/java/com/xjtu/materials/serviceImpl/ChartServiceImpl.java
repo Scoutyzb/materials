@@ -61,7 +61,7 @@ public class ChartServiceImpl implements ChartService {
         }
         return result;
     }
-
+    // 分态
     @Override
     public List<float[][]> getFenData(String address) {
         List<float[][]> res = new ArrayList<>();
@@ -102,15 +102,13 @@ public class ChartServiceImpl implements ChartService {
         float[][] dataZong = new float[dataList.size()][2];
         if (dataList != null && !dataList.isEmpty()) {
             for (int i = 0; i < dataList.size(); i++) {
-                if (i != 0) {//不读取第一行
-                    String s = dataList.get(i);
-//                    System.out.println("第i行:" + s);
-                    String[] as = s.split(",");
-                    dataZong[i][0] = Float.valueOf(as[0]);
-                    dataZong[i][1] = Float.valueOf(as[1]);
-//                    System.out.println(dataZong[i][0]);
-//                    System.out.println(dataZong[i][1]);
-                }
+                String s = dataList.get(i);
+//                System.out.println("第i行:" + s);
+                String[] as = s.split(",");
+                dataZong[i][0] = Float.valueOf(as[0]);
+                dataZong[i][1] = Float.valueOf(as[1]);
+//                System.out.println("第i行x:" + dataZong[i][0]);
+//                System.out.println("第i行y:" + dataZong[i][1]);
             }
         }
         return dataZong;

@@ -274,27 +274,27 @@
 
     <script src="/static/scomponents/requirejs/require.a0fb07562cea.js"
             data-main="/static/js/dist/config.fa1f1c266ba8.js"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            require(["base"], function () {
-                window.PATH = "js/redesign/views/";
-                window.STATIC_URL = "/static/";
-                window.GROUPS = JSON.parse("[]");
-                window.SANDBOX = "core";
-                $("span.chemform").each(function () {
-                    $(this).html(_.htmlFormula($(this).text()))
-                })
+<!--    <script type="text/javascript">-->
+<!--        window.onload = function () {-->
+<!--            require(["base"], function () {-->
+<!--                window.PATH = "js/redesign/views/";-->
+<!--                window.STATIC_URL = "/static/";-->
+<!--                window.GROUPS = JSON.parse("[]");-->
+<!--                window.SANDBOX = "core";-->
+<!--                $("span.chemform").each(function () {-->
+<!--                    $(this).html(_.htmlFormula($(this).text()))-->
+<!--                })-->
 
-                require(["Material"],
-                    function (Material) {
-                        $(document).ready(function () {
-                            window.Material = new Material("mp-1901", "NaO2")
-                        });
-                    })
+<!--                require(["Material"],-->
+<!--                    function (Material) {-->
+<!--                        $(document).ready(function () {-->
+<!--                            window.Material = new Material("mp-1901", "NaO2")-->
+<!--                        });-->
+<!--                    })-->
 
-            });
-        };
-    </script>
+<!--            });-->
+<!--        };-->
+<!--    </script>-->
 
 
     <script type="text/javascript">
@@ -476,58 +476,51 @@
                         <hr class="pull-up">
                         <button class="btn btn-primary" id="edit-xtal">导出数据</button>
 
-                        <div class="pull-down pull-up">
-                            <strong>标签: </strong>
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                        <div class="pull-down pull-up">-->
+<!--                            <strong>标签: </strong>-->
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
-                        </div>
-                    </div>
-                    <div class="span3">
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span1">
-                    </div>
-                    <div class="box-header span9">
-                        <div class="row">
-                            <div class="span9">
-                                <h4 align="centwe">总态密度图</h4>
-                            </div>
-                            <!--<div class="span2">-->
-                            <!--<h5>Density of States</h5>-->
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <div class="row panel-body">
-                        <div class="span9" align="left">
-                            <!--总态密度图-->
-                            <div id="main" style="width: 700px;height:500px;">
+<!--                        </div>-->
+                        <br>
+                        <br>
+                        <br>
+                        <!-- 总态密度图  -->
+                        <div class="box-header span9">
+                            <div class="row">
+                                <div class="span9">
+                                    <h4 align="centwe">总态密度图</h4>
+                                </div>
+                                <!--<div class="span2">-->
+                                <!--<h5>Density of States</h5>-->
+                                <!--</div>-->
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span1">
-                    </div>
-                    <div class="box-header span9">
-                        <div class="row">
-                            <div class="span9">
-                                <h4 align="centwe">PDOS</h4>
+                        <div class="row panel-body">
+                            <div class="span9" align="left">
+                                <div id="main" style="width: 700px;height:500px;">
+                                </div>
                             </div>
-                            <!--<div class="span2">-->
-                            <!--<h5>Density of States</h5>-->
-                            <!--</div>-->
                         </div>
-                    </div>
-                    <div class="row panel-body">
-                        <div class="span9" align="left">
-                            <!--总态密度图-->
-                            <div id="mainPDOS" style="width: 700px;height:500px;">
+
+                        <!--PDOS-->
+                        <div class="box-header span9">
+                            <div class="row">
+                                <div class="span9">
+                                    <h4 align="centwe">PDOS</h4>
+                                </div>
+                                <!--<div class="span2">-->
+                                <!--<h5>Density of States</h5>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="row panel-body">
+                            <div class="span9" align="left">
+                                <div id="mainPDOS" style="width: 700px;height:500px;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -542,6 +535,7 @@
 <script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
 
 </body>
+<!--电子能带结构图-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main2'));
@@ -584,11 +578,15 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option_band);
 </script>
+<!--总态密度图-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
     var dataZong = [[${dataZong}]];
-    // console.log("数据：" + dataList);
+    // console.log("数据：" + dataZong);
+    for (var i = 0; i < 100; i++) {
+        console.log(i + "行数据:" + dataZong[i][0] + "--" + dataZong[1]);
+    }
     // 指定图表的配置项和数据
     var option = {
         // title: {
@@ -624,18 +622,19 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
+<!--PDOS-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('mainPDOS'));
     var dataList = [[${dataPDOS}]];
-    console.log("PDOS数据：" + dataList);
-    console.log("PDOS长度：" + dataList.length);
+    // console.log("PDOS数据：" + dataList);
+    // console.log("PDOS长度：" + dataList.length);
     var seriesData = [];
     for (var i = 0; i < dataList.length; i++) {
         var obj = new Object();
         obj.type = 'line';
         obj.data = dataList[i];
-        console.log("PDOS：" + dataList[i]);
+        // console.log("PDOS：" + dataList[i]);
         seriesData[i] = obj;
     }
     // 指定图表的配置项和数据

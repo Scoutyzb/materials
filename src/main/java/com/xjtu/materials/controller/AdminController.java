@@ -48,16 +48,6 @@ public class AdminController {
         return "admin/index";
     }
 
-//    @RequestMapping("/adminIndex")
-//    public String index1(HttpSession session, HttpServletRequest request) {
-//        String username = (String) session.getAttribute("UserName");
-//        String userID = (String) session.getAttribute("UserId");
-//        System.out.println("管理员姓名："+username);
-//        System.out.println("管理员ID："+userID);
-//        return "admin/index";
-//    }
-
-
     /**
      * @Description 管理员登陆
      * @Auther Liang
