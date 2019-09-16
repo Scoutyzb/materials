@@ -271,31 +271,8 @@
         };
     </script>
 
-
     <script src="/static/scomponents/requirejs/require.a0fb07562cea.js"
             data-main="/static/js/dist/config.fa1f1c266ba8.js"></script>
-<!--    <script type="text/javascript">-->
-<!--        window.onload = function () {-->
-<!--            require(["base"], function () {-->
-<!--                window.PATH = "js/redesign/views/";-->
-<!--                window.STATIC_URL = "/static/";-->
-<!--                window.GROUPS = JSON.parse("[]");-->
-<!--                window.SANDBOX = "core";-->
-<!--                $("span.chemform").each(function () {-->
-<!--                    $(this).html(_.htmlFormula($(this).text()))-->
-<!--                })-->
-
-<!--                require(["Material"],-->
-<!--                    function (Material) {-->
-<!--                        $(document).ready(function () {-->
-<!--                            window.Material = new Material("mp-1901", "NaO2")-->
-<!--                        });-->
-<!--                    })-->
-
-<!--            });-->
-<!--        };-->
-<!--    </script>-->
-
 
     <script type="text/javascript">
 
@@ -411,7 +388,6 @@
     <div th:replace="foreWeb/index1::nav"></div>
 </header>
 
-
 <div class="container">
     <input id="materialName" type="hidden" th:attr="value=${materialName}">
     <div class="detail" id="material">
@@ -479,11 +455,6 @@
 <!--                        <div class="pull-down pull-up">-->
 <!--                            <strong>标签: </strong>-->
 <!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
-
-<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
-
-<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
-
 <!--                        </div>-->
                         <br>
                         <br>
