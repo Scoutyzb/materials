@@ -7,6 +7,7 @@ import com.xjtu.materials.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,8 +21,13 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<UpLoadMaterial> SelectByName(String[] names){
         int count = names.length;
+//        System.out.println("name长度：" + count);
+//        System.out.println("name：" + names[0] + "-");
+        if (count == 0 || count == 1 && "".equals(names[0])) {
+            return new ArrayList<>();
+        }
         String str = "%";
-        for(int i =0;i<count;i++){
+        for(int i =0; i < count; i++){
             str = str+names[i]+"%";
         }
         List<UpLoadMaterial> materials = upLoadMaterialMapper.selectLikeStr(str);

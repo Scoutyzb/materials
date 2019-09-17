@@ -128,8 +128,8 @@
                         </div>
                         <input id="input-primary" class="search-query chemform" type="text" placeholder="Na-O">
                         <i id="input-clear" class="icon-cancel"></i>
-                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage1?name='+$('#input-primary').val()">
-                            高级检索
+                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage2?name='+$('#input-primary').val()">
+                            搜索
                         </button>
                     </div>
                 </form>
@@ -1169,7 +1169,7 @@
         <div class="col-md-6 col-md-offset-3">
             <!-- 查询结果列表 -->
             <div id="results" class = "">
-                <table id="table" data-toggle="table">
+                <table id="table" data-toggle="table" class="table">
                     <thead>
                     <tr>
                         <th data-field="id" style="text-align:center;">编号</th>
@@ -1185,13 +1185,7 @@
                         <td th:text="${Material.materialname}"></td>
                         <td th:text="${Material.type}"></td>
                         <td th:text="${Material.time}"></td>
-                        <td><a th:href="'/crystalStructure2?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
-                            <!--                            <a th:href="'/bandDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">电子能带结构</button></a>-->
-                            <!--                            <a th:href="'/generalDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">总态密度图</button></a>-->
-                            <!--                            <a th:href="'/partitionDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">分态密度图</button></a>-->
-                            <!--<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">声子谱</button>-->
-                            <!--<button type="button" class="RoleOfdelete btn btn-primary  btn-sm" style="margin-right:15px;">热力学性质</button>-->
-                            <!--<button type="button" class="RoleOfedit btn btn-primary  btn-sm" style="margin-right:15px;">力学性质</button></td>-->
+                        <td th:if="${isExist[MaterialStat.index]} eq 1"><a th:href="'/crystalStructure2?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
                     </tr>
                     </tbody>
                 </table>
@@ -1231,7 +1225,14 @@
         </li>
     </ul>
 </footer>
-
+<script type="text/javascript">
+    console.log("进入JS");
+    console.log([[${Number}]])
+    var list = [[${Materials}]]
+    for (var mat in list) {
+        console.log(mat)
+    }
+</script>
 
 <script type="text/javascript">
     // 点击某元素,class为active则加入搜索框

@@ -89,9 +89,22 @@ public class ForeController {
 
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+        //需要的文件是否存在
+        int[] isExist = new int[Materials.size()];
+        for (int i = 0; i < Materials.size(); i++) {
+            String materialName = Materials.get(i).getMaterialname();
+            String path = "D:\\data\\"+materialName+"\\PBE\\crystal structure\\"+materialName+".cif";
+            File file = new File(path);
+            if (file.exists()) {
+                isExist[i] = 1;
+            } else {
+                isExist[i] = 0;
+            }
+        }
 
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
+        mv.addObject("isExist",isExist);
         return mv;
     }
 
@@ -102,8 +115,22 @@ public class ForeController {
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
 
+        //需要的文件是否存在
+        int[] isExist = new int[Materials.size()];
+        for (int i = 0; i < Materials.size(); i++) {
+            String materialName = Materials.get(i).getMaterialname();
+            String path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" Band Structure.csv";
+            File file = new File(path);
+            if (file.exists()) {
+                isExist[i] = 1;
+            } else {
+                isExist[i] = 0;
+            }
+        }
+
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
+        mv.addObject("isExist",isExist);
         return mv;
     }
 
@@ -138,8 +165,22 @@ public class ForeController {
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
 
+        //需要的文件是否存在
+        int[] isExist = new int[Materials.size()];
+        for (int i = 0; i < Materials.size(); i++) {
+            String materialName = Materials.get(i).getMaterialname();
+            String path = "D:\\data\\"+materialName+"\\PBE\\mechanical property\\"+materialName+" Elastic Constants.txt";
+            File file = new File(path);
+            if (file.exists()) {
+                isExist[i] = 1;
+            } else {
+                isExist[i] = 0;
+            }
+        }
+
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
+        mv.addObject("isExist",isExist);
         return mv;
     }
 
@@ -424,7 +465,7 @@ public class ForeController {
         List<float[][]> data_band = chartService.getBandData(Path);
         // 总态密度
         String PathZong = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" DOS.csv";
-        float[][] dataZong = chartService.getZongData(Path);
+        float[][] dataZong = chartService.getZongData(PathZong);
         // PDOS
         String pathPDOS = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" PDOS.csv";
         List<float[][]> dataPDOS = chartService.getFenData(pathPDOS);
