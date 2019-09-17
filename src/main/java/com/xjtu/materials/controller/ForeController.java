@@ -75,9 +75,22 @@ public class ForeController {
 
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+        //需要的文件是否存在
+        int[] isExist = new int[Materials.size()];
+        for (int i = 0; i < Materials.size(); i++) {
+            String materialName = Materials.get(i).getMaterialname();
+            String path = "D:\\data\\"+materialName+"\\PBE\\crystal structure\\"+materialName+".cif";
+            File file = new File(path);
+            if (file.exists()) {
+                isExist[i] = 1;
+            } else {
+                isExist[i] = 0;
+            }
+        }
 
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
+        mv.addObject("isExist",isExist);
         return mv;
     }
 
@@ -392,10 +405,90 @@ public class ForeController {
      */
     @RequestMapping("/crystalStructure1")
     public ModelAndView crystalStructure1(@RequestParam(value = "id") String id) {
-        ModelAndView mv = new ModelAndView("/foreWeb/crystalStructure1");
+        //文件是否存在标记，第一个对应电子结构，第二个对应热力学，1存在，0不存在
+        int[] isExist = new int[4];
+
+        ModelAndView mv = new ModelAndView("/crystalStructure1");
+        // 晶体结构部分
         String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+        String path = "D:\\data\\"+materialName+"\\PBE\\crystal structure\\"+materialName+".cif";
+
+        List<String[]> stringOfFile = ReadFromFile.readFileByLines(path);
+        String[] para = new String[6];
+        for (int i = 0; i < stringOfFile.size(); i++) {
+            if (stringOfFile.get(i)[0].equals("_cell_length_a")) {
+                for (int j = 0; j < 6; j++) {
+                    para[j] = stringOfFile.get(i + j)[1];
+                }
+            }
+        }
+
+        // 电子结构部分
+        //此处更新路径
+        String Path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" Band Structure.csv";
+        // 能带密度图
+        // 文件不存在则送标记至前端
+        File file1 = new File(Path);
+        List<float[][]> data_band = new ArrayList<>();
+        if (file1.exists()) {
+            data_band = chartService.getBandData(Path);
+            isExist[0] = 1;
+        } else {
+            data_band = new ArrayList<>();
+        }
+
+
+        // 总态密度
+        String PathZong = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" DOS.csv";
+        // PDOS
+        String pathPDOS = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" PDOS.csv";
+        // 热力学部分
+        // PDOS
+        String pathElas = "D:\\data\\"+materialName+"\\PBE\\mechanical property\\"+materialName+" Elastic Constants.txt";
+
+
+        // 文件不存在则送标记至前端
+
+        float[][] dataZong;
+        List<float[][]> dataPDOS;
+        List<float[][]> mechData;
+        File file2 = new File(PathZong);
+        if (file2.exists()) {
+            dataZong = chartService.getZongData(PathZong);
+            isExist[1] = 1;
+        } else {
+            dataZong = new float[10][];
+        }
+        File file3 = new File(pathPDOS);
+        if (file3.exists()) {
+            dataPDOS = chartService.getFenData(pathPDOS);
+            isExist[2] = 1;
+        } else {
+            dataPDOS = new ArrayList<>();
+            dataPDOS.add(new float[10][]);
+            dataPDOS.add(new float[10][]);
+            dataPDOS.add(new float[10][]);
+        }
+        File file4 = new File(pathElas);
+        if (file4.exists()) {
+            mechData = chartService.getMechData(pathElas);
+            isExist[3] = 1;
+        } else {
+            mechData = new ArrayList<>();
+            mechData.add(new float[100][2]);
+            mechData.add(new float[100][2]);
+            mechData.add(new float[100][2]);
+            mechData.add(new float[100][2]);
+        }
 
         mv.addObject("materialName", materialName);
+        mv.addObject("para", para);
+        mv.addObject("data_band", data_band);
+        mv.addObject("dataZong", dataZong);
+        mv.addObject("dataPDOS", dataPDOS);
+        mv.addObject("mechData", mechData);
+        mv.addObject("isExist", isExist);
+
         return mv;
     }
 
