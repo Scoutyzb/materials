@@ -109,80 +109,28 @@
 </header>
 <div class="row">
     <div class="span2"></div>
-<div class="span4">
-    <div class="container">
-        <div class="headerFont">
-            <h1 style="color: #DAA520; margin-top: 100px;">上传文件端口：</h1>
-        </div>
-        <div>
-        <form action="/upload_cif" class="form-login" method="post" enctype="multipart/form-data">
-            <p>文件夹上传:</p>
-            <div><input type="file" id="folder" name="folder" size="15" multiple webkitdirectory></div>
-            <br>
-            <select id="type"  name="type" onclick="getTypeList()">
-                <option value="singleSection">单文件部分覆盖</option>
-                <option value="singleAll">单文件全部替换</option>
-                <option value="lotSection">多文件批量覆盖</option>
-                <!--<option value="lotAll">多文件全部替换</option>-->
-            </select>
-            <br>
-            <button type="submit">上传</button>
-<!--            <button type="button" class="btn btn-success save" style="margin-left:10px;"  onclick="addToBlacklist()">上传</button>-->
-        </form>
+    <div class="span4">
+        <div class="container">
+            <div class="headerFont">
+                <h1 style="color: #DAA520; margin-top: 100px;">上传文件格式错误：</h1>
+            </div>
+            <div>
+                <form action="/uploadFile" class="form-login" method="post" enctype="multipart/form-data">
+                    <p>文件格式与规定格式不匹配:</p>
+                    <button type="submit">重新上传</button>
+                    <!--            <button type="button" class="btn btn-success save" style="margin-left:10px;"  onclick="addToBlacklist()">上传</button>-->
+                </form>
+            </div>
         </div>
     </div>
+    <div class="span2"></div>
+    <div class="span8">
+        <br>
+        <br>
+        <br>
+        <img th:src="@{~/xuexiao2.jpg}"/>
+    </div>
 </div>
-<div class="span2"></div>
-<div class="span8">
-    <br>
-    <br>
-    <br>
-    <img th:src="@{~/xuexiao2.jpg}"/>
-</div>
-</div>
-
-<!--<script>-->
-<!--    function addToBlacklist() {-->
-<!--        // var myform = new FormData();-->
-<!--        // myform.append('file', $("#folder")[0].files);-->
-<!--        // myform.append('fileType',$("#type").val());-->
-<!--        var folder = document.getElementById("folder").files;-->
-<!--        if(folder.length==0)-->
-<!--        {-->
-<!--            alert("请选择文件");-->
-<!--            return;-->
-<!--        }-->
-<!--        var formData=new FormData();-->
-<!--        for(var i=0;i<folder.length;i++)-->
-<!--        {-->
-<!--            //将每个文件设置一个string类型的名字，放入到formData中，这里类似于setAttribute("",Object)-->
-<!--            formData.append(folder[i].name,folder[i]);-->
-<!--        }-->
-<!--        if (confirm("确认上传文件？")) {-->
-<!--            $.ajax({-->
-<!--                type: "POST",-->
-<!--                cache:false,-->
-<!--                url: "/upload_cif",-->
-<!--                data: formData,-->
-<!--                async: false,-->
-<!--                contentType: false,-->
-<!--                processData: false,-->
-<!--                // data: {-->
-<!--                //     "folder": folder.value,-->
-<!--                //     "type": type.value-->
-<!--                // },-->
-<!--                // dataType: "json",-->
-<!--                success: function (data) {-->
-<!--                    alert("文件已上传！");-->
-<!--                    window.location.reload();-->
-<!--                }-->
-<!--            });-->
-<!--        } else {-->
-<!--            return-->
-<!--        }-->
-<!--        return true;-->
-<!--    }-->
-<!--</script>-->
 
 </body>
 </html>

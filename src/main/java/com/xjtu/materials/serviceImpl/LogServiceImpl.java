@@ -58,13 +58,39 @@ public class LogServiceImpl implements LogService {
     }
 
     /**
-     * @Description 上传文件日志
+     * @Description 上传文件日志(批量)
      * @Auther hl
      * @date 0:30 2019/1/23
      * @return void
      */
     @Override
-    public void UploadLog(String userID, String objectID, String method){
+    public void UploadLog(String userID, List<String> materialIDs, String method, String logicName){
+        for (int i=0; i<materialIDs.size(); i++){
+            String objectID = materialIDs.get(i);
+            Log log = new Log();
+            Date date=new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time = format.format(date);
+            String logID = UUID.randomUUID().toString();
+            log.setLogid(logID);
+            log.setUserid(userID);
+            log.setUsertype("用户");
+            log.setLogtime(time);
+            log.setMethodlogicname(logicName);
+            log.setMethod(method);
+            log.setParamid(objectID);
+            log.setLogtype("UpLoadMaterial");
+            logMapper.insert(log);
+        }
+    }
+
+    /**
+     * @Description 上传文件日志（单个）
+     * @Auther hl
+     * @date 0:30 2019/1/23
+     * @return void
+     */
+    public void UploadFileLog(String userID, String meterialID, String method, String logicName){
         Log log = new Log();
         Date date=new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -74,10 +100,34 @@ public class LogServiceImpl implements LogService {
         log.setUserid(userID);
         log.setUsertype("用户");
         log.setLogtime(time);
-        log.setMethodlogicname("UploadFile");
+        log.setMethodlogicname(logicName);
+        log.setMethod(method);
+        log.setParamid(meterialID);
+        log.setLogtype("UpLoadMaterial");
+        logMapper.insert(log);
+    }
+
+    /**
+     * @Description 下载文件日志
+     * @Auther hl
+     * @date 0:30 2019/1/23
+     * @return void
+     */
+    @Override
+    public void DownLoadFile(String userID, String objectID, String method){
+        Log log = new Log();
+        Date date=new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = format.format(date);
+        String logID = UUID.randomUUID().toString();
+        log.setLogid(logID);
+        log.setUserid(userID);
+        log.setUsertype("用户");
+        log.setLogtime(time);
+        log.setMethodlogicname("DownLoadFile");
         log.setMethod(method);
         log.setParamid(objectID);
-        log.setLogtype("UpLoadMaterial");
+        log.setLogtype("DownLoadMaterial");
         logMapper.insert(log);
     }
 

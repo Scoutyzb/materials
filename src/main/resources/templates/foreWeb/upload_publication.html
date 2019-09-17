@@ -98,18 +98,19 @@
 <br/>
 <form action="/uploadP" class="form-login" method="post" enctype="multipart/form-data">
     <p>请输入文献名称:</p>
-    <input type="text" name="fileName" />
+    <input type="text" id="fileName" name="fileName" />
     <p>请输入文献作者:</p>
-    <input type="text" name="userName" />
+    <input type="text" id="userName" name="userName" />
     <p>请输入文献摘要:</p>
-    <input type="text" name="abstractText" />
+    <input type="text" id="abstractText" name="abstractText" />
     <p>请输入文献标签:</p>
-    <input type="text" name="type" />
+    <input type="text" id="type" name="type" />
     <p>请输入文献DIO:</p>
-    <input type="text" name="DIO" />
+    <input type="text" id="DIO" name="DIO" />
     <p>请输入文献DIO网址:</p>
-    <input type="text" name="adress" />
-    <div><input id="submit_form1" type="submit" class="btn btn-success save" value="保存"/></div>
+    <input type="text" id="adress" name="adress" />
+    <br>
+    <button type="button" class="btn btn-success save" style="margin-left:10px;"  onclick="addToBlacklist()">保存</button>
 </form>
 </div>
 <div class="span2"></div>
@@ -120,5 +121,40 @@
         <img th:src="@{~/xuexiao2.jpg}"/>
 </div>
 </div>
+
+<script>
+    function addToBlacklist() {
+        var fileName = document.getElementById("fileName");
+        var userName = document.getElementById("userName");
+        var abstractText = document.getElementById("abstractText");
+        var type = document.getElementById("type");
+        var DIO = document.getElementById("DIO");
+        var adress = document.getElementById("adress");
+        alert(fileName.value);
+        if (confirm("确认上传文献？")) {
+            $.ajax({
+                type: "POST",
+                url: "/uploadP",
+                data: {
+                    "fileName": fileName.value,
+                    "userName": userName.value,
+                    "abstractText": abstractText.value,
+                    "type": type.value,
+                    "DIO": DIO.value,
+                    "adress": adress.value
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert("文献已上传！");
+                    window.location.reload();
+                }
+            });
+        } else {
+            return
+        }
+        return true;
+    }
+</script>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.xjtu.materials.service;
 
 import com.xjtu.materials.pojo.Log;
+import org.python.antlr.ast.Str;
 
 import java.util.List;
 
@@ -10,12 +11,19 @@ public interface LogService {
     List<Log> getAllLog();
 
     /**
-     * @Description 上传文件日志
+     * @Description 上传文件日志(多文件批量)
      * @Auther hl
      * @date 0:30 2019/1/23
      * @return void
      */
-    void UploadLog(String userID, String objectID, String method);
+    void UploadLog(String userID, List<String> materialIDs, String method, String logicName);
+    /**
+     * @Description 上传文件日志（单个文件）
+     * @Auther hl
+     * @date 0:30 2019/1/23
+     * @return void
+     */
+    void UploadFileLog(String userID, String meterialID, String method, String logicName);
     /**
      * @Description 提交文献日志
      * @Auther hl
@@ -23,6 +31,13 @@ public interface LogService {
      * @return void
      */
     void UploadpuPlicationLog(String userID,String objectID);
+    /**
+     * @Description 下载文件
+     * @Auther hl
+     * @date 0:44 2019/9/16
+     * @return void
+     */
+    void DownLoadFile(String userID, String objectID, String method);
     /**
      * @Description 管理员拉黑用户日志
      * @Auther hl

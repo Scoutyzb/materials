@@ -1,11 +1,15 @@
 package com.xjtu.materials.util;
 
 import org.apache.tomcat.util.http.parser.MediaType;
+import org.python.antlr.ast.Str;
+import org.python.apache.commons.compress.utils.IOUtils;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 import sun.font.TrueTypeFont;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,14 +30,130 @@ public class FileUtil {
         out.flush();
         out.close();
     }
+    /**
+     * 获得data的首个子路径
+     * @param files
+     */
+    public static String obtain(List<MultipartFile> files){
+        //获得文件夹元素的值item
+        String dir = files.get(0).getOriginalFilename();
+        String item = dir.substring(0, dir.indexOf("/"));
+        return item;
+    }
 
     /**
-     * 在basePath下全部替换上传的文件夹
+     * 在basePath下全部替换上传的文件夹(多文件批量)
      * @param basePath
      * @param files
      */
-
     public static List<String> saveMultiFile(String basePath, List<MultipartFile> files) {
+        if(files.size() > 1){
+            List<String> data = new ArrayList<>();
+            if (basePath.endsWith("/")) {
+                basePath = basePath.substring(0, basePath.length() - 1);
+            }
+            //获得文件夹元素的值item
+            String dir = files.get(0).getOriginalFilename();
+            String item = dir.substring(0, dir.indexOf("/"));
+            //使用data存储元素信息
+            if(item.equals("data")){
+                //获得data路径下是否存在item
+                String path = basePath+"\\"+item;
+                //将文件夹存入指定路径
+                for (MultipartFile file : files) {
+                    // 获取文件名
+                    String fileName = file.getOriginalFilename();
+                    String a = fileName.substring(5,fileName.length());
+                    item = a.substring(0, a.indexOf("/"));
+                    data.add(item);
+                    //材料路径
+                    String cailiaoPath = basePath + "\\data\\" + item;
+                    data.add(cailiaoPath);
+                    //若同名文件夹之前已经存在，则删除文件夹
+                    File fileE=new File(cailiaoPath);
+                    if (fileE.exists()){
+                        deleteFile(fileE);
+                    }
+                    //文件上传
+                    String filePath = basePath + "\\" + fileName;
+                    makeDir(filePath);
+                    File dest = new File(filePath);
+                    try {
+                        file.transferTo(dest);
+                    } catch (IllegalStateException | IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                return data;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+    /**
+     * 在basePath下部分覆盖上传的文件夹（多文件批量）
+     * @param basePath
+     * @param files
+     */
+    public static List<String> saveMultiFile1(String basePath, List<MultipartFile> files) {
+        if(files.size() > 1){
+            List<String> data = new ArrayList<>();
+            if (basePath.endsWith("/")) {
+                basePath = basePath.substring(0, basePath.length() - 1);
+            }
+            //获得文件夹元素的值item
+            String dir = files.get(0).getOriginalFilename();
+            String item = dir.substring(0, dir.indexOf("/"));
+            //使用data存储元素信息
+            if(item.equals("data")){
+                //获得data路径下是否存在item
+                String path = basePath+"\\"+item;
+                //将文件夹存入指定路径
+                for (MultipartFile file : files) {
+                    // 获取文件名
+                    String fileName = file.getOriginalFilename();
+                    String a = fileName.substring(5,fileName.length());
+                    item = a.substring(0, a.indexOf("/"));
+                    data.add(item);
+                    //材料路径
+                    String cailiaoPath = basePath + "\\data\\" + item;
+                    data.add(cailiaoPath);
+                    //文件上传
+                    String filePath = basePath + "\\" + fileName;
+                    makeDir(filePath);
+                    File dest = new File(filePath);
+                    try {
+                        file.transferTo(dest);
+                    } catch (IllegalStateException | IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                for  ( int  i  =   0 ; i  <  data.size()  -   1 ; i ++ )  {
+                    for  ( int  j  =  data.size()  -   1 ; j  >  i; j -- )  {
+                        if  (data.get(j).equals(data.get(i)))  {
+                            data.remove(j);
+                        }
+                    }
+                }
+                return data;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * 在basePath下全部替换上传的文件夹（单文件夹）
+     * @param basePath
+     * @param files
+     */
+    public static List<String> saveMultiFile2(String basePath, List<MultipartFile> files) {
         if(files.size() > 1){
             List<String> data = new ArrayList<>();
 //            if (files == null || files.size() == 0){
@@ -77,72 +197,14 @@ public class FileUtil {
         }else{
             return null;
         }
-//        if (files == null || files.size()==0) {
-//            return;
-//        }
-//        if (basePath.endsWith("/")) {
-//            basePath = basePath.substring(0, basePath.length() - 1);
-//        }
-//
-//        //获得文件夹元素的值item
-//        String dir = files.get(0).getOriginalFilename();
-//        System.out.println("dir"+dir);
-//        //判断是否为IE浏览器的文件名，IE浏览器下文件名会带有盘符信息
-//        // Check for Unix-style path
-//        int unixSep = dir.lastIndexOf('/');
-//        // Check for Windows-style path
-//        int winSep = dir.lastIndexOf('\\');
-//        // Cut off at latest possible point
-//        int pos = (winSep > unixSep ? winSep : unixSep);
-//        if (pos != -1){
-//            // Any sort of path separator found...
-//            dir = dir.substring(pos + 1);
-//        }
-//        String item = dir.substring(0, dir.indexOf("."));
-//
-//        //获得data路径下是否存在item
-//        String path = basePath+"\\"+item;
-//        System.out.println("路径"+path);
-//        File fileE=new File(path);
-//        System.out.println("存在"+fileE.exists());
-//        if (fileE.exists()){
-//            deleteFile(fileE);
-//        }
-//        System.out.println("Al文件的尺寸"+fileE.length());
-//
-//        //实现文本的存入
-//        for (MultipartFile file : files) {
-//            // 获取文件名
-//            String fileName = file.getOriginalFilename();
-//            //判断是否为IE浏览器的文件名，IE浏览器下文件名会带有盘符信息
-//            // Check for Unix-style path
-//            int unixSep1 = fileName.lastIndexOf('/');
-//            // Check for Windows-style path
-//            int winSep1 = fileName.lastIndexOf('\\');
-//            // Cut off at latest possible point
-//            int pos1 = (winSep1 > unixSep1 ? winSep1 : unixSep1);
-//            if (pos1 != -1)  {
-//                // Any sort of path separator found...
-//                fileName = fileName.substring(pos1 + 1);
-//            }
-//            System.out.println("fileName"+fileName);
-//            String filePath = basePath + "/" + fileName;
-//            System.out.println("filePath"+filePath);
-//            makeDir(filePath);
-//            File dest = new File(filePath);
-//            try {
-//                file.transferTo(dest);
-//            } catch (IllegalStateException | IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
+
     /**
-     * 在basePath下部分覆盖上传的文件夹
+     * 在basePath下部分覆盖上传的文件夹（单文件夹）
      * @param basePath
      * @param files
      */
-    public static List<String> saveMultiFile1(String basePath, List<MultipartFile> files) {
+    public static List<String> saveMultiFile3(String basePath, List<MultipartFile> files) {
         if(files.size() > 1){
             List<String> data = new ArrayList<>();
             if (basePath.endsWith("/")) {
@@ -176,6 +238,24 @@ public class FileUtil {
         }else{
             return null;
         }
+    }
+
+
+
+
+    /**
+     * 文件下载
+     */
+    public static String downLoad(String endPath, MultipartFile toMultipartFile){
+        makeDir(endPath);
+        File dest = new File(endPath);
+        try {
+            toMultipartFile.transferTo(dest);
+        } catch (IllegalStateException | IOException e)
+        {
+            e.printStackTrace();
+        }
+        return "1";
     }
 
 

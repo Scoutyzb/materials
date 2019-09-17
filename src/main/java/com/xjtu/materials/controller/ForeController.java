@@ -7,7 +7,9 @@ import com.xjtu.materials.service.*;
 import com.xjtu.materials.util.FileUtil;
 import com.xjtu.materials.util.ReadFromFile;
 import org.python.antlr.ast.Str;
+import org.python.apache.commons.compress.utils.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -247,17 +249,47 @@ public class ForeController {
      * @date 21:39 2019/9/29
      * @return org.springframework.web.servlet.ModelAndView
      */
-    @RequestMapping(value = "/uploadP", method= RequestMethod.POST, produces="application/json;charset=utf-8")
-    public String uploadPublication(@RequestParam("fileName") String fileName , @RequestParam("userName") String authorName , @RequestParam("abstractText") String abstractText , @RequestParam("DIO") String DIO , @RequestParam("type") String type , @RequestParam("adress") String adress , HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
+//    @RequestMapping(value = "/uploadP", method= RequestMethod.POST, produces="application/json;charset=utf-8")
+//    public String uploadPublication(@RequestParam("fileName") String fileName , @RequestParam("userName") String authorName , @RequestParam("abstractText") String abstractText , @RequestParam("DIO") String DIO , @RequestParam("type") String type , @RequestParam("adress") String adress , HttpSession session, HttpServletRequest request) throws IOException, InterruptedException{
+//        String username = (String) session.getAttribute("UserName");
+//        String userID = (String) session.getAttribute("UserId");
+//        if (username == null){
+//            return "login";
+//        }
+//        String objectID = filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
+//        logService.UploadpuPlicationLog(userID,objectID);
+//        return "foreWeb/upload_publication";
+//    }
+    /**
+     * @Description 上传出版物
+     * @Auther HL
+     * @date 21:39 2019/9/29
+     * @param Post
+     * @return java.lang.String
+     */
+    @ResponseBody
+    @RequestMapping("/uploadP")
+    public String uploadP(HttpSession session, HttpServletRequest request){
         String username = (String) session.getAttribute("UserName");
         String userID = (String) session.getAttribute("UserId");
+        String fileName = request.getParameter("fileName");
+        String authorName = request.getParameter("userName");
+        String abstractText = request.getParameter("abstractText");
+        String type = request.getParameter("type");
+        String DIO = request.getParameter("DIO");
+        String adress = request.getParameter("adress");
         if (username == null){
             return "login";
         }
         String objectID = filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
         logService.UploadpuPlicationLog(userID,objectID);
-        return "foreWeb/upload_publication";
+        return "1";
     }
+
+
+
+
+
 
     /**
      * @Description 上传文件页面
@@ -281,25 +313,58 @@ public class ForeController {
     public String uploadFileFolder(HttpServletRequest request, HttpSession session) {
         String username = (String) session.getAttribute("UserName");
         String userID = (String) session.getAttribute("UserId");
+        if (username == null){
+            return "login";
+        }
         MultipartHttpServletRequest params=((MultipartHttpServletRequest) request);
         List<MultipartFile> files = params.getFiles("folder");     //fileFolder为文件项的name值
         String type = params.getParameter("type");
         String method = null;
-        if (type.equals("all")){
-            method = "全部替换";
-            List<String> data =  FileUtil.saveMultiFile("D:\\data", files);
-            String meterialID = filePathService.Upload(data,username);
-            logService.UploadLog(userID,meterialID,method);
+        String logicName = null;
+        if (type.equals("singleAll")){
+            String item = FileUtil.obtain(files);
+            if (item.equals("data")){
+                return "foreWeb/uploadFileError";
+            }
+            method = "上传文件（全部替换）";
+            logicName = "UploadFile(All)";
+            List<String> data =  FileUtil.saveMultiFile2("D:\\data", files);
+            String meterialID = filePathService.UploadFile(data,username);
+            logService.UploadFileLog(userID, meterialID, method,logicName);
         }
-        else if (type.equals("section")){
-            method = "部分覆盖";
-            List<String> data =  FileUtil.saveMultiFile1("D:\\data", files);
-            String meterialID = filePathService.Upload(data,username);
-            logService.UploadLog(userID,meterialID,method);
+        else if(type.equals("singleSection")){
+            String item = FileUtil.obtain(files);
+            if (item.equals("data")){
+                return "foreWeb/uploadFileError";
+            }
+            method = "上传文件（部分覆盖）";
+            logicName = "UploadFile(Section)";
+            List<String> data =  FileUtil.saveMultiFile3("D:\\data", files);
+            String meterialID = filePathService.UploadFile(data,username);
+            logService.UploadFileLog(userID, meterialID, method, logicName);
         }
-//        List<String> data =  FileUtil.saveMultiFile("D:\\data", files);
-//        String meterialID = filePathService.Upload(data,username);
-//        logService.UploadLog(userID,meterialID);
+        else if (type.equals("lotAll")){
+            String item = FileUtil.obtain(files);
+            if (!item.equals("data")){
+                return "foreWeb/uploadFileError";
+            }
+            method = "上传文件（全部替换）";
+            logicName = "UploadFile(All)";
+            List<String> data =  FileUtil.saveMultiFile("D:", files);
+            List<String> meterialIDs = filePathService.Upload(data,username);
+            logService.UploadLog(userID, meterialIDs, method, logicName);
+        }
+        else if (type.equals("lotSection")){
+            String item = FileUtil.obtain(files);
+            if (!item.equals("data")){
+                return "foreWeb/uploadFileError";
+            }
+            method = "上传文件（部分覆盖）";
+            logicName = "UploadFile(Section)";
+            List<String> data =  FileUtil.saveMultiFile1("D:", files);
+            List<String> materialIDs = filePathService.Upload(data,username);
+            logService.UploadLog(userID, materialIDs, method, logicName);
+        }
         return "foreWeb/uploadFile";
     }
 
@@ -329,71 +394,57 @@ public class ForeController {
      */
     @ResponseBody
     @RequestMapping("/downLoadFile")
-    public String downLoadFile(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public String downLoadFile(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException{
         String username = (String) session.getAttribute("UserName");
         String userID = (String) session.getAttribute("UserId");
+
+        if (username == null){
+            return "login";
+        }
         String materialId = request.getParameter("materialId");
         String materialName = upLoadMaterialMapper.selectByPrimaryKey(materialId).getMaterialname();
         String downloadFilePath = "D:\\data\\"+materialName+"\\PBE\\crystal structure";//被下载的文件在服务器中的路径,
         String path = materialName+".cif";
-        File scFileDir = new File(downloadFilePath);
-        File TrxFiles[] = scFileDir.listFiles();
-        String fileName = TrxFiles[0].getName();
-        if (fileName.equals(path)){
-            System.out.println("相等"+fileName);
-            String realPath = "D:\\data\\"+materialName+"\\PBE\\crystal structure";
-            File file = new File(realPath, path);
-            System.out.println("文件"+file.exists());
-            // 如果文件名存在，则进行下载
-            if (file.exists()) {
-                System.out.println("文件存在");
-                // 配置文件下载
-                response.setHeader("content-type", "application/octet-stream");
-                response.setContentType("application/octet-stream");
-                // 下载文件能正常显示中文
-                response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+        String openPath = downloadFilePath+"\\"+path;
+        String endPath = "D:\\dataDownLoad\\"+materialName+".cif";
 
-                // 实现文件下载
-                byte[] buffer = new byte[1024];
-                FileInputStream fis = null;
-                BufferedInputStream bis = null;
-                try {
-                    fis = new FileInputStream(file);
-                    bis = new BufferedInputStream(fis);
-                    OutputStream os = response.getOutputStream();
-                    int i = bis.read(buffer);
-                    while (i != -1) {
-                        os.write(buffer, 0, i);
-                        i = bis.read(buffer);
-                    }
-                    return "1";
-//                    System.out.println("Download the song successfully!");
-                }
-                catch (Exception e) {
-                    return "0";
-//                    System.out.println("Download the song failed!");
-                }
-                finally {
-                    if (bis != null) {
-                        try {
-                            bis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (fis != null) {
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+        File scFileDir = new File(downloadFilePath);
+        if (!scFileDir.exists()){
+            return "0";
+        }else{
+            File TrxFiles[] = scFileDir.listFiles();
+            String fileName = TrxFiles[0].getName();
+            if (fileName.equals(path)) {
+                File file = new File(openPath);
+                FileInputStream fileInput = new FileInputStream(file);
+                MultipartFile toMultipartFile = new MockMultipartFile("file", file.getName(), "text/plain", IOUtils.toByteArray(fileInput));
+                toMultipartFile.getInputStream();
+                // 获取文件名
+                String result = FileUtil.downLoad(endPath, toMultipartFile);
+                logService.DownLoadFile(userID, materialId, "下载文件");
+                return result;
             }else{
                 return "0";
             }
         }
-        return "1";
+    }
+
+    /**
+     * @Description 下载页面搜索功能
+     * @Auther HL
+     * @date 22:41 2019/9/18
+     * @return java.lang.String
+     */
+    @RequestMapping("/downLoadSearchPage")
+    public ModelAndView searchPage(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/downLoad");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
     }
 
 

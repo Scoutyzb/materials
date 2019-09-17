@@ -128,7 +128,7 @@
                         </div>
                         <input id="input-primary" class="search-query chemform" type="text" placeholder="Na-O">
                         <i id="input-clear" class="icon-cancel"></i>
-                        <button id="submit-search" class="btn" type="button" onclick="location.href='/searchPage1?name='+$('#input-primary').val()">
+                        <button id="submit-search" class="btn" type="button" onclick="location.href='/downLoadSearchPage?name='+$('#input-primary').val()">
                             高级检索
                         </button>
                     </div>
@@ -1223,8 +1223,7 @@
 <script>
     function addToBlacklist(id) {
         var materialId = document.getElementById(id).id;
-        alert(materialId)
-        if (confirm("确认将cif文件下载在桌面上？")) {
+        if (confirm("确认将cif文件下载在D:\\dataDownLoad文件夹下？")) {
             $.ajax({
                 type: "POST",
                 url: "/downLoadFile",
@@ -1233,7 +1232,12 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    alert("文件已经下载！");
+                    if (data == 0) {
+                        alert("文件不存在，下载失败！");
+                    }
+                    else if(data == 1){
+                        alert("下载成功！");
+                    }
                     window.location.reload();
                 }
             });
