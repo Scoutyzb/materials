@@ -384,6 +384,7 @@ public class ForeController {
     public String downLoadFile(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException{
         String username = (String) session.getAttribute("UserName");
         String userID = (String) session.getAttribute("UserId");
+
         if (username == null){
             return "login";
         }
@@ -413,6 +414,24 @@ public class ForeController {
                 return "0";
             }
         }
+    }
+
+    /**
+     * @Description 下载页面搜索功能
+     * @Auther HL
+     * @date 22:41 2019/9/18
+     * @return java.lang.String
+     */
+    @RequestMapping("/downLoadSearchPage")
+    public ModelAndView searchPage(String name, HttpServletRequest request, HttpSession session) {
+        ModelAndView mv = new ModelAndView("foreWeb/downLoad");
+
+        String[] a = name.split("[^a-zA-Z]+");
+        List<UpLoadMaterial> Materials = searchService.SelectByName(a);
+
+        mv.addObject("Materials", Materials);
+        mv.addObject("Number",Materials.size());
+        return mv;
     }
 
 
