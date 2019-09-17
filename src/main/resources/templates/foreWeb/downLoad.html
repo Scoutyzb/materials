@@ -1224,7 +1224,7 @@
     function addToBlacklist(id) {
         var materialId = document.getElementById(id).id;
         alert(materialId)
-        if (confirm("确认将cif文件下载在桌面上？")) {
+        if (confirm("确认将cif文件下载在D:\\dataDownLoad文件夹下？")) {
             $.ajax({
                 type: "POST",
                 url: "/downLoadFile",
@@ -1233,7 +1233,12 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    alert("文件已经下载！");
+                    if (data == 0) {
+                        alert("文件不存在，下载失败！");
+                    }
+                    else if(data == 1){
+                        alert("下载成功！");
+                    }
                     window.location.reload();
                 }
             });
