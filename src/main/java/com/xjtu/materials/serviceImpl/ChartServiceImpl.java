@@ -167,9 +167,9 @@ public class ChartServiceImpl implements ChartService {
         // 第1组  100模式
         double angle = 0;
         for (int i = 0; i < 100; i++) {
-            angle = Math.PI / 100 * i;
-            data_pict1[i][0] = (float)(calcul_100E(angle, sij) / Math.sin(angle));
-            data_pict1[i][1] = (float)(calcul_100E(angle, sij) / Math.cos(angle));
+            angle = 2 * Math.PI / 100 * i;
+            data_pict1[i][0] = (float)(1 / calcul_100E(angle, sij) * Math.sin(angle));
+            data_pict1[i][1] = (float)(1 / calcul_100E(angle, sij) * Math.cos(angle));
         }
 
         float[][] tempBG = new float[1][2];
