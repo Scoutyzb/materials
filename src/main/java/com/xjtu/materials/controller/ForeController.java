@@ -264,7 +264,6 @@ public class ForeController {
      * @Description 上传出版物
      * @Auther HL
      * @date 21:39 2019/9/29
-     * @param Post
      * @return java.lang.String
      */
     @ResponseBody
@@ -560,8 +559,33 @@ public class ForeController {
             }
         }
 
+        //新建3*3的晶体矩阵
+        float[][] juzhen= new float[3][3];
+        juzhen[0][0] = (float) Math.abs(Float.parseFloat(para[0]));
+        juzhen[0][1] = (float) Math.sqrt(Double.parseDouble(para[0])*Double.parseDouble(para[1])* Math.cos(Double.parseDouble(para[5])));
+        juzhen[0][2] = (float) Math.sqrt(Double.parseDouble(para[0])*Double.parseDouble(para[2])* Math.cos(Double.parseDouble(para[4])));
+
+        juzhen[1][0] = juzhen[0][1];
+        juzhen[1][1] = (float) Math.abs(Float.parseFloat(para[1]));
+        juzhen[1][2] =  (float) Math.sqrt(Double.parseDouble(para[1])*Double.parseDouble(para[2])* Math.cos(Double.parseDouble(para[3])));
+
+        juzhen[2][0] = juzhen[0][2];
+        juzhen[2][1] = juzhen[1][2];
+        juzhen[2][2] = (float) Math.abs(Float.parseFloat(para[2]));
+
+        for (int i=0; i<3; i++){
+            for (int j=0; j<3; j++){
+                if (Float.isNaN(juzhen[i][j])){
+                    juzhen[i][j] = 0;
+                }
+            }
+        }
+
+
+
         mv.addObject("materialName", materialName);
         mv.addObject("para", para);
+        mv.addObject("juzhen", juzhen);
 
         return mv;
     }

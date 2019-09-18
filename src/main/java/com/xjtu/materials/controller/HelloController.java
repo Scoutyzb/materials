@@ -190,7 +190,6 @@ public class HelloController {
     @ResponseBody
     @RequestMapping(value = "/checkUser", method= RequestMethod.POST, produces="application/json;charset=utf-8")
     public String checkUser(@RequestParam("type") String type, @RequestParam("username") String userName, @RequestParam("pwd") String password, @RequestParam("sex") String sex , @RequestParam("birthday") String birthday ,@RequestParam("email") String email , @RequestParam("job") String job , @RequestParam("organization") String organization ,HttpSession session, HttpServletRequest request) {
-        System.out.println("信息："+type+"\n"+userName+"\n"+password+"\n"+sex+"\n"+birthday+"\n"+email+"\n"+job+"\n"+organization+"\n");
         int isExist = userService.isExist(type,userName,password,sex,birthday,email,job,organization);
         if(isExist==1){
             return "1";

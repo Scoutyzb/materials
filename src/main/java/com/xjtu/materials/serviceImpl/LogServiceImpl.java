@@ -51,7 +51,6 @@ public class LogServiceImpl implements LogService {
                 case "UpLoadMaterial": beOperator = upLoadMaterialMapper.selectByPrimaryKey(log.getParamid()).getMaterialname(); break;
                 default:break;
             }
-
             log.setBeOperator(beOperator);
         }
         return logs;
