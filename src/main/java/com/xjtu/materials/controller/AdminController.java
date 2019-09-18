@@ -272,6 +272,7 @@ public class AdminController {
      */
     @RequestMapping("/logPage")
     public ModelAndView logPage() {
+        System.out.println("进入logPage");
         ModelAndView mv = new ModelAndView("admin/logPage");
         List<Log> logs = logService.getAllLog();
         mv.addObject("logs", logs);
