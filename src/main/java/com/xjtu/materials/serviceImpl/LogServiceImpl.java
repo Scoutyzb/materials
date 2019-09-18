@@ -48,7 +48,13 @@ public class LogServiceImpl implements LogService {
             switch (log.getLogtype()) {
                 case "User": beOperator = userMapper.selectByPrimaryKey(log.getParamid()).getUsername(); break;
                 case "Publication": beOperator = publicationMapper.selectByPrimaryKey(log.getParamid()).getPublicationname(); break;
-                case "UpLoadMaterial": beOperator = upLoadMaterialMapper.selectByPrimaryKey(log.getParamid()).getMaterialname(); break;
+                case "UpLoadMaterial":
+                    if (upLoadMaterialMapper.selectByPrimaryKey(log.getParamid()) != null) {
+                        beOperator = upLoadMaterialMapper.selectByPrimaryKey(log.getParamid()).getMaterialname();
+                    } else {
+                        beOperator = null;
+                    };
+                    break;
                 default:break;
             }
             log.setBeOperator(beOperator);
