@@ -54,8 +54,6 @@ public class ForeController {
     @Autowired
     LogService logService;
 
-
-
     /**
      * @Description 首页
      * @Auther Liang
@@ -154,8 +152,22 @@ public class ForeController {
         String[] a = name.split("[^a-zA-Z]+");
         List<UpLoadMaterial> Materials = searchService.SelectByName(a);
 
+        //需要的文件是否存在
+        int[] isExist = new int[Materials.size()];
+        for (int i = 0; i < Materials.size(); i++) {
+            String materialName = Materials.get(i).getMaterialname();
+            String path = "D:\\data\\"+materialName+"\\PBE\\phonon spectrum\\"+materialName+" Phonon Dispersion.csv";
+            File file = new File(path);
+            if (file.exists()) {
+                isExist[i] = 1;
+            } else {
+                isExist[i] = 0;
+            }
+        }
+
         mv.addObject("Materials", Materials);
         mv.addObject("Number",Materials.size());
+        mv.addObject("isExist",isExist);
         return mv;
     }
 
@@ -264,7 +276,6 @@ public class ForeController {
      * @Description 上传出版物
      * @Auther HL
      * @date 21:39 2019/9/29
-     * @param Post
      * @return java.lang.String
      */
     @ResponseBody
@@ -286,11 +297,6 @@ public class ForeController {
         return "1";
     }
 
-
-
-
-
-
     /**
      * @Description 上传文件页面
      * @Auther HL
@@ -301,7 +307,6 @@ public class ForeController {
     public String uploadFile() {
         return "foreWeb/uploadFile";
     }
-
 
     /**
      * @Description 上传cif
@@ -447,7 +452,6 @@ public class ForeController {
         return mv;
     }
 
-
     /**
      * @Description 晶体结构
      * @Auther HL
@@ -578,6 +582,25 @@ public class ForeController {
         // 总态密度
         String PathZong = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" DOS.csv";
         float[][] dataZong = chartService.getZongData(PathZong);
+        // 总台图中的单元素数据
+        List<String> nameYuanSu = new ArrayList<>();
+        int start = 0;
+        for (int i = 0; i < materialName.length(); i++) {
+            if (materialName.charAt(i) >= '1' && materialName.charAt(i) <= '9') {
+                start++;
+                continue;
+            }
+            if (i + 1 >= materialName.length() || materialName.charAt(i + 1) >= 'A' &&
+                    materialName.charAt(i + 1) <= 'Z' || materialName.charAt(i + 1) >= '1' && materialName.charAt(i + 1) <= '9') {
+                String temp = materialName.substring(start, i + 1);
+                start = i + 1;
+                nameYuanSu.add(temp);
+            }
+        }
+        String pathYuanSu = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\" + materialName;
+        List<float[][]> yuanSuData = chartService.getDanYuanSu(pathYuanSu, nameYuanSu);
+        yuanSuData.add(dataZong);
+
         // PDOS
         String pathPDOS = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" PDOS.csv";
         List<float[][]> dataPDOS = chartService.getFenData(pathPDOS);
@@ -588,11 +611,33 @@ public class ForeController {
 //                System.out.println(dataPDOS.get(i)[j][1]);
 //            }
 //        }
+        nameYuanSu.add(materialName);
 
         mv.addObject("data_band", data_band);
         mv.addObject("materialName", materialName);
-        mv.addObject("dataZong", dataZong);
+        mv.addObject("yuanSuData", yuanSuData);
         mv.addObject("dataPDOS", dataPDOS);
+        mv.addObject("nameYuanSu", nameYuanSu);
+
+        return mv;
+    }
+
+    @RequestMapping("/phonon")
+    public ModelAndView phonon(@RequestParam(value = "id") String id) {
+        ModelAndView mv = new ModelAndView("/phonon");
+        String materialName = upLoadMaterialMapper.selectByPrimaryKey(id).getMaterialname();
+        //Phonon Dispersion路径
+        String path = "D:\\data\\"+materialName+"\\PBE\\phonon spectrum\\"+materialName+" Phonon Dispersion.csv";
+        //读取路径下数据
+        List<float[][]> data_phonon = chartService.getPhononDisp(path);
+        //Phonon DOS 路径
+        String pathDOS = "D:\\data\\"+materialName+"\\PBE\\phonon spectrum\\"+materialName+" Phonon DOS.csv";
+        // 读取
+        float[][] data_DOS = chartService.getZongData(pathDOS);
+
+        mv.addObject("data_phonon", data_phonon);
+        mv.addObject("materialName", materialName);
+        mv.addObject("data_DOS", data_DOS);
 
         return mv;
     }
@@ -612,7 +657,6 @@ public class ForeController {
 
         return mv;
     }
-
 
     /**
      * @Description 能带结构图
@@ -679,7 +723,6 @@ public class ForeController {
         return mv;
     }
 
-
     @RequestMapping("/get_default_app")
     public ModelAndView get_default_app() {
         return null;
@@ -702,6 +745,4 @@ public class ForeController {
 
 }
 
-//    /fore/paper
-//    /paper
 

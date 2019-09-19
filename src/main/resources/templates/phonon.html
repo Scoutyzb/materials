@@ -418,11 +418,11 @@
                     <div class="span1">
                     </div>
                     <div class="span6">
-                        <!--电子能带结构图显示部分-->
+                        <!--Phonon Dispersion显示部分-->
                         <div class="box-header span9">
                             <div class="row">
                                 <div class="span9">
-                                    <h4 align="centwe">电子能带结构图</h4>
+                                    <h4 align="centwe">Phonon Dispersion</h4>
                                 </div>
                             </div>
                         </div>
@@ -432,7 +432,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--电子能带结构图显示部分结束-->
+                        <!--Phonon Dispersion显示部分结束-->
                         <div class="structures pull-down">
                             <header>
                                 <h4>显示不同计算方法获得数据库信息</h4>
@@ -459,11 +459,11 @@
                         <br>
                         <br>
                         <br>
-                        <!-- 总态密度图  -->
+                        <!-- Phonon DOS  -->
                         <div class="box-header span9">
                             <div class="row">
                                 <div class="span9">
-                                    <h4 align="centwe">总态密度图</h4>
+                                    <h4 align="centwe">Phonon DOS</h4>
                                 </div>
                                 <!--<div class="span2">-->
                                 <!--<h5>Density of States</h5>-->
@@ -477,23 +477,23 @@
                             </div>
                         </div>
 
-                        <!--PDOS-->
-                        <div class="box-header span9">
-                            <div class="row">
-                                <div class="span9">
-                                    <h4 align="centwe">PDOS</h4>
-                                </div>
-                                <!--<div class="span2">-->
-                                <!--<h5>Density of States</h5>-->
-                                <!--</div>-->
-                            </div>
-                        </div>
-                        <div class="row panel-body">
-                            <div class="span9" align="left">
-                                <div id="mainPDOS" style="width: 700px;height:500px;">
-                                </div>
-                            </div>
-                        </div>
+<!--                        &lt;!&ndash;PDOS&ndash;&gt;-->
+<!--                        <div class="box-header span9">-->
+<!--                            <div class="row">-->
+<!--                                <div class="span9">-->
+<!--                                    <h4 align="centwe">PDOS</h4>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;<div class="span2">&ndash;&gt;-->
+<!--                                &lt;!&ndash;<h5>Density of States</h5>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row panel-body">-->
+<!--                            <div class="span9" align="left">-->
+<!--                                <div id="mainPDOS" style="width: 700px;height:500px;">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -506,11 +506,11 @@
 <script src="https://use.fontawesome.com/fd3b9caec8.js"></script>
 
 </body>
-<!--电子能带结构图-->
+<!--Phonon Dispersion图-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main2'));
-    var dataList = [[${data_band}]];
+    var dataList = [[${data_phonon}]];
     // console.log("能带数据：" + dataList);
     // console.log("能带数据长度：" + dataList.length);
     var seriesData = [];
@@ -524,7 +524,7 @@
     // 指定图表的配置项和数据
     var option_band = {
         // title: {
-        //     text: '电子能带结构图'
+        //     text: 'Phonon Dispersion'
         // },
         tooltip: {},
         xAxis: {},
@@ -549,34 +549,24 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option_band);
 </script>
-<!--总态密度图-->
+<!--Phonon DOS图-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
-    var dataList = [[${yuanSuData}]];
-    var seriesData = [];
-    var names = [[${nameYuanSu}]];
-    var name = [names[1], names[2], names[3]];
-    for (var i = 0; i < dataList.length; i++) {
-        var obj = new Object();
-        obj.type = 'line';
-        obj.name = names[i];
-        obj.data = dataList[i];
-        // console.log("能带数据：" + dataList[i]);
-        seriesData[i] = obj;
+    var dataZong = [[${data_DOS}]];
+    // console.log("数据：" + dataZong);
+    for (var i = 0; i < 100; i++) {
+        console.log(i + "行数据:" + dataZong[i][0] + "--" + dataZong[1]);
     }
-    console.log(seriesData);
-    console.log(names);
-    console.log(name);
     // 指定图表的配置项和数据
     var option = {
         // title: {
-        //     text: '总态密度图'
+        //     text: 'Phonon DOS'
         // },
         tooltip: {},
-        legend: {
-            data: names
-        },
+        // legend: {
+        //     data:['销量']
+        // },
         xAxis: {},
         yAxis: {},
         dataZoom: [
@@ -593,7 +583,11 @@
                 end: 100
             }
         ],
-        series: seriesData
+        series: [{
+            type: 'line',
+            smooth: true,
+            data: dataZong
+        }]
     };
 
     // 使用刚指定的配置项和数据显示图表。
@@ -607,11 +601,9 @@
     // console.log("PDOS数据：" + dataList);
     // console.log("PDOS长度：" + dataList.length);
     var seriesData = [];
-    var names = ["p", "s", "v"];
     for (var i = 0; i < dataList.length; i++) {
         var obj = new Object();
         obj.type = 'line';
-        obj.name = names[i];
         obj.data = dataList[i];
         // console.log("PDOS：" + dataList[i]);
         seriesData[i] = obj;
@@ -619,13 +611,9 @@
     // 指定图表的配置项和数据
     var option_band = {
         // title: {
-        //     text: '电子能带结构图'
+        //     text: 'Phonon Dispersion'
         // },
-        tooltip: {
-        },
-        legend: {
-            data: names
-        },
+        tooltip: {},
         xAxis: {},
         yAxis: {},
         dataZoom: [

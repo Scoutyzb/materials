@@ -96,9 +96,9 @@ public class ChartServiceImpl implements ChartService {
     }
 
     @Override
-    public float[][] getZongData(String addrenss) {
+    public float[][] getZongData(String address) {
         List<String> dataList = new ArrayList<String>();
-        dataList = CSVUtils.importCsv(new File(addrenss));
+        dataList = CSVUtils.importCsv(new File(address));
         float[][] dataZong = new float[dataList.size()][2];
         if (dataList != null && !dataList.isEmpty()) {
             for (int i = 0; i < dataList.size(); i++) {
@@ -112,6 +112,18 @@ public class ChartServiceImpl implements ChartService {
             }
         }
         return dataZong;
+    }
+
+    @Override
+    public List<float[][]> getDanYuanSu(String address, List<String> nameYuanSu) {
+        List<float[][]> res = new ArrayList<>();
+        String path = address;
+        for (int i = 0; i < nameYuanSu.size(); i++) {
+            String pathTemp = path + " LDOS_" + nameYuanSu.get(i) + ".csv";
+            System.out.println(pathTemp);
+            res.add(getZongData(pathTemp));
+        }
+        return res;
     }
 
     @Override
@@ -182,6 +194,34 @@ public class ChartServiceImpl implements ChartService {
         res.add(data_pict1);
         // res中 0 位cij，1位sij，2位 2个B和G
         return res;
+    }
+
+    // 读Phonon Dispersion.csv文件
+    @Override
+    public List<float[][]> getPhononDisp(String address) {
+        List<float[][]> result = new ArrayList<>();
+        List<String> data = CSVUtils.importCsv(new File(address));
+
+        List<float[]> data_band = new ArrayList<>();
+        float[][] temp;
+        if (data != null && !data.isEmpty()) {
+            for (int i = 0; i < data.size(); i++) {
+                String s = data.get(i);
+                String[] as = s.split(",");
+                if (as[0].equals("0") && as[1].equals("1e+308")) {
+                    temp = new float[data_band.size()][2];
+                    for (int i1 = 0; i1 < data_band.size(); i1++) {
+                        temp[i1] = data_band.get(i1);
+                    }
+
+                    result.add(temp);
+                    data_band.clear();
+                    continue;
+                }
+                data_band.add(new float[]{Float.valueOf(as[0]), Float.valueOf(as[1])});
+            }
+        }
+        return result;
     }
 
     private static double calcul_100E(double angle, float[][] sij){
