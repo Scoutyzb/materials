@@ -1169,7 +1169,7 @@
         <div class="col-md-6 col-md-offset-3">
             <!-- 查询结果列表 -->
             <div id="results" class = "">
-                <table id="table" data-toggle="table">
+                <table id="table" data-toggle="table" class="table">
                     <thead>
                     <tr>
                         <th data-field="id" style="text-align:center;">编号</th>
@@ -1185,7 +1185,7 @@
                         <td th:text="${Material.materialname}"></td>
                         <td th:text="${Material.type}"></td>
                         <td th:text="${Material.time}"></td>
-                        <td><a th:href="'/crystalStructure2?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
+                        <td th:if="${isExist[MaterialStat.index]} eq 1"><a th:href="'/phonon?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">查看</button></a>
                             <!--                            <a th:href="'/bandDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">电子能带结构</button></a>-->
                             <!--                            <a th:href="'/generalDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">总态密度图</button></a>-->
                             <!--                            <a th:href="'/partitionDensity?id='+${Material.materialid}"><button type="button" class="RoleOfdelete btn btn-info  btn-sm" style="margin-left:10px;">分态密度图</button></a>-->
@@ -1264,43 +1264,6 @@
             }
         }
     });
-
-    //  搜索结果表-->
-    // <!--$(document).ready(function () {-->
-    //     <!--$('#example').DataTable({-->
-    //         <!--"jQueryUI": true,-->
-    //         <!--"language": { //自定义语言提示-->
-    //             <!--"processing": "处理中...",-->
-    //             <!--"lengthMenu": "显示 _MENU_ 项结果",-->
-    //             <!--"zeroRecords": "没有找到相应的结果",-->
-    //             <!--"info": "第 _START_ 至 _END_ 行，共 _TOTAL_ 行",-->
-    //             <!--"infoEmpty": "第 0 至 0 项结果，共 0 项",-->
-    //             <!--"infoFiltered": "(由 _MAX_ 项结果过滤)",-->
-    //             <!--"infoPostFix": "",-->
-    //             <!--"search": "搜索:",-->
-    //             <!--"searchPlaceholder": "请输入要搜索内容...",-->
-    //             <!--"url": "",-->
-    //             <!--"thousands": "'",-->
-    //             <!--"emptyTable": "表中数据为空",-->
-    //             <!--"loadingRecords": "载入中...",-->
-    //             <!--"infoThousands": ",",-->
-    //             <!--"paginate": {-->
-    //                 <!--"first": "首页",-->
-    //                 <!--"previous": "上页",-->
-    //                 <!--"next": "下页",-->
-    //                 <!--"last": "末页"-->
-    //             <!--}-->
-    //         <!--},-->
-    //         <!--"ajax": "/searchData",-->
-    //         <!--"columns": [-->
-    //             <!--{"data": "materialid"},-->
-    //             <!--{"data": "materialname"},-->
-    //             <!--{"data": "materialname"},-->
-    //             <!--{"data": "materialname"}-->
-    //         <!--]-->
-    //     <!--});-->
-    // <!--});-->
-
 </script>
 </body>
 </html>
