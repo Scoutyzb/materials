@@ -199,22 +199,29 @@ public class ForeController {
 
     @RequestMapping("/index1")
     public ModelAndView index(HttpSession session, HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView("foreWeb/index1");
+        String username = (String) session.getAttribute("UserName");
+        String userID = (String) session.getAttribute("UserId");
+        if (username == null){
+            ModelAndView mv = new ModelAndView("login");
+            return mv;
+        }
+        else{
+            ModelAndView mv = new ModelAndView("foreWeb/index1");
+            String userName = (String)session.getAttribute("UserName");
+            String userId = (String)session.getAttribute("UserId");
+            List<String> Materials = indexService.findMaterial(userId);
+            List<String> Publications = indexService.Publications(userId);
+            List<Log> Logs = indexService.Logs(userId);
+            List<News> News = newsService.AllNews();
+            List<Knows> Knows = newsService.AllKnows();
 
-        String userName = (String)session.getAttribute("UserName");
-        String userId = (String)session.getAttribute("UserId");
-        List<String> Materials = indexService.findMaterial(userId);
-        List<String> Publications = indexService.Publications(userId);
-        List<Log> Logs = indexService.Logs(userId);
-        List<News> News = newsService.AllNews();
-        List<Knows> Knows = newsService.AllKnows();
-
-        mv.addObject("Knows",Knows);
-        mv.addObject("News",News);
-        mv.addObject("Materials", Materials);
-        mv.addObject("Publications", Publications);
-        mv.addObject("Logs", Logs);
-        return mv;
+            mv.addObject("Knows",Knows);
+            mv.addObject("News",News);
+            mv.addObject("Materials", Materials);
+            mv.addObject("Publications", Publications);
+            mv.addObject("Logs", Logs);
+            return mv;
+        }
     }
 
     /**
@@ -271,15 +278,15 @@ public class ForeController {
     public String uploadP(HttpSession session, HttpServletRequest request){
         String username = (String) session.getAttribute("UserName");
         String userID = (String) session.getAttribute("UserId");
+        if (username == null){
+            return "login";
+        }
         String fileName = request.getParameter("fileName");
         String authorName = request.getParameter("userName");
         String abstractText = request.getParameter("abstractText");
         String type = request.getParameter("type");
         String DIO = request.getParameter("DIO");
         String adress = request.getParameter("adress");
-        if (username == null){
-            return "login";
-        }
         String objectID = filePathService.UploadPublication(fileName,authorName,username,abstractText,DIO,type,adress);
         logService.UploadpuPlicationLog(userID,objectID);
         return "1";
@@ -364,7 +371,7 @@ public class ForeController {
             List<String> materialIDs = filePathService.Upload(data,username);
             logService.UploadLog(userID, materialIDs, method, logicName);
         }
-        return "foreWeb/uploadFile";
+        return "foreWeb/uploadFileSuccess";
     }
 
     /**
@@ -473,6 +480,28 @@ public class ForeController {
             }
         }
 
+        //新建3*3的晶体矩阵
+        float[][] juzhen= new float[3][3];
+        juzhen[0][0] = (float) Math.abs(Float.parseFloat(para[0]));
+        juzhen[0][1] = (float) Math.sqrt(Double.parseDouble(para[0])*Double.parseDouble(para[1])* Math.cos(Double.parseDouble(para[5])));
+        juzhen[0][2] = (float) Math.sqrt(Double.parseDouble(para[0])*Double.parseDouble(para[2])* Math.cos(Double.parseDouble(para[4])));
+
+        juzhen[1][0] = juzhen[0][1];
+        juzhen[1][1] = (float) Math.abs(Float.parseFloat(para[1]));
+        juzhen[1][2] =  (float) Math.sqrt(Double.parseDouble(para[1])*Double.parseDouble(para[2])* Math.cos(Double.parseDouble(para[3])));
+
+        juzhen[2][0] = juzhen[0][2];
+        juzhen[2][1] = juzhen[1][2];
+        juzhen[2][2] = (float) Math.abs(Float.parseFloat(para[2]));
+
+        for (int i=0; i<3; i++){
+            for (int j=0; j<3; j++){
+                if (Float.isNaN(juzhen[i][j])){
+                    juzhen[i][j] = 0;
+                }
+            }
+        }
+
         // 电子结构部分
         //此处更新路径
         String Path = "D:\\data\\"+materialName+"\\PBE\\electronic properties\\"+materialName+" Band Structure.csv";
@@ -538,6 +567,7 @@ public class ForeController {
         mv.addObject("dataPDOS", dataPDOS);
         mv.addObject("mechData", mechData);
         mv.addObject("isExist", isExist);
+        mv.addObject("juzhen", juzhen);
 
         return mv;
     }
@@ -580,9 +610,6 @@ public class ForeController {
                 }
             }
         }
-
-
-
         mv.addObject("materialName", materialName);
         mv.addObject("para", para);
         mv.addObject("juzhen", juzhen);
