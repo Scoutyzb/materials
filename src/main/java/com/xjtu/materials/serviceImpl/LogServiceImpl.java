@@ -57,7 +57,6 @@ public class LogServiceImpl implements LogService {
                     break;
                 default:break;
             }
-
             log.setBeOperator(beOperator);
         }
         return logs;

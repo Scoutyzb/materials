@@ -585,27 +585,27 @@
                                                         <th colspan="4" rowspan="1" style="width: 244px;"><span
                                                                 class="chemform">Lattice vector</span></th>
                                                     </tr>
-                                                    <tr class="abc" role="row">
-                                                        <th class="sorting_asc" tabindex="0"
-                                                            aria-controls="DataTables_Table_2"
-                                                            rowspan="1" colspan="1" style="width: 81px;"
-                                                            aria-sort="ascending"
-                                                            aria-label="a: activate to sort column ascending">
-                                                            <div class="badge">a</div>
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="DataTables_Table_2"
-                                                            rowspan="1" colspan="1" style="width: 81px;"
-                                                            aria-label=" b : activate to sort column ascending">
-                                                            <div class="badge">b</div>
-                                                        </th>
-                                                        <th class="sorting" tabindex="0"
-                                                            aria-controls="DataTables_Table_2"
-                                                            rowspan="1" colspan="1" style="width: 82px;"
-                                                            aria-label=" c : activate to sort column ascending">
-                                                            <div class="badge">c</div>
-                                                        </th>
-                                                    </tr>
+<!--                                                    <tr class="abc" role="row">-->
+<!--                                                        <th class="sorting_asc" tabindex="0"-->
+<!--                                                            aria-controls="DataTables_Table_2"-->
+<!--                                                            rowspan="1" colspan="1" style="width: 81px;"-->
+<!--                                                            aria-sort="ascending"-->
+<!--                                                            aria-label="a: activate to sort column ascending">-->
+<!--                                                            <div class="badge">a</div>-->
+<!--                                                        </th>-->
+<!--                                                        <th class="sorting" tabindex="0"-->
+<!--                                                            aria-controls="DataTables_Table_2"-->
+<!--                                                            rowspan="1" colspan="1" style="width: 81px;"-->
+<!--                                                            aria-label=" b : activate to sort column ascending">-->
+<!--                                                            <div class="badge">b</div>-->
+<!--                                                        </th>-->
+<!--                                                        <th class="sorting" tabindex="0"-->
+<!--                                                            aria-controls="DataTables_Table_2"-->
+<!--                                                            rowspan="1" colspan="1" style="width: 82px;"-->
+<!--                                                            aria-label=" c : activate to sort column ascending">-->
+<!--                                                            <div class="badge">c</div>-->
+<!--                                                        </th>-->
+<!--                                                    </tr>-->
                                                     </thead>
                                                 </table>
                                             </div>
@@ -653,24 +653,19 @@
 
                                                 <tbody>
                                                 <tr role="row" class="odd">
-                                                    <td class="sorting_1">0</td>
-                                                    <td>0.1159</td>
-                                                    <td>0.4179</td>
+                                                    <td class="sorting_1" th:text="${juzhen[0][0]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[0][1]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[0][2]}">0</td>
                                                 </tr>
                                                 <tr role="row" class="even">
-                                                    <td class="sorting_1">0</td>
-                                                    <td>0.8841</td>
-                                                    <td>0.5821</td>
+                                                    <td class="sorting_1" th:text="${juzhen[1][0]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[1][1]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[1][2]}">0</td>
                                                 </tr>
                                                 <tr role="row" class="odd">
-                                                    <td class="sorting_1">0.5</td>
-                                                    <td>0.3841</td>
-                                                    <td>0.9179</td>
-                                                </tr>
-                                                <tr role="row" class="even">
-                                                    <td class="sorting_1">0.5</td>
-                                                    <td>0.6159</td>
-                                                    <td>0.0821</td>
+                                                    <td class="sorting_1" th:text="${juzhen[2][0]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[2][1]}">0</td>
+                                                    <td class="sorting_1" th:text="${juzhen[2][2]}">0</td>
                                                 </tr>
                                                 </tbody>
                                             </table>

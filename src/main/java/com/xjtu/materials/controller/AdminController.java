@@ -275,6 +275,10 @@ public class AdminController {
         System.out.println("进入logPage");
         ModelAndView mv = new ModelAndView("admin/logPage");
         List<Log> logs = logService.getAllLog();
+
+        for (Log log:logs){
+            System.out.println(log.getUserid());
+        }
         mv.addObject("logs", logs);
 
         System.out.println(logs);
