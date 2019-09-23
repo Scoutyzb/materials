@@ -394,10 +394,10 @@
                 <h4 class="chemform" th:text="${materialName}"></h4>
 			</span>
             <span class="vertical-line"></span>
-            <span class="detail-section">
-				<h5><small>ID:</small></h5>
-				<h4>-</h4>
-			</span>
+<!--            <span class="detail-section">-->
+<!--				<h5><small>ID:</small></h5>-->
+<!--				<h4>-</h4>-->
+<!--			</span>-->
             <span class="vertical-line"></span>
             <span class="detail-section">
 	</span>
@@ -416,7 +416,7 @@
                         <div class="box-header span9">
                             <div class="row">
                                 <div class="span9">
-                                    <h4 align="centwe">各向异性数据</h4>
+                                    <h4 align="centwe">弹性模量</h4>
                                 </div>
                             </div>
                         </div>
@@ -447,12 +447,12 @@
                         <button class="btn btn-primary" id="edit-xtal">导出数据</button>
 
                         <div class="pull-down pull-up">
-                            <strong>标签: </strong>
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                            <strong>标签: </strong>-->
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
-                            <span class="label-bg tag" th:text="${materialName}"></span>
+<!--                            <span class="label-bg tag" th:text="${materialName}"></span>-->
 
                         </div>
                     </div>
@@ -460,8 +460,8 @@
                         <!--Lattice Parameters栏-->
                         <div id="final-structures">
                             <div id="lattice-params">
-                                <h4>Mechanical Moduli</h4>
-                                <h4>（力学模量性质）</h4>
+                                <h4>力学模量性质(GPa)</h4>
+<!--                                <h4>（力学模量性质）</h4>-->
                                 <div class="tab-pane active" id="comp-lattice">
                                     <ul>
                                         <li>
@@ -484,8 +484,7 @@
 
                             </div>
                             <div>
-                                <h4>Elasticity Data</h4>
-                                <h4>（弹性力学性质数据）</h4>
+                                <h4>弹性力学性质(GPa)</h4>
                             </div>
                             <div>
                                 <table class="table">
@@ -575,6 +574,7 @@
 <!--<script src="https://use.fontawesome.com/fd3b9caec8.js"></script>-->
 
 </body>
+<!--弹性模量-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     console.log("进入JS");
@@ -587,7 +587,7 @@
     // 指定图表的配置项和数据
     var option = {
         // title: {
-        //     text: '总态密度图'
+        //     text: '弹性模量'
         // },
         tooltip: {},
         // legend: {
