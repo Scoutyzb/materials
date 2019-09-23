@@ -527,8 +527,12 @@
         //     text: '电子能带结构图'
         // },
         tooltip: {},
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '波矢量(k)'
+        },
+        yAxis: {
+            name: '能量(eV)'
+        },
         dataZoom: [
             {
                 type: 'inside',
@@ -577,8 +581,12 @@
         legend: {
             data: names
         },
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '能量(eV)'
+        },
+        yAxis: {
+            name: '态密度(states/eV.cell)'
+        },
         dataZoom: [
             {
                 type: 'inside',
@@ -607,7 +615,7 @@
     // console.log("PDOS数据：" + dataList);
     // console.log("PDOS长度：" + dataList.length);
     var seriesData = [];
-    var names = ["p", "s", "v"];
+    var names = ["s", "p", "d", "f"];
     for (var i = 0; i < dataList.length; i++) {
         var obj = new Object();
         obj.type = 'line';
@@ -626,8 +634,12 @@
         legend: {
             data: names
         },
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '能量(eV)'
+        },
+        yAxis: {
+            name: '态密度(states/eV.cell)'
+        },
         dataZoom: [
             {
                 type: 'inside',
