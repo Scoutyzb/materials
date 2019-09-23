@@ -779,7 +779,7 @@
                         <div class="box-header span9">
                             <div class="row">
                                 <div class="span9">
-                                    <h4 align="centwe">各向异性数据</h4>
+                                    <h4 align="centwe">弹性模量</h4>
                                 </div>
                             </div>
                         </div>
@@ -944,6 +944,7 @@
     console.log("JS调试");
     console.log(isExist);
 </script>
+<!--电子能带结构图-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main2'));
@@ -964,8 +965,12 @@
         //     text: '电子能带结构图'
         // },
         tooltip: {},
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '波矢量(k)'
+        },
+        yAxis: {
+            name: '能量(eV)'
+        },
         dataZoom: [
             {
                 type: 'inside',
@@ -1004,8 +1009,12 @@
         // legend: {
         //     data:['销量']
         // },
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '能量(eV)'
+        },
+        yAxis: {
+            name: '态密度(states/eV.cell)'
+        },
         dataZoom: [
             {
                 type: 'inside',
@@ -1051,8 +1060,12 @@
         //     text: '电子能带结构图'
         // },
         tooltip: {},
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: '能量(eV)'
+        },
+        yAxis: {
+            name: '态密度(states/eV.cell)'
+        },
         dataZoom: [
             {
                 type: 'inside',
@@ -1073,6 +1086,7 @@
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option_band);
 </script>
+<!--弹性模量-->
 <script th:inline="javascript">
     // 基于准备好的dom，初始化echarts实例
     console.log("进入JS");
@@ -1085,14 +1099,18 @@
     // 指定图表的配置项和数据
     var option = {
         // title: {
-        //     text: '总态密度图'
+        //     text: '弹性模量'
         // },
         tooltip: {},
         // legend: {
         //     data:['销量']
         // },
-        xAxis: {},
-        yAxis: {},
+        xAxis: {
+            name: 'Gpa'
+        },
+        yAxis: {
+            name: '力学模量面投影(GPa)'
+        },
         dataZoom: [
             {
                 type: 'inside',
